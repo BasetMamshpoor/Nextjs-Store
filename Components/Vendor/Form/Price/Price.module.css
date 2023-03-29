@@ -1,0 +1,109 @@
+.nJe_3zq_plf {
+  position: relative;
+  flex: 0 0 49%;
+  max-width: 49%;
+  height: 46px;
+  border-radius: 5px;
+  border: 1px solid rgb(218, 225, 231);
+  padding: 3px;
+}
+.nJe_3zq_plf:focus-within {
+  border-color: #3499ff;
+  box-shadow: rgb(255 225 230 / 10%) 1px 1px 8px 4px;
+}
+.FzwYa_4n4 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 0 0 49%;
+  height: 46px;
+}
+.input {
+  width: 100%;
+  height: 100%;
+  padding: 6px 8px;
+  color: rgb(43, 52, 69);
+  outline: none;
+  -webkit-appearance: none;
+  border: none;
+}
+.errors_input {
+  font-size: 12px;
+  position: absolute;
+  bottom: -1.5rem;
+  right: 1rem;
+  white-space: nowrap;
+  color: rgb(255, 104, 104);
+}
+.locaZam_bor {
+  margin-left: 1rem;
+}
+.locaZam_bor label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+#IcE_22:checked ~ .locaZam_bor .p99_jbY {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#IcE_22:checked ~ .locaZam_bor .p99_jbY::after {
+  content: "\F095\00FE0E";
+  font-family: Icon;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+}
+.p99_jbY {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  margin-left: 10px;
+  border: 1px solid gray;
+  transition: all 0.3s ease;
+}
+#IcE_22:checked ~ .Mn_HveS::after {
+  right: 100%;
+  z-index: -1;
+  border-radius: 5px;
+}
+#IcE_22:checked ~ .Mn_HveS input {
+  pointer-events: all;
+}
+.Mn_HveS {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  flex-grow: 1;
+}
+.Mn_HveS::after {
+  pointer-events: none;
+  position: absolute;
+  border-radius: 5px;
+  content: "";
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+.Mn_HveS input {
+  pointer-events: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  padding: 8px 12px;
+  border: 1px solid rgb(218, 225, 231);
+  border-radius: 5px;
+  font-size: 14px;
+}
+.Mn_HveS input:focus {
+  border-color: #3499ff;
+  box-shadow: rgb(255 225 230 / 10%) 1px 1px 8px 4px;
+}

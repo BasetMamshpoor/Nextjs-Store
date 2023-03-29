@@ -1,0 +1,158 @@
+.dealyOff {
+  position: relative;
+  margin: 3rem 0;
+}
+.kfIu {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  background: #3499ff;
+  padding: 1rem;
+  padding-right: 0;
+  overflow: hidden;
+}
+.dealyOff .swiper {
+  width: 62rem;
+  height: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.Jqz_03x {
+  overflow: hidden;
+  text-align: center;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.dealyOff .swiper-button-next.swiper-button-disabled,
+.dealyOff .swiper-button-prev.swiper-button-disabled {
+  display: none;
+}
+.dealyOff .swiper-button-prev,
+.swiper-button-next {
+  right: 10px;
+  left: auto;
+}
+.dealyOff .swiper-button-next,
+.swiper-button-prev {
+  left: 10px;
+  right: auto;
+}
+.dealyOff .swiper-button-next,
+.dealyOff .swiper-button-prev {
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  z-index: 20;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  background: #fff;
+  border: 1px solid rgb(168, 168, 168);
+  border-radius: 50%;
+}
+.dealyOff .swiper-button-next:after,
+.dealyOff .swiper-button-prev:after {
+  font-size: 15px;
+}
+
+.sdlks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vsJsm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #000;
+}
+.vsJsm:hover {
+  color: #67abffc5;
+  fill: #67abffc5;
+}
+.vsJsm svg {
+  width: 32px;
+  height: 32px;
+  transition: all 0.2s ease;
+}
+.vsJsm p {
+  margin-top: 1rem;
+  transition: all 0.2s ease;
+}
+
+.wsapJ {
+  position: relative;
+  padding: 0 1rem;
+  margin: 1rem 0;
+  width: 100%;
+  height: 100%;
+}
+.wsapJ span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #3499ff;
+  color: #fff;
+  font-size: 14px;
+  padding: 0.1rem 0.2rem;
+  border-radius: 3px 0 0 12px;
+  cursor: context-menu;
+}
+
+.oHbsI {
+  text-align: left;
+  width: 100%;
+  height: fit-content;
+  padding: 0.2rem 0.5rem 0.5rem;
+}
+.oHbsI p {
+  direction: ltr;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+}
+.oHbsI p::before {
+  content: "\F142\00FE0E";
+  font-family: "Icon";
+  font-size: 20px;
+  margin-right: 5px;
+}
+.oHbsI span {
+  font-size: 14px;
+  margin-left: 2rem;
+  text-decoration: line-through;
+  color: rgb(185, 185, 185);
+}
+.Lfjhe {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.Lfjhe a {
+  color: #fff;
+}
+.amazingImg {
+  margin: 1rem 0;
+  width: 100px;
+}
+.box_offer svg {
+  width: 64px;
+  height: 64px;
+  fill: #fff;
+  margin-bottom: 1rem;
+}

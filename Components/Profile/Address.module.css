@@ -1,0 +1,120 @@
+.YxaZev_5q {
+  margin-bottom: 3rem;
+}
+.iG_8Lo {
+  display: flex;
+  flex-direction: column;
+}
+.ExolP_3 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+.KnbYc__9 {
+  display: flex;
+  align-items: center;
+}
+.KnbYc__10 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+}
+.KnbYc__10 svg {
+  width: 32px;
+  height: 32px;
+  fill: #3499ff;
+}
+.KnbYc__9 h5 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 600;
+}
+.OTxe3_M {
+  border: 2px solid #3499ff;
+  background: #fff;
+  color: #3499ff;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.OTxe3_M:hover {
+  background: #3499ff;
+  color: #fff;
+}
+.Ubx7_O3 {
+  display: flex;
+  flex-direction: column;
+}
+.oInGt07_ {
+  box-shadow: 0 0 10px -3px #afafaf;
+  margin: 0 0.5rem 2rem;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.olCqz8_PP {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eeeeee;
+}
+.ObcjZo_e3 {
+  font-size: 15px;
+  font-weight: 500;
+}
+.cPx_iiRxQ67 {
+  display: flex;
+  align-items: center;
+}
+.cPx_iiRxQ67 svg {
+  width: 26px;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+.NbvWzpo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.NbvWzpo label {
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.loMnw {
+  font-size: 12px;
+  margin-bottom: -2px;
+}
+.LGtcmnD_3 {
+  display: flex;
+}
+.LGtcmnD_3 label {
+  border-left: 1px solid rgb(201, 201, 201);
+  padding-left: 6px;
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.FazWlNmh_i {
+  display: flex;
+  flex-direction: column;
+}
+.IbCh_1QzTM {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+.IbCh_1QzTM:last-child {
+  margin: 0;
+}
+.IbCh_1QzTM div svg {
+  width: 18px;
+  margin-left: 10px;
+}

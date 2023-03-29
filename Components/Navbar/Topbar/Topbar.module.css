@@ -1,0 +1,36 @@
+.topBar {
+  background-color: #3499ff;
+}
+
+.container {
+  width: 1200px;
+}
+
+.tpc {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.contact {
+  font-size: 12px;
+  display: flex;
+  color: #fff;
+  align-items: center;
+}
+.contact svg {
+  margin-left: 5px;
+  fill: #fff;
+  width: 20px;
+  height: 20px;
+}
+
+.tcExi span {
+  letter-spacing: 1px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 12px;
+  transition: all 0.3s ease-in;
+}

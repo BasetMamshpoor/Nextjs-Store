@@ -1,0 +1,388 @@
+{
+    "products": [
+        {
+            "category": [
+                "مردانه",
+                "لباس مردانه"
+            ],
+            "sizes": [
+                {
+                    "size": "M",
+                    "stoke": "1"
+                },
+                {
+                    "size": "XL",
+                    "stoke": "1"
+                }
+            ],
+            "specifications": [
+                {
+                    "attr_name": "پارچه ",
+                    "attr_desc": "سه خط"
+                }
+            ],
+            "imageList": [
+                {}
+            ],
+            "name": "کواو پاتول",
+            "img": {},
+            "price": "1400000",
+            "off_price": "1350000",
+            "off_percent": "4",
+            "color": "مشکی",
+            "colorCode": "#000000",
+            "id": 1
+        },
+        {
+            "category": [
+                "مردانه",
+                "لباس مردانه"
+            ],
+            "sizes": [
+                {
+                    "size": "M",
+                    "stoke": "1"
+                },
+                {
+                    "size": "XL",
+                    "stoke": "1"
+                }
+            ],
+            "specifications": [
+                {
+                    "attr_name": "پارچه ",
+                    "attr_desc": "سه خط"
+                }
+            ],
+            "imageList": [
+                {}
+            ],
+            "name": "کواو پاتول",
+            "img": {},
+            "price": "1400000",
+            "off_price": "1350000",
+            "off_percent": "4",
+            "color": "مشکی",
+            "colorCode": "#000000",
+            "id": 2
+        },
+        {
+            "category": [
+                "مردانه",
+                "لباس مردانه"
+            ],
+            "sizes": [
+                {
+                    "size": "M",
+                    "stoke": "1"
+                },
+                {
+                    "size": "XL",
+                    "stoke": "1"
+                }
+            ],
+            "specifications": [
+                {
+                    "attr_name": "پارچه ",
+                    "attr_desc": "سه خط"
+                }
+            ],
+            "imageList": [
+                {}
+            ],
+            "name": "کواو پاتول",
+            "img": {},
+            "price": "1400000",
+            "off_price": "1350000",
+            "off_percent": "4",
+            "color": "مشکی",
+            "colorCode": "#000000",
+            "id": 3
+        },
+        {
+            "category": [
+                "مردانه",
+                "لباس مردانه"
+            ],
+            "sizes": [
+                {
+                    "size": "M",
+                    "stoke": "1"
+                },
+                {
+                    "size": "XL",
+                    "stoke": "1"
+                }
+            ],
+            "specifications": [
+                {
+                    "attr_name": "پارچه ",
+                    "attr_desc": "سه خط"
+                }
+            ],
+            "imageList": [
+                {}
+            ],
+            "name": "کواو پاتول",
+            "img": {},
+            "price": "1400000",
+            "off_price": "1400000",
+            "color": "مشکی",
+            "colorCode": "#000000",
+            "id": 4
+        },
+        {
+            "category": [
+                "لباس مردانه",
+                "پسرانه",
+                "مردانه"
+            ],
+            "sizes": [
+                {
+                    "size": "SM",
+                    "stoke": "5"
+                },
+                {
+                    "size": "فری سایز",
+                    "stoke": "1"
+                }
+            ],
+            "specifications": [
+                {
+                    "attr_name": "یقه",
+                    "attr_desc": "گرد"
+                },
+                {
+                    "attr_name": "آستین",
+                    "attr_desc": "کوتاه"
+                }
+            ],
+            "imageList": [
+                {}
+            ],
+            "name": "پیراهن مدل چهار خونه ",
+            "img": {},
+            "price": "130000",
+            "off_price": "120000",
+            "off_percent": "8",
+            "color": "سفید",
+            "colorCode": "#ffffff",
+            "id": 5
+        },
+        {
+            "category": [
+                "مردانه"
+            ],
+            "sizes": [
+                {
+                    "size": "M",
+                    "stoke": "1"
+                }
+            ],
+            "specifications": [
+                {
+                    "attr_name": "پارچه ",
+                    "attr_desc": "پلاستیک"
+                }
+            ],
+            "imageList": [
+                {}
+            ],
+            "name": "شلوار جین",
+            "img": {},
+            "price": "150000",
+            "off_price": "140000",
+            "off_percent": "7",
+            "color": "آبی",
+            "colorCode": "#0000ff",
+            "id": 6
+        },
+        {
+            "category": [
+                "کفش مردانه",
+                "مردانه"
+            ],
+            "sizes": [
+                {
+                    "size": "40",
+                    "stoke": "3"
+                },
+                {
+                    "size": "41",
+                    "stoke": "3"
+                },
+                {
+                    "size": "42",
+                    "stoke": "5"
+                },
+                {
+                    "size": "43",
+                    "stoke": "2"
+                },
+                {
+                    "size": "45",
+                    "stoke": "1"
+                }
+            ],
+            "specifications": [
+                {
+                    "attr_name": "مناسب",
+                    "attr_desc": "کوهنوردی، پیاده روی،"
+                },
+                {
+                    "attr_name": "جنس",
+                    "attr_desc": "چرم و پلاستیک"
+                }
+            ],
+            "imageList": [
+                {}
+            ],
+            "name": "کفش کوهنوردی مردانه پاما مدل NBS-829 کد G1639کفش کوهنوردی مردانه پاما مدل NBS-829 کد G1639",
+            "img": {},
+            "price": "1355000",
+            "off_price": "1200000",
+            "off_percent": "12",
+            "color": "مشکی",
+            "colorCode": "#000000",
+            "id": 7
+        },
+        {
+            "category": [
+                "مردانه",
+                "لباس مردانه"
+            ],
+            "sizes": [
+                {
+                    "size": "M",
+                    "stoke": "3"
+                },
+                {
+                    "size": "XL",
+                    "stoke": "6"
+                },
+                {
+                    "size": "XXL",
+                    "stoke": "3"
+                }
+            ],
+            "specifications": [
+                {
+                    "attr_name": "یقه",
+                    "attr_desc": "اسکی"
+                },
+                {
+                    "attr_name": "جنس نخ",
+                    "attr_desc": "پشم اصل"
+                },
+                {
+                    "attr_name": "آستین",
+                    "attr_desc": "بلند"
+                }
+            ],
+            "imageList": [
+                {}
+            ],
+            "name": "بلوزی پیاوان ",
+            "img": {},
+            "price": "260000",
+            "off_price": "245000",
+            "off_percent": 6,
+            "color": "مشکی",
+            "colorCode": "#000000",
+            "id": 8
+        },
+        {
+            "category": [
+                "مردانه",
+                "کفش زنانه"
+            ],
+            "sizes": [
+                {
+                    "size": "40",
+                    "stoke": "6"
+                },
+                {
+                    "size": "41",
+                    "stoke": "8"
+                },
+                {
+                    "size": "42",
+                    "stoke": "3"
+                },
+                {
+                    "size": "43",
+                    "stoke": "5"
+                },
+                {
+                    "size": "44",
+                    "stoke": "7"
+                },
+                {
+                    "size": "45",
+                    "stoke": "1"
+                }
+            ],
+            "specifications": [
+                {
+                    "attr_name": "جنس",
+                    "attr_desc": " پارچه  چرم مصنوعی"
+                },
+                {
+                    "attr_name": "جنس زیره",
+                    "attr_desc": " ترموپلاستیک پلی اورتان (TPU)"
+                },
+                {
+                    "attr_name": "کفی",
+                    "attr_desc": "قابل تعویض"
+                },
+                {
+                    "attr_name": "نحوه بسته شدن کفش",
+                    "attr_desc": "بندی"
+                },
+                {
+                    "attr_name": "ویژگی‌های زیره",
+                    "attr_desc": "انعطاف پذیر  قابلیت ارتجاعی  قابلیت گردش هوا  کاهش فشار وارده  مقاوم در برابر سایش"
+                },
+                {
+                    "attr_name": "ویژگی‌های تخصصی کفش",
+                    "attr_desc": "مقاوم در برابر سایش  قابلیت گردش هوا  کاهش فشارهای وارده"
+                },
+                {
+                    "attr_name": "رنگ",
+                    "attr_desc": "مشکی"
+                },
+                {
+                    "attr_name": "استفاده برای",
+                    "attr_desc": "روز مره ، ورزش ، "
+                },
+                {
+                    "attr_name": "قالب",
+                    "attr_desc": "وسط"
+                },
+                {
+                    "attr_name": "جنس",
+                    "attr_desc": " پارچه چرم مصنوعی"
+                },
+                {
+                    "attr_name": "جنس زیره :",
+                    "attr_desc": " ترموپلاستیک پلی اورتان (TPU)"
+                },
+                {
+                    "attr_name": "کفی :",
+                    "attr_desc": " قابل تعویض"
+                }
+            ],
+            "imageList": [
+                {}
+            ],
+            "name": "کفش پیاده روی مردانه مدل NOV-BK",
+            "img": {},
+            "price": "290000",
+            "off_price": "194500",
+            "off_percent": 33,
+            "color": "مشکی",
+            "colorCode": "#000000",
+            "id": 9
+        }
+    ]
+}

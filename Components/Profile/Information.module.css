@@ -1,0 +1,39 @@
+.UBtgvIR4 {
+  direction: rtl;
+  margin-bottom: 3rem;
+}
+.lOmph0 {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 2rem 1rem;
+}
+.kLRx8Fh {
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 5px 10px -3px #d4d4d48f;
+}
+.nbGr5K {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.GvrclT4 {
+  display: flex;
+  flex-direction: column;
+}
+.Rcinpte p {
+  color: #81858b;
+  font-size: 12px;
+  font-weight: 400;
+}
+.RcnlEx {
+  font-size: 15px;
+  color: #424750;
+  margin-top: 10px;
+  font-weight: 600;
+}

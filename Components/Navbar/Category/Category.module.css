@@ -1,0 +1,126 @@
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.show {
+  opacity: 1;
+  visibility: visible;
+}
+.categorybg {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 11.05rem;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  user-select: none;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.cat_menu {
+  background: #fff;
+  max-width: 1200px;
+  width: 100%;
+  min-height: 390px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 14%), 0 4px 8px rgb(0 0 0 / 30%);
+}
+.cat_gender {
+  padding: 0 1rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+}
+.cat_gender ul {
+  align-items: center;
+  justify-content: center;
+}
+.cat_gender_menu {
+  flex-grow: 1;
+  height: 100%;
+  padding: 0 1rem;
+  display: flex;
+}
+.cat_gender_apparel {
+  width: 120px;
+}
+.cat_gender_apparel ul {
+  border-left: 1px solid #eee;
+  height: 100%;
+  padding: 0.5rem 0;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+.apparel_type {
+  padding: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 10px 20px;
+}
+.gender {
+  margin: 0 10px;
+  padding: 5px;
+}
+.gender_active {
+  border-bottom: 1px solid red;
+}
+.gender_active a {
+  color: red;
+}
+.gender_apparel {
+  margin: 10px 0;
+  position: relative;
+  cursor: pointer;
+}
+.gender_apparel a {
+  display: block;
+  width: 100%;
+}
+.apparel_active a {
+  color: #3499ff;
+}
+.apparel_active::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: #3499ff;
+  border-radius: 10px;
+  left: -1px;
+  top: 0;
+}
+.article {
+  height: fit-content;
+}
+.article a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  margin: 0 auto;
+  height: 100%;
+}
+.article a:hover span {
+  color: #000;
+}
+.article a:hover .art_img {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+}
+.art_img {
+  transition: all 0.3s ease;
+  margin-bottom: 0.5rem;
+  width: 96px;
+  padding: 0.3rem;
+  border-radius: 10px;
+}
+.art_name span {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.7);
+}

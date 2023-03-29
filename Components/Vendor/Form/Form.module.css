@@ -1,0 +1,226 @@
+.uTyc_3Waxd1 {
+  border: 1px solid #eee;
+  padding: 30px 2rem 10px;
+  box-shadow: 0 5px 10px -5px #ddd;
+  border-radius: 10px;
+}
+.Kce_1W2M4_6 {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.Hs_i8p4_gV {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.Hs_i8p4_gV > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Hs_i8p4_gV svg {
+  fill: #3499ff;
+  width: 28px;
+  height: 28px;
+  margin-left: 10px;
+}
+.qzE3_pNis__4 {
+  margin-bottom: 0;
+  font-size: inherit;
+}
+
+.WzlProductAdd_tce {
+  display: flex;
+  flex-direction: column;
+}
+.WzlProductAdd_tce input::placeholder {
+  font-weight: 100;
+  user-select: none;
+}
+.DxwzE_Os_T3 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem 0;
+  margin-bottom: 2rem;
+}
+
+.nJe_3zq_plf {
+  position: relative;
+  flex: 0 0 49%;
+  max-width: 49%;
+  height: 46px;
+  border-radius: 5px;
+  border: 1px solid rgb(218, 225, 231);
+  padding:3px;
+}
+.DxwzE_Os_T3 .nJe_3zq_plf:last-child {
+  flex-grow: 1 !important;
+  max-width: 100%;
+  padding: 6px 3px 0;
+}
+.input {
+  width: 100%;
+  height: 100%;
+  padding: 6px 8px;
+  color: rgb(43, 52, 69);
+  outline: none;
+  -webkit-appearance: none;
+  border: none;
+}
+.errors_input {
+  font-size: 12px;
+  position: absolute;
+  bottom: -1.5rem;
+  right: 1rem;
+  white-space: nowrap;
+  color: rgb(255, 104, 104);
+}
+
+.WzlProductAdd_tce input::-webkit-outer-spin-button,
+.WzlProductAdd_tce input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.nJe_3zq_plf:focus-within {
+  border-color: #3499ff;
+  box-shadow: rgb(255 225 230 / 10%) 1px 1px 8px 4px;
+}
+
+.KVdx {
+  font-size: 12px;
+  color: gray;
+  padding: 8px 1rem;
+  border-bottom: 1px solid rgb(247, 247, 247);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.KVdx:last-child {
+  border: none;
+}
+.KVdx:hover {
+  background: #bbd9f8;
+  color: gray;
+}
+
+.Fv_tFExqlo {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.errors_div_input {
+  position: absolute;
+  width: 100%;
+  right: 1rem;
+  display: flex;
+  bottom: -1.4rem;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: rgb(255, 104, 104);
+}
+.errors_div_input span {
+  flex: 0 0 49%;
+}
+.ICex11A_4 {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+.kctE_1Zq {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+.NbGvR {
+  position: relative;
+  flex-basis: 30%;
+}
+.Fcximy {
+  position: absolute;
+  bottom: -2.5rem;
+  display: flex;
+  flex-direction: row;
+}
+.errors_span_input {
+  margin-left: 1rem;
+  font-size: 11px;
+  color: rgb(255, 104, 104);
+}
+
+.kctE_1Zq input:not([type="color"]) {
+  flex-grow: 1;
+  height: 100%;
+  padding: 4px 6px;
+  font-size: 14px;
+  border: none;
+  outline: none;
+}
+.jCrxy input[type="color"] {
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  background: #fff;
+}
+.jCrxy {
+  height: 46px;
+  border: 1px solid rgb(218, 225, 231);
+  border-radius: 5px;
+  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.jCrxy:focus-within {
+  border-color: #3499ff;
+  box-shadow: rgb(255 225 230 / 10%) 1px 1px 8px 4px;
+}
+.jCrxy input:first-child {
+  flex-grow: 1;
+}
+
+.vExpkqZu {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hpxea_fzjbg {
+  margin: 5px 3px;
+  border: 1px solid gray;
+  background: rgb(189, 189, 189);
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  padding: 2px 4px;
+}
+
+.bGCzu_wq {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.save_pro_qq {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+.onRc_12ar {
+  border: none;
+  outline: none;
+  background: #3499ff;
+  color: #fff;
+  font-size: 14px;
+  padding: 12px;
+  border-radius: 10px;
+  width: 20%;
+}
+.jCrxi_22A5 {
+  position: relative;
+}

@@ -1,0 +1,122 @@
+.dSezpb6 {
+  margin-bottom: 3rem;
+}
+.MfdNsa {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.MfdNsa svg {
+  width: 32px;
+  height: 32px;
+  color: #3499ff;
+}
+.QzEmd {
+  font-size: 18px;
+  margin-right: 1rem;
+}
+.dSezpb6 {
+  display: flex;
+  flex-direction: column;
+}
+.SzPld {
+  display: flex;
+  align-items: center;
+  padding: 0px 18px;
+  flex-wrap: wrap;
+}
+.SzPld li {
+  font-size: 16px;
+  font-weight: 500;
+  flex: 1 1 0px;
+  text-align: right;
+  margin: 0 6px;
+  color: rgb(125, 135, 156);
+}
+.SzPld li:last-child {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding-left: 22px;
+  padding-right: 22px;
+  color: rgb(125, 135, 156);
+  flex: 0 0 0px !important;
+}
+.RxaPlo {
+  display: flex;
+  flex-direction: column;
+}
+.RxaPlo li {
+  margin: 1rem 0;
+}
+
+.WMeJalq {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px -3px #d4d4d48f;
+  padding: 6px 18px;
+  background-color: rgb(253, 253, 253);
+}
+.WMeJalq:hover {
+  color: #000;
+}
+.WMeJalq p {
+  font-size: 14px;
+  font-weight: 500;
+}
+.order_PL {
+  display: flex;
+  align-items: center;
+}
+.order_PL::after {
+  content: "\F142\00FE0E";
+  font-family: "Icon";
+  font-size: 1.1rem;
+  margin-right: 4px;
+  font-weight: 400;
+  margin-top: -4px;
+}
+
+.WMeJalq > * {
+  flex: 1 1 0px;
+  margin: 6px;
+}
+.mknBg {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+.aR9_nu {
+  display: inline-flex;
+  border-radius: 300px;
+  cursor: unset;
+  transition: all 150ms ease-in-out 0s;
+  padding: 0.25rem 1rem;
+}
+.aR9_nu span {
+  font-size: 12px;
+}
+.pending_order {
+  background-color: rgba(15, 52, 96, 0.2);
+}
+.delivered_order {
+  background-color: rgba(51, 208, 103, 0.15);
+}
+.cancelled_order {
+  background-color: rgb(255, 225, 230);
+}
+.cancelled_order span {
+  color: rgb(233, 69, 96);
+}
+.pending_order span {
+  color: rgb(15, 52, 96);
+}
+.delivered_order span {
+  color: rgb(51, 208, 103);
+}
+.mknBg {
+  flex: 0 0 0px !important;
+}

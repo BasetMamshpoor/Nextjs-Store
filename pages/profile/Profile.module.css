@@ -1,0 +1,97 @@
+.GjHeci {
+  justify-content: space-between;
+}
+.crveJoY34 {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e0e0e2;
+  border-radius: 10px;
+}
+.cEdoly {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 15px 0;
+  margin: 0 18px;
+}
+.loBycI {
+  margin-right: 1rem;
+  direction: rtl;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.loBycI p {
+  font-size: 16px;
+  font-family: "IRANYekan", sans-serif;
+  color: #232933;
+  font-weight: 700;
+  line-height: 24px;
+}
+.loBycI span {
+  font-size: 14px;
+  color: #a1a3a8;
+  font-weight: 400;
+}
+.vGtcol {
+  width: 48px;
+  height: 48px;
+}
+.vGtcol img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hBokr5H {
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+}
+.TvOin5 {
+  padding: 0 18px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.pSec_active {
+  display: flex;
+  align-items: center;
+}
+.pSec_active::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  height: 100%;
+  border-radius: 10px;
+  background: #3499ff;
+  width: 4px;
+  display: block;
+}
+
+.TvOin5 a {
+  padding: 16px 0;
+  border-top: 1px solid #f0f0f1;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  transition: all 0.4s ease;
+}
+.TvOin5:hover {
+  background: rgba(238, 238, 238, 0.74);
+}
+.TvOin5 a:hover > * {
+  color: #000;
+}
+.FEiXo svg {
+  width: 22px;
+  height: 22px;
+}
+.FEiXo {
+  margin-left: 16px;
+  color: #000;
+  font-weight: 900;
+}
+.CrxOs {
+  color: #000;
+  font-size: 12px;
+}

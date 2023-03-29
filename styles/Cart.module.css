@@ -1,0 +1,71 @@
+.ZolpWn__0_ {
+  margin: 3rem 0;
+}
+.SxSafd_b_3b {
+  display: flex;
+  flex-direction: column;
+}
+.jMszopl_9Y_1 {
+  position: sticky;
+  top: 10rem;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0 20px;
+  border-radius: 10px;
+  margin: 0 0.5rem;
+  box-shadow: 0 0 10px -3px #9c9c9c;
+}
+.KvxUs_LlI {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  padding: 0 20px;
+}
+.lBsNaA_J {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+}
+.lBsNaA_J p {
+  font-size: 14px;
+  font-family: "IRANYekan";
+  font-weight: 600;
+}
+.sWsRfAqS {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+.sWsRfAqS::after {
+  content: "\F142\00FE0E";
+  font-family: "Icon";
+  font-size: 18px;
+  margin-right: 0.3rem;
+  margin-bottom: 0.4rem;
+}
+.All_oFF_orDer {
+  color: #3499ff;
+}
+.pq_HhFcy {
+  cursor: pointer;
+  font-family: "IRANYekan";
+  background: #3499ff;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  margin: 0 1.5rem;
+}
+.pq_HhFcy:hover {
+  animation: btn_resize 0.6s linear 0s infinite alternate;
+}
+@keyframes btn_resize {
+  from {
+    margin: 0 1.5rem;
+  }
+  to {
+    margin: 0 0.3rem;
+  }
+}
+/* ==================== */

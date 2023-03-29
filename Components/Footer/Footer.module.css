@@ -1,0 +1,60 @@
+.footer {
+  background-color: rgb(246, 249, 252);
+}
+.Rsq_iunt {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.Rsq_iunt li {
+  margin: 0.2rem 0;
+}
+.social {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.social a svg {
+  width: 20px;
+  height: 20px;
+}
+.col-3 a {
+  font-size: 12px;
+}
+.col-3 a:hover {
+  color: #3499ff;
+}
+.Jcps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Jcps svg {
+  width: 20px;
+  height: 20px;
+}
+.backToTop a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(128, 128, 128, 0.233);
+  border-radius: 10px;
+}
+.backToTop a {
+  padding: .2rem 0.3rem .3rem;
+}
+.backToTop svg {
+  width: 24px;
+  height: 24px;
+}
+.hWsZ1a_o0 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+.kLogo {
+  width: 120px;
+  height: 50px;
+}

@@ -1,0 +1,101 @@
+.middleNav {
+  position: relative;
+  background: rgb(255, 255, 255);
+  direction: rtl;
+}
+
+.navSearchTop {
+  position: relative;
+  padding: .5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 250ms ease-in-out 0s;
+}
+.navLogo {
+  width: 124px;
+  height: 100%;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+.navLogo a {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.navSearch {
+  border: 1px solid rgb(218, 225, 231);
+  border-radius: 10px;
+  align-items: center;
+  max-width: 500px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: 1rem;
+  box-shadow: 0 5px 10px -10px rgba(0, 0, 0, 0.7);
+}
+
+.searchForm {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 0.75rem;
+}
+
+.searchForm input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.searchForm svg {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  margin: 0.5rem 1rem;
+  fill: rgb(95, 95, 95);
+}
+
+.user {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  margin: 0 1rem;
+}
+
+.user > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  padding: 6px 12px;
+}
+.border {
+  height: 40px;
+  width: 1px;
+  background: #eee;
+  padding: 0;
+  margin: 0 0.5rem;
+}
+.countItem {
+  position: absolute;
+  top: -3px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3499ff;
+  border-radius: 50%;
+  padding: 0 4px;
+}
+.countItem span {
+  color: #fff;
+  font-size: 12px;
+}

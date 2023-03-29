@@ -1,0 +1,189 @@
+.addCommentModal {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  inset: 0px;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  z-index: 1200;
+}
+.spOil8 {
+  border-radius: 10px;
+  padding: 0 1rem;
+  max-width: 80vw;
+  min-width: 460px;
+  background: #fff;
+}
+.Exolap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+.yxewQ {
+  font-size: 13px;
+  font-weight: 600;
+  color: #5e5e5e;
+}
+.rxwClose {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rxwClose svg {
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+}
+.gtDComm {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+  min-height: auto;
+}
+.requierd {
+  margin-right: 0.3rem;
+  color: red;
+}
+.ocRxiu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ibtc {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.PybIec {
+  --sx: calc(1rem + calc((var(--value) - 1) / 4) * (100% - 2em));
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.PybIec::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #00a049;
+  margin-top: -5px;
+  cursor: pointer;
+}
+.PybIec::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #3499ff;
+  margin-top: -5px;
+  cursor: pointer;
+}
+.PybIec::-webkit-slider-runnable-track {
+  border: none;
+  height: 8px;
+  border-radius: 10px;
+  background: linear-gradient(#00a049, #00a049) 100% / var(--sx) 100% no-repeat,
+    #ddd;
+}
+.PybIec::-moz-range-track {
+  background: linear-gradient(#00a049, #00a049) 100% / var(--sx) 100% no-repeat,
+    #ddd;
+  height: 8px;
+  border-radius: 10px;
+}
+
+.Rcoply {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.Rcoply li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 11px;
+  height: 3rem;
+}
+.Rcoply li span:first-child {
+  display: inline-block;
+  font-weight: 900;
+  font-size: 22px;
+}
+.Rcoply li span:first-child svg {
+  width: 20px;
+  height: 20px;
+}
+.Rcoply li span:last-child {
+  position: absolute;
+  bottom: 0.5rem;
+  white-space: nowrap;
+}
+.VqoJu {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+.e3Xipy {
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+  font-weight: 600;
+}
+.TciBol {
+  resize: none;
+  outline: none;
+  padding: 0.3rem 0.5rem;
+  height: 10rem;
+  max-height: 10rem;
+  font-size: 13px;
+  border: 1px solid #e0e0e2;
+  border-radius: 10px;
+}
+.TciBol::placeholder {
+  font-size: 13px;
+}
+.TciBol:focus {
+  border-color: #3499ff;
+}
+.Oibt0s {
+  display: flex;
+  align-items: center;
+}
+.Oibt0s input[type="checkbox"] {
+  cursor: pointer;
+}
+.Oibt0s input[type="checkbox"]:focus {
+  box-shadow: none;
+}
+.WcMql {
+  cursor: pointer;
+  font-size: 13px;
+  color: #3f3f3f;
+}
+.PohtI9 {
+  background: none;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Opibt {
+  border: none;
+  background: #3499ff;
+  font-size: 14px;
+  color: #fff;
+  padding: 0.5rem;
+  width: 40%;
+  border-radius: 10px;
+}
+.iOnht {
+  font-size: 12px;
+}
+.iOnht a {
+  color: #3499ff;
+}
