@@ -1,7 +1,12 @@
+import { e2p } from 'Functions/ConvertNumbers';
+import useRequest from 'hooks/useRequest';
+import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import style from './MostSell.module.css'
 
 const MostSell = () => {
+    const [data] = useRequest('/products/top-orders')
     return (
         <>
             <section className={style.mostSell} dir="rtl">
@@ -15,130 +20,23 @@ const MostSell = () => {
                             <h4>پرفروش ترین محصولات</h4>
                         </div>
                     </div>
-                    <div className={`${style.BgmSf} d-flex`}>
+                    <div className={style.BgmSf}>
                         <div className={style.bmgCy}>
-                            <div>
-                                <a href="." className={style.Ecio}>
-                                    <div className={style.NgImg}>
-                                        <img src="images/most/1.webp" alt="" />
-                                    </div>
-                                    <span className={style.Qxunt}>۱</span>
-                                    <div className={style.lRcu}>
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی لورم ایپسوم متن ساختگی با تولید سادگی لورم ایپسوم متن ساختگی با تولید سادگی</p>
-                                    </div>
-                                </a>
-                                <a href="." className={style.Ecio}>
-                                    <div className={style.NgImg}>
-                                        <img src="images/most/9.webp" alt="" />
-                                    </div>
-                                    <span className={style.Qxunt}>۲</span>
-                                    <div className={style.lRcu}>
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی</p>
-                                    </div>
-                                </a>
-                                <a href="." className={style.Ecio}>
-                                    <div className={style.NgImg}>
-                                        <img src="images/most/10.webp" alt="" />
-                                    </div>
-                                    <span className={style.Qxunt}>۳</span>
-                                    <div className={style.lRcu}>
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div className={style.bmgCy}>
-                            <div>
-                                <a href="." className={style.Ecio}>
-                                    <div className={style.NgImg}>
-                                        <img src="images/most/11.webp" alt="" />
-                                    </div>
-                                    <span className={style.Qxunt}>۴</span>
-                                    <div className={style.lRcu}>
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی</p>
-                                    </div>
-                                </a>
-                                <a href="." className={style.Ecio}>
-                                    <div className={style.NgImg}>
-                                        <img src="images/most/12.webp" alt="" />
-                                    </div>
-                                    <span className={style.Qxunt}>۵</span>
-                                    <div className={style.lRcu}>
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی</p>
-                                    </div>
-                                </a>
-                                <a href="." className={style.Ecio}>
-                                    <div className={style.NgImg}>
-                                        <img src="images/most/flash-1.webp" alt="" />
-                                    </div>
-                                    <span className={style.Qxunt}>۶</span>
-                                    <div className={style.lRcu}>
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div className={style.bmgCy}>
-                            <div>
-                                <a href="." className={style.Ecio}>
-                                    <div className={style.NgImg}>
-                                        <img src="images/most/flash-2.webp" alt="" />
-                                    </div>
-                                    <span className={style.Qxunt}>۷</span>
-                                    <div className={style.lRcu}>
-                                        <p>لورم با تولید سادگی</p>
-                                    </div>
-                                </a>
-                                <a href="." className={style.Ecio}>
-                                    <div className={style.NgImg}>
-                                        <img src="images/most/flash-4.webp" alt="" />
-                                    </div>
-                                    <span className={style.Qxunt}>۸</span>
-                                    <div className={style.lRcu}>
-                                        <p>لورم ایپسوم متن ساختگی</p>
-                                    </div>
-                                </a>
-                                <a href="." className={style.Ecio}>
-                                    <div className={style.NgImg}>
-                                        <img src="images/most/10.webp" alt="" />
-                                    </div>
-                                    <span className={style.Qxunt}>۹</span>
-                                    <div className={style.lRcu}>
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div className={style.bmgCy}>
-                            <div>
-                                <a href="." className={style.Ecio}>
-                                    <div className={style.NgImg}>
-                                        <img src="images/most/1.webp" alt="" />
-                                    </div>
-                                    <span className={style.Qxunt}>۱۰</span>
-                                    <div className={style.lRcu}>
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی</p>
-                                    </div>
-                                </a>
-                                <a href="." className={style.Ecio}>
-                                    <div className={style.NgImg}>
-                                        <img src="images/most/9.webp" alt="" />
-                                    </div>
-                                    <span className={style.Qxunt}>۱۱</span>
-                                    <div className={style.lRcu}>
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی</p>
-                                    </div>
-                                </a>
-                                <a href="." className={style.Ecio}>
-                                    <div className={style.NgImg}>
-                                        <img src="images/most/10.webp" alt="" />
-                                    </div>
-                                    <span className={style.Qxunt}>۱۲</span>
-                                    <div className={style.lRcu}>
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی</p>
-                                    </div>
-                                </a>
-                            </div>
+                            {data && data.data.map((el, index) => {
+                                if (index < 12) {
+                                    return (
+                                        <Link href={`/products/${el.id}`} className={style.Ecio}>
+                                            <div className={style.NgImg}>
+                                                <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={el.image} alt="" />
+                                            </div>
+                                            <span className={style.Qxunt}>{e2p(index + 1)}</span>
+                                            <div className={style.lRcu}>
+                                                <p>{el.name}</p>
+                                            </div>
+                                        </Link>
+                                    )
+                                }
+                            })}
                         </div>
                     </div>
                 </div>

@@ -1,18 +1,61 @@
 import Link from 'next/link';
 import React from 'react';
 import style from './SortBy.module.css'
-const SortBy = () => {
+
+const SortBy = ({ router, sort = 'newset' }) => {
+    const { gender, type, ...Query } = router.query
+
+
     return (
         <>
             <div className={style.Cueq}>
                 <label>مرتب سازی :</label>
                 <ul className={style.sortList}>
-                    <li className={style.activeSort}><Link href="/">پربازدیدترین</Link></li>
-                    <li><Link href="/">پرفروش‌ترین‌</Link></li>
-                    <li><Link href="/">محبوب‌ترین</Link></li>
-                    <li><Link href="/">جدیدترین</Link></li>
-                    <li><Link href="/">گرانترین</Link></li>
-                    <li><Link href="/">ارزانترین</Link></li>
+                    <li className={sort == 'newset' ? style.activeSort : ''}>
+                        <Link href={{
+                            pathname: router.asPath.split('?')[0],
+                            query: { ...Query, sort: 'newset' },
+                        }}
+                            passHref
+                            shallow
+                            replace>جدیدترین</Link>
+                    </li>
+                    <li className={sort == 'bestselling' ? style.activeSort : ''}>
+                        <Link href={{
+                            pathname: router.asPath.split('?')[0],
+                            query: { ...Query, sort: 'bestselling' },
+                        }}
+                            passHref
+                            shallow
+                            replace>پرفروش‌ترین‌</Link>
+                    </li>
+                    <li className={sort == 'favorite' ? style.activeSort : ''}>
+                        <Link href={{
+                            pathname: router.asPath.split('?')[0],
+                            query: { ...Query, sort: 'favorite' },
+                        }}
+                            passHref
+                            shallow
+                            replace>محبوب‌ترین</Link>
+                    </li>
+                    <li className={sort == 'max' ? style.activeSort : ''}>
+                        <Link href={{
+                            pathname: router.asPath.split('?')[0],
+                            query: { ...Query, sort: 'max' },
+                        }}
+                            passHref
+                            shallow
+                            replace>گرانترین</Link>
+                    </li>
+                    <li className={sort == 'min' ? style.activeSort : ''}>
+                        <Link href={{
+                            pathname: router.asPath.split('?')[0],
+                            query: { ...Query, sort: 'min' },
+                        }}
+                            passHref
+                            shallow
+                            replace>ارزانترین</Link>
+                    </li>
                 </ul>
             </div>
         </>

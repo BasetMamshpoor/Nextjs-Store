@@ -5,14 +5,20 @@ import amazing from 'public/Images/amazing-typo.svg'
 import 'swiper/css/navigation'
 import 'swiper/css';
 import Image from 'next/image';
+import useRequest from 'hooks/useRequest';
+import Link from 'next/link';
+import { e2p } from 'Functions/ConvertNumbers';
+import addComma from 'Functions/addComma';
 
 
 const DailyOffer = () => {
 
+    const [data] = useRequest('/products/discounts')
+
     return (
         <>
             <section className='dealyOff'>
-                <div className="container">
+                {data && <div className="container">
                     <div className="kfIu">
                         <div dir='rtl'>
                             <Swiper
@@ -22,120 +28,34 @@ const DailyOffer = () => {
                                 slidesPerView={6}
                                 centeredSlides={false}
                             >
-                                <SwiperSlide>
-                                    <a href="." className='Jqz-03x'>
-                                        <div className="wsapJ">
-                                            <img src="images/179fb9688f4b90d8e4c330abae371c1bbcd77dc9_1661866807.jpg"
-                                                alt="" />
-                                            <span>%17</span>
-                                        </div>
-                                        <div className="oHbsI">
-                                            <p>۲۵۰,۰۰۰</p>
-                                            <span>۳۰۰,۰۰۰</span>
-                                        </div>
-                                    </a>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <a href="." className='Jqz-03x'>
-                                        <div className="wsapJ">
-                                            <img src="images/3256b51c054d6c3103dcbb644a33b3ad36bb0565_1622319386.jpg"
-                                                alt="" />
-                                            <span>%17</span>
-                                        </div>
-                                        <div className="oHbsI">
-                                            <p>۲۵۰,۰۰۰</p>
-                                            <span>۳۰۰,۰۰۰</span>
-                                        </div>
-                                    </a>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <a href="." className='Jqz-03x'>
-                                        <div className="wsapJ">
-                                            <img src="images/9cf49bef7898fdb13d699df1a316dcec756f5adb_1657516716.jpg"
-                                                alt="" />
-                                            <span>%17</span>
-                                        </div>
-                                        <div className="oHbsI">
-                                            <p>۲۵۰,۰۰۰</p>
-                                            <span>۳۰۰,۰۰۰</span>
-                                        </div>
-                                    </a>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <a href="." className='Jqz-03x'>
-                                        <div className="wsapJ">
-                                            <img src="images/a520dc09f92558454b5a7dd9ae1435b49a4e5869_1662295382.jpg"
-                                                alt="" />
-                                            <span>%17</span>
-                                        </div>
-                                        <div className="oHbsI">
-                                            <p>۲۵۰,۰۰۰</p>
-                                            <span>۳۰۰,۰۰۰</span>
-                                        </div>
-                                    </a>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <a href="." className='Jqz-03x'>
-                                        <div className="wsapJ">
-                                            <img src="images/d06b95f8ac273d06ea5226e080fb2888ca68f89c_1646724756.jpg"
-                                                alt="" />
-                                            <span>%17</span>
-                                        </div>
-                                        <div className="oHbsI">
-                                            <p>۲۵۰,۰۰۰</p>
-                                            <span>۳۰۰,۰۰۰</span>
-                                        </div>
-                                    </a>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <a href="." className='Jqz-03x'>
-                                        <div className="wsapJ">
-                                            <img src="images/179fb9688f4b90d8e4c330abae371c1bbcd77dc9_1661866807.jpg"
-                                                alt="" />
-                                            <span>%17</span>
-                                        </div>
-                                        <div className="oHbsI">
-                                            <p>۲۵۰,۰۰۰</p>
-                                            <span>۳۰۰,۰۰۰</span>
-                                        </div>
-                                    </a>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <a href="." className='Jqz-03x'>
-                                        <div className="wsapJ">
-                                            <img src="images/3256b51c054d6c3103dcbb644a33b3ad36bb0565_1622319386.jpg"
-                                                alt="" />
-                                            <span>%17</span>
-                                        </div>
-                                        <div className="oHbsI">
-                                            <p>۲۵۰,۰۰۰</p>
-                                            <span>۳۰۰,۰۰۰</span>
-                                        </div>
-                                    </a>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <a href="." className='Jqz-03x'>
-                                        <div className="wsapJ">
-                                            <img src="images/a520dc09f92558454b5a7dd9ae1435b49a4e5869_1662295382.jpg"
-                                                alt="" />
-                                            <span>%17</span>
-                                        </div>
-                                        <div className="oHbsI">
-                                            <p>۲۵۰,۰۰۰</p>
-                                            <span>۳۰۰,۰۰۰</span>
-                                        </div>
-                                    </a>
-                                </SwiperSlide>
+                                {data.data.map((el, index) => {
+                                    if (index < 9) {
+                                        return (
+                                            <SwiperSlide>
+                                                <Link href={`/products/${el.id}`} className='Jqz-03x'>
+                                                    <div className="wsapJ">
+                                                        <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={el.image} alt="" />
+                                                        <span>%{e2p(el.offPercent)}</span>
+                                                    </div>
+                                                    <div className="oHbsI">
+                                                        <p>{addComma(el.offPrice.toString())}</p>
+                                                        <span>{addComma(el.price.toString())}</span>
+                                                    </div>
+                                                </Link>
+                                            </SwiperSlide>
+                                        )
+                                    } else return
+                                })}
                                 <SwiperSlide>
                                     <div className='Jqz-03x'>
                                         <div className="sdlks">
-                                            <a className="vsJsm" href=".">
+                                            <Link className="vsJsm" href="/incredible-offers/">
                                                 <svg viewBox="0 0 16 16">
                                                     <path
                                                         d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
                                                 </svg>
                                                 <p>نمایش همه</p>
-                                            </a>
+                                            </Link>
                                         </div>
                                     </div>
                                 </SwiperSlide>
@@ -151,7 +71,7 @@ const DailyOffer = () => {
                             <a href=".">مشاهده همه</a>
                         </div>
                     </div>
-                </div>
+                </div>}
             </section>
         </>
     );

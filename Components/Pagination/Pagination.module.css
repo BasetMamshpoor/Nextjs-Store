@@ -1,16 +1,18 @@
 .pagination {
   margin: 0 1rem 1rem;
 }
-.pagination ul {
+.pageNumber {
   align-items: center;
   justify-content: center;
   width: 100%;
-  background: #fff;
   padding: 8px;
   border-radius: 50px;
-  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
 }
-.pagination ul li {
+.boxShadow {
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+.pageNumber li {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,33 +26,33 @@
   transition: all 0.3s ease;
   fill: #11cdef;
 }
-.pagination ul li.numb {
+.pageNumber li.numb {
   list-style: none;
-  height: 45px;
-  width: 45px;
-  margin: 0 3px;
+  height: 30px;
+  width: 30px;
+  margin: 0 8px;
   line-height: 45px;
   border-radius: 50%;
 }
-.pagination ul li.numb.first {
+.pageNumber li.numb.first {
   margin: 0px 3px 0 -5px;
 }
-.pagination ul li.numb.last {
+.pageNumber li.numb.last {
   margin: 0px -5px 0 3px;
 }
-.pagination ul li.dots {
+.pageNumber li.dots {
   margin: 0 5px;
   font-size: 22px;
   cursor: pointer;
 }
-.pagination ul li.btn {
-  padding: 10px;
+.pageNumber li.btn {
+  padding: 5px;
   border-radius: 50px;
 }
 .pagination li.active,
-.pagination ul li.numb:hover,
-.pagination ul li:first-child:hover,
-.pagination ul li:last-child:hover {
+.pageNumber li.numb:hover,
+.pageNumber li:first-child:hover,
+.pageNumber li:last-child:hover {
   color: #fff;
   background: #11cdef;
   fill: #fff;

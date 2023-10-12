@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import style from './NavbarLinks.module.css'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import Category from '../Category';

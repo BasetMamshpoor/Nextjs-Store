@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import style from './Size.module.css'
 const Size = ({ setProduct, errors, touch }) => {
     const [sizes, setSizes] = useState({})
@@ -12,7 +12,7 @@ const Size = ({ setProduct, errors, touch }) => {
         })
     }
     const handleAddSize = () => {
-        if (!sizes.size || !sizes.stoke) {
+        if (!sizes.size || !sizes.stock) {
             setError(prev => {
                 return {
                     ...prev,
@@ -35,14 +35,14 @@ const Size = ({ setProduct, errors, touch }) => {
             return { ...prev }
         });
         setError({})
-        setSizes({ size: '', stoke: '' })
+        setSizes({ size: '', stock: '' })
     }
     return (
         <>
             <div className={style.sfZr14_2}>
                 <div className={style.kXe_zuIo}>
                     <input type='text' placeholder='ُسایز' name='size' value={sizes.size} onChange={handleChange} />
-                    <input type='number' placeholder='تعداد' name='stoke' value={sizes.stoke} min='1' onChange={handleChange} />
+                    <input type='number' placeholder='تعداد' name='stock' value={sizes.stock} min='1' onChange={handleChange} />
                 </div>
                 <button onClick={handleAddSize} type='button' className={style.RcpIf_12}>
                     <svg fill="currentColor" viewBox="0 0 16 16">

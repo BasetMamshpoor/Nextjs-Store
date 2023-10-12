@@ -33,6 +33,9 @@
   margin: 0 6px;
   color: rgb(125, 135, 156);
 }
+.SzPld li:first-child {
+  flex: 0 0 150px !important;
+}
 .SzPld li:last-child {
   font-weight: 600;
   font-size: 16px;
@@ -82,7 +85,10 @@
 
 .WMeJalq > * {
   flex: 1 1 0px;
-  margin: 6px;
+  margin:0 6px;
+}
+.WMeJalq p:first-child {
+  flex: 0 0 150px !important;
 }
 .mknBg {
   margin: 0;
@@ -108,6 +114,9 @@
 .cancelled_order {
   background-color: rgb(255, 225, 230);
 }
+.awaitingPayment {
+  background-color: rgba(169, 238, 255, 0.496);
+}
 .cancelled_order span {
   color: rgb(233, 69, 96);
 }
@@ -116,6 +125,9 @@
 }
 .delivered_order span {
   color: rgb(51, 208, 103);
+}
+.awaitingPayment span {
+  color: rgb(0, 197, 241);
 }
 .mknBg {
   flex: 0 0 0px !important;

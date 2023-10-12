@@ -1,20 +1,22 @@
-import axios from 'axios';
-
-import React, { useEffect, useState } from 'react';
+import useRequest from 'hooks/useRequest';
+import { useRouter } from 'next/router';
+import React from 'react';
 import Product from './shared/Product';
 
-const Products = ({ categories }) => {
-    const [products, setProducts] = useState([])
-    useEffect(() => {
-        const get = async () => {
-            await axios.get(`/products`)
-                .then(res => { setProducts(res.data) })
-                .catch(err => console.log(err))
-        }
-        get()
-    }, [])
+const Products = ({ dataFilter }) => {
+    const router = useRouter()
 
-    const ListProduct = products.length ? products.map(i => <Product key={i.id} {...i} />) : <p>no product</p>
+    function decodeQueryData(data) {
+        const ret = [];
+        for (let d in data)
+            if (d !== 'type' && d !== 'gender') {
+                ret.push(decodeURIComponent(d) + '=' + decodeURIComponent(data[d]));
+            }
+        return ret.join('&');
+    }
+
+
+    const [products] = useRequest(`/products/filter/21?${decodeQueryData(router.query)}`)
 
     let ZcfPa = {
         display: "grid",
@@ -22,11 +24,14 @@ const Products = ({ categories }) => {
         padding: "1rem 0.5rem",
         paddingTop: "0",
     }
+
+
+
     return (
         <>
-            <div style={ZcfPa}>
-                {ListProduct}
-            </div>
+            {products && <div style={ZcfPa}>
+                {products.data.length ? products.data.map(i => <Product key={i.id} {...i} />) : <p>no product</p>}
+            </div>}
         </>
     );
 };

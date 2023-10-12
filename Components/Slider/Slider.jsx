@@ -5,6 +5,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation'
 import 'swiper/css/autoplay';
 import 'swiper/css';
+import Image from 'next/image';
+import useRequest from 'hooks/useRequest';
+import Link from 'next/link';
 
 const Slider = () => {
 
@@ -17,6 +20,8 @@ const Slider = () => {
         height: '100%',
         width: '100%'
     }
+
+    const [data] = useRequest('/sliders')
 
     return (
         <>
@@ -31,41 +36,17 @@ const Slider = () => {
                     pagination={{ clickable: true }}
                     autoplay={{ disableOnInteraction: false }}
                 >
-                    <SwiperSlide>
-                        <div style={style}>
-                            <a href="/" style={styleA}>
-                                <img src='Images/123f3fcf8fe1ad45977debe08521b6d6249d0ebe_1655095296.jpg' alt="" />
-                            </a>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div style={style}>
-                            <a href="/" style={styleA}>
-                                <img src='Images/356e3d694010a8976b7ccbd02b3566aed02ae6c6_1655095354.jpg' alt="" />
-                            </a>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div style={style}>
-                            <a href="/" style={styleA}>
-                                <img src='Images/4254f19745e2df1770471407b585fb3502fc86af_1655203082.jpg' alt="" />
-                            </a>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div style={style}>
-                            <a href="/" style={styleA}>
-                                <img src='Images/b6d809bb0a50824bacfedf881e63a89250dd9547_1655095013.jpg' alt="" />
-                            </a>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div style={style}>
-                            <a href="/" style={styleA}>
-                                <img src='Images/c41a7b6a8f90d7344e2fa517faa38320a3ba69c2_1662131478.jpg' alt="" />
-                            </a>
-                        </div>
-                    </SwiperSlide>
+                    {data && data.map(el => {
+                        return (
+                            <SwiperSlide>
+                                <div style={style}>
+                                    <Link href="/" style={styleA}>
+                                        <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={el.src} alt="" />
+                                    </Link>
+                                </div>
+                            </SwiperSlide>
+                        )
+                    })}
                 </Swiper>
             </section>
         </>

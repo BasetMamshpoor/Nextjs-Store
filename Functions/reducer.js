@@ -3,7 +3,7 @@ const sumItems = (items) => {
 
     let total = items.reduce((total, product) => total + product.price * product.quantity, 0)
 
-    let total_after_off = items.reduce((total, product) => total + product.off_price * product.quantity, 0)
+    let total_after_off = items.reduce((total, product) => total + product.offPrice * product.quantity, 0)
 
     return { itemsCounter, total, total_after_off }
 }
@@ -16,7 +16,6 @@ const reducer = (state, action) => {
                     ...action.payload,
                     quantity: 1
                 })
-                console.log(state.selectedItems);
             }
             localStorage.setItem('cart', JSON.stringify({
                 ...state,
@@ -42,14 +41,22 @@ const reducer = (state, action) => {
             }
         case "INCREASE":
             const Index = state.selectedItems.findIndex(i => i.idp === action.payload.idp)
-            state.selectedItems[Index].quantity++
-            localStorage.setItem('cart', JSON.stringify({
-                ...state,
-                ...sumItems(state.selectedItems)
-            }))
-            return {
-                ...state,
-                ...sumItems(state.selectedItems)
+            let num = state.selectedItems[Index]
+            if (!(num.sizes.stock > num.quantity)) {
+                return {
+                    ...state,
+                    ...sumItems(state.selectedItems)
+                }
+            } else {
+                num.quantity++
+                localStorage.setItem('cart', JSON.stringify({
+                    ...state,
+                    ...sumItems(state.selectedItems)
+                }))
+                return {
+                    ...state,
+                    ...sumItems(state.selectedItems)
+                }
             }
         case "DECREASE":
             const Index2 = state.selectedItems.findIndex(i => i.idp === action.payload.idp)

@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const SpecificationsList = ({ setProduct, sizes = [] }) => {
 
@@ -29,9 +29,7 @@ const SpecificationsList = ({ setProduct, sizes = [] }) => {
         color: '#000',
         letterSpacing: '3px',
     }
-    const list_size = {
-        textTransform: 'uppercase'
-    }
+
     const remove_list = {
         display: 'flex',
         alignItems: 'center',
@@ -50,9 +48,9 @@ const SpecificationsList = ({ setProduct, sizes = [] }) => {
                     return (
                         <div style={hpxea_fzjbg} key={index}>
                             <div style={cAzqpbg}>
-                                <span style={list_size}>{i.size}</span>
+                                <span>{i.size}</span>
                                 _
-                                <span>{i.stoke}</span>
+                                <span>{i.stock}</span>
                             </div>
                             <span style={remove_list}
                                 onClick={() => handleDelete(index)}>

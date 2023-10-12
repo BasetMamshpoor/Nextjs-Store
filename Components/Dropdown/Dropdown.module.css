@@ -10,6 +10,9 @@
 .dropdown_container:last-child .dropdown_input {
   border: none;
 }
+.disabledDropdown {
+  pointer-events: none;
+}
 .dropdown_input {
   width: 100%;
   padding: 6px 8px;
@@ -17,7 +20,6 @@
   align-items: center;
   justify-content: space-between;
   user-select: none;
-  border-bottom: 1px solid #ddd;
 }
 .dropdown_tools svg {
   width: 20px;

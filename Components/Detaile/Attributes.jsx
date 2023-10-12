@@ -4,12 +4,12 @@ import style from './Attributes.module.css'
 const Attributes = ({ product }) => {
     const attribute = () => {
         let array = []
-        for (let i = 0; i < 5; i++) {
-            const element = product.specifications[i];
+        for (let i = 0; i < 6; i++) {
+            const element = product.attributes[i];
             if (element !== undefined) array.push(element)
         }
         return array.map((i, index) => {
-            return <li key={index}><span>{i.attr_name}:</span>{i.attr_desc}</li>
+            return <li key={index}><span className={style.name}>{i.name}:</span><span className={style.desc}>{i.value}</span></li>
         })
     }
     return (

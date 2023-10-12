@@ -25,7 +25,7 @@
 .gali9_y {
   padding: 20px;
   margin: 10px;
-  flex: 1 0 calc(50% - 40px);
+  flex: 0 0 calc(50% - 40px);
   display: flex;
   flex-direction: column;
   border-radius: 10px;

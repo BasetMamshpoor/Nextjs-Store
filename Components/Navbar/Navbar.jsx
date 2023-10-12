@@ -15,7 +15,7 @@ const Navbar = () => {
 
     return (
         <>
-            <header style={{ overflow: 'hidden',padding:'5.5rem 0' }}>
+            <header style={{ overflow: 'hidden', padding: '5.5rem 0' }}>
                 <div style={styles}>
                     <TopBar />
                     <MiddleNavbar />

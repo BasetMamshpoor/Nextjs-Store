@@ -1,10 +1,15 @@
-import React from 'react';
 import style from './Address.module.css'
 import { IoLocationSharp } from 'react-icons/io5'
 import { FiEdit3 } from 'react-icons/fi'
 import { BsTrash, BsPerson, BsTelephone } from 'react-icons/bs'
 import { GoMail } from 'react-icons/go'
+import { e2p } from 'Functions/ConvertNumbers'
+import useRequest from 'hooks/useRequest'
+
 const Address = () => {
+
+    const [addresses] = useRequest('/profile/addresses')
+
     return (
         <>
             <div className={style.YxaZev_5q} dir="rtl">
@@ -19,126 +24,49 @@ const Address = () => {
                         <button className={style.OTxe3_M}>ثبت آدرس جدید</button>
                     </div>
                     <div className={style.Ubx7_O3}>
-                        <div className={style.oInGt07_}>
-                            <div className={style.olCqz8_PP}>
-                                <p className={style.ObcjZo_e3}>محل کار</p>
-                                <div className={style.cPx_iiRxQ67}>
-                                    <div>
-                                        <FiEdit3 />
-                                    </div>
-                                    <div>
-                                        <BsTrash />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={style.VxpQl5H_0}>
-                                <div className={style.NbvWzpo}>
-                                    <label>آدرس : </label>
-                                    <p className={style.loMnw}>استان فلان - شهر فلان - منطقه فلان - خیابان
-                                        فلان - کوچه فلان - پلاک فلان </p>
-                                </div>
-                                <div className={style.LGtcmnD_3}>
-                                    <label>مشخصات گیرنده </label>
-                                    <div className={style.FazWlNmh_i}>
-                                        <div className={style.IbCh_1QzTM}>
+                        {!!addresses && addresses.data.map(a => {
+                            return (
+                                <div className={style.oInGt07_}>
+                                    <div className={style.olCqz8_PP}>
+                                        <p className={style.ObcjZo_e3}>{a.title}</p>
+                                        <div className={style.cPx_iiRxQ67}>
                                             <div>
-                                                <BsPerson />
-                                            </div> عبدالباسط ماموشی پور
-                                        </div>
-                                        <div className={style.IbCh_1QzTM}>
+                                                <FiEdit3 />
+                                            </div>
                                             <div>
-                                                <BsTelephone />
-                                            </div> ۳۰۰۰۱۵۳۸۹۲۳۴۱
-                                        </div>
-                                        <div className={style.IbCh_1QzTM}>
-                                            <div>
-                                                <GoMail />
-                                            </div> ۱۵۳۸۹۲۳۴۱
+                                                <BsTrash />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={style.oInGt07_}>
-                            <div className={style.olCqz8_PP}>
-                                <p className={style.ObcjZo_e3}>محل کار</p>
-                                <div className={style.cPx_iiRxQ67}>
-                                    <div>
-                                        <FiEdit3 />
-                                    </div>
-                                    <div>
-                                        <BsTrash />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={style.VxpQl5H_0}>
-                                <div className={style.NbvWzpo}>
-                                    <label>آدرس : </label>
-                                    <p className={style.loMnw}>استان فلان - شهر فلان - منطقه فلان - خیابان
-                                        فلان - کوچه فلان - پلاک فلان </p>
-                                </div>
-                                <div className={style.LGtcmnD_3}>
-                                    <label>مشخصات گیرنده </label>
-                                    <div className={style.FazWlNmh_i}>
-                                        <div className={style.IbCh_1QzTM}>
-                                            <div>
-                                                <BsPerson />
-                                            </div> عبدالباسط ماموشی پور
+                                    <div className={style.VxpQl5H_0}>
+                                        <div className={style.NbvWzpo}>
+                                            <label>آدرس : </label>
+                                            <p className={style.loMnw}>{a.province} - {a.city} - {a.address}</p>
                                         </div>
-                                        <div className={style.IbCh_1QzTM}>
-                                            <div>
-                                                <BsTelephone />
-                                            </div> ۳۰۰۰۱۵۳۸۹۲۳۴۱
-                                        </div>
-                                        <div className={style.IbCh_1QzTM}>
-                                            <div>
-                                                <GoMail />
-                                            </div> ۱۵۳۸۹۲۳۴۱
+                                        <div className={style.LGtcmnD_3}>
+                                            <label>مشخصات گیرنده </label>
+                                            <div className={style.FazWlNmh_i}>
+                                                <div className={style.IbCh_1QzTM}>
+                                                    <div>
+                                                        <BsPerson />
+                                                    </div> {a.name}
+                                                </div>
+                                                <div className={style.IbCh_1QzTM}>
+                                                    <div>
+                                                        <BsTelephone />
+                                                    </div> {e2p(a.cellphone)}
+                                                </div>
+                                                <div className={style.IbCh_1QzTM}>
+                                                    <div>
+                                                        <GoMail />
+                                                    </div> {e2p(a.postalcode)}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div className={style.oInGt07_}>
-                            <div className={style.olCqz8_PP}>
-                                <p className={style.ObcjZo_e3}>محل کار</p>
-                                <div className={style.cPx_iiRxQ67}>
-                                    <div>
-                                        <FiEdit3 />
-                                    </div>
-                                    <div>
-                                        <BsTrash />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={style.VxpQl5H_0}>
-                                <div className={style.NbvWzpo}>
-                                    <label>آدرس : </label>
-                                    <p className={style.loMnw}>استان فلان - شهر فلان - منطقه فلان - خیابان
-                                        فلان - کوچه فلان - پلاک فلان </p>
-                                </div>
-                                <div className={style.LGtcmnD_3}>
-                                    <label>مشخصات گیرنده </label>
-                                    <div className={style.FazWlNmh_i}>
-                                        <div className={style.IbCh_1QzTM}>
-                                            <div>
-                                                <BsPerson />
-                                            </div> عبدالباسط ماموشی پور
-                                        </div>
-                                        <div className={style.IbCh_1QzTM}>
-                                            <div>
-                                                <BsTelephone />
-                                            </div> ۳۰۰۰۱۵۳۸۹۲۳۴۱
-                                        </div>
-                                        <div className={style.IbCh_1QzTM}>
-                                            <div>
-                                                <GoMail />
-                                            </div> ۱۵۳۸۹۲۳۴۱
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            )
+                        })}
                     </div>
                 </div>
             </div>

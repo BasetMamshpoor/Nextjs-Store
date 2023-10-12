@@ -1,87 +1,93 @@
-function validation(err) {
+function validation(product) {
     let errors = {}
 
     // name
-    if (!err.name) {
+    if (!product.name) {
         errors.name = 'نام محصول را وارد نکردید.'
-    } else if (!err.name.trim()) {
+    } else if (!product.name.trim()) {
         errors.name = 'نام محصول را وارد نکردید.'
-    } else if (err.name.length > 50) {
+    } else if (product.name.length > 50) {
         errors.name = 'طول نام نباید بیشتر از 50 کارکتر باشد.'
     } else {
         delete errors.name
     }
     //brand
-    if (!err.brand) {
+    if (!product.brand) {
         errors.brand = 'برند محصول را وارد نکردید.'
-    } else if (!err.brand.trim()) {
+    } else if (!product.brand.trim()) {
         errors.brand = 'برند محصول را وارد نکردید.'
-    } else if (err.brand.length > 50) {
+    } else if (product.brand.length > 50) {
         errors.brand = 'طول برند نباید بیشتر از 50 کارکتر باشد.'
     } else {
         delete errors.brand
     }
     // category
-    if (!err.category.length) {
-        errors.category = 'حداقل یک دسته را انتخاب کنید.'
+    if (product.category === null) {
+        errors.category = 'لطفا تمام سطح های دسته بندی را وارد کنید..'
     } else {
         delete errors.category
     }
-    // img
-    if (!err.img) {
-        errors.img = 'لطفا عکس اصلی را وارد کنید.'
+    // image
+    if (!product.image) {
+        errors.image = 'لطفا عکس اصلی را وارد کنید.'
     } else {
-        delete errors.img
-    }
-    // images
-    if (!err.imageList.length) {
-        errors.imageList = 'لطفا حداقل یک عکس برای لیست وارد کنید.'
-    } else {
-        delete errors.imageList
+        delete errors.image
     }
     // price
-    if (!err.price) {
-        errors.price = 'قیمت محصول را فراموش کردید.'
-    } else if (err.price < 1) {
+    if (!product.price) {
+        errors.price = 'قیمت محصول را وارد کنید.'
+    } else if (product.price < 1) {
         errors.price = 'قیمت محصول را به درستی وارد کنید.'
     } else {
         delete errors.price
     }
     // off-price 
-    if (err.off_price === '') {
-        errors.off_price = 'لطفا قیمت تخفیفی را وارد کنید.'
-    } else if ((err.off_price) > (err.price)) {
-        errors.off_price = 'قیمت تخفیفی نباید بیشتر از قیمت اصلی باشد.'
+    if (!product.offPercent && product.offPercent !== 0) {
+        delete errors.offPrice
+    } else if (!product.offPrice) {
+        errors.offPrice = 'لطفا قیمت تخفیفی را وارد کنید.'
+    } else if ((product.offPrice) > (product.price)) {
+        errors.offPrice = 'قیمت تخفیفی نباید بیشتر از قیمت اصلی باشد.'
     } else {
-        delete errors.off_price
+        delete errors.offPrice
     }
+    //discountTime
+    // if (!product.offPercent && product.offPercent !== 0) {
+    //     delete errors.discountTime
+    // } else if (!product.discountTime.off_date_from || !product.discountTime.off_date_to) {
+    //     errors.discountTime = 'زمان شروع یا پایان را وارد نکرده اید!'
+    // } else if (60 >= Math.round((product.discountTime.off_date_to - product.discountTime.off_date_from) / 6e4)) {
+    //     errors.discountTime = 'حداقل زمان تخفیف یک ساعت است.'
+    // } else {
+    //     delete errors.discountTime
+    // }
     // color
-    if (!err.color) {
+    if (!product.color) {
         errors.color = 'نام رنگ را وارد کنید.'
-    } else if (/^[~`!@#$%^&*()_+=[\]\\{}|;':",./<>?a-zA-Z0-9-]+$/.test(err.color)) {
+    } else if (/^[~`!@#$%^&*()_+=[\]\\{}|;':",./<>?a-zA-Z0-9-]+$/.test(product.color)) {
         errors.color = 'نام رنگ را به فارسی وارد کنید.'
-    } else if (!err.color.trim()) {
+    } else if (!product.color.trim()) {
         errors.color = 'نام رنگ را وارد کنید.'
     } else {
         delete errors.color
     }
     // colorCode
-    if (!err.colorCode) {
-        errors.colorCode = 'لطفا رنگ مورد نظر را وارد کنید.'
+    if (!product.colorCode) {
+        errors.colorCode = 'پالت رنگ را انتخاب کنید.'
     } else {
         delete errors.colorCode
     }
     // sizes
-    if (!err.sizes.length) {
+    if (!product.sizes.length) {
         errors.sizes = 'سایز و تعداد موجود رو وارد کنید.'
     } else {
         delete errors.sizes
     }
     // attr
-    if (!err.specifications.length) {
-        errors.specifications = 'حداقل یک ویژگی را برای این محصول اضافه کنید.'
+    if (!product.attributes.length) {
+        errors.attributes = 'حداقل یک ویژگی را برای این محصول اضافه کنید.'
     } else {
-        delete errors.specifications
+        delete errors.attributes
     }
 
     return errors

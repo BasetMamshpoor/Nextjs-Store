@@ -5,7 +5,6 @@ const useCallbackState = (initialValue) => {
     const callbackQueue = useRef([]);
 
     useEffect(() => {
-        console.log(state);
         callbackQueue.current.forEach((cb) => cb(state));
         callbackQueue.current = [];
     }, [state]);

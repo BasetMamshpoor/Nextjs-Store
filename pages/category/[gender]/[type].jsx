@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Filters from 'Components/Categories/Filters';
 import Products from 'Components/Categories/Products';
@@ -8,8 +8,6 @@ import style from './style.module.css'
 import genders from 'Components/Categories/gender.json'
 import genderCategoryType from 'Components/Categories/categorydata.json'
 import categoryType from 'Components/Categories/categoryTypedata.json'
-
-
 const Type = () => {
     const router = useRouter()
     const { type, gender } = router.query
@@ -33,6 +31,7 @@ const Type = () => {
             return typeCategory
         }
     }, [type])
+
     useEffect(() => {
         setCategoryName(getCategory)
     }, [type])
@@ -47,10 +46,10 @@ const Type = () => {
                 <section className={style.products} dir="auto">
                     <div className="container">
                         <div className={` d-flex`}>
-                            <Filters />
+                            <Filters categories={22} />
                             <div className={`${style.Lops} d-flex`}>
-                                <SortBy />
-                                <Products categories={['مردانه', 'لباس مردانه']} />
+                                <SortBy router={router} sort={router.query.sort} />
+                                <Products />
                             </div>
                         </div>
                     </div>
@@ -59,12 +58,11 @@ const Type = () => {
         </>
     );
 };
-
 export async function getStaticPaths() {
     const categoryTypeData = genders.map(g => {
         let array = []
+        let gen
         for (const i in categoryType[g.key]) {
-            let gen
             if (Object.hasOwnProperty.call(categoryType[g.key], i)) {
                 gen = categoryType[g.key][i].map(f => f.path)
             }

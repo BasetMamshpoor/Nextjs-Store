@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import style from './Gender.module.css'
@@ -31,7 +32,7 @@ const Gender = () => {
                         <div className={style.oLpy}>
                             <div className={style.ojRd}>
                                 <Link href="/category-mens-clothing">
-                                    <img src="images/b6d809bb0a50824bacfedf881e63a89250dd9547_1655095013.jpg"
+                                    <Image layout='fill' src="/images/b6d809bb0a50824bacfedf881e63a89250dd9547_1655095013.jpg"
                                         alt="" />
                                     <div className={style.nBcy}>
                                         <span>لباس مردانه</span>
@@ -40,7 +41,7 @@ const Gender = () => {
                             </div>
                             <div className={style.ojRd}>
                                 <Link href="/category-mens-shoes">
-                                    <img src="images/ed72e19e2b3a3edc944adc408f8e0a298f97cb51_1655095035.jpg"
+                                    <Image layout='fill' src="/images/ed72e19e2b3a3edc944adc408f8e0a298f97cb51_1655095035.jpg"
                                         alt="" />
                                     <div className={style.nBcy}>
                                         <span>کفش مردانه</span>
@@ -49,7 +50,7 @@ const Gender = () => {
                             </div>
                             <div className={style.ojRd}>
                                 <Link href="/category-mens-accessories">
-                                    <img src="images/54b059fdf3ed0bfc177b0abf03f2af6cbe68124f_1655095048.jpg"
+                                    <Image layout='fill' src="/images/54b059fdf3ed0bfc177b0abf03f2af6cbe68124f_1655095048.jpg"
                                         alt="" />
                                     <div className={style.nBcy}>
                                         <span>اکسسوری مردانه</span>
@@ -58,7 +59,7 @@ const Gender = () => {
                             </div>
                             <div className={style.ojRd}>
                                 <Link href="/category-mens-sports">
-                                    <img src="images/76d5a10bbfc176556a69767b899a4bff01d5fd88_1655095138.jpg"
+                                    <Image layout='fill' src="/images/76d5a10bbfc176556a69767b899a4bff01d5fd88_1655095138.jpg"
                                         alt="" />
                                     <div className={style.nBcy}>
                                         <span>ورزشی مردانه</span>
@@ -71,7 +72,7 @@ const Gender = () => {
                         <div className={style.oLpy}>
                             <div className={style.ojRd}>
                                 <Link href="/category-womens-shoes">
-                                    <img src="images/bc865104c70dbf4f3f6222c33ed0712025f0154b_1655203102.jpg"
+                                    <Image layout='fill' src="/images/bc865104c70dbf4f3f6222c33ed0712025f0154b_1655203102.jpg"
                                         alt="" />
                                     <div className={style.nBcy}>
                                         <span>کفش زنانه</span>
@@ -80,7 +81,7 @@ const Gender = () => {
                             </div>
                             <div className={style.ojRd}>
                                 <Link href="/category-womens-accessories">
-                                    <img src="images/4e8bde04230ad0396ab76ee3ff50d2f0ed91db7e_1655203116.jpg"
+                                    <Image layout='fill' src="/images/4e8bde04230ad0396ab76ee3ff50d2f0ed91db7e_1655203116.jpg"
                                         alt="" />
                                     <div className={style.nBcy}>
                                         <span>اکسسوری زنانه</span>
@@ -90,7 +91,7 @@ const Gender = () => {
 
                             <div className={style.ojRd}>
                                 <Link href="/category-womens-sports">
-                                    <img src="images/aab9aebd48db4f5b48fe55da99aeb2c547c8a6ca_1655203146.jpg"
+                                    <Image layout='fill' src="/images/aab9aebd48db4f5b48fe55da99aeb2c547c8a6ca_1655203146.jpg"
                                         alt="" />
                                     <div className={style.nBcy}>
                                         <span>ورزشی زنانه</span>
@@ -99,7 +100,7 @@ const Gender = () => {
                             </div>
                             <div className={style.ojRd}>
                                 <Link href="/category-womens-clothing">
-                                    <img src="images/4254f19745e2df1770471407b585fb3502fc86af_1655203082.jpg"
+                                    <Image layout='fill' src="/images/4254f19745e2df1770471407b585fb3502fc86af_1655203082.jpg"
                                         alt="" />
                                     <div className={style.nBcy}>
                                         <span>لباس زنانه</span>
@@ -113,7 +114,7 @@ const Gender = () => {
                         <div className={style.oLpy}>
                             <div className={style.ojRd}>
                                 <Link href="/category-child-apparel">
-                                    <img src="images/123f3fcf8fe1ad45977debe08521b6d6249d0ebe_1655095296.jpg"
+                                    <Image layout='fill' src="/images/123f3fcf8fe1ad45977debe08521b6d6249d0ebe_1655095296.jpg"
                                         alt="" />
                                     <div className={style.nBcy}>
                                         <span>نوزاد</span>
@@ -122,7 +123,7 @@ const Gender = () => {
                             </div>
                             <div className={style.ojRd}>
                                 <Link href="/category-boy-apparel">
-                                    <img src="images/69e5e89d323a51be95e578682aadb881cb4ba066_1655095321.jpg"
+                                    <Image layout='fill' src="/images/69e5e89d323a51be95e578682aadb881cb4ba066_1655095321.jpg"
                                         alt="" />
                                     <div className={style.nBcy}>
                                         <span>پسرانه</span>
@@ -131,7 +132,7 @@ const Gender = () => {
                             </div>
                             <div className={style.ojRd}>
                                 <Link href="/category-girl-apparel">
-                                    <img src="images/7b2946f2a6304ee7ffe2836a159600fc0546d096_1655095310.jpg"
+                                    <Image layout='fill' src="/images/7b2946f2a6304ee7ffe2836a159600fc0546d096_1655095310.jpg"
                                         alt="" />
                                     <div className={style.nBcy}>
                                         <span>دخترانه</span>

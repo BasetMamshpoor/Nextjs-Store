@@ -1,38 +1,46 @@
-import React, { useEffect, useState, useRef } from 'react';
-// import './addcomment.css'
-const AddComment = ({ button }) => {
-    const [display, setDisplay] = useState(false)
+import axios from 'axios';
+import { e2p } from 'Functions/ConvertNumbers';
+import { useEffect, useRef, useState } from 'react';
+import style from './AddComment.module.css'
+
+const AddComment = ({ id }) => {
     const input = useRef();
+    const parent = useRef()
+    const [data, setData] = useState({ product_id: id, point: 1, user_id: null, date: new Date().toLocaleDateString('fa-IR', { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' }) })
 
     useEffect(() => {
-        if (display) {
-            const e = input.current
-            e.style.setProperty('--value', e.value);
-            e.addEventListener('input', () => e.style.setProperty('--value', e.value));
+        const e = input.current
+        e.style.setProperty('--value', e.value);
+        e.style.setProperty('--bg', '#f9bc00');
+        const style = () => {
+            e.style.setProperty('--value', e.value)
+            e.style.setProperty('--bg', e.value > 3 ? '#00a049' : '#f9bc00')
         }
-        button.current.addEventListener('click', () => setDisplay(true))
-    }, [button, display])
 
+        e.addEventListener('input', style);
 
+        return () => e.removeEventListener('input', style)
+    }, [])
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        await axios.post('/comments', data)
+            .then(res => console.log(res))
+            .then(() => parent.current.previousSibling.click())
+            .catch(err => console.log(err))
+    }
     return (
         <>
-            {display && <div className="addCommentModal">
-                <div className="spOil8">
-                    <header className="Exolap border-bottom">
-                        <p className="yxewQ">دیدگاه خود را در مورد این محصول وارد کنید.</p>
-                        <div className="rxwClose" onClick={() => setDisplay(false)}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                viewBox="0 0 16 16">
-                                <path
-                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                            </svg>
-                        </div>
-                    </header>
-                    <main className="gtDComm">
-                        <div className="ocRxiu mx-3">
-                            <label className="ibtc">امتیاز دهید.<span className="requierd">*</span></label>
-                            <input ref={input} className="PybIec" type="range" min="1" max="5" defaultValue='1' />
-                            <ul className="Rcoply">
+            <div className={style.spOil8} dir='rtl' ref={parent}>
+                <header className={style.Exolap}>
+                    <p className={style.yxewQ}>دیدگاه خود را در مورد این محصول وارد کنید.</p>
+                </header>
+                <form onSubmit={handleSubmit}>
+                    <main className={style.gtDComm}>
+                        <div className={style.ocRxiu}>
+                            <label htmlFor='point' className={style.ibtc}>امتیاز دهید.<span className={style.point}>{e2p(data.point)}</span></label>
+                            <input id='point' ref={input} className={style.PybIec} type="range" min="1" max="5" defaultValue='1' onInput={(e) => setData(prev => { return { ...prev, point: e.target.value } })} />
+                            <ul className={style.Rcoply}>
                                 <li>
                                     <span>
                                         <svg fill="currentColor" viewBox="0 0 16 16">
@@ -75,25 +83,25 @@ const AddComment = ({ button }) => {
                                 </li>
                             </ul>
                         </div>
-                        <div className="VqoJu">
-                            <label className="e3Xipy">متن نظر!<span className="requierd">*</span></label>
-                            <textarea className="TciBol" placeholder="این محصول ..."></textarea>
+                        <div className={style.VqoJu}>
+                            <label className={style.e3Xipy}>متن نظر!<span className={style.requierd}>*</span></label>
+                            <textarea className={style.TciBol} onChange={({ target }) => setData(prev => { return { ...prev, text: target.value } })} placeholder="این محصول ..."></textarea>
                         </div>
-                        <div className="Oibt0s">
-                            <input className="form-check-input m-0" type="checkbox"
+                        <div className={style.Oibt0s}>
+                            <input className={style.form_check_input} type="checkbox"
                                 id="anonymousComment" />
-                            <label htmlFor="anonymousComment" className="WcMql me-2">ارسال به صورت
+                            <label htmlFor="anonymousComment" className={style.WcMql}>ارسال به صورت
                                 ناشناس</label>
                         </div>
                     </main>
-                    <footer className="PohtI9">
-                        <button className="Opibt">ثبت دیدگاه</button>
-                        <label className="iOnht">ثبت دیدگاه به معنی قبول
+                    <footer className={style.PohtI9}>
+                        <button className={style.Opibt} onClick={handleSubmit}>ثبت دیدگاه</button>
+                        <label className={style.iOnht}>ثبت دیدگاه به معنی قبول
                             <a href="."> قوانین ما </a>
                             است.</label>
                     </footer>
-                </div>
-            </div>}
+                </form>
+            </div>
         </>
     );
 };

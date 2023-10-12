@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { e2p } from "Functions/ConvertNumbers";
+import { useState } from "react";
 import style from "./Pagination.module.css";
 
-function Pagination({ currentPage = 1, setCurrentPage, itemsPerPage = 10, dataLength = 100, showLimit = 5 }) {
+function Pagination({ currentPage = 1, setCurrentPage, itemsPerPage = 10, dataLength = 100, showLimit = 5, boxShadow = true }) {
 
     const pageNumberLimit = showLimit
     const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(showLimit);
@@ -15,7 +16,6 @@ function Pagination({ currentPage = 1, setCurrentPage, itemsPerPage = 10, dataLe
     for (let i = 1; i <= Math.ceil(dataLength / itemsPerPage); i++) {
         pages.push(i);
     }
-
     const renderPageNumbers = pages.map((number) => {
         if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
             return (
@@ -25,7 +25,7 @@ function Pagination({ currentPage = 1, setCurrentPage, itemsPerPage = 10, dataLe
                     onClick={handleClick}
                     className={`${style.numb} ${currentPage == number ? style.active : null}`}
                 >
-                    {number}
+                    {e2p(number)}
                 </li>
             );
         } else {
@@ -65,7 +65,7 @@ function Pagination({ currentPage = 1, setCurrentPage, itemsPerPage = 10, dataLe
         <>
             {Math.ceil(dataLength / itemsPerPage) > 1 &&
                 <div className={style.pagination}>
-                    <ul className={style.pageNumber}>
+                    <ul className={`${style.pageNumber} ${boxShadow && style.boxShadow}`}>
                         <li
                             onClick={handlePrevbtn}
                             // disabled={currentPage == pages[0] ? true : false}

@@ -4,6 +4,7 @@ import apparelJson from 'Components/Categories/categorydata.json'
 import apparelTypeJson from 'Components/Categories/categoryTypedata.json'
 import genderJson from 'Components/Categories/gender.json'
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Category = ({ flow, setFlow }) => {
 
@@ -32,7 +33,7 @@ const Category = ({ flow, setFlow }) => {
         return (
             <article className={style.article} key={i.id}>
                 <Link href={`/category-${gender}-${i.path}`}>
-                    <div className={style.art_img}><img src={i.img} alt={i.name} /></div>
+                    <div className={style.art_img}><Image src={i.img} alt={i.name} width={100} height={100} /></div>
                     <div className={style.art_name}><span>{i.name}</span></div>
                 </Link>
             </article>

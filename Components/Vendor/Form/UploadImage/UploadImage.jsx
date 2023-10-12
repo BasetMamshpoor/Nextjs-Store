@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import style from './UploadImage.module.css'
-const UploadImage = ({ setProduct, imageList }) => {
+const UploadImage = ({ setProduct, images }) => {
 
     useEffect(() => {
         window.addEventListener('click', handleRemove)
@@ -18,17 +18,17 @@ const UploadImage = ({ setProduct, imageList }) => {
                     return { ...data }
                 })
             }
-            for (const i of imageList) {
+            for (const i of images) {
                 if (i.name === file) {
                     setProduct(prev => {
-                        prev.imageList.splice(i, 1)
+                        prev.images.splice(i, 1)
                         return { ...prev }
                     })
                     break;
                 }
                 else if (i.name === fileName) {
                     setProduct(prev => {
-                        prev.imageList.splice(i, 1)
+                        prev.images.splice(i, 1)
                         return { ...prev }
                     })
                     break;
@@ -57,7 +57,7 @@ const UploadImage = ({ setProduct, imageList }) => {
         setProduct(prev => {
             return {
                 ...prev,
-                imageList: [...prev.imageList, ...imgArray]
+                images: [...prev.images, ...imgArray]
             }
         })
     }
@@ -77,10 +77,10 @@ const UploadImage = ({ setProduct, imageList }) => {
             fileArry.innerHTML += html
         })
         setProduct(prev => {
-            prev['img'] = file
+            prev['image'] = file
             return {
                 ...prev,
-                imageList: [...prev.imageList, file]
+                images: [file, ...prev.images]
             }
         })
     }

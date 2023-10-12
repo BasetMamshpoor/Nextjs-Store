@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-const Input = ({ value, min, result, refrence, ...props }) => {
-    const [val, setVal] = useState('')
+const Input = ({ value, isNumber = false, min, result, refrence, ...props }) => {
+    const [val, setVal] = useState()
     const handleChange = event => {
-        setVal(event.target.value)
+        const { value } = event.target
+        if (isNumber) {
+            setVal(value.replace(/\D/g, ""))
+        } else {
+            setVal(value)
+        }
     }
 
     useEffect(() => {

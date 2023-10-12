@@ -6,7 +6,7 @@ import TwoLabel from "./TwoLabel";
 import style from "./Dropdown.module.css";
 import useSwipeScroll from "hooks/useHorizontalScroll";
 
-const Dropdown = ({ name, styles, styleBox, array, Multiple, setState, Searchable, placeHolder = "انتخاب ...", towLabel, colorInLabel, label }) => {
+const Dropdown = ({ name, styles, styleBox, array, Multiple, setState, Searchable, defaultValue, placeHolder = "انتخاب ...", towLabel, colorInLabel, label, disabled = false }) => {
     const [showMenu, setShowMenu] = useState(false);
     const [selectedValue, setSelectedValue] = useState(Multiple ? [] : null);
     const [searchValue, setSearchValue] = useState("");
@@ -22,11 +22,37 @@ const Dropdown = ({ name, styles, styleBox, array, Multiple, setState, Searchabl
     }, [showMenu]);
 
     useEffect(() => {
+        if (defaultValue) {
+            if (Multiple) {
+                setSelectedValue(filterByReference(array, defaultValue))
+            } else {
+                setSelectedValue(array.find(el => el.value === defaultValue))
+            }
+        }
         window.addEventListener("click", handler);
         return () => {
             window.removeEventListener("click", handler);
         };
-    }, []);
+    }, [defaultValue]);
+
+    useEffect(() => {
+        if (Multiple) {
+            !filterByReference(array, selectedValue).length && setSelectedValue([])
+        } else {
+            !array.find(i => i.value === selectedValue?.value) && setSelectedValue(null)
+        }
+    }, [array])
+
+
+    const filterByReference = (arr1, arr2) => {
+        let result = []
+        result = arr1.filter(el => {
+            return arr2.find(element => {
+                return element.name === el.name
+            })
+        })
+        return result
+    }
 
     const handler = (e) => {
         if (inputRef.current && !inputRef.current.contains(e.target)) {
@@ -84,7 +110,7 @@ const Dropdown = ({ name, styles, styleBox, array, Multiple, setState, Searchabl
             else newValue = option;
         }
         setSelectedValue(newValue);
-        setState(name, Array.isArray(newValue) ? newValue : newValue.value);
+        setState(name, Array.isArray(newValue) ? newValue : newValue?.value);
     };
 
     const isSelected = (option) => {
@@ -112,7 +138,7 @@ const Dropdown = ({ name, styles, styleBox, array, Multiple, setState, Searchabl
     };
 
     return (
-        <div className={style.dropdown_container} style={styles ? styles : null}>
+        <div className={disabled ? style.disabledDropdown : style.dropdown_container} style={styles ? styles : null}>
             <div>
                 <section ref={inputRef} onClick={handleInputClick} className={style.dropdown_input} style={styleBox ? styleBox : null}>
                     <div className={style.dropdown_selected_value} ref={scrollRef}>{getDisplay()}</div>

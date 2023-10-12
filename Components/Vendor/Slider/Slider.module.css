@@ -13,11 +13,12 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   border: 1px dashed #ddd;
   border-radius: 5px;
   overflow: hidden;
   position: relative;
+  height: 180px;
 }
 .zQrcU62 {
   width: 100%;
@@ -28,19 +29,32 @@
   direction: ltr;
   padding: 0 0.75rem;
   font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
-.Exw11_O0 {
-  cursor: pointer;
+.slideOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+.Exw11_O0,
+.edit {
+  cursor: pointer;
   background: rgba(204, 204, 204, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  top: 5px;
-  left: 5px;
+  width: 30px;
+  height: 30px;
+  margin: 8px;
 }
 .Exw11_O0 svg {
   width: 20px;
@@ -52,11 +66,17 @@
   align-items: center;
   justify-content: center;
   flex: 0 0 calc(calc(100% - 2rem) / 3);
-  height: 165px;
+  height: 180px;
   border-radius: 5px;
 }
 .yySwe2_9oo {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+.yySwe2_9oo svg {
+  color: #3499ff;
+  width: 42px;
+  height: 42px;
 }

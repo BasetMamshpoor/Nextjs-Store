@@ -1,35 +1,123 @@
 import Dropdown from 'Components/Dropdown/DropDown';
-import React from 'react';
+import useRequest from 'hooks/useRequest';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import style from './Filters.module.css'
+import { IoChevronDownOutline } from 'react-icons/io5'
 
-const Filters = ({ shoes, upperbody, lowerbody, accessory, underwear }) => {
+const Filters = ({ categories = 22 }) => {
+    const router = useRouter()
 
+    const [filters, setFilters] = useState({})
+    const [data] = useRequest(`/products/getfilters/${categories}`)
+
+    useEffect(() => {
+        if (router.isReady) {
+            setFilters(readUrl())
+        }
+    }, [router])
+    const makeFilter = (filter) => {
+        let array = [];
+        const Data = data.data
+        // console.log(Data[filter]);
+
+        return array
+    }
+
+
+    const handleFilter = (name, value) => {
+        setFilters(prev => {
+            return {
+                ...prev,
+                [name]: value
+            }
+        })
+        changeUrl(name, value)
+    }
+
+    const readUrl = () => {
+        let object = {};
+        for (const name in router.query) {
+            if (Object.hasOwnProperty.call(router.query, name)) {
+                let filter = []
+                const value = router.query[name];
+                const newValue = value.split('-')
+                newValue.forEach((f, i) => {
+                    filter.push({ name: f, value: i })
+                })
+                object[name] = filter
+            }
+        }
+        return object
+    }
+
+    const changeUrl = (name, value) => {
+        let str = null;
+        value.forEach((f, i) => {
+            if (i > 0) {
+                str = str + '-' + f.name
+            } else if (i === 0) {
+                str = f.name
+            } else {
+                str = null
+            }
+        })
+        if (str === null) {
+            const { [name]: O, gender, type, ...query } = router.query
+            router.replace({ pathname: router.asPath.split('?')[0], query: { ...query }, },
+                undefined,
+                { shallow: true }
+            );
+        } else {
+            const { gender, type, ...query } = router.query
+            router.replace({ pathname: router.asPath.split('?')[0], query: { ...query, [name]: str }, },
+                undefined,
+                { shallow: true }
+            );
+        }
+    }
+    const clearFilters = () => {
+        router.replace(router.asPath.split('?')[0], undefined, { shallow: true });
+    }
     return (
         <>
-            <div className={style.filters}>
-                <p className={style.Rwxaq}>فیلتر ها</p>
+            {data && <div className={style.filters}>
+                <div className={style.header}>
+                    <p className={style.Rwxaq}>فیلتر ها</p>
+                    <span className={style.clearFilters} onClick={clearFilters}>حذف فیلترها</span>
+                </div>
                 <Dropdown
-                    array={[{ name: 'آدیداس', value: 'addidass' },
-                    { name: 'آدیداس', value: 'addidas2' },
-                    { name: 'آدیداس', value: 'addidas3' },
-                    { name: 'آدیداس', value: 'addidas4' }]}
-                    Multiple Searchable placeHolder='برند' setState={(n, v) => console.log(n, v)} name='brands' towLabel
-                    styleBox={{ padding: 'calc(.75rem + 10px) 12px .75rem' }} />
+                    array={makeFilter('brands')} defaultValue={filters.brands}
+                    Multiple Searchable placeHolder='برند' setState={handleFilter} name='brands' towLabel
+                    styleBox={{ padding: 'calc(.75rem + 10px) 12px', borderBottom: '1px solid #ddd' }} />
                 <Dropdown
-                    array={[{ name: 'آبی', value: '#00e1ff' },
-                    { name: 'قرمز', value: '#ff0000' },
-                    { name: 'سبز', value: '#00ff04' },
-                    { name: 'مشکی', value: '#000' }]}
-                    Multiple Searchable placeHolder='رنگ' setState={(n, v) => console.log(n, v)} name='colors' colorInLabel
-                    styleBox={{ padding: 'calc(.75rem + 10px) 12px .75rem' }} />
+                    array={[]} defaultValue={filters.colors}
+                    Multiple Searchable placeHolder='رنگ' setState={handleFilter} name='colors' colorInLabel
+                    styleBox={{ padding: 'calc(.75rem + 10px) 12px', borderBottom: '1px solid #ddd' }} />
                 <Dropdown
-                    array={[{ name: 'آبی', value: '#00e1ff' },
-                    { name: 'قرمز', value: '#ff0000' },
-                    { name: 'سبز', value: '#00ff04' },
-                    { name: 'مشکی', value: '#000' }]}
-                    Multiple Searchable placeHolder='سایز' setState={(n, v) => console.log(n, v)} name='colors' label
-                    styleBox={{ padding: 'calc(.75rem + 10px) 12px .75rem' }} />
-            </div>
+                    array={[]} defaultValue={filters.sizes}
+                    Multiple Searchable placeHolder='سایز' setState={handleFilter} name='sizes' label
+                    styleBox={{ padding: 'calc(.75rem + 10px) 12px', borderBottom: '1px solid #ddd' }} />
+                <div className={style.yqgi}>
+                    <div className={style.typeF}>
+                        <input className={style.checkprice} type="checkbox" id="price" hidden />
+                        <label className={style.dropdownL} htmlFor="price"><p>قیمت</p><span><IoChevronDownOutline /></span></label>
+                        <div className={style.CrWx}>
+                            <div className={style.kFiU}>
+                                <div className={style.vGex}>
+                                    <label>از</label>
+                                    <input type="number" />
+                                </div>
+                                <div className={style.vGex}>
+                                    <label>تا</label>
+                                    <input type="number" />
+                                </div>
+                                <button className={style.doIt}>اعمال فیلتر</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>}
         </>
     );
 };

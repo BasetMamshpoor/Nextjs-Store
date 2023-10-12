@@ -97,6 +97,9 @@
   color: #3499ff;
 }
 .bTxn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
   padding: 8px 5px;
@@ -112,4 +115,21 @@
 .enughNumber {
   opacity: 0.5;
   pointer-events: none;
+}
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.pHvtxu {
+  width: 280px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.pHvtxu p {
+  font-size: 18px;
 }

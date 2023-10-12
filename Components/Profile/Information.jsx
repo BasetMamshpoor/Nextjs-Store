@@ -1,7 +1,8 @@
-import React from 'react';
 import style from './Information.module.css'
 import { FiEdit } from 'react-icons/fi'
-const Information = () => {
+
+const Information = ({ info }) => {
+
     return (
         <>
             <div className={style.UBtgvIR4}>
@@ -14,8 +15,7 @@ const Information = () => {
                             <div className={style.Rcinpte}>
                                 <p>نام و نام خانوادگی</p>
                             </div>
-                            <p className={style.RcnlEx}>عبدالباسط ماموشی پور
-                            </p>
+                            <p className={style.RcnlEx}>{info?.name}</p>
                         </div>
                     </div>
                     <div className={style.kLRx8Fh}>
@@ -48,7 +48,7 @@ const Information = () => {
                             <div className={style.Rcinpte}>
                                 <p>ایمیل</p>
                             </div>
-                            <p className={style.RcnlEx}>email@example.boobs</p>
+                            <p className={style.RcnlEx}>{info?.email}</p>
                         </div>
                     </div>
                     <div className={style.kLRx8Fh}>

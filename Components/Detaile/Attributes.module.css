@@ -5,22 +5,30 @@
 .Kxope {
   display: flex;
   flex-direction: column;
+  max-width: 100%;
+  overflow: hidden;
 }
 .Kxope p {
   font-weight: 600;
   font-family: IRANYekan, sans-serif;
   margin-bottom: 0.5rem;
   color: rgb(80, 80, 80);
-  font-size: 18px;
+  font-size: 16px;
 }
 .Kxope li {
   font-family: IRANYekan, sans-serif;
-  line-height: 2.15;
+  line-height: 2;
   font-size: 16px;
   color: #000;
   font-weight: 600;
+  width: 100%;
 }
-.Kxope li span {
+.name {
   color: #81858b;
   margin-left: 0.5rem;
+  font-size: 13px;
+}
+
+.desc {
+  font-size: 13px;
 }

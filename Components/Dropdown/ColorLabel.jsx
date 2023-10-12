@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const ColorLabel = ({ name, code }) => {
     let style = {

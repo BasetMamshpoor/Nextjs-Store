@@ -1,0 +1,62 @@
+.htX_98wQI {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+.htX_98wQI p {
+  font-size: inherit;
+}
+.RcpIf_11 {
+  border: 1px solid #3499ff;
+  outline: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 2px 3px;
+  color: #3499ff;
+}
+.vZryal_rr4 {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+.lAdGc_ooiy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(218, 225, 231);
+  border-radius: 5px;
+  padding: 6px 8px;
+  height: 46px;
+}
+.lAdGc_ooiy:focus-within {
+  border-color: #3499ff;
+  box-shadow: rgb(255 225 230 / 10%) 1px 1px 8px 4px;
+}
+.lAdGc_ooiy input {
+  border: none;
+  height: 100%;
+  padding: 4px 6px;
+  outline: none;
+}
+.lAdGc_ooiy input:focus .lAdGc_ooiy {
+  border-color: #3499ff;
+  box-shadow: rgb(255 225 230 / 10%) 1px 1px 8px 4px;
+}
+.attrName_1 {
+  width: 30%;
+  border-left: 1px solid rgb(177, 177, 177) !important;
+}
+.attrDesc_1 {
+  width: 69%;
+}
+.errors_input {
+  font-size: 12px;
+  position: absolute;
+  bottom: -1.5rem;
+  right: 1rem;
+  white-space: nowrap;
+  color: rgb(255, 104, 104);
+}

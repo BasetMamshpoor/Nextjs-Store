@@ -1,6 +1,6 @@
 import addComma from 'Functions/addComma';
 import { e2p } from 'Functions/ConvertNumbers';
-import React from 'react';
+
 import { FiMinus, FiPlus, FiTrash2 } from 'react-icons/fi'
 import { TfiRuler } from 'react-icons/tfi'
 import style from './Product.module.css'
@@ -32,11 +32,11 @@ const Product = ({ state, dispatch }) => {
                                 </div>
                                 <div className={style.vVBE__0Oiju}>
                                     <div className={style.G_VwXabc_99L}>
-                                        <p className={style.price_3Sproduct}>{addComma(p.off_price)}</p>
-                                        {p.off_price !== p.price && <div className={style.UcUrzyq}>{addComma(p.price)}<span>تخفیف</span></div>}
+                                        <p className={style.price_3Sproduct}>{addComma(p.offPrice.toString())}</p>
+                                        {p.offPrice !== p.price && <div className={style.UcUrzyq}>{addComma(p.price.toString())}<span>تخفیف</span></div>}
                                     </div>
                                     <div className={style.Dc_Oi88Ted}>
-                                        <button className={`${style.bTxn} ${p.quantity >= p.sizes.stoke ? style.enughNumber : ''}`} onClick={() => dispatch({ type: "INCREASE", payload: p })}>
+                                        <button className={`${style.bTxn} ${p.quantity >= p.sizes.stock ? style.enughNumber : ''}`} onClick={() => dispatch({ type: "INCREASE", payload: p })}>
                                             <FiPlus />
                                         </button>
                                         <span className={style.num_2Cproduct}>{e2p(p.quantity)}</span>
@@ -53,10 +53,12 @@ const Product = ({ state, dispatch }) => {
                     </div>
                 )
             }) :
-                <>
-                    <img src={img.src} alt="" />
-                    <p>سبد خرید شما خالی است</p>
-                </>
+                <div className={style.empty}>
+                    <div className={style.pHvtxu}>
+                        <img src={img.src} alt="" />
+                        <p>سبد خرید شما خالی است.</p>
+                    </div>
+                </div>
             }
         </>
     );

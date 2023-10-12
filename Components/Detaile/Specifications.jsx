@@ -1,46 +1,30 @@
-import React from 'react';
-// import './comments&Specifications.css'
 
-const Specifications = () => {
+import style from './Style.module.css'
+
+const Specifications = ({ data }) => {
     return (
         <>
-            <div className="r0Oi2" id="Specifications">
-                <div className="x3qao_hj w-100 mb-3">
+            <div className={style.r0Oi2} id="Specifications">
+                <div className={style.x3qao_hj}>
                     <h5>مشخصات</h5>
                 </div>
-                <div className="row pt-3">
-                    <div className="fjEsx col-3">
-                        <div className="cfxrG">
+                <div className='row pt-3'>
+                    <div className={`${style.fjEsx} col-2`}>
+                        <div className={style.cfxrG}>
                             <p>ویژگی ها</p>
                         </div>
                     </div>
-                    <div className="hdoRE col-9 p-0">
-                        <div className="ewZQpsi">
-                            <ul className="oVtn flex-column">
-                                <li>
-                                    <p className="cXopw">جنس :</p>
-                                    <p className="R2Ox_djc">نخ</p>
-                                </li>
-                                <li>
-                                    <p className="cXopw">قد :</p>
-                                    <p className="R2Ox_djc">روی باسن</p>
-                                </li>
-                                <li>
-                                    <p className="cXopw">یقه :</p>
-                                    <p className="R2Ox_djc">گرد</p>
-                                </li>
-                                <li>
-                                    <p className="cXopw">آستین :</p>
-                                    <p className="R2Ox_djc">کوتاه</p>
-                                </li>
-                                <li>
-                                    <p className="cXopw">مورد استفاده :</p>
-                                    <p className="R2Ox_djc">روزمره</p>
-                                </li>
-                                <li>
-                                    <p className="cXopw">کشور تولید کننده :</p>
-                                    <p className="R2Ox_djc">ایران</p>
-                                </li>
+                    <div className={`${style.hdoRE} col-10`}>
+                        <div className={style.ewZQpsi}>
+                            <ul className={style.oVtn}>
+                                {data.map((s,i)=> {
+                                    return (
+                                        <li key={i}>
+                                            <p className={style.cXopw}>{s.name} :</p>
+                                            <p className={style.R2Ox_djc}>{s.value}</p>
+                                        </li>
+                                    )
+                                })}
                             </ul>
                         </div>
                     </div>

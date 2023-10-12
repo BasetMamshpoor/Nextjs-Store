@@ -37,6 +37,9 @@ body {
     "Helvetica Neue", sans-serif;
   line-height: 1.5;
 }
+main {
+  min-height: 55vh;
+}
 ul {
   margin: 0;
   padding: 0;
@@ -59,11 +62,9 @@ svg {
   width: 24px;
   height: 24px;
 }
-main {
-  min-height: 50vh;
-}
+
 input {
-  font-family: IRANYekan;
+  font-family: "IRANYekan";
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -76,7 +77,11 @@ input[type="number"] {
 button {
   cursor: pointer;
 }
-button, input, optgroup, select, textarea {
+button,
+input,
+optgroup,
+select,
+textarea {
   margin: 0;
   font-family: inherit;
   font-size: inherit;
@@ -101,22 +106,25 @@ button, input, optgroup, select, textarea {
   padding-right: 0.5rem;
 }
 .ms-1 {
-  margin-left: 0.3rem;
+  margin-left: 0.3rem !important;
 }
 .ms-3 {
-  margin-left: 1rem;
+  margin-left: 1rem !important;
 }
 .ml-3 {
-  margin-left: 1rem;
+  margin-left: 1rem !important;
 }
 .ml-2 {
-  margin-left: 0.75rem;
+  margin-left: 0.75rem !important;
 }
 .mt-4 {
-  margin-top: 1.5rem;
+  margin-top: 1.5rem !important;
+}
+.my-4 {
+  margin: 2rem 0 !important;
 }
 .my-5 {
-  margin: 3rem 0;
+  margin: 3rem 0 !important;
 }
 .row {
   --bs-gutter-x: 1.5rem;
@@ -141,13 +149,20 @@ button, input, optgroup, select, textarea {
   padding-left: 0 !important;
 }
 .ps-3 {
-  padding-left: 1rem;
+  padding-left: 1rem !important;
+}
+.pe-3 {
+  padding-right: 1rem !important;
 }
 .pe-5 {
-  padding-right: 3rem;
+  padding-right: 3rem !important;
 }
 .pe-0 {
-  padding-right: 0;
+  padding-right: 0 !important;
+}
+.col-2 {
+  flex: 0 0 auto !important;
+  width: 16.666666% !important;
 }
 .col-3 {
   flex: 0 0 auto !important;
@@ -168,6 +183,10 @@ button, input, optgroup, select, textarea {
 .col-9 {
   flex: 0 0 auto !important;
   width: 75% !important;
+}
+.col-10 {
+  flex: 0 0 auto !important;
+  width: 83.333333% !important;
 }
 .row > * {
   --bs-gutter-x: 1.5rem;

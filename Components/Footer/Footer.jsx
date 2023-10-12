@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Logo from 'public/Images/logo-no-background-transformed.png'
 import style from './Footer.module.css'
 import { SiInstagram, SiTelegram, SiLinkedin } from "react-icons/si";

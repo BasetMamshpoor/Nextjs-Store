@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import style from './MiddleNavbar.module.css'
 import Logo from 'public/Images/logo-no-background-transformed.png'
 import { BsSearch, BsCart3, BsPerson } from 'react-icons/bs'
 import Link from 'next/link';
 import { e2p } from 'Functions/ConvertNumbers';
 import { CartContext } from 'providers/CartContextProvider';
+import Image from 'next/image';
 
 const MiddleNavbar = () => {
     const { state } = useContext(CartContext)
@@ -15,7 +16,7 @@ const MiddleNavbar = () => {
                     <div className={style.navSearchTop}>
                         <div className={style.navLogo}>
                             <Link href='/'>
-                                <img src={Logo.src} alt="Logo" />
+                                <Image src={Logo.src} alt="Logo" width={100} height={100} />
                             </Link>
                         </div>
                         <div className={`${style.navSearch} d-flex`}>
@@ -32,7 +33,7 @@ const MiddleNavbar = () => {
                                 <BsCart3 />
                             </Link>
                             <div className={style.border}></div>
-                            <Link href='/profile' className={style.navUser}>
+                            <Link href='/profile/information' className={style.navUser}>
                                 <BsPerson />
                             </Link>
                         </div>

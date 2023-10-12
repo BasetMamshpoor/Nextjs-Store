@@ -1,13 +1,31 @@
+.prev_dis_parent {
+  position: relative;
+  flex: 0 0 45%;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .nJe_3zq_plf {
   position: relative;
-  flex: 0 0 49%;
-  max-width: 49%;
+  flex: 0 0 40%;
+  max-width: 40%;
   height: 46px;
   border-radius: 5px;
   border: 1px solid rgb(218, 225, 231);
   padding: 3px;
 }
-.nJe_3zq_plf:focus-within {
+.nJe_discount_plf {
+  flex: 0 0 70%;
+  max-width: 80%;
+  height: 46px;
+  border-radius: 5px;
+  border: 1px solid rgb(218, 225, 231);
+  padding: 3px;
+}
+.nJe_3zq_plf:focus-within,
+.nJe_discount_plf:focus-within {
   border-color: #3499ff;
   box-shadow: rgb(255 225 230 / 10%) 1px 1px 8px 4px;
 }
@@ -15,7 +33,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  flex: 0 0 49%;
+  flex: 0 0 54.5%;
   height: 46px;
 }
 .input {
@@ -71,7 +89,7 @@
   border-radius: 5px;
 }
 #IcE_22:checked ~ .Mn_HveS input {
-  pointer-events: all;
+  visibility: visible;
 }
 .Mn_HveS {
   height: 100%;
@@ -94,7 +112,7 @@
   transition: all 0.3s ease;
 }
 .Mn_HveS input {
-  pointer-events: none;
+  visibility: hidden;
   outline: none;
   width: 100%;
   height: 100%;
@@ -106,4 +124,20 @@
 .Mn_HveS input:focus {
   border-color: #3499ff;
   box-shadow: rgb(255 225 230 / 10%) 1px 1px 8px 4px;
+}
+
+.Datepicker {
+  width: 100%;
+  height: 100% !important;
+}
+
+.inputDatePicker {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding: 6px 8px;
+  color: rgb(43, 52, 69);
+  outline: none;
+  -webkit-appearance: none;
+  border: none;
 }

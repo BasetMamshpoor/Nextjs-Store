@@ -43,7 +43,7 @@
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 2rem 0;
+  gap: 2rem 0rem;
   margin-bottom: 2rem;
 }
 
@@ -54,7 +54,7 @@
   height: 46px;
   border-radius: 5px;
   border: 1px solid rgb(218, 225, 231);
-  padding:3px;
+  padding: 3px;
 }
 .DxwzE_Os_T3 .nJe_3zq_plf:last-child {
   flex-grow: 1 !important;
@@ -70,7 +70,8 @@
   -webkit-appearance: none;
   border: none;
 }
-.errors_input {
+.errors_input,
+.errors_input_specif {
   font-size: 12px;
   position: absolute;
   bottom: -1.5rem;
@@ -141,7 +142,7 @@
 }
 .Fcximy {
   position: absolute;
-  bottom: -2.5rem;
+  bottom: -1.4rem;
   display: flex;
   flex-direction: row;
 }
@@ -184,7 +185,9 @@
 .jCrxy input:first-child {
   flex-grow: 1;
 }
-
+.errors_input_specif {
+  bottom: 0;
+}
 .vExpkqZu {
   display: flex;
   align-items: center;
@@ -223,4 +226,26 @@
 }
 .jCrxi_22A5 {
   position: relative;
+}
+
+.tcuExo0 {
+  margin-bottom: 1.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.textarea {
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  max-height: 10rem;
+  min-height: 5rem;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid rgb(218, 225, 231);
+  outline: none;
+}
+.textarea:focus {
+  border-color: #3499ff;
 }

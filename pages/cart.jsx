@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import Product from 'Components/Cart/Product';
 import style from 'styles/Cart.module.css'
 import { CartContext } from 'providers/CartContextProvider';
@@ -19,7 +19,7 @@ const Cart = () => {
                                 </div>
                                 <div className={style.opTions}>
                                     {state.itemsCounter > 0 ?
-                                        <button onClick={() => dispatch({ type: "CLEAR" })}>پاک کردن سبد خرید</button>
+                                        <button onClick={() => dispatch({ type: "CLEAR" })} className={style.clear}>پاک کردن سبد خرید</button>
                                         : null
                                     }
                                 </div>

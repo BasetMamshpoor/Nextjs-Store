@@ -1,32 +1,44 @@
 import Input from 'Components/Input';
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import style from './Price.module.css'
+import DatePicker, { DateObject } from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian"
+import persian_fa from "react-date-object/locales/persian_fa"
+import TimePicker from 'react-multi-date-picker/plugins/time_picker';
+import { p2e } from 'Functions/ConvertNumbers';
 
-const Price = ({ setProduct, off_price, touch, errors }) => {
+const Price = ({ setProduct, offPrice, price, discountTime, touch, errors }) => {
 
     const input = useRef()
     const checkBox = useRef()
-
+    const newDate = new Date()
+    const [date, setDate] = useState({ off_date_from: newDate, off_date_to: new Date(Date.now() + (3600 * 1000 * 24)) })
     useEffect(() => {
-        if (checkBox.current.checked) setProduct(prev => {
-            const off_percent = Math.ceil(100 - (prev.off_price / prev.price * 100))
-            return { ...prev, off_percent }
-        })
+        if (checkBox.current.checked) {
+            setProduct(prev => {
+                const offPercent = prev.offPrice ? Math.ceil(100 - (prev.offPrice / prev.price * 100)) : 0
+                return { ...prev, offPercent, ...date }
+            })
+        }
         else {
             setProduct(prev => {
-                delete prev.off_percent
+                delete prev.offPercent
+                delete prev.off_date_from
+                delete prev.off_date_to
                 return { ...prev }
             })
         }
-    }, [off_price])
+    }, [offPrice, price, date])
 
-    const handleResult = (value, name) => {
+
+    const handleResult = (Value, name) => {
+        let value = parseInt(Value) || 0
         if (name === 'price' && !checkBox.current.checked) {
             setProduct(prev => {
                 return {
                     ...prev,
                     price: value,
-                    off_price: value
+                    offPrice: value
                 }
             })
         } else {
@@ -43,18 +55,21 @@ const Price = ({ setProduct, off_price, touch, errors }) => {
         if (target.checked) input.current.focus()
         else {
             setProduct(prev => {
-                const off_price = prev.price
+                const offPrice = prev.price
                 return {
                     ...prev,
-                    off_price
+                    offPrice
                 }
             })
         }
     }
+
+    const getToday = (date) => p2e(new DateObject(date).toDate().toLocaleDateString('fa-IR').split('/')[2])
+
     return (
         <>
             <div className={style.nJe_3zq_plf}>
-                <Input type='number' placeholder="قیمت" name='price' result={handleResult} className={style.input} />
+                <Input isNumber={true} type='text' placeholder="قیمت" name='price' result={handleResult} className={style.input} value={price} />
                 {touch.price && errors.price && <span className={style.errors_input}>{errors.price}</span>}
             </div>
             <div className={style.FzwYa_4n4}>
@@ -66,10 +81,51 @@ const Price = ({ setProduct, off_price, touch, errors }) => {
                     </label>
                 </div>
                 <div className={style.Mn_HveS}>
-                    <Input type="number" placeholder="قیمت تخفیفی" min='1' name='off_price' result={handleResult} refrence={input} />
+                    <Input isNumber={true} type="text" placeholder="قیمت تخفیفی" name='offPrice' result={handleResult} refrence={input} value={offPrice} />
                 </div>
-                {touch.off_price && errors.off_price && <span className={style.errors_input}>{errors.off_price}</span>}
+                {touch.offPrice && errors.offPrice && <span className={style.errors_input}>{errors.offPrice}</span>}
             </div>
+            {checkBox.current?.checked && <>
+                <div className={style.prev_dis_parent}><label>شروع تخفیف:</label><div className={style.nJe_discount_plf}>
+                    <DatePicker
+                        value={date.off_date_from}
+                        onChange={e => setDate(prev => { return { ...prev, off_date_from: e.toDate() } })}
+                        inputClass={style.inputDatePicker}
+                        containerClassName={style.Datepicker}
+                        editable={false}
+                        monthYearSeparator="|"
+                        format="HH:mm DD/MMMM/YYYY"
+                        plugins={[
+                            <TimePicker hideSeconds position='right' />
+                        ]}
+                        minDate={new DateObject({ calendar: persian }).subtract(0, "days")}
+                        maxDate={new DateObject({ calendar: persian }).add(getToday(date.off_date_to) - getToday(newDate), "days")}
+                        placeholder='زمان شروع تخفیف...'
+                        calendar={persian}
+                        locale={persian_fa}
+                        calendarPosition="bottom-right" />
+                    {touch.discountTime && errors.discountTime && <span className={style.errors_input}>{errors.discountTime}</span>}
+                </div></div>
+                <div className={style.prev_dis_parent}><label>پایان تخفیف:</label><div className={style.nJe_discount_plf}>
+                    <DatePicker
+                        value={date.off_date_to}
+                        onChange={e => setDate(prev => { return { ...prev, off_date_to: e.toDate() } })}
+                        inputClass={style.inputDatePicker}
+                        containerClassName={style.Datepicker}
+                        editable={false}
+                        monthYearSeparator="|"
+                        format="HH:mm DD/MMMM/YYYY"
+                        plugins={[
+                            <TimePicker hideSeconds position='right' />
+                        ]}
+                        minDate={new DateObject({ calendar: persian }).subtract(getToday(newDate) - getToday(date.off_date_from), "days")}
+                        maxDate={new DateObject({ calendar: persian }).add(14, "days")}
+                        placeholder='زمان پایان تخفیف...'
+                        calendar={persian}
+                        locale={persian_fa}
+                        calendarPosition="bottom-right" />
+                </div></div>
+            </>}
         </>
     );
 };

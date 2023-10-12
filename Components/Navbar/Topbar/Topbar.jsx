@@ -1,4 +1,4 @@
-import React from 'react';
+
 import style from './Topbar.module.css'
 import { AiOutlinePhone, AiOutlineMail } from 'react-icons/ai'
 

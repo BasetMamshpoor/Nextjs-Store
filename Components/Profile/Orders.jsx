@@ -1,10 +1,37 @@
-import React from 'react';
 import { MdShoppingBag } from 'react-icons/md'
 import { BsArrowLeft } from 'react-icons/bs'
 import style from './Orders.module.css'
 import Pagination from 'Components/Pagination/Pagination';
+import useRequest from 'hooks/useRequest';
+import Link from 'next/link';
+import addComma from 'Functions/addComma';
+import { e2p } from 'Functions/ConvertNumbers';
 
 const Orders = () => {
+
+    const [orders] = useRequest('/profile/orders')
+
+    const statusOrser = (status, payment_status) => {
+        const json = [
+            { class: style.cancelled_order, value: 'لغو شده' },
+            { class: style.pending_order, value: 'آماده سازی' },
+            { class: style.delivered_order, value: 'تحویل داده شد' }
+        ]
+        if (payment_status === 1) {
+            return (
+                <div className={`${style.aR9_nu} ${style.awaitingPayment}`}>
+                    <span>در انتظار پرداخت</span>
+                </div>
+            )
+        } else {
+            return (
+                <div className={`${style.aR9_nu} ${json[status].class}`}>
+                    <span>{json[status].value}</span>
+                </div>
+            )
+        }
+    }
+
     return (
         <>
             <div className={style.dSezpb6} dir="rtl">
@@ -16,88 +43,30 @@ const Orders = () => {
                     <ul className={style.SzPld}>
                         <li>سفارش</li>
                         <li>وضعیت</li>
-                        <li>تاریخ</li>
-                        <li>مبلغ</li>
+                        <li>تاریخ ثبت سفارش</li>
+                        <li>مبلغ نهایی</li>
                         <li></li>
                     </ul>
                 </div>
                 <div className={style.DybIay}>
                     <ul className={style.RxaPlo}>
-                        <li>
-                            <a href="." className={style.WMeJalq}>
-                                <p>۲۹۵۲۹۷۶۸۶</p>
-                                <div>
-                                    <div className={`${style.aR9_nu} ${style.pending_order}`}>
-                                        <span>آماده سازی</span>
-                                    </div>
-                                </div>
-                                <p>۱۴ آبان ۱۴۰۱</p>
-                                <p className={style.order_PL}>۴۰۰,۰۰۰</p>
-                                <div className={style.mknBg}>
-                                    <BsArrowLeft />
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="." className={style.WMeJalq}>
-                                <p>۲۹۵۲۹۷۶۸۶</p>
-                                <div>
-                                    <div className={`style.aR9_nu style.delivered_order`}>
-                                        <span>تحویل داده شده</span>
-                                    </div>
-                                </div>
-                                <p>۱۸ شهریور ۱۴۰۱</p>
-                                <p className={style.order_PL}>۱,۵۰۰,۰۰۰</p>
-                                <div className={style.mknBg}>
-                                    <BsArrowLeft />
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="." className={style.WMeJalq}>
-                                <p>۲۹۵۲۹۷۶۸۶</p>
-                                <div>
-                                    <div className={`style.aR9_nu delivered_order`}>
-                                        <span>تحویل داده شده</span>
-                                    </div>
-                                </div>
-                                <p>۱۳ تیر ۱۴۰۱</p>
-                                <p className={style.order_PL}>۶۷,۰۰۰</p>
-                                <div className={style.mknBg}>
-                                    <BsArrowLeft />
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="." className={style.WMeJalq}>
-                                <p>۲۹۵۲۹۷۶۸۶</p>
-                                <div>
-                                    <div className={`${style.aR9_nu} ${style.delivered_order}`}>
-                                        <span>تحویل داده شده</span>
-                                    </div>
-                                </div>
-                                <p>۰۵ خرداد ۱۴۰۱</p>
-                                <p className={style.order_PL}>۵۳۱,۸۰۳</p>
-                                <div className={style.mknBg}>
-                                    <BsArrowLeft />
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="." className={style.WMeJalq}>
-                                <p>۲۹۵۲۹۷۶۸۶</p>
-                                <div>
-                                    <div className={`${style.aR9_nu} ${style.cancelled_order}`}>
-                                        <span>لغو شده</span>
-                                    </div>
-                                </div>
-                                <p>۲۵ فروردین ۱۴۰۱</p>
-                                <p className={style.order_PL}>۱۹۹,۰۰۰</p>
-                                <div className={style.mknBg}>
-                                    <BsArrowLeft />
-                                </div>
-                            </a>
-                        </li>
+                        {!!orders && orders.data.map(o => {
+                            return (
+                                <li key={o.id}>
+                                    <Link href="/" className={style.WMeJalq}>
+                                        <p>{e2p(o.code)}</p>
+                                        <div>
+                                            {statusOrser(o.status, o.payment_status)}
+                                        </div>
+                                        <p>{new Date(o.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                                        <p className={style.order_PL}>{addComma(o.total_price)}</p>
+                                        <div className={style.mknBg}>
+                                            <BsArrowLeft />
+                                        </div>
+                                    </Link>
+                                </li>
+                            )
+                        })}
                     </ul>
                 </div>
                 <Pagination

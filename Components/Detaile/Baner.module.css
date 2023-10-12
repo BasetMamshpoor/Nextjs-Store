@@ -1,0 +1,143 @@
+.Hxiq3Dx {
+  position: sticky;
+  top: 10rem;
+}
+.jc4Rg {
+  margin: 2rem 0;
+  background: #f7f7f8;
+  box-shadow: 0 5px 10px 0px #5e5e5e31;
+  border: 1px solid #dbdbdb;
+  border-radius: 15px;
+  padding: 1rem;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+}
+.r4Alju {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  padding: 0.75rem 0;
+  align-items: center;
+  padding-bottom: 0.5rem;
+}
+.diSwk6 {
+  margin-left: 0.75rem;
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+}
+.UyrpV7 {
+  flex-grow: 1;
+}
+.UyrpV7 p {
+  line-height: 1.75rem;
+  color: #3f3f3f;
+}
+.uv4FOo {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+  font-size: 10px;
+}
+.ivrxo5 {
+  margin-left: 0.5rem;
+}
+.ivrxo5 svg {
+  width: 20px;
+  color: #3f3f3f;
+}
+.Ec3obT {
+  direction: ltr;
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem 0;
+}
+.vfdC {
+  margin-bottom: 0.75rem;
+}
+.Roff {
+  font-size: 12px;
+  background: #3499ff;
+  color: #fff;
+  padding: 0 0.2rem;
+  border-radius: 5px;
+}
+.enughNumber {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.Crprice {
+  letter-spacing: 1px;
+  font-size: 12px;
+  margin-left: 0.5rem;
+  color: #81858b;
+}
+.P_priceR {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #000;
+  font-weight: 600;
+}
+.P_priceR::before {
+  font-weight: 100;
+  margin-right: 0.5rem;
+  content: "\F142\00FE0E";
+  font-family: "Icon";
+  font-size: 20px;
+}
+.aDd_tO_CaRt {
+  width: 100%;
+  border: none;
+  font-size: 14px;
+  background: #3499ff;
+  border: 2px solid #3499ff;
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+}
+.Tpn9Rq {
+  display: flex;
+  align-items: center;
+}
+.aDd_tO_CaRt:hover {
+  background: transparent;
+  color: #3499ff;
+}
+.Xdptve13 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5rem;
+  font-size: 14px;
+  border-radius: 8px;
+  width: 102px;
+  max-width: 102px;
+  min-height: 44px;
+  max-height: 44px;
+  box-shadow: 0 1px 5px rgb(0 0 0 / 20%);
+}
+.Xdptve13 button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+}
+.Xdptve13 svg {
+  width: 24px;
+  height: 24px;
+  color: #3499ff;
+}
+.NamBer_P {
+  font-size: 16px;
+  color: #3499ff;
+}
+.VdxwPuu {
+  margin-right: 0.75rem;
+}
+.VdxwPuu a {
+  color: #3499ff;
+  margin-right: 0.5rem;
+}

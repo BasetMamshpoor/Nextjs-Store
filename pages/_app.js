@@ -5,7 +5,10 @@ import CartContextProvider from "providers/CartContextProvider"
 import 'styles/globals.css'
 import NextNProgress from 'Components/Progress/index'
 
-axios.defaults.baseURL = 'http://localhost:6500/'
+axios.defaults.baseURL = 'http://localhost:8000/api'
+// axios.defaults.baseURL = 'http://localhost:6500'
+// axios.defaults.baseURL = 'http://192.168.176.239:6500'
+ 
 
 export default function App({ Component, pageProps }) {
   return (
@@ -15,6 +18,7 @@ export default function App({ Component, pageProps }) {
         <NextNProgress />
         <Component {...pageProps} />
         <Footer />
+        <div id="modal-container"></div>
       </CartContextProvider>
     </>
   )

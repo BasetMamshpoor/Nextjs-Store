@@ -1,5 +1,5 @@
 .ZolpWn__0_ {
-  margin: 3rem 0;
+  padding: 3rem 0;
 }
 .SxSafd_b_3b {
   display: flex;
@@ -7,7 +7,7 @@
 }
 .jMszopl_9Y_1 {
   position: sticky;
-  top: 10rem;
+  top: 3rem;
   display: flex;
   flex-direction: column;
   padding: 8px 0 20px;
@@ -69,3 +69,14 @@
   }
 }
 /* ==================== */
+.opTions {
+  padding: 0 1rem;
+}
+.clear {
+  color: #fff;
+  border: none;
+  outline: none;
+  background: #3499ff;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
