@@ -1,9 +1,16 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import style from './Modal.module.css'
 import { SlClose } from 'react-icons/sl'
 
 const Modal = ({ content }) => {
     const [isOpen, setIsOpen] = useState(true)
+
+    const childrenWithProps = React.Children.map(content, child => {
+        if (React.isValidElement(child)) {
+            return React.cloneElement(child, { setIsOpen });
+        }
+        return child;
+    });
 
     return isOpen
         ? <>
@@ -11,7 +18,7 @@ const Modal = ({ content }) => {
 
             <div className={style.modal} >
                 <button className={style.close} onClick={() => setIsOpen(false)}><SlClose /></button>
-                {content}
+                {childrenWithProps}
             </div>
         </>
         : ''

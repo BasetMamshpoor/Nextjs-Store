@@ -15,12 +15,12 @@ import SelectCategories from './SelectCategories';
 
 const Form = () => {
     const router = useRouter()
-    const [product, setProduct] = useState({ category_id: null, sizes: [], attributes: [], images: [], discountTime: {}, brand_id: 1,slug:'asad_pois' })
+    const [product, setProduct] = useState({ category_id: null, sizes: [], attributes: [], images: [], discountTime: {}, brand_id: 1 })
     const [touch, setTouch] = useState({})
 
     const errors = validation(product)
 
-    const handleResult = (value, name) => {
+    const handleResult = (name, value) => {
         setProduct(prev => {
             return {
                 ...prev,

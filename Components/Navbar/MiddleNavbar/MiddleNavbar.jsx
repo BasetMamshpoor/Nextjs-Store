@@ -22,7 +22,7 @@ const MiddleNavbar = () => {
                         <div className={`${style.navSearch} d-flex`}>
                             <form className={style.searchForm}>
                                 <BsSearch />
-                                <input type="text" placeholder="سرچ کنید ..." />
+                                <input type="text" placeholder="جستجو کنید ..." />
                             </form>
                         </div>
                         <div className={style.user}>

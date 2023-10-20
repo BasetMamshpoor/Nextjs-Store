@@ -1,8 +1,9 @@
 import style from './Information.module.css'
 import { FiEdit } from 'react-icons/fi'
+import useRequest from 'hooks/useRequest';
 
-const Information = ({ info }) => {
-
+const Information = () => {
+    const [info] = useRequest('/profile/information')
     return (
         <>
             <div className={style.UBtgvIR4}>
@@ -15,7 +16,7 @@ const Information = ({ info }) => {
                             <div className={style.Rcinpte}>
                                 <p>نام و نام خانوادگی</p>
                             </div>
-                            <p className={style.RcnlEx}>{info?.name}</p>
+                            <p className={style.RcnlEx}>{info?.data.name}</p>
                         </div>
                     </div>
                     <div className={style.kLRx8Fh}>
@@ -48,7 +49,7 @@ const Information = ({ info }) => {
                             <div className={style.Rcinpte}>
                                 <p>ایمیل</p>
                             </div>
-                            <p className={style.RcnlEx}>{info?.email}</p>
+                            <p className={style.RcnlEx}>{info?.data.email}</p>
                         </div>
                     </div>
                     <div className={style.kLRx8Fh}>

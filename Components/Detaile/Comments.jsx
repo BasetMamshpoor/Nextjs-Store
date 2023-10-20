@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Pagination from '../Pagination/Pagination';
 import AddComment from './AddComment';
 import style from './Style.module.css'
+import { BsThreeDotsVertical } from 'react-icons/bs'
 
 const Comments = ({ id, rate }) => {
 
@@ -42,12 +43,7 @@ const Comments = ({ id, rate }) => {
                                         <p className={style.C_name}>{c.user}</p>
                                     </div>
                                     <div className={style.Qzoli_2}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor"
-                                            viewBox="0 0 16 16">
-                                            <path
-                                                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                                        </svg>
+                                        <BsThreeDotsVertical />
                                     </div>
                                 </div>
                                 <div className={style.wzO0lp}>

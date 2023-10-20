@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import style from './Size.module.css'
+import { BsPlus } from 'react-icons/bs'
+
 const Size = ({ setProduct, errors, touch }) => {
     const [sizes, setSizes] = useState({})
     const [error, setError] = useState({})
@@ -45,11 +47,7 @@ const Size = ({ setProduct, errors, touch }) => {
                     <input type='number' placeholder='تعداد' name='stock' value={sizes.stock} min='1' onChange={handleChange} />
                 </div>
                 <button onClick={handleAddSize} type='button' className={style.RcpIf_12}>
-                    <svg fill="currentColor" viewBox="0 0 16 16">
-                        <path
-                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z">
-                        </path>
-                    </svg>
+                    <BsPlus />
                 </button>
                 <div className={style.Fcximy}>
                     {error.size && <span className={style.errors_span_input}>{error.size}</span>}

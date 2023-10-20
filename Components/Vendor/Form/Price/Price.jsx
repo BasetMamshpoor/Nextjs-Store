@@ -1,5 +1,5 @@
 import Input from 'Components/Input';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import style from './Price.module.css'
 import DatePicker, { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian"
@@ -13,25 +13,25 @@ const Price = ({ setProduct, offPrice, price, discountTime, touch, errors }) => 
     const checkBox = useRef()
     const newDate = new Date()
     const [date, setDate] = useState({ off_date_from: newDate, off_date_to: new Date(Date.now() + (3600 * 1000 * 24)) })
+
     useEffect(() => {
         if (checkBox.current.checked) {
             setProduct(prev => {
-                const offPercent = prev.offPrice ? Math.ceil(100 - (prev.offPrice / prev.price * 100)) : 0
-                return { ...prev, offPercent, ...date }
+                // const offPercent = prev.offPrice ? Math.ceil(100 - (prev.offPrice / prev.price * 100)) : 0
+                return { ...prev, ...date }
             })
         }
         else {
             setProduct(prev => {
-                delete prev.offPercent
-                delete prev.off_date_from
-                delete prev.off_date_to
-                return { ...prev }
+                // delete prev.offPercent delete prev.off_date_from delete prev.off_date_to
+                const { off_date_from, off_date_to, ...previ } = prev
+                return { ...previ }
             })
         }
-    }, [offPrice, price, date])
+    }, [checkBox.current?.checked, date])
 
 
-    const handleResult = (Value, name) => {
+    const handleResult = (name, Value) => {
         let value = parseInt(Value) || 0
         if (name === 'price' && !checkBox.current.checked) {
             setProduct(prev => {
@@ -64,7 +64,7 @@ const Price = ({ setProduct, offPrice, price, discountTime, touch, errors }) => 
         }
     }
 
-    const getToday = (date) => p2e(new DateObject(date).toDate().toLocaleDateString('fa-IR').split('/')[2])
+    const getToday = useCallback((date) => p2e(new DateObject(date).toDate().toLocaleDateString('fa-IR').split('/')[2]), [])
 
     return (
         <>

@@ -11,6 +11,7 @@ const Navbar = () => {
         left: "0",
         right: "0",
         zIndex: "999",
+        paddingRight:"10px"
     }
 
     return (

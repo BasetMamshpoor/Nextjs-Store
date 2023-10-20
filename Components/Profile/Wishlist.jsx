@@ -4,6 +4,7 @@ import Link from 'next/link';
 import addComma from 'Functions/addComma';
 import { e2p } from 'Functions/ConvertNumbers';
 import useRequest from 'hooks/useRequest';
+import Pagination from 'Components/Pagination/Pagination';
 
 const Wishlist = () => {
 
@@ -58,6 +59,7 @@ const Wishlist = () => {
                             )
                         })}
                     </div>
+                    <Pagination setCurrentPage={(e) => console.log(e)} boxShadow={false} />
                 </div>
             </div>
         </>

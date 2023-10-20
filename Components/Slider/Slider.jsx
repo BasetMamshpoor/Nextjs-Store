@@ -30,11 +30,11 @@ const Slider = () => {
                     navigation
                     modules={[Pagination, Autoplay, Navigation]}
                     loop
-                    speed={300}
+                    // speed={300}
                     spaceBetween={0}
                     slidesPerView={1}
                     pagination={{ clickable: true }}
-                    autoplay={{ disableOnInteraction: false }}
+                    // autoplay={{ disableOnInteraction: false }}
                 >
                     {data && data.map(el => {
                         return (

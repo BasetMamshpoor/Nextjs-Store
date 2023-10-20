@@ -6,7 +6,7 @@
 
 .navSearchTop {
   position: relative;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -36,6 +36,7 @@
 }
 
 .searchForm {
+  position: relative;
   height: 40px;
   width: 100%;
   display: flex;
@@ -58,6 +59,14 @@
   cursor: pointer;
   margin: 0.5rem 1rem;
   fill: rgb(95, 95, 95);
+}
+.mobileLogo {
+  display: none;
+  height: 64px;
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  transform: translate(-50%, -50%);
 }
 
 .user {
@@ -98,4 +107,21 @@
 .countItem span {
   color: #fff;
   font-size: 12px;
+}
+@media (max-width: 992.98px) {
+  .navSearch {
+    flex-grow: 1;
+    max-width: 100%;
+    margin-left: 1rem;
+    margin-right: 0;
+  }
+  .mobileLogo {
+    display: block;
+  }
+  .navLogo {
+    display: none;
+  }
+  .user {
+    display: none;
+  }
 }

@@ -15,8 +15,11 @@
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  padding: 2px 3px;
   color: #3499ff;
+}
+.RcpIf_11 svg {
+  width: 32px;
+  height: 32px;
 }
 .vZryal_rr4 {
   position: relative;

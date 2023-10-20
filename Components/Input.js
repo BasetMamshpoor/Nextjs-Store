@@ -16,7 +16,7 @@ const Input = ({ value, isNumber = false, min, result, refrence, ...props }) => 
     }, [value])
 
     const handleBlur = () => {
-        result && result(val, props.name)
+        result && result(props.name, val)
     }
 
     return (

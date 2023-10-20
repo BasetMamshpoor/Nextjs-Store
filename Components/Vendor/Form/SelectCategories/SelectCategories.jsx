@@ -74,6 +74,7 @@ const SelectCategories = ({ setProduct, touch, errors }) => {
                 return;
             default:
                 setCategories({ id: null, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } })
+                setCategory(null)
                 break;
         }
     }

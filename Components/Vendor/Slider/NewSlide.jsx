@@ -4,8 +4,7 @@ import { useRef, useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 
-
-const NewSlide = ({ data }) => {
+const NewSlide = ({ data, setIsOpen }) => {
     const wrapper = useRef()
     const err = useRef()
     const [slide, setSlide] = useState({})
@@ -50,7 +49,7 @@ const NewSlide = ({ data }) => {
     }
     const handleEdit = async () => {
         await axios.put(`/admin/sliders/${data.id}`, { src: data.src, link: slide.link })
-            .then(res => console.log(res))
+            .then(() => setIsOpen(false))
             .catch(err => console.log(err))
     }
     return (

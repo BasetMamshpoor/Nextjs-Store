@@ -5,6 +5,7 @@ import { BsTrash, BsPerson, BsTelephone } from 'react-icons/bs'
 import { GoMail } from 'react-icons/go'
 import { e2p } from 'Functions/ConvertNumbers'
 import useRequest from 'hooks/useRequest'
+import Pagination from 'Components/Pagination/Pagination'
 
 const Address = () => {
 
@@ -68,6 +69,7 @@ const Address = () => {
                             )
                         })}
                     </div>
+                    <Pagination setCurrentPage={(e) => console.log(e)} boxShadow={false} />
                 </div>
             </div>
         </>

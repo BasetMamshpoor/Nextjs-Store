@@ -1,4 +1,4 @@
-
+import { IoIosClose } from 'react-icons/io';
 
 const SpecificationsList = ({ setProduct, sizes = [] }) => {
 
@@ -37,8 +37,6 @@ const SpecificationsList = ({ setProduct, sizes = [] }) => {
     }
     const remove_listSvg = {
         cursor: 'pointer',
-        width: '20px',
-        height: '20px',
     }
 
     return (
@@ -54,7 +52,7 @@ const SpecificationsList = ({ setProduct, sizes = [] }) => {
                             </div>
                             <span style={remove_list}
                                 onClick={() => handleDelete(index)}>
-                                <svg style={remove_listSvg} fill="currentColor" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path></svg>
+                                <IoIosClose style={remove_listSvg} />
                             </span>
                         </div>
                     )

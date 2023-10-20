@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import style from './Filters.module.css'
 import { IoChevronDownOutline } from 'react-icons/io5'
+import Input from 'Components/Input';
 
 const Filters = ({ categories = 22 }) => {
     const router = useRouter()
@@ -53,7 +54,7 @@ const Filters = ({ categories = 22 }) => {
 
     const changeUrl = (name, value) => {
         let str = null;
-        value.forEach((f, i) => {
+        !!Array.isArray(value) ? value.forEach((f, i) => {
             if (i > 0) {
                 str = str + '-' + f.name
             } else if (i === 0) {
@@ -61,7 +62,7 @@ const Filters = ({ categories = 22 }) => {
             } else {
                 str = null
             }
-        })
+        }) : str = value
         if (str === null) {
             const { [name]: O, gender, type, ...query } = router.query
             router.replace({ pathname: router.asPath.split('?')[0], query: { ...query }, },
@@ -81,7 +82,7 @@ const Filters = ({ categories = 22 }) => {
     }
     return (
         <>
-            {data && <div className={style.filters}>
+            {!!data && <div className={style.filters}>
                 <div className={style.header}>
                     <p className={style.Rwxaq}>فیلتر ها</p>
                     <span className={style.clearFilters} onClick={clearFilters}>حذف فیلترها</span>
@@ -106,11 +107,11 @@ const Filters = ({ categories = 22 }) => {
                             <div className={style.kFiU}>
                                 <div className={style.vGex}>
                                     <label>از</label>
-                                    <input type="number" />
+                                    <Input type="number" name='min' result={handleFilter} />
                                 </div>
                                 <div className={style.vGex}>
                                     <label>تا</label>
-                                    <input type="number" />
+                                    <Input type="number" name='max' result={handleFilter} />
                                 </div>
                                 <button className={style.doIt}>اعمال فیلتر</button>
                             </div>

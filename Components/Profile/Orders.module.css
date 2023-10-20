@@ -114,9 +114,12 @@
 .cancelled_order {
   background-color: rgb(255, 225, 230);
 }
-.awaitingPayment {
+/* .awaitingPayment {
   background-color: rgba(169, 238, 255, 0.496);
 }
+.awaitingPayment span {
+  color: rgb(0, 197, 241);
+} */
 .cancelled_order span {
   color: rgb(233, 69, 96);
 }
@@ -125,9 +128,6 @@
 }
 .delivered_order span {
   color: rgb(51, 208, 103);
-}
-.awaitingPayment span {
-  color: rgb(0, 197, 241);
 }
 .mknBg {
   flex: 0 0 0px !important;

@@ -11,25 +11,23 @@ const Orders = () => {
 
     const [orders] = useRequest('/profile/orders')
 
-    const statusOrser = (status, payment_status) => {
+    const statusOrser = (status) => {
         const json = [
             { class: style.cancelled_order, value: 'لغو شده' },
             { class: style.pending_order, value: 'آماده سازی' },
             { class: style.delivered_order, value: 'تحویل داده شد' }
         ]
-        if (payment_status === 1) {
-            return (
-                <div className={`${style.aR9_nu} ${style.awaitingPayment}`}>
-                    <span>در انتظار پرداخت</span>
-                </div>
-            )
-        } else {
+        // if (payment_status === 1) {
+        //     return (
+        //         <div className={`${style.aR9_nu} ${style.awaitingPayment}`}>
+        //             <span>در انتظار پرداخت</span>
+        //         </div>
+        //     )
             return (
                 <div className={`${style.aR9_nu} ${json[status].class}`}>
                     <span>{json[status].value}</span>
                 </div>
             )
-        }
     }
 
     return (
@@ -56,7 +54,7 @@ const Orders = () => {
                                     <Link href="/" className={style.WMeJalq}>
                                         <p>{e2p(o.code)}</p>
                                         <div>
-                                            {statusOrser(o.status, o.payment_status)}
+                                            {statusOrser(o.status)}
                                         </div>
                                         <p>{new Date(o.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                                         <p className={style.order_PL}>{addComma(o.total_price)}</p>
@@ -69,9 +67,7 @@ const Orders = () => {
                         })}
                     </ul>
                 </div>
-                <Pagination
-                    setCurrentPage={(c) => console.log(c)}
-                />
+                <Pagination setCurrentPage={(e) => console.log(e)} boxShadow={false} />
             </div>
         </>
     );

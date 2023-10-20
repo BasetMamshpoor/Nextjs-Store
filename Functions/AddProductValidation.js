@@ -42,7 +42,9 @@ function validation(product) {
         delete errors.price
     }
     // off-price 
-    if (!product.offPercent && product.offPercent !== 0) {
+    if (!!product.off_date_from && (product.offPrice === product.price)) {
+        errors.offPrice = 'قیمت اصلی با قیمت تخفیف برابر است!'
+    } else if (product.offPrice === product.price) {
         delete errors.offPrice
     } else if (!product.offPrice) {
         errors.offPrice = 'لطفا قیمت تخفیفی را وارد کنید.'
@@ -52,15 +54,15 @@ function validation(product) {
         delete errors.offPrice
     }
     //discountTime
-    // if (!product.offPercent && product.offPercent !== 0) {
-    //     delete errors.discountTime
-    // } else if (!product.discountTime.off_date_from || !product.discountTime.off_date_to) {
-    //     errors.discountTime = 'زمان شروع یا پایان را وارد نکرده اید!'
-    // } else if (60 >= Math.round((product.discountTime.off_date_to - product.discountTime.off_date_from) / 6e4)) {
-    //     errors.discountTime = 'حداقل زمان تخفیف یک ساعت است.'
-    // } else {
-    //     delete errors.discountTime
-    // }
+    if (product.offPrice === product.price) {
+        delete errors.discountTime
+    } else if (!product.off_date_from || !product.off_date_to) {
+        errors.discountTime = 'زمان شروع یا پایان را وارد نکرده اید!'
+    } else if (60 > Math.round((product.off_date_to - product.off_date_from) / 6e4)) {
+        errors.discountTime = 'حداقل زمان تخفیف یک ساعت است.'
+    } else {
+        delete errors.discountTime
+    }
     // color
     if (!product.color) {
         errors.color = 'نام رنگ را وارد کنید.'
