@@ -8,7 +8,7 @@ const NewSlide = ({ data, setIsOpen }) => {
     const wrapper = useRef()
     const err = useRef()
     const [slide, setSlide] = useState({})
-    const [link, setLink] = useState()
+    // const [link, setLink] = useState()
 
     const handleUpload = (e, t) => {
         if (!e[t].files.length) return
@@ -28,7 +28,7 @@ const NewSlide = ({ data, setIsOpen }) => {
         reader.onload = function () {
             let html = `<img src='${this.result}'/> `;
             wrapper.current.innerHTML += html
-            setLink(this.result)
+            // setLink(file)
         }
         setSlide(prev => {
             return { ...prev, src: file }
@@ -43,7 +43,7 @@ const NewSlide = ({ data, setIsOpen }) => {
         //     ابعاد عکس وارد شده ${img.height}*${img.width} است.`
         //     return
         // }
-        await axios.post('/admin/sliders', { src: link, link: slide.link })
+        await axios.post('/admin/sliders', { ...slide }, { headers: { 'Content-Type': 'multipart/form-data' } })
             .then(res => console.log(res))
             .catch(err => console.log(err))
     }
@@ -68,7 +68,7 @@ const NewSlide = ({ data, setIsOpen }) => {
                     </div>
                     <label htmlFor="link" className={style.link}>
                         <span>: لینک</span>
-                        <input type="text" id='link' onChange={({ target }) => setSlide(prev => { return { ...prev, link: target.value } })} defaultValue={!!data && data.link} />
+                        <input type="text" id='link' onChange={({ target }) => setSlide(prev => { return { ...prev, link: target.value } })} defaultValue={!!data ? data.link : ''} />
                     </label>
                     <div className={style.Errors}>
                         <p ref={err}></p>

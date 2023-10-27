@@ -7,7 +7,7 @@ import persian_fa from "react-date-object/locales/persian_fa"
 import TimePicker from 'react-multi-date-picker/plugins/time_picker';
 import { p2e } from 'Functions/ConvertNumbers';
 
-const Price = ({ setProduct, offPrice, price, discountTime, touch, errors }) => {
+const Price = ({ setProduct, offPrice, price, touch, errors }) => {
 
     const input = useRef()
     const checkBox = useRef()
@@ -15,54 +15,41 @@ const Price = ({ setProduct, offPrice, price, discountTime, touch, errors }) => 
     const [date, setDate] = useState({ off_date_from: newDate, off_date_to: new Date(Date.now() + (3600 * 1000 * 24)) })
 
     useEffect(() => {
-        if (checkBox.current.checked) {
-            setProduct(prev => {
-                // const offPercent = prev.offPrice ? Math.ceil(100 - (prev.offPrice / prev.price * 100)) : 0
-                return { ...prev, ...date }
-            })
-        }
-        else {
-            setProduct(prev => {
-                // delete prev.offPercent delete prev.off_date_from delete prev.off_date_to
-                const { off_date_from, off_date_to, ...previ } = prev
-                return { ...previ }
-            })
-        }
-    }, [checkBox.current?.checked, date])
+        if (input.current.checked)
+            updateState()
+    }, [date])
 
 
     const handleResult = (name, Value) => {
         let value = parseInt(Value) || 0
-        if (name === 'price' && !checkBox.current.checked) {
+        setProduct(prev => {
+            return {
+                ...prev,
+                [name]: value
+            }
+        })
+    }
+
+    const handleCheck = ({ target }) => {
+        if (target.checked) {
+            input.current.focus()
+            updateState()
+        }
+        else {
             setProduct(prev => {
+                const { offPrice, off_date_from, off_date_to, ...previ } = prev
                 return {
-                    ...prev,
-                    price: value,
-                    offPrice: value
-                }
-            })
-        } else {
-            setProduct(prev => {
-                return {
-                    ...prev,
-                    [name]: value
+                    ...previ
                 }
             })
         }
     }
 
-    const handleCheck = ({ target }) => {
-        if (target.checked) input.current.focus()
-        else {
-            setProduct(prev => {
-                const offPrice = prev.price
-                return {
-                    ...prev,
-                    offPrice
-                }
-            })
-        }
-    }
+    const updateState = () => setProduct(prev => {
+        return { ...prev, ...date }
+    })
+
+    const setDateState = (e, b) => setDate(prev => { return { ...prev, [b.input.name]: e.toDate() } })
 
     const getToday = useCallback((date) => p2e(new DateObject(date).toDate().toLocaleDateString('fa-IR').split('/')[2]), [])
 
@@ -88,8 +75,9 @@ const Price = ({ setProduct, offPrice, price, discountTime, touch, errors }) => 
             {checkBox.current?.checked && <>
                 <div className={style.prev_dis_parent}><label>شروع تخفیف:</label><div className={style.nJe_discount_plf}>
                     <DatePicker
+                        name='off_date_from'
                         value={date.off_date_from}
-                        onChange={e => setDate(prev => { return { ...prev, off_date_from: e.toDate() } })}
+                        onChange={setDateState}
                         inputClass={style.inputDatePicker}
                         containerClassName={style.Datepicker}
                         editable={false}
@@ -108,8 +96,9 @@ const Price = ({ setProduct, offPrice, price, discountTime, touch, errors }) => 
                 </div></div>
                 <div className={style.prev_dis_parent}><label>پایان تخفیف:</label><div className={style.nJe_discount_plf}>
                     <DatePicker
+                        name='off_date_to'
                         value={date.off_date_to}
-                        onChange={e => setDate(prev => { return { ...prev, off_date_to: e.toDate() } })}
+                        onChange={setDateState}
                         inputClass={style.inputDatePicker}
                         containerClassName={style.Datepicker}
                         editable={false}

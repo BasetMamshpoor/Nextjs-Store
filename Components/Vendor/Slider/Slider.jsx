@@ -24,7 +24,7 @@ const Slider = () => {
         <>
             <div className={style.Ezioq7_9}>
                 <div className={style.Jb6Te_33}>
-                    {data && data.map(e => {
+                    {!!data && data.map(e => {
                         return (
                             <div className={style.i8yv_o1a} key={e.id}>
                                 <div className={style.zQrcU62}>

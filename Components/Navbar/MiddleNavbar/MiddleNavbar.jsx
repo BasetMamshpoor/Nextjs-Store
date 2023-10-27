@@ -28,7 +28,7 @@ const MiddleNavbar = () => {
                         <div className={style.user}>
                             <Link href='/cart' className={style.navCart}>
                                 <div className={style.countItem}>
-                                    <span>{e2p(state.itemsCounter)}</span>
+                                    <span>{!!state.itemsCounter && e2p(state.itemsCounter)}</span>
                                 </div >
                                 <BsCart3 />
                             </Link>

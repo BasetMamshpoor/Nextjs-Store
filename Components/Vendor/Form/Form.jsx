@@ -12,10 +12,11 @@ import Price from './Price';
 import UploadImage from './UploadImage';
 import { ImBoxAdd } from 'react-icons/im'
 import SelectCategories from './SelectCategories';
+import Brands from './Brands';
 
 const Form = () => {
     const router = useRouter()
-    const [product, setProduct] = useState({ category_id: null, sizes: [], attributes: [], images: [], discountTime: {}, brand_id: 1 })
+    const [product, setProduct] = useState({ category_id: null, sizes: [], attributes: [], images: [], discountTime: {} })
     const [touch, setTouch] = useState({})
 
     const errors = validation(product)
@@ -32,9 +33,9 @@ const Form = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (Object.keys(errors).length) {
-            setTouch({ name: true, brand: true, category_id: true, img: true, price: true, offPrice: true, color: true, colorCode: true, sizes: true, attributes: true, discountTime: true })
+            setTouch({ name: true, brand_id: true, category_id: true, image: true, images: true, price: true, offPrice: true, color: true, colorCode: true, sizes: true, attributes: true, discountTime: true })
         } else {
-            await axios.post('/admin/products', product, { headers: { 'Content-Type': 'application/json' } })
+            await axios.post('/admin/products', product, { headers: { 'Content-Type': 'multipart/form-data' } })
                 .then(res => console.log(res))
                 .catch(err => console.log(err))
         }
@@ -58,15 +59,16 @@ const Form = () => {
                                 {touch.name && errors.name && <span className={style.errors_input}>{errors.name}</span>}
                             </div>
                             <div className={style.nJe_3zq_plf}>
-                                <Input type="text" className={style.input} placeholder='برند' name='brand' result={handleResult} />
-                                {touch.brand && errors.brand && <span className={style.errors_input}>{errors.brand}</span>}
+                                <Brands touch={touch} errors={errors} setProduct={setProduct} />
+                                {touch.brand_id && errors.brand_id && <span className={style.errors_input}>{errors.brand_id}</span>}
                             </div>
                             <SelectCategories touch={touch} errors={errors} setProduct={setProduct} />
                         </div>
                         <div className={style.Fv_tFExqlo}>
                             <UploadImage setProduct={setProduct} images={product.images} />
                             <div className={style.errors_div_input}>
-                                {touch.img && errors.img && <span>{errors.img}</span>}
+                                {touch.image && errors.image && <span>{errors.image}</span>}
+                                {touch.images && errors.images && <span>{errors.images}</span>}
                             </div>
                         </div>
                         <div className={style.DxwzE_Os_T3}>
@@ -101,7 +103,7 @@ const Form = () => {
                             <textarea name='description' className={style.textarea} placeholder='توضیحات'></textarea>
                         </div>
                         <div className={style.save_pro_qq}>
-                            <button className={style.onRc_12ar}>ثبت محصول</button>
+                            <button className={style.onRc_12ar} onClick={handleSubmit}>ثبت محصول</button>
                         </div>
                     </form>
                 </div>

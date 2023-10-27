@@ -22,7 +22,7 @@ const SidebarList = ({ vendor, style }) => {
                 <ul className={style.OcWz_yc1a}>
                     {list.map(l => {
                         return (
-                            <li className={style.list}>
+                            <li className={style.list} key={l.link}>
                                 <Link href={`/admin/${l.link}`} className={`${style.JbxnrS_6g6d} ${!!(vendor === l.link) ? style.JbxnrS_active : ''}`}>
                                     <div className={style.cxZw_p112}>
                                         <div>

@@ -21,7 +21,7 @@ const Slider = () => {
         width: '100%'
     }
 
-    const [data] = useRequest('/sliders')
+    const [data] = useRequest('/sliders?page=2')
 
     return (
         <>
@@ -34,14 +34,14 @@ const Slider = () => {
                     spaceBetween={0}
                     slidesPerView={1}
                     pagination={{ clickable: true }}
-                    // autoplay={{ disableOnInteraction: false }}
+                // autoplay={{ disableOnInteraction: false }}
                 >
-                    {data && data.map(el => {
+                    {!!data && data.map(el => {
                         return (
-                            <SwiperSlide>
+                            <SwiperSlide key={el.id}>
                                 <div style={style}>
                                     <Link href="/" style={styleA}>
-                                        <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={el.src} alt="" />
+                                        <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={`http://localhost:8000/storage/${el.src}`} alt="" />
                                     </Link>
                                 </div>
                             </SwiperSlide>

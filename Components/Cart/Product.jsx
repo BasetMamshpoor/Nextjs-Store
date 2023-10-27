@@ -6,6 +6,7 @@ import { TfiRuler } from 'react-icons/tfi'
 import style from './Product.module.css'
 import img from 'public/Images/empty-cart.svg'
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Product = ({ state, dispatch }) => {
 
@@ -16,7 +17,7 @@ const Product = ({ state, dispatch }) => {
                     <div className={style.tEl_7HqZy} key={p.idp}>
                         <div className={style.LbOT_Plwz33}>
                             <Link href={`/products/${p.id}`} state={p.sizes} className={style.C41A__jF}>
-                                <img src="images/product/111328697.jpg" alt="" />
+                                <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={p.image} alt="" />
                             </Link>
                             <div className={style.lGJkVwYt}>
                                 <h3 className={style.RxQOi_5_ed}>{p.name}</h3>

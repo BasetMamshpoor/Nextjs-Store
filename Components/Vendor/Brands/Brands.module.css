@@ -1,0 +1,86 @@
+.brands {
+  position: relative;
+  padding: 5px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  margin: 0 10px;
+}
+.name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+}
+.newbrand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #3499ff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.newbrand svg {
+  fill: #3499ff;
+  width: 32px;
+  height: 32px;
+}
+.content {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+.brandlist {
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.brand {
+  flex: 1 0 calc(50% - 0.75rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px 0px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.brand > * {
+  display: flex;
+  align-items: center;
+  height: 25px;
+}
+.brandname {
+  flex: 0 0 40%;
+}
+.brandcreate {
+  font-size: 14px;
+  position: relative;
+  bottom: -2px;
+}
+.options {
+  gap: 10px;
+}
+.options > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.options > * svg {
+  cursor: pointer;
+  fill: #00000083;
+  transition: all 0.2s ease;
+}
+.options > * svg:hover {
+  fill: #3499ff;
+}
+.edit {
+}
+.delete {
+}

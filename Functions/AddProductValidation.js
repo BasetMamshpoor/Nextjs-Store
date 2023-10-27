@@ -11,27 +11,29 @@ function validation(product) {
     } else {
         delete errors.name
     }
-    //brand
-    if (!product.brand) {
-        errors.brand = 'برند محصول را وارد نکردید.'
-    } else if (!product.brand.trim()) {
-        errors.brand = 'برند محصول را وارد نکردید.'
-    } else if (product.brand.length > 50) {
-        errors.brand = 'طول برند نباید بیشتر از 50 کارکتر باشد.'
+    // brand
+    if (!product.brand_id) {
+        errors.brand_id = 'برند محصول را انتخاب نکردید.'
     } else {
-        delete errors.brand
+        delete errors.brand_id
     }
     // category
-    if (product.category === null) {
-        errors.category = 'لطفا تمام سطح های دسته بندی را وارد کنید..'
+    if (product.category_id === null) {
+        errors.category_id = 'لطفا تمام سطح های دسته بندی را وارد کنید..'
     } else {
-        delete errors.category
+        delete errors.category_id
     }
     // image
     if (!product.image) {
         errors.image = 'لطفا عکس اصلی را وارد کنید.'
     } else {
         delete errors.image
+    }
+    //images
+    if (!product.images.length) {
+        errors.images = 'لطفا حداقل یک عکس برای لیست انتخاب کنید.'
+    } else {
+        delete errors.images
     }
     // price
     if (!product.price) {
@@ -41,11 +43,12 @@ function validation(product) {
     } else {
         delete errors.price
     }
-    // off-price 
-    if (!!product.off_date_from && (product.offPrice === product.price)) {
-        errors.offPrice = 'قیمت اصلی با قیمت تخفیف برابر است!'
-    } else if (product.offPrice === product.price) {
+    // off-price
+    if (!product.off_date_from) {
         delete errors.offPrice
+    }
+    else if (!!product.off_date_from && (product.offPrice === product.price)) {
+        errors.offPrice = 'قیمت اصلی با قیمت تخفیف برابر است!'
     } else if (!product.offPrice) {
         errors.offPrice = 'لطفا قیمت تخفیفی را وارد کنید.'
     } else if ((product.offPrice) > (product.price)) {
@@ -54,11 +57,7 @@ function validation(product) {
         delete errors.offPrice
     }
     //discountTime
-    if (product.offPrice === product.price) {
-        delete errors.discountTime
-    } else if (!product.off_date_from || !product.off_date_to) {
-        errors.discountTime = 'زمان شروع یا پایان را وارد نکرده اید!'
-    } else if (60 > Math.round((product.off_date_to - product.off_date_from) / 6e4)) {
+    if (60 > Math.round((product.off_date_to - product.off_date_from) / 6e4)) {
         errors.discountTime = 'حداقل زمان تخفیف یک ساعت است.'
     } else {
         delete errors.discountTime

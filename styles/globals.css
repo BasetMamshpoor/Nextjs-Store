@@ -12,14 +12,13 @@
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 ::-webkit-scrollbar-button {
   display: none;
 }
 ::-webkit-scrollbar-thumb {
   background: rgb(165, 165, 165);
-  border-radius: 30px;
 }
 * {
   margin: 0;
@@ -168,6 +167,10 @@ textarea {
   flex: 0 0 auto !important;
   width: 25% !important;
 }
+.col-4 {
+  flex: 0 0 auto !important;
+  width: 33.3333333% !important;
+}
 .col-5 {
   flex: 0 0 auto !important;
   width: 41.66666% !important;
@@ -179,6 +182,10 @@ textarea {
 .col-7 {
   flex: 0 0 auto !important;
   width: 58.33333% !important;
+}
+.col-8 {
+  flex: 0 0 auto !important;
+  width: 66.666666% !important;
 }
 .col-9 {
   flex: 0 0 auto !important;
@@ -206,22 +213,23 @@ textarea {
 .slider .swiper-pagination {
   left: auto !important;
   width: auto !important;
-  right: 10rem !important;
+  right: 5rem !important;
   bottom: 1rem !important;
 }
 .slider .swiper-pagination-bullet {
   height: 13px;
   width: 13px;
   transition: all 0.3s ease-in;
+  background: #ccc;
 }
 .slider .swiper-pagination-bullet-active {
-  background: rgb(15, 52, 96);
+  background: #fff;
   border-radius: 8px;
   width: 22px;
 }
 .slider .swiper-button-next,
 .slider .swiper-button-prev {
-  top: 82% !important;
+  top: 84% !important;
   background: #eee;
   width: 44px !important;
   border-radius: 50%;
@@ -229,16 +237,42 @@ textarea {
 .slider .swiper-button-prev,
 .slider .swiper-rtl .swiper-button-next {
   left: auto !important;
-  right: 14.5rem !important;
+  right: 10.5rem !important;
 }
 .slider .swiper-button-next,
 .slider .swiper-rtl .swiper-button-prev {
-  right: 10.5rem !important;
+  right: 6.5rem !important;
 }
 .slider .swiper-button-next:after,
 .slider .swiper-button-prev:after {
   font-size: 20px !important;
   color: #000 !important;
+}
+@media (max-width: 1023.98px) {
+  .slider .swiper-pagination {
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+  }
+  .slider .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+  }
+  .slider .swiper-pagination-bullet-active {
+    width: 22px;
+  }
+  .slider .swiper-button-next,
+  .slider .swiper-button-prev {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.2s ease;
+    width: 36px !important;
+    height: 36px;
+  }
+  .slider:hover.slider .swiper-button-next,
+  .slider:hover.slider .swiper-button-prev {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 .dealyOff {
   position: relative;
@@ -404,6 +438,23 @@ textarea {
   height: 64px;
   fill: #fff;
   margin-bottom: 1rem;
+}
+
+@media (max-width:1023.98px) {
+  .dealyOff .container {
+    padding: 0;
+  }
+  .kfIu {
+    border-radius: 0;
+    padding-left: 0;
+  }
+  .dealyOff .swiper .swiper-button-next,
+  .dealyOff .swiper .swiper-button-prev {
+    display: none;
+  }
+  .Jqz-03x {
+    border-radius: 0;
+  }
 }
 
 /* detailSlider */

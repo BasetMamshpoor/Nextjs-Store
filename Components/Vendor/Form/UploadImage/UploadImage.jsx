@@ -14,7 +14,7 @@ const UploadImage = ({ setProduct, images }) => {
             const fileName = el.getAttribute('file-name')
             if (fileName) {
                 setProduct(prev => {
-                    const { img, ...data } = prev
+                    const { image, ...data } = prev
                     return { ...data }
                 })
             }
@@ -77,10 +77,9 @@ const UploadImage = ({ setProduct, images }) => {
             fileArry.innerHTML += html
         })
         setProduct(prev => {
-            prev['image'] = file
             return {
                 ...prev,
-                images: [file, ...prev.images]
+                image: file
             }
         })
     }
@@ -109,4 +108,4 @@ const UploadImage = ({ setProduct, images }) => {
     );
 };
 
-export default (UploadImage);
+export default UploadImage;

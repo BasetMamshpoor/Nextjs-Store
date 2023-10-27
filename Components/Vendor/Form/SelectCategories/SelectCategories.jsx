@@ -16,14 +16,14 @@ const SelectCategories = ({ setProduct, touch, errors }) => {
 
     const gender = () => {
         let array = [];
-        categoryList?.data.map(e => {
+        categoryList?.map(e => {
             array.push({ name: e.name, value: e.id })
         })
         return array
     }
     const type = () => {
         let array = [];
-        const selectedGender = categoryList?.data.find(i => i.id === categories.id)
+        const selectedGender = categoryList?.find(i => i.id === categories.id)
         if (selectedGender)
             selectedGender.subCategories.map(e => {
                 array.push({ name: e.name, value: e.id })
@@ -34,7 +34,7 @@ const SelectCategories = ({ setProduct, touch, errors }) => {
     }
     const model = () => {
         let array = [];
-        const selectedGender = categoryList?.data.find(i => i.id === categories.id)
+        const selectedGender = categoryList?.find(i => i.id === categories.id)
         if (selectedGender) {
             const selectedType = selectedGender.subCategories.find(i => i.id === categories.subCategories.id)
 
@@ -81,23 +81,17 @@ const SelectCategories = ({ setProduct, touch, errors }) => {
     return (
         <>{!!categoryList && <>
             <div className={style.nJe_3zq_plf}>
-                <div>
-                    <DropDown array={gender()} name='gender'
-                        placeHolder='دسته بندی سطح اول' label setState={handleSelectCategory} />
-                </div>
-                {touch.category && errors.category && <span className={style.errors_input}>{errors.category}</span>}
+                <DropDown array={gender()} name='gender'
+                    placeHolder='دسته بندی سطح اول' label setState={handleSelectCategory} />
+                {touch.category_id && errors.category_id && <span className={style.errors_input}>{errors.category_id}</span>}
             </div>
             <div className={style.nJe_3zq_plf}>
-                <div>
-                    <DropDown array={type()} name='type'
-                        Searchable placeHolder="دسته بندی سطح دوم" label setState={handleSelectCategory} />
-                </div>
+                <DropDown array={type()} name='type'
+                    Searchable placeHolder="دسته بندی سطح دوم" label setState={handleSelectCategory} />
             </div>
             <div className={style.nJe_3zq_plf}>
-                <div>
-                    <DropDown array={model()} name='model'
-                        Searchable placeHolder="دسته بندی سطح سوم" label setState={handleSelectCategory} />
-                </div>
+                <DropDown array={model()} name='model'
+                    Searchable placeHolder="دسته بندی سطح سوم" label setState={handleSelectCategory} />
             </div>
         </>}</>
     );

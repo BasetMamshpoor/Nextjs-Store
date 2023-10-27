@@ -1,17 +1,27 @@
 import createModal from 'Components/Modal';
 import { e2p } from 'Functions/ConvertNumbers';
-import useRequest from 'hooks/useRequest';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Pagination from '../Pagination/Pagination';
 import AddComment from './AddComment';
 import style from './Style.module.css'
 import { BsThreeDotsVertical } from 'react-icons/bs'
+import axios from 'axios';
 
 const Comments = ({ id, rate }) => {
 
     const [currentpage, setCurrentpage] = useState(1)
 
-    const [comments] = useRequest(`/products/show/${id}/comments?page=${currentpage}`)
+    const [comments, setComments] = useState()
+
+    useEffect(() => {
+        const get = async () => {
+            await axios.get(`/products/show/${id}/comments?page=${currentpage}`)
+                .then(res => setComments(res.data))
+                .catch(err => console.log(err))
+        }
+        get()
+    }, [])
+
 
     return (
         <>

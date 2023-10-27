@@ -7,7 +7,7 @@ import style from './Category.module.css'
 
 const Category = () => {
 
-    const [data] = useRequest('/admin/categories')
+    const [data] = useRequest('/categories')
 
     return (
         <>
@@ -16,7 +16,7 @@ const Category = () => {
                     <div className={style.cat_lvl_}>
                         <div className={style.Head_t0}><p>سطح ۱</p></div>
                         <div className={style.Jxy_2tvi}>
-                            {!!data && data.data.map(i => {
+                            {!!data && data.map(i => {
                                 return (
                                     <article className={style.article} key={i.id}>
                                         <div className={style.box_cat}>
@@ -34,7 +34,7 @@ const Category = () => {
                             <button className={style._add_newOne}><FiPlus /></button>
                         </div>
                         <div className={style.Jxy_2tvi}>
-                            {!!data && data.data[0].subCategories.map(i => {
+                            {!!data && data[0].subCategories.map(i => {
                                 return (
                                     <article className={style.article} key={i.id}>
                                         <div className={style.box_cat}>
@@ -53,7 +53,7 @@ const Category = () => {
                             <button className={style._add_newOne}><FiPlus /></button>
                         </div>
                         <div className={style.Jxy_2tvi}>
-                            {!!data && data.data[2].subCategories[1].subCategories.map(i => {
+                            {!!data && data[2].subCategories[1].subCategories.map(i => {
                                 return (
                                     <article className={style.article} key={i.id}>
                                         <div className={style.box_cat}>

@@ -1,11 +1,13 @@
 .nJe_3zq_plf {
   position: relative;
   flex: 0 0 calc(calc(100% / 3) - 1rem);
-  /* max-width: 49%; */
   height: 46px;
   border-radius: 5px;
   border: 1px solid rgb(218, 225, 231);
   padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .errors_input {

@@ -7,7 +7,7 @@ const useRequest = (url) => {
     useEffect(() => {
         const get = async () => {
             await axios.get(url)
-                .then(res => setData(res.data))
+                .then(res => setData(res.data.data))
                 .catch(err => console.log(err))
         }
         get()

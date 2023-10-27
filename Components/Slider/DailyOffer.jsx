@@ -59,10 +59,10 @@ const DailyOffer = () => {
                                         <a href=".">مشاهده همه</a>
                                     </div>
                                 </SwiperSlide>
-                                {data.data.map((el, index) => {
+                                {data.map((el, index) => {
                                     if (index < 9) {
                                         return (
-                                            <SwiperSlide>
+                                            <SwiperSlide key={el.id}>
                                                 <Link href={`/products/${el.id}`} className='Jqz-03x'>
                                                     <div className="wsapJ">
                                                         <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={el.image} alt="" />

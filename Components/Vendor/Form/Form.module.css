@@ -55,6 +55,9 @@
   border-radius: 5px;
   border: 1px solid rgb(218, 225, 231);
   padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .DxwzE_Os_T3 .nJe_3zq_plf:last-child {
   flex-grow: 1 !important;
