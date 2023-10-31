@@ -483,7 +483,7 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #000;
+  color: #fff;
 }
 .DetailSlider .swiper-button-next:after,
 .DetailSlider .swiper-button-prev:after {

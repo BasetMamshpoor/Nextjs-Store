@@ -19,7 +19,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
     "react-multi-date-picker": "^4.3.5",
-    "sweetalert": "^2.1.2",
+    "sweetalert2-react-content": "^5.0.7",
     "swiper": "^8.4.7"
   }
 }
