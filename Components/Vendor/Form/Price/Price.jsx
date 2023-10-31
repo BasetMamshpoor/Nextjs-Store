@@ -46,7 +46,16 @@ const Price = ({ setProduct, offPrice, price, touch, errors }) => {
     }
 
     const updateState = () => setProduct(prev => {
-        return { ...prev, ...date }
+        let dateFrom = new DateObject({
+            date: date.off_date_from,
+            format: "YYYY-MM-DD hh:mm:ss"
+        })
+        let dateTo = new DateObject({
+            date: date.off_date_to,
+            format: "YYYY-MM-DD hh:mm:ss"
+        })
+        const newFormatDate = { off_date_from: dateFrom.format(), off_date_to: dateTo.format() }
+        return { ...prev, ...newFormatDate }
     })
 
     const setDateState = (e, b) => setDate(prev => { return { ...prev, [b.input.name]: e.toDate() } })

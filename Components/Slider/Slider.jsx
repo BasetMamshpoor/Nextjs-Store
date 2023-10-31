@@ -40,8 +40,8 @@ const Slider = () => {
                         return (
                             <SwiperSlide key={el.id}>
                                 <div style={style}>
-                                    <Link href="/" style={styleA}>
-                                        <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={`http://localhost:8000/storage/${el.src}`} alt="" />
+                                    <Link href={el.link} style={styleA}>
+                                        <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={el.src} alt="" />
                                     </Link>
                                 </div>
                             </SwiperSlide>

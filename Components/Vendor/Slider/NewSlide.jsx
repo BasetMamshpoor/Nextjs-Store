@@ -44,7 +44,7 @@ const NewSlide = ({ data, setIsOpen }) => {
         //     return
         // }
         await axios.post('/admin/sliders', { ...slide }, { headers: { 'Content-Type': 'multipart/form-data' } })
-            .then(res => console.log(res))
+            .then(res => setIsOpen(false))
             .catch(err => console.log(err))
     }
     const handleEdit = async () => {

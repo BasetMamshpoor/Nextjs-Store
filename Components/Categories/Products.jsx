@@ -30,7 +30,7 @@ const Products = ({ dataFilter }) => {
     return (
         <>
             {products && <div style={ZcfPa}>
-                {products.data.length ? products.data.map(i => <Product key={i.id} {...i} />) : <p>no product</p>}
+                {products.length ? products.map(i => <Product key={i.id} {...i} />) : <p>no product</p>}
             </div>}
         </>
     );

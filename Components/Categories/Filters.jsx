@@ -13,15 +13,14 @@ const Filters = ({ categories = 22 }) => {
     const [data] = useRequest(`/products/getfilters/${categories}`)
 
     useEffect(() => {
-        if (router.isReady) {
-            setFilters(readUrl())
-        }
+        if (router.isReady) setFilters(readUrl())
     }, [router])
+
     const makeFilter = (filter) => {
         let array = [];
-        const Data = data.data
-        // console.log(Data[filter]);
-
+        for (const i of data[filter]) {
+            array.push(i)
+        }
         return array
     }
 
@@ -92,11 +91,11 @@ const Filters = ({ categories = 22 }) => {
                     Multiple Searchable placeHolder='برند' setState={handleFilter} name='brands' towLabel
                     styleBox={{ padding: 'calc(.75rem + 10px) 12px', borderBottom: '1px solid #ddd' }} />
                 <Dropdown
-                    array={[]} defaultValue={filters.colors}
+                    array={makeFilter('colors')} defaultValue={filters.colors}
                     Multiple Searchable placeHolder='رنگ' setState={handleFilter} name='colors' colorInLabel
                     styleBox={{ padding: 'calc(.75rem + 10px) 12px', borderBottom: '1px solid #ddd' }} />
                 <Dropdown
-                    array={[]} defaultValue={filters.sizes}
+                    array={makeFilter('sizes')} defaultValue={filters.sizes}
                     Multiple Searchable placeHolder='سایز' setState={handleFilter} name='sizes' label
                     styleBox={{ padding: 'calc(.75rem + 10px) 12px', borderBottom: '1px solid #ddd' }} />
                 <div className={style.yqgi}>
@@ -107,13 +106,12 @@ const Filters = ({ categories = 22 }) => {
                             <div className={style.kFiU}>
                                 <div className={style.vGex}>
                                     <label>از</label>
-                                    <Input type="number" name='min' result={handleFilter} />
+                                    <Input type="number" name='min' value={filters.min ? filters.min[0].name : data.price.min} min={data.price.min} result={handleFilter} />
                                 </div>
                                 <div className={style.vGex}>
                                     <label>تا</label>
-                                    <Input type="number" name='max' result={handleFilter} />
+                                    <Input type="number" name='max' value={data.price.max} max={data.price.max} result={handleFilter} />
                                 </div>
-                                <button className={style.doIt}>اعمال فیلتر</button>
                             </div>
                         </div>
                     </div>

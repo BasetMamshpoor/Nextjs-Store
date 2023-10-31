@@ -16,31 +16,23 @@ const Dropdown = ({ name, styles, styleBox, array, Multiple, setState, Searchabl
 
     useEffect(() => {
         setSearchValue("");
-        if (showMenu && searchRef.current) {
-            searchRef.current.focus();
-        }
+        if (showMenu && searchRef.current) searchRef.current.focus();
     }, [showMenu]);
 
     useEffect(() => {
         if (defaultValue) {
-            if (Multiple) {
-                setSelectedValue(filterByReference(array, defaultValue))
-            } else {
-                setSelectedValue(array.find(el => el.value === defaultValue))
-            }
-        }
+            if (Multiple) setSelectedValue(filterByReference(array, defaultValue))
+            else setSelectedValue(array.find(el => el.value === defaultValue))
+        } else setSelectedValue(Multiple ? [] : null)
         window.addEventListener("click", handler);
-        return () => {
-            window.removeEventListener("click", handler);
-        };
+        return () => window.removeEventListener("click", handler);
     }, [defaultValue]);
 
     useEffect(() => {
         if (Multiple) {
-            !filterByReference(array, selectedValue).length && setSelectedValue([])
-        } else {
-            !array.find(i => i.value === selectedValue?.value) && setSelectedValue(null)
+            if (!defaultValue) !filterByReference(array, selectedValue).length && setSelectedValue([])
         }
+        else !array.find(i => i.value === selectedValue?.value) && setSelectedValue(null)
     }, [array])
 
 

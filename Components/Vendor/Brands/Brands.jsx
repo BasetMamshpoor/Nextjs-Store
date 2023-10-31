@@ -1,5 +1,6 @@
 import axios from 'axios';
 import createModal from 'Components/Modal';
+import Pagination from 'Components/Pagination/Pagination';
 import useRequest from 'hooks/useRequest';
 import React from 'react';
 import { BsPencilSquare, BsPlus, BsTrash } from 'react-icons/bs';
@@ -7,7 +8,7 @@ import Brand from './Brand';
 import style from './Brands.module.css'
 
 const Brands = () => {
-    const [brands, setBrands] = useRequest('/admin/brands?page=2')
+    const [brands, setBrands] = useRequest('/admin/brands')
 
     const handleDelete = (id) => {
         axios.delete(`/admin/brands/${id}`)
@@ -41,6 +42,7 @@ const Brands = () => {
                         </ul>
                     </div>
                 </div>
+                <Pagination boxShadow={false} />
             </div>
         </>
     );

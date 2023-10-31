@@ -13,10 +13,11 @@ import UploadImage from './UploadImage';
 import { ImBoxAdd } from 'react-icons/im'
 import SelectCategories from './SelectCategories';
 import Brands from './Brands';
+import swal from 'sweetalert';
 
 const Form = () => {
     const router = useRouter()
-    const [product, setProduct] = useState({ category_id: null, sizes: [], attributes: [], images: [], discountTime: {} })
+    const [product, setProduct] = useState({ category_id: null, sizes: [], attributes: [], images: [] })
     const [touch, setTouch] = useState({})
 
     const errors = validation(product)
@@ -36,8 +37,15 @@ const Form = () => {
             setTouch({ name: true, brand_id: true, category_id: true, image: true, images: true, price: true, offPrice: true, color: true, colorCode: true, sizes: true, attributes: true, discountTime: true })
         } else {
             await axios.post('/admin/products', product, { headers: { 'Content-Type': 'multipart/form-data' } })
-                .then(res => console.log(res))
-                .catch(err => console.log(err))
+                .then(res => {
+                    swal(".ثبت شد", ".محصول مورد نظر با موفقیت ثبت شد", "success")
+                    setProduct({ category_id: null, sizes: [], attributes: [], images: [] })
+                    // console.log(res);
+                    // router.push(`/products/${res.data.id}`)
+                })
+                .catch(err => {
+                    swal(".ثبت نشد", ".مشکلی در فرایند ثبت محصول پیش آمده", "error")
+                })
         }
 
     }
