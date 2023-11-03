@@ -51,6 +51,13 @@
   position: relative;
   height: fit-content;
   width: 20%;
+  cursor: pointer;
+}
+.active span {
+  color: #000;
+}
+.active .art_img {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
 }
 .box_cat {
   display: flex;

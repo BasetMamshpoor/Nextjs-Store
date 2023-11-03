@@ -31,7 +31,7 @@ const Brands = () => {
                                 return (
                                     <li className={style.brand} key={e.id}>
                                         <p className={style.brandname}>{e.name}</p>
-                                        <p className={style.brandcreate}>{(new Date(e.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' }))}</p>
+                                        {/* <p className={style.brandcreate}>{(new Date(e.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' }))}</p> */}
                                         <div className={style.options}>
                                             <span className={style.edit} onClick={() => createModal(<Brand value={e.name} id={e.id} />)}><BsPencilSquare /></span>
                                             <span className={style.delete} onClick={() => handleDelete(e.id)}><BsTrash /></span>
