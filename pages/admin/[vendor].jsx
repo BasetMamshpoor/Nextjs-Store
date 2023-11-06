@@ -2,11 +2,10 @@ import Form from 'Components/Vendor/Form';
 import style from './Vendor.module.css'
 import { useRouter } from 'next/router';
 import Slider from 'Components/Vendor/Slider';
-import Category from 'Components/vendor/Category';
+import Category from 'Components/Vendor/Category';
 import { useCallback } from 'react';
 import Brands from 'Components/Vendor/Brands';
 import SidebarList from 'Components/SidebarList';
-
 
 
 

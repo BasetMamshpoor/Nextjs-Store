@@ -1,10 +1,11 @@
-import axios from 'axios';
 import useRequest from 'hooks/useRequest';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { FiEdit3, FiPlus } from 'react-icons/fi';
 import style from './Category.module.css'
-
+import createModal from 'Components/Modal';
+import NewCategory from './NewCategory';
+import Swal from 'sweetalert2'
 
 const Category = () => {
     const [categories, setCategories] = useState({ id: null, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } })
@@ -77,17 +78,42 @@ const Category = () => {
         }
     }
 
-    const handleEdit = async (event, id) => {
+    const handleEdit = (event, state) => {
         event.stopPropagation()
-        await axios.put(`/admin/categories/${id}`, {
-            _method: "PUT",
-            name: 'کفش 2',
-            parent_id: 1,
-            icone: 'https://dkstatics-public.digikala.com/digikala-products/d96e096d3baa42da0ec82ec3614509a792e09b9b_1599655085.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60'
+        createModal(<NewCategory state={state} />)
+        // await axios.put(`/admin/categories/${id}`, {
+        //     _method: "PUT",
+        //     name: 'کفش 2',
+        //     parent_id,
+        //     icone: 'https://dkstatics-public.digikala.com/digikala-products/d96e096d3baa42da0ec82ec3614509a792e09b9b_1599655085.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60'
 
-        })
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+        // })
+        //     .then(res => console.log(res))
+        //     .catch(err => console.log(err))
+    }
+
+    const handleNew = (level) => {
+        if (level === 2) {
+            if (categories.id !== null) {
+                createModal(<NewCategory categoryLevel={categories} />)
+            } else {
+                Swal.fire({
+                    title: "دسته والد پیدا نشد",
+                    text: "لطفا اول دسته سطح اول مورد نظر را وارد کنید سپس اقدام به افزودن دسته به زیر مجموعه آن نمایید",
+                    icon: "error"
+                });
+            }
+        } else {
+            if (categories.subCategories.id !== null) {
+                createModal(<NewCategory categoryLevel={categories} />)
+            } else {
+                Swal.fire({
+                    title: "دسته والد پیدا نشد",
+                    text: "لطفا اول دسته سطح اول مورد نظر را وارد کنید سپس اقدام به افزودن دسته به زیر مجموعه آن نمایید",
+                    icon: "error"
+                });
+            }
+        }
     }
 
     return (
@@ -99,12 +125,12 @@ const Category = () => {
                         <div className={style.Jxy_2tvi}>
                             {gender().map(i => {
                                 return (
-                                    <article className={`${style.article} ${categories.id === i.id ? style.active : ''}`} key={i.id} onClick={() => handleSelectCategory('gender', i.id)}>
+                                    <article className={`${style.article} ${categories.id === i.id ? style.active : ''}`} key={i.id} onClick={() => handleSelectCategory('gender', i.id, i.parent_id)}>
                                         <div className={style.box_cat}>
-                                            <div className={style.art_img}><Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={i.icon} alt="" /></div>
+                                            <div className={style.art_img}><Image src={'/Images/apparel/man clothing/121228579.jpg'} placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} alt={i.name} /></div>
                                             <div className={style.art_name}><span>{i.name}</span></div>
                                         </div>
-                                        <button className={style.E_d_i_t} onClick={(e) => handleEdit(e, i.id)}><FiEdit3 /></button>
+                                        <button className={style.E_d_i_t} onClick={(e) => handleEdit(e, i)}><FiEdit3 /></button>
                                     </article>
                                 )
                             })}
@@ -113,17 +139,17 @@ const Category = () => {
                     <div className={style.cat_lvl_}>
                         <div className={style.Head_t0}>
                             <p>سطح ۲</p>
-                            <button className={style._add_newOne}><FiPlus /></button>
+                            <button className={style._add_newOne} onClick={() => handleNew(2)}><FiPlus /></button>
                         </div>
                         <div className={style.Jxy_2tvi}>
                             {type().map(i => {
                                 return (
-                                    <article className={`${style.article} ${categories.subCategories.id === i.id ? style.active : ''}`} key={i.id} onClick={() => handleSelectCategory('type', i.id)}>
+                                    <article className={`${style.article} ${categories.subCategories.id === i.id ? style.active : ''}`} key={i.id} onClick={() => handleSelectCategory('type', i.id, i.parent_id)}>
                                         <div className={style.box_cat}>
-                                            <div className={style.art_img}><Image src={'/Images/apparel/man clothing/121228579.jpg'} alt={i.name} width={100} height={100} /></div>
+                                            <div className={style.art_img}><Image src={'/Images/apparel/man clothing/121228579.jpg'} placeholder='blur' blurDataURL='/Images/placeholder-1.png' unoptimized={true} alt={i.name} width={100} height={100} /></div>
                                             <div className={style.art_name}><span>{i.name}</span></div>
                                         </div>
-                                        <button className={style.E_d_i_t} onClick={(e) => handleEdit(e, i.id)}><FiEdit3 /></button>
+                                        <button className={style.E_d_i_t} onClick={(e) => handleEdit(e, i)}><FiEdit3 /></button>
                                     </article>
                                 )
                             })}
@@ -132,17 +158,17 @@ const Category = () => {
                     <div className={style.cat_lvl_}>
                         <div className={style.Head_t0}>
                             <p>سطح ۳</p>
-                            <button className={style._add_newOne}><FiPlus /></button>
+                            <button className={style._add_newOne} onClick={() => handleNew(3)}><FiPlus /></button>
                         </div>
                         <div className={style.Jxy_2tvi}>
                             {model().map(i => {
                                 return (
-                                    <article className={style.article} key={i.id} onClick={() => handleSelectCategory('model', i.id)}>
+                                    <article className={style.article} key={i.id} onClick={() => handleSelectCategory('model', i.id, i.parent_id)}>
                                         <div className={style.box_cat}>
-                                            <div className={style.art_img}><Image src={'/Images/apparel/man clothing/121228579.jpg'} alt={i.name} width={100} height={100} /></div>
+                                            <div className={style.art_img}><Image src={'/Images/apparel/man clothing/121228579.jpg'} placeholder='blur' blurDataURL='/Images/placeholder-1.png' unoptimized={true} alt={i.name} width={100} height={100} /></div>
                                             <div className={style.art_name}><span>{i.name}</span></div>
                                         </div>
-                                        <button className={style.E_d_i_t} onClick={(e) => handleEdit(e, i.id)}><FiEdit3 /></button>
+                                        <button className={style.E_d_i_t} onClick={(e) => handleEdit(e, i)}><FiEdit3 /></button>
                                     </article>
                                 )
                             })}
