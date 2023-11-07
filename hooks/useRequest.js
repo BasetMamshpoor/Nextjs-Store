@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 const useRequest = (url) => {
     const [data, setData] = useState()
     const [paginations, setPaginations] = useState()
+    const [reload, setReload] = useState(Math.random())
 
     useEffect(() => {
         const get = async () => {
@@ -16,9 +17,9 @@ const useRequest = (url) => {
                 .catch(err => console.log(err))
         }
         get()
-    }, [url])
+    }, [url, reload])
 
-    return [data, setData, paginations]
+    return [data, setData, setReload, paginations]
 };
 
 export default useRequest;

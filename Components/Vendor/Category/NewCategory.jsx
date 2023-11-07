@@ -3,10 +3,14 @@ import style from './NewCategory.module.css'
 import { BiCategoryAlt } from 'react-icons/bi'
 import Image from 'next/image';
 import { FiCheckCircle, FiEdit3, FiTrash2 } from 'react-icons/fi';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2'
 
-const NewCategory = ({ state, categoryLevel }) => {
-    const [category, setCategory] = useState()
+const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen }) => {
+    const [category, setCategory] = useState(!!state ? { ...state, parent_id: state.parent.id } : { parent_id: categoryLevel.id })
+    const wrapper = useRef()
+    const imagePlaceholder = '/Images/placeholder-1.png'
 
     const handleChange = (name, value) => {
         setCategory(prev => {
@@ -14,6 +18,70 @@ const NewCategory = ({ state, categoryLevel }) => {
         })
     }
 
+    const handleDelete = () => {
+        Swal.fire({
+            title: "از حذف دسته اطمینان دارید؟",
+            text: 'با حذف دسته محصولات به دسته والد انتقال میابد',
+            showDenyButton: true,
+            confirmButtonText: "حذف",
+            denyButtonText: `لغو`
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await axios.delete(`/admin/categories/${state.id}`)
+                    .then(() => {
+                        Swal.fire('.حذف شد', '.دسته مورد نظر با موفقیت حذف شد', 'success')
+                        setIsOpen(false)
+                        reload(Math.random())
+                    }).catch(() => {
+                        Swal.fire('.حذف نشد', '.دسته مورد نظر با موفقیت حذف نشد', 'error')
+                    })
+            } else if (result.isDenied) {
+                Swal.fire("حذف لغو شد.", "", "info");
+            }
+        });
+    }
+
+    const handleMainImg = (e) => {
+        wrapper.current.innerHTML = ''
+        let file;
+        if (!!e.target.files[0]) file = e.target.files[0]
+        else {
+            file = null
+            wrapper.current.src = imagePlaceholder
+            setCategory(prev => {
+                return { ...prev, icon: file }
+            })
+            return
+        }
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.addEventListener('load', function () {
+            wrapper.current.src = this.result
+        })
+        setCategory(prev => {
+            return { ...prev, icon: file }
+        })
+    }
+    const handleSubmit = async () => {
+        if (!!state)
+            await axios.put(`/admin/categories/${state.id}`, { ...category, _method: "PUT" })
+                .then(() => {
+                    Swal.fire('.ویرایش شد', '', 'success')
+                    setIsOpen(false)
+                    reload(Math.random())
+                }).catch(() => {
+                    Swal.fire('.ویرایش نشد', '', 'error')
+                })
+        else
+            await axios.post(`/admin/categories`, category, { headers: { 'Content-Type': 'multipart/form-data' } })
+                .then(() => {
+                    Swal.fire('.ثبت شد', '', 'success')
+                    setIsOpen(false)
+                    reload(Math.random())
+                }).catch(() => {
+                    Swal.fire('.ثبت نشد', '', 'error')
+                })
+    }
     return (
         <>
             <div className={style.modal}>
@@ -23,39 +91,39 @@ const NewCategory = ({ state, categoryLevel }) => {
                         <div className={style.fields}>
                             <div className={style.inputs}>
                                 <div className={style.inputField}>
-                                    <input readOnly={true} className={style.readonly} value={category} dir='auto' placeholder='' id='input_1' />
+                                    <input readOnly value={!!state ? state.parent.name : categoryLevel.name} className={style.readonly} dir='auto' placeholder='' id='input_1' />
                                     <label className={style.inputLabel} htmlFor="input_1">نام دسته والد</label>
                                 </div>
                                 <div className={style.inputField}>
-                                    <input readOnly value={category} className={style.readonly} dir='auto' placeholder='' id='input_2' />
+                                    <input readOnly value={!!state ? state.parent.slug : categoryLevel.slug} className={style.readonly} dir='auto' placeholder='' id='input_2' />
                                     <label className={style.inputLabel} htmlFor="input_2">اسلاگ دسته والد</label>
                                 </div>
                                 <div className={style.inputField}>
-                                    <Input value={category} result={handleChange} name='' dir='auto' placeholder='' id='input_3' type="text" />
+                                    <Input value={category.name} result={handleChange} name='name' dir='auto' placeholder='' id='input_3' required />
                                     <label className={style.inputLabel} htmlFor="input_3">نام دسته جدید</label>
                                 </div>
                                 <div className={style.inputField}>
-                                    <Input value={category} result={handleChange} name='' dir='auto' placeholder='' id='input_4' type="text" />
+                                    <Input value={category.slug} result={handleChange} name='slug' dir='auto' placeholder='' id='input_4' required />
                                     <label className={style.inputLabel} htmlFor="input_4">اسلاگ دسته جدید</label>
                                 </div>
                             </div>
                             <div className={style.media}>
-                                <input type="file" name="icon" id="iconInput" hidden />
+                                <input type="file" name="icon" id="iconInput" onChange={handleMainImg} hidden accept='image/jpeg, image/jpg, image/png, image/webp' />
                                 <label className={style.inputImage} htmlFor="iconInput">انتخاب عکس جدید</label>
                                 <div className={style.wrapper}>
-                                    <Image src={'/Images/apparel/man clothing/121228579.jpg'} placeholder='blur' blurDataURL='/Images/placeholder-1.png' unoptimized={true} alt={'i.name'} width={100} height={100} />
+                                    <Image ref={wrapper} src={!state ? imagePlaceholder : !!state.icon ? state.icon : imagePlaceholder} unoptimized={true} alt={'i.name'} width={100} height={100} />
                                 </div>
                             </div>
                             <div className={style.buttons}>
-                                <button className={style.btnSubmit}>{!!state ? 'ویرایش' : 'ثبت'}
+                                <button type='button' className={style.btnSubmit} onClick={handleSubmit}>{!!state ? 'ویرایش' : 'ثبت'}
                                     <span>{!!state ? <FiEdit3 /> : <FiCheckCircle />}</span>
                                 </button>
-                                {!!state && <button className={style.btnDelete}>حذف <span><FiTrash2 /></span></button>}
+                                {!!state && level !== 1 && <button type='button' className={style.btnDelete} onClick={handleDelete}>حذف <span><FiTrash2 /></span></button>}
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
+                </div >
+            </div >
         </>
     );
 };

@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 
 const Form = () => {
     const router = useRouter()
-    const [product, setProduct] = useState({ category_id: null, sizes: [], attributes: [], images: [], brand_id: 1 })
+    const [product, setProduct] = useState({ category_id: null, sizes: [], attributes: [], images: [] })
     const [touch, setTouch] = useState({})
 
     const errors = validation(product)
@@ -42,7 +42,7 @@ const Form = () => {
                         title: '.ثبت شد',
                         text: ".محصول مورد نظر با موفقیت ثبت شد",
                         icon: 'success'
-                    }).then(()=>{
+                    }).then(() => {
                         router.push(`/products/${res.data.data.product.id}`)
                     })
                 })

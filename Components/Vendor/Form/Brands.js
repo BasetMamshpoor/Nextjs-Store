@@ -11,7 +11,7 @@ const Brands = ({ touch, errors, setProduct }) => {
         if (brands) {
             let array = []
             for (const i of brands) {
-                array.push({ name: i.name, value: i.slug })
+                array.push({ name: i.name, value: i.id })
             }
             setList(array)
         }

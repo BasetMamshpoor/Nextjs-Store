@@ -101,6 +101,9 @@
   padding: auto;
   flex: 0 0 30%;
   box-shadow: 0 0 10px 0px #0000003a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .buttons {
   padding: 10px 30px;

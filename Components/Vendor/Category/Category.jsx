@@ -8,25 +8,27 @@ import NewCategory from './NewCategory';
 import Swal from 'sweetalert2'
 
 const Category = () => {
-    const [categories, setCategories] = useState({ id: null, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } })
+    const [categories, setCategories] = useState({ id: null, name: '', slug: '', subCategories: { id: null, subCategories: { id: null, subCategories: {} } } })
     const [category, setCategory] = useState(null)
 
-    const [categoryList] = useRequest('/categories')
+    const [categoryList, setCategoryList, Reload] = useRequest('/admin/categories')
 
     const gender = () => {
         let array = [];
         categoryList?.map(e => {
-            array.push(e)
+            array.push({ ...e, parent: { id: 0 } })
         })
         return array
     }
     const type = () => {
         let array = [];
         const selectedGender = categoryList?.find(i => i.id === categories.id)
-        if (selectedGender)
+        if (selectedGender) {
+            const { subCategories, ...parent } = selectedGender
             selectedGender.subCategories.map(e => {
-                array.push(e)
+                array.push({ ...e, parent })
             })
+        }
         else
             return array
         return array
@@ -36,12 +38,12 @@ const Category = () => {
         const selectedGender = categoryList?.find(i => i.id === categories.id)
         if (selectedGender) {
             const selectedType = selectedGender.subCategories.find(i => i.id === categories.subCategories.id)
-
-            if (selectedType)
+            if (selectedType) {
+                const { subCategories, ...parent } = selectedType
                 selectedType.subCategories.map(e => {
-                    array.push(e)
+                    array.push({ ...e, parent })
                 })
-            else
+            } else
                 return array
         }
         else
@@ -49,16 +51,19 @@ const Category = () => {
         return array
     }
 
-    const handleSelectCategory = (name, Value) => {
-        const value = Value ? Value : null
+    const handleSelectCategory = (name, value) => {
+        // const value = Value ? Value : null
         switch (name) {
             case 'gender':
-                setCategories({ id: value, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } })
+                const obj = { id: value.id, name: value.name, slug: value.slug }
+                setCategories({ ...obj, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } })
                 setCategory(null)
                 return;
             case 'type':
                 setCategories(prev => {
-                    prev.subCategories.id = value
+                    prev.subCategories.id = value.id
+                    prev.subCategories.name = value.name
+                    prev.subCategories.slug = value.slug
                     prev.subCategories.subCategories = { id: null, subCategories: {} }
                     return { ...prev }
                 })
@@ -66,10 +71,12 @@ const Category = () => {
                 return;
             case 'model':
                 setCategories(prev => {
-                    prev.subCategories.subCategories.id = value
+                    prev.subCategories.subCategories.id = value.id
+                    prev.subCategories.subCategories.name = value.name
+                    prev.subCategories.subCategories.slug = value.slug
                     return { ...prev }
                 })
-                setCategory(value)
+                setCategory(value.id)
                 return;
             default:
                 setCategories({ id: null, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } })
@@ -78,41 +85,27 @@ const Category = () => {
         }
     }
 
-    const handleEdit = (event, state) => {
+    const handleEdit = (event, state, level) => {
+        const { subCategories, ...data } = state
         event.stopPropagation()
-        createModal(<NewCategory state={state} />)
-        // await axios.put(`/admin/categories/${id}`, {
-        //     _method: "PUT",
-        //     name: 'کفش 2',
-        //     parent_id,
-        //     icone: 'https://dkstatics-public.digikala.com/digikala-products/d96e096d3baa42da0ec82ec3614509a792e09b9b_1599655085.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60'
-
-        // })
-        //     .then(res => console.log(res))
-        //     .catch(err => console.log(err))
+        createModal(<NewCategory reload={Reload} state={data} level={level} />)
     }
 
     const handleNew = (level) => {
         if (level === 2) {
-            if (categories.id !== null) {
-                createModal(<NewCategory categoryLevel={categories} />)
-            } else {
-                Swal.fire({
-                    title: "دسته والد پیدا نشد",
-                    text: "لطفا اول دسته سطح اول مورد نظر را وارد کنید سپس اقدام به افزودن دسته به زیر مجموعه آن نمایید",
-                    icon: "error"
-                });
-            }
+            if (categories.id !== null) createModal(<NewCategory reload={Reload} categoryLevel={categories} />)
+            else Swal.fire({
+                title: "دسته والد پیدا نشد",
+                text: "لطفا اول دسته سطح اول مورد نظر را وارد کنید سپس اقدام به افزودن دسته به زیر مجموعه آن نمایید",
+                icon: "error"
+            });
         } else {
-            if (categories.subCategories.id !== null) {
-                createModal(<NewCategory categoryLevel={categories} />)
-            } else {
-                Swal.fire({
-                    title: "دسته والد پیدا نشد",
-                    text: "لطفا اول دسته سطح اول مورد نظر را وارد کنید سپس اقدام به افزودن دسته به زیر مجموعه آن نمایید",
-                    icon: "error"
-                });
-            }
+            if (categories.subCategories.id !== null) createModal(<NewCategory reload={Reload} categoryLevel={categories.subCategories} />)
+            else Swal.fire({
+                title: "دسته والد پیدا نشد",
+                text: "لطفا اول دسته سطح اول مورد نظر را وارد کنید سپس اقدام به افزودن دسته به زیر مجموعه آن نمایید",
+                icon: "error"
+            });
         }
     }
 
@@ -125,12 +118,12 @@ const Category = () => {
                         <div className={style.Jxy_2tvi}>
                             {gender().map(i => {
                                 return (
-                                    <article className={`${style.article} ${categories.id === i.id ? style.active : ''}`} key={i.id} onClick={() => handleSelectCategory('gender', i.id, i.parent_id)}>
+                                    <article className={`${style.article} ${categories.id === i.id ? style.active : ''}`} key={i.id} onClick={() => handleSelectCategory('gender', i)}>
                                         <div className={style.box_cat}>
                                             <div className={style.art_img}><Image src={'/Images/apparel/man clothing/121228579.jpg'} placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} alt={i.name} /></div>
                                             <div className={style.art_name}><span>{i.name}</span></div>
                                         </div>
-                                        <button className={style.E_d_i_t} onClick={(e) => handleEdit(e, i)}><FiEdit3 /></button>
+                                        <button className={style.E_d_i_t} onClick={(e) => handleEdit(e, i, 1)}><FiEdit3 /></button>
                                     </article>
                                 )
                             })}
@@ -144,12 +137,12 @@ const Category = () => {
                         <div className={style.Jxy_2tvi}>
                             {type().map(i => {
                                 return (
-                                    <article className={`${style.article} ${categories.subCategories.id === i.id ? style.active : ''}`} key={i.id} onClick={() => handleSelectCategory('type', i.id, i.parent_id)}>
+                                    <article className={`${style.article} ${categories.subCategories.id === i.id ? style.active : ''}`} key={i.id} onClick={() => handleSelectCategory('type', i)}>
                                         <div className={style.box_cat}>
                                             <div className={style.art_img}><Image src={'/Images/apparel/man clothing/121228579.jpg'} placeholder='blur' blurDataURL='/Images/placeholder-1.png' unoptimized={true} alt={i.name} width={100} height={100} /></div>
                                             <div className={style.art_name}><span>{i.name}</span></div>
                                         </div>
-                                        <button className={style.E_d_i_t} onClick={(e) => handleEdit(e, i)}><FiEdit3 /></button>
+                                        <button className={style.E_d_i_t} onClick={(e) => handleEdit(e, i, 2)}><FiEdit3 /></button>
                                     </article>
                                 )
                             })}
@@ -163,12 +156,12 @@ const Category = () => {
                         <div className={style.Jxy_2tvi}>
                             {model().map(i => {
                                 return (
-                                    <article className={style.article} key={i.id} onClick={() => handleSelectCategory('model', i.id, i.parent_id)}>
+                                    <article className={style.article} key={i.id} onClick={() => handleSelectCategory('model', i)}>
                                         <div className={style.box_cat}>
                                             <div className={style.art_img}><Image src={'/Images/apparel/man clothing/121228579.jpg'} placeholder='blur' blurDataURL='/Images/placeholder-1.png' unoptimized={true} alt={i.name} width={100} height={100} /></div>
                                             <div className={style.art_name}><span>{i.name}</span></div>
                                         </div>
-                                        <button className={style.E_d_i_t} onClick={(e) => handleEdit(e, i)}><FiEdit3 /></button>
+                                        <button className={style.E_d_i_t} onClick={(e) => handleEdit(e, i, 3)}><FiEdit3 /></button>
                                     </article>
                                 )
                             })}
