@@ -5,9 +5,8 @@ import Image from 'next/image';
 import { FiCheckCircle, FiEdit3, FiTrash2 } from 'react-icons/fi';
 import { useRef, useState } from 'react';
 import axios from 'axios';
-import Swal from 'sweetalert2'
 
-const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen }) => {
+const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen, SwalStyled }) => {
     const [category, setCategory] = useState(!!state ? { ...state, parent_id: state.parent.id } : { parent_id: categoryLevel.id })
     const wrapper = useRef()
     const imagePlaceholder = '/Images/placeholder-1.png'
@@ -19,24 +18,24 @@ const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen }) => {
     }
 
     const handleDelete = () => {
-        Swal.fire({
+        SwalStyled.fire({
             title: "از حذف دسته اطمینان دارید؟",
             text: 'با حذف دسته محصولات به دسته والد انتقال میابد',
             showDenyButton: true,
             confirmButtonText: "حذف",
-            denyButtonText: `لغو`
+            denyButtonText: `لغو`,
         }).then(async (result) => {
             if (result.isConfirmed) {
                 await axios.delete(`/admin/categories/${state.id}`)
                     .then(() => {
-                        Swal.fire('.حذف شد', '.دسته مورد نظر با موفقیت حذف شد', 'success')
+                        SwalStyled.fire({ title: '.حذف شد', text: '.دسته مورد نظر با موفقیت حذف شد', icon: 'success' })
                         setIsOpen(false)
                         reload(Math.random())
                     }).catch(() => {
-                        Swal.fire('.حذف نشد', '.دسته مورد نظر با موفقیت حذف نشد', 'error')
+                        SwalStyled.fire('.حذف نشد', '.دسته مورد نظر با موفقیت حذف نشد', 'error')
                     })
             } else if (result.isDenied) {
-                Swal.fire("حذف لغو شد.", "", "info");
+                SwalStyled.fire("حذف لغو شد.", "", "info");
             }
         });
     }
@@ -66,20 +65,20 @@ const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen }) => {
         if (!!state)
             await axios.put(`/admin/categories/${state.id}`, { ...category, _method: "PUT" })
                 .then(() => {
-                    Swal.fire('.ویرایش شد', '', 'success')
+                    SwalStyled.fire('.ویرایش شد', '', 'success')
                     setIsOpen(false)
                     reload(Math.random())
                 }).catch(() => {
-                    Swal.fire('.ویرایش نشد', '', 'error')
+                    SwalStyled.fire('.ویرایش نشد', '', 'error')
                 })
         else
             await axios.post(`/admin/categories`, category, { headers: { 'Content-Type': 'multipart/form-data' } })
                 .then(() => {
-                    Swal.fire('.ثبت شد', '', 'success')
+                    SwalStyled.fire('.ثبت شد', '', 'success')
                     setIsOpen(false)
                     reload(Math.random())
                 }).catch(() => {
-                    Swal.fire('.ثبت نشد', '', 'error')
+                    SwalStyled.fire('.ثبت نشد', '', 'error')
                 })
     }
     return (

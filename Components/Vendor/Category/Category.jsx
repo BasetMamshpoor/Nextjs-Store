@@ -1,16 +1,15 @@
 import useRequest from 'hooks/useRequest';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FiEdit3, FiPlus } from 'react-icons/fi';
 import style from './Category.module.css'
 import createModal from 'Components/Modal';
 import NewCategory from './NewCategory';
-import Swal from 'sweetalert2'
+import { Functions } from 'providers/FunctionsProvider';
 
 const Category = () => {
     const [categories, setCategories] = useState({ id: null, name: '', slug: '', subCategories: { id: null, subCategories: { id: null, subCategories: {} } } })
-    const [category, setCategory] = useState(null)
-
+    const { SwalStyled } = useContext(Functions)
     const [categoryList, setCategoryList, Reload] = useRequest('/admin/categories')
 
     const gender = () => {
@@ -52,12 +51,10 @@ const Category = () => {
     }
 
     const handleSelectCategory = (name, value) => {
-        // const value = Value ? Value : null
         switch (name) {
             case 'gender':
                 const obj = { id: value.id, name: value.name, slug: value.slug }
                 setCategories({ ...obj, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } })
-                setCategory(null)
                 return;
             case 'type':
                 setCategories(prev => {
@@ -67,7 +64,6 @@ const Category = () => {
                     prev.subCategories.subCategories = { id: null, subCategories: {} }
                     return { ...prev }
                 })
-                setCategory(null)
                 return;
             case 'model':
                 setCategories(prev => {
@@ -76,11 +72,9 @@ const Category = () => {
                     prev.subCategories.subCategories.slug = value.slug
                     return { ...prev }
                 })
-                setCategory(value.id)
                 return;
             default:
                 setCategories({ id: null, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } })
-                setCategory(null)
                 break;
         }
     }
@@ -88,24 +82,16 @@ const Category = () => {
     const handleEdit = (event, state, level) => {
         const { subCategories, ...data } = state
         event.stopPropagation()
-        createModal(<NewCategory reload={Reload} state={data} level={level} />)
+        createModal(<NewCategory SwalStyled={SwalStyled} reload={Reload} state={data} level={level} />)
     }
 
     const handleNew = (level) => {
         if (level === 2) {
-            if (categories.id !== null) createModal(<NewCategory reload={Reload} categoryLevel={categories} />)
-            else Swal.fire({
-                title: "دسته والد پیدا نشد",
-                text: "لطفا اول دسته سطح اول مورد نظر را وارد کنید سپس اقدام به افزودن دسته به زیر مجموعه آن نمایید",
-                icon: "error"
-            });
+            if (categories.id !== null) createModal(<NewCategory SwalStyled={SwalStyled} reload={Reload} categoryLevel={categories} />)
+            else SwalStyled.fire("دسته والد پیدا نشد", "لطفا اول دسته سطح اول مورد نظر را وارد کنید سپس اقدام به افزودن دسته به زیر مجموعه آن نمایید", "error",);
         } else {
-            if (categories.subCategories.id !== null) createModal(<NewCategory reload={Reload} categoryLevel={categories.subCategories} />)
-            else Swal.fire({
-                title: "دسته والد پیدا نشد",
-                text: "لطفا اول دسته سطح اول مورد نظر را وارد کنید سپس اقدام به افزودن دسته به زیر مجموعه آن نمایید",
-                icon: "error"
-            });
+            if (categories.subCategories.id !== null) createModal(<NewCategory SwalStyled={SwalStyled} reload={Reload} categoryLevel={categories.subCategories} />)
+            else SwalStyled.fire("دسته والد پیدا نشد", "لطفا اول دسته سطح دوم مورد نظر را وارد کنید سپس اقدام به افزودن دسته به زیر مجموعه آن نمایید", "error",);
         }
     }
 

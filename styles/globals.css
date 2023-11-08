@@ -440,7 +440,7 @@ textarea {
   margin-bottom: 1rem;
 }
 
-@media (max-width:1023.98px) {
+@media (max-width: 1023.98px) {
   .dealyOff .container {
     padding: 0;
   }
@@ -488,4 +488,50 @@ textarea {
 .DetailSlider .swiper-button-next:after,
 .DetailSlider .swiper-button-prev:after {
   font-size: 28px;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  margin: 0 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  border-radius: 0.25rem;
+  transition: all 0.15s ease-in-out;
+}
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+.btn-success {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+.btn-info {
+  color: #000;
+  background-color: #0dcaf0;
+  border-color: #0dcaf0;
+}
+.btn-warning {
+  color: #000;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #3499ff;
+  border-color: #3499ff;
+}
+.btn-purple {
+  color: #fff;
+  background-color: #7066e0;
+  border-color: #7066e0;
 }
