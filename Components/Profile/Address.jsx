@@ -25,7 +25,7 @@ const Address = () => {
                         <button className={style.OTxe3_M}>ثبت آدرس جدید</button>
                     </div>
                     <div className={style.Ubx7_O3}>
-                        {!!addresses && addresses.data.map(a => {
+                        {!!addresses && addresses.map(a => {
                             return (
                                 <div className={style.oInGt07_}>
                                     <div className={style.olCqz8_PP}>

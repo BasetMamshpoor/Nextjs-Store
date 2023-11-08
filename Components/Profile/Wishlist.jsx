@@ -5,6 +5,7 @@ import addComma from 'Functions/addComma';
 import { e2p } from 'Functions/ConvertNumbers';
 import useRequest from 'hooks/useRequest';
 import Pagination from 'Components/Pagination/Pagination';
+import Image from 'next/image';
 
 const Wishlist = () => {
 
@@ -22,14 +23,13 @@ const Wishlist = () => {
                         <h5>لیست علاقه مندی های من</h5>
                     </div>
                     <div className={style.D3a_tVu9}>
-                        {wish?.data.map(i => {
+                        {wish?.map(i => {
                             const { id, product } = i
                             return (
                                 <div className={style.gali9_y} key={id}>
                                     <Link href={`/product/${product.id}`} className={style.KK7f_ouq}>
                                         <div className={style.hyyCr4_A}>
-                                            <img src={product.image}
-                                                alt="" />
+                                        <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={product.image} alt="" />
                                         </div>
                                     </Link>
                                     <div className={style.LassOing_R}>

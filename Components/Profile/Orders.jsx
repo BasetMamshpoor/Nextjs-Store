@@ -48,7 +48,7 @@ const Orders = () => {
                 </div>
                 <div className={style.DybIay}>
                     <ul className={style.RxaPlo}>
-                        {!!orders && orders.data.map(o => {
+                        {!!orders && orders.map(o => {
                             return (
                                 <li key={o.id}>
                                     <Link href="/" className={style.WMeJalq}>

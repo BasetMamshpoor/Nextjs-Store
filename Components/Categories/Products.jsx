@@ -16,7 +16,7 @@ const Products = ({ dataFilter }) => {
     }
 
 
-    const [products] = useRequest(`/products/filter/21?${decodeQueryData(router.query)}`)
+    const [products] = useRequest(`/products/filter/18?${decodeQueryData(router.query)}`)
 
     let ZcfPa = {
         display: "grid",

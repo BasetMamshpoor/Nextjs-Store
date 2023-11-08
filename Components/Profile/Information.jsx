@@ -16,7 +16,7 @@ const Information = () => {
                             <div className={style.Rcinpte}>
                                 <p>نام و نام خانوادگی</p>
                             </div>
-                            <p className={style.RcnlEx}>{info?.data.name}</p>
+                            <p className={style.RcnlEx}>{info?.name}</p>
                         </div>
                     </div>
                     <div className={style.kLRx8Fh}>
@@ -49,7 +49,7 @@ const Information = () => {
                             <div className={style.Rcinpte}>
                                 <p>ایمیل</p>
                             </div>
-                            <p className={style.RcnlEx}>{info?.data.email}</p>
+                            <p className={style.RcnlEx}>{info?.email}</p>
                         </div>
                     </div>
                     <div className={style.kLRx8Fh}>
