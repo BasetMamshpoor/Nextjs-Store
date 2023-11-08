@@ -21,7 +21,7 @@ const Slider = () => {
         width: '100%'
     }
 
-    const [data] = useRequest('/sliders?page=2')
+    const [data] = useRequest('/sliders')
 
     return (
         <>
@@ -30,13 +30,13 @@ const Slider = () => {
                     navigation
                     modules={[Pagination, Autoplay, Navigation]}
                     loop
-                    // speed={300}
+                    speed={300}
                     spaceBetween={0}
                     slidesPerView={1}
                     pagination={{ clickable: true }}
-                // autoplay={{ disableOnInteraction: false }}
+                    autoplay={{ disableOnInteraction: false, delay: 6000, reverseDirection: true }}
                 >
-                    {!!data && data.map(el => {
+                    {!!data && data.reverse().map(el => {
                         return (
                             <SwiperSlide key={el.id}>
                                 <div style={style}>

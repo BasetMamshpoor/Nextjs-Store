@@ -15,7 +15,7 @@ const Category = () => {
     const gender = () => {
         let array = [];
         categoryList?.map(e => {
-            array.push({ ...e, parent: { id: 0 } })
+            array.push({ ...e, parent: { id: null } })
         })
         return array
     }

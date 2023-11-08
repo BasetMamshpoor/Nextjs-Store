@@ -14,6 +14,7 @@ const FunctionsProvider = ({ children }) => {
         },
         confirmButtonText: 'باشه',
         denyButtonText: 'لغو',
+        cancelButtonText:'لغو',
         buttonsStyling: false
     })
 

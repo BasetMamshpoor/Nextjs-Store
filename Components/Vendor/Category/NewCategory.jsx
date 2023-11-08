@@ -41,7 +41,6 @@ const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen, SwalStyle
     }
 
     const handleMainImg = (e) => {
-        wrapper.current.innerHTML = ''
         let file;
         if (!!e.target.files[0]) file = e.target.files[0]
         else {
@@ -62,24 +61,22 @@ const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen, SwalStyle
         })
     }
     const handleSubmit = async () => {
-        if (!!state)
-            await axios.put(`/admin/categories/${state.id}`, { ...category, _method: "PUT" })
-                .then(() => {
-                    SwalStyled.fire('.ویرایش شد', '', 'success')
-                    setIsOpen(false)
-                    reload(Math.random())
-                }).catch(() => {
-                    SwalStyled.fire('.ویرایش نشد', '', 'error')
-                })
-        else
-            await axios.post(`/admin/categories`, category, { headers: { 'Content-Type': 'multipart/form-data' } })
-                .then(() => {
-                    SwalStyled.fire('.ثبت شد', '', 'success')
-                    setIsOpen(false)
-                    reload(Math.random())
-                }).catch(() => {
-                    SwalStyled.fire('.ثبت نشد', '', 'error')
-                })
+        if (!!state) await axios.post(`/admin/categories/${state.id}`, { ...category, _method: "PUT" }, { headers: { 'Content-Type': 'multipart/form-data' } })
+            .then(() => {
+                SwalStyled.fire('.ویرایش شد', '', 'success')
+                setIsOpen(false)
+                reload(Math.random())
+            }).catch(() => {
+                SwalStyled.fire('.ویرایش نشد', '', 'error')
+            })
+        else await axios.post(`/admin/categories`, category, { headers: { 'Content-Type': 'multipart/form-data' } })
+            .then(() => {
+                SwalStyled.fire('.ثبت شد', '', 'success')
+                setIsOpen(false)
+                reload(Math.random())
+            }).catch(() => {
+                SwalStyled.fire('.ثبت نشد', '', 'error')
+            })
     }
     return (
         <>

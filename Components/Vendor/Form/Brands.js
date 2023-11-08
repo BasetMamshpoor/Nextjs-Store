@@ -2,9 +2,9 @@ import DropDown from 'Components/Dropdown/DropDown';
 import useRequest from 'hooks/useRequest';
 import React, { useEffect, useState } from 'react';
 
-const Brands = ({ touch, errors, setProduct }) => {
+const Brands = ({ setProduct }) => {
 
-    const [brands] = useRequest('/admin/brands')
+    const [brands] = useRequest('/brands')
     const [list, setList] = useState([])
 
     useEffect(() => {
