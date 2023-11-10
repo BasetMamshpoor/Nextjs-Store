@@ -5,86 +5,55 @@ import Products from 'Components/Categories/Products';
 import SelectCategoryType from 'Components/Categories/SelectCategoryType';
 import SortBy from 'Components/Categories/SortBy';
 import style from './style.module.css'
-import genders from 'Components/Categories/gender.json'
-import genderCategoryType from 'Components/Categories/categorydata.json'
-import categoryType from 'Components/Categories/categoryTypedata.json'
+import { getAllRouteCategories } from 'lib/getStaticPaths';
+import { getCategories } from 'api/categories';
+
 const Type = () => {
     const router = useRouter()
-    const { type, gender } = router.query
-    const categories = ['clothing', 'shoes', 'accessories', 'sports']
-    const [categoryName, setCategoryName] = useState()
+    const { gender, type } = router.query
+    const [category, setCategory] = useState()
 
-    const getCategory = useCallback(() => {
-        const category = categories.find(i => i === type)
-        if (category) {
-            const ex = genderCategoryType[gender].find(o => o.category === category)
-            const genderName = genders.find(g => g.key === gender)
-            console.log(ex, categoryName);
-            return { category: ex.category, name: `${ex.name} ${genderName.name}` }
-        } else {
-            let typeCategory;
-            for (const i in categoryType[gender]) {
-                if (Object.hasOwnProperty.call(categoryType[gender], i)) {
-                    const element = categoryType[gender][i].find(e => e.path === type);
-                    if (element !== undefined) typeCategory = { name: element.name, category: i }
-                }
+    const getCategory = useCallback(async () => {
+        const category = await getCategories()
+        const { subCategories: categoryL2 } = category.find(c => c.slug === gender)
+        const Level2 = categoryL2.find(c => c.slug.split(/-(.*)/)[1] === type)
+        if (!!Level2) setCategory(Level2)
+        else for (const i in categoryL2)
+            if (Object.hasOwnProperty.call(categoryL2, i)) {
+                const element = categoryL2[i].subCategories.find(e => e.slug.split(/-(.*)/)[1] === type);
+                if (element !== undefined) setCategory(element)
             }
-            return typeCategory
-        }
     }, [type])
 
     useEffect(() => {
-        setCategoryName(getCategory)
+        getCategory()
     }, [type])
 
     return (
         <>
-            <main>
-                {(categories.filter(i => i === type)).length ?
-                    <SelectCategoryType gender={gender} category={type} /> :
+            {!!category && <main>
+                {category.subCategories.length ?
+                    <SelectCategoryType subCategories={category.subCategories} /> :
                     null}
-                <p>{categoryName?.name} | {categoryName?.category}</p>
                 <section className={style.products} dir="auto">
                     <div className="container">
                         <div className={` d-flex`}>
-                            <Filters />
+                            <Filters category={category.id} />
                             <div className={`${style.Lops} d-flex`}>
                                 <SortBy router={router} sort={router.query.sort} />
-                                <Products />
+                                <Products category={category.id} />
                             </div>
                         </div>
                     </div>
                 </section>
-            </main>
+            </main>}
         </>
     );
 };
 export async function getStaticPaths() {
-    const categoryTypeData = genders.map(g => {
-        let array = []
-        let gen
-        for (const i in categoryType[g.key]) {
-            if (Object.hasOwnProperty.call(categoryType[g.key], i)) {
-                gen = categoryType[g.key][i].map(f => f.path)
-            }
-            gen.map(i => array.push(i))
-        }
-        return array.map(i => {
-            return { params: { gender: g.key, type: i } }
-        })
-    })
-    const categoriesType = genders.map(g => {
-        const newArray = genderCategoryType[g.key].map(i => i.category)
-        return newArray.map(i => {
-            return { params: { gender: g.key, type: i } }
-        })
-    })
-
+    const paths = await getAllRouteCategories()
     return {
-        paths: [
-            ...categoryTypeData[0], ...categoryTypeData[1], ...categoryTypeData[2],
-            ...categoriesType[0], ...categoriesType[1], ...categoriesType[2]
-        ],
+        paths,
         fallback: false
     }
 }

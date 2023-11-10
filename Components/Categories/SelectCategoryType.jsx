@@ -1,15 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
-import json from './categoryTypedata.json'
 import style from './SelectCategoryType.module.css'
 
-const SelectCategoryType = ({ gender, category }) => {
+const SelectCategoryType = ({ subCategories }) => {
 
-    const makeElement = json[gender][category].map(i => {
+    const makeElement = subCategories.map(i => {
         return (
             <div className={style.xSncp} key={i.id}>
-                <Link href={`/category-${gender}-${i.path}`}>
-                    <div className={style.GyooR}><img src={i.img} alt={i.name} /></div>
+                <Link href={`/category-${i.slug}`}>
+                    <div className={style.GyooR}><img src={i.icon} alt={i.name} /></div>
                     <div className={style.Ceed}><span>{i.name}</span></div>
                 </Link>
             </div>

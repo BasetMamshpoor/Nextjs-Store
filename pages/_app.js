@@ -8,7 +8,7 @@ import useMediaQuery from "hooks/useMediaQuery"
 import MobileNavbar from "Components/Navbar/MobileNavbar"
 import FunctionsProvider from "providers/FunctionsProvider"
 
-axios.defaults.baseURL = 'http://localhost:8000/api'
+axios.defaults.baseURL = 'http://abm.me/api'
 // axios.defaults.baseURL = 'http://localhost:6500'
 // axios.defaults.baseURL = 'http://192.168.176.239:6500'
 

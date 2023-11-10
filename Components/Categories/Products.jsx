@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import Product from './shared/Product';
 
-const Products = ({ dataFilter }) => {
+const Products = ({ category }) => {
     const router = useRouter()
 
     function decodeQueryData(data) {
@@ -16,7 +16,7 @@ const Products = ({ dataFilter }) => {
     }
 
 
-    const [products] = useRequest(`/products/filter/1?${decodeQueryData(router.query)}`,)
+    const [products] = useRequest(`/products/filter/${category}?${decodeQueryData(router.query)}`,)
 
     let ZcfPa = {
         display: "grid",

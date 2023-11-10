@@ -6,11 +6,11 @@ import style from './Filters.module.css'
 import { IoChevronDownOutline } from 'react-icons/io5'
 import Input from 'Components/Input';
 
-const Filters = ({ categories = 18 }) => {
+const Filters = ({ category }) => {
     const router = useRouter()
 
     const [filters, setFilters] = useState({})
-    const [data] = useRequest(`/products/getfilters/${categories}`)
+    const [data] = useRequest(`/products/getfilters/${category}`)
 
     useEffect(() => {
         if (router.isReady) setFilters(readUrl())
