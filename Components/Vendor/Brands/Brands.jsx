@@ -13,12 +13,29 @@ const Brands = () => {
     const { SwalStyled } = useContext(Functions)
 
     const handleDelete = (id) => {
-        axios.delete(`/admin/brands/${id}`)
-            .then(() => setBrands(prev => {
-                SwalStyled.fire('.حذف شد', '.برند مورد نظر با موفقیت حذف شد', 'success')
-                const newBrands = prev.filter(b => b.id !== id)
-                return newBrands
-            }))
+        SwalStyled.fire({
+            title: "از حذف برند اطمینان دارید؟",
+            text: 'با حذف برند محصولات ثبت شده با این اسم برند نیز حذف میشوند',
+            showDenyButton: true,
+            confirmButtonText: "حذف",
+            denyButtonText: `لغو`,
+            icon: 'warning'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await axios.delete(`/admin/brands/${id}`)
+                    .then(() => {
+                        SwalStyled.fire({ title: '.حذف شد', text: '.برند مورد نظر با موفقیت حذف شد', icon: 'success' })
+                        setBrands(prev => {
+                            const newBrands = prev.filter(b => b.id !== id)
+                            return newBrands
+                        })
+                    }).catch(() => {
+                        SwalStyled.fire('.حذف نشد', '.دسته مورد نظر با موفقیت حذف نشد', 'error')
+                    })
+            } else if (result.isDenied) {
+                SwalStyled.fire("حذف لغو شد.", "", "info");
+            }
+        });
     }
 
     const handleClick = async (event) => {

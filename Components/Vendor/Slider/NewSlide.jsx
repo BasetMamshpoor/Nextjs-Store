@@ -41,14 +41,8 @@ const NewSlide = ({ data, setIsOpen, SwalStyled, reload }) => {
         })
         err.current.innerText = ''
     }
-    const handleSubmit = async () => {
-        // let img = new Image();
-        // img.src = link
-        // if (img.width !== 2880 && img.height !== 600) {
-        //     err.current.innerText = `لطفا عکس با ابعاد 600*2880 وارد کنید
-        //    ابعاد عکس وارد شده ${img.height}*${img.width} است.`
-        //     return
-        // }
+    const handleSubmit = async (event) => {
+        event.preventDefault()
         if (!!data) {
             let obj = typeof slide.src === 'object' ? { ...slide, _method: "PUT" } : { link: slide.link, _method: "PUT" }
             await axios.post(`/admin/sliders/${data.id}`, obj, { headers: { 'Content-Type': 'multipart/form-data' } })
@@ -63,12 +57,12 @@ const NewSlide = ({ data, setIsOpen, SwalStyled, reload }) => {
                 SwalStyled.fire('.ثبت شد', '.اسلاید جدیدی با موفقیت ثبت شد', 'success')
                 reload(Math.random())
                 setIsOpen(false)
-            }).catch(() => SwalStyled.fire('.ثبت نشد', '.اسلاید جدید با موفقیت ثبت نشد', 'error'))
+            }).catch(({ response }) => SwalStyled.fire('.ثبت نشد', response.data.message, 'error'))
     }
     return (
         <>
             <div className={style.hVhBe3q}>
-                <form className={style.e1Wz0E}>
+                <form className={style.e1Wz0E} onSubmit={handleSubmit}>
                     <div className={style.upload}>
                         <input type="file" hidden id='file' accept='image/jpeg, image/jpg, image/png, image/webp' onChange={(e) => handleUpload(e, 'target')} />
                         <div className={style.drag_drop} onDragOver={e => e.preventDefault()} onDrop={(e) => handleUpload(e, 'dataTransfer')}>
@@ -81,12 +75,12 @@ const NewSlide = ({ data, setIsOpen, SwalStyled, reload }) => {
                     </div>
                     <label htmlFor="link" className={style.link}>
                         <span>: لینک</span>
-                        <input required type="text" id='link' onChange={({ target }) => setSlide(prev => { return { ...prev, link: target.value } })} value={slide.link} />
+                        <input required type="url" id='link' onChange={({ target }) => setSlide(prev => { return { ...prev, link: target.value } })} value={slide.link} />
                     </label>
                     <div className={style.Errors}>
                         <p ref={err}></p>
                     </div>
-                    <button type='button' className={style.submit} onClick={handleSubmit}>{!!data ? 'ویرایش' : 'ثبت'}</button>
+                    <button className={style.submit}>{!!data ? 'ویرایش' : 'ثبت'}</button>
                 </form>
             </div>
         </>

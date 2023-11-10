@@ -61,14 +61,18 @@ const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen, SwalStyle
         })
     }
     const handleSubmit = async () => {
-        if (!!state) await axios.post(`/admin/categories/${state.id}`, { ...category, _method: "PUT" }, { headers: { 'Content-Type': 'multipart/form-data' } })
-            .then(() => {
-                SwalStyled.fire('.ویرایش شد', '', 'success')
-                setIsOpen(false)
-                reload(Math.random())
-            }).catch(() => {
-                SwalStyled.fire('.ویرایش نشد', '', 'error')
-            })
+        if (!!state) {
+            const { icon, ...data } = category
+            let obj = typeof category.icon === 'object' ? { ...category, _method: "PUT" } : { ...data, _method: "PUT" }
+            await axios.post(`/admin/categories/${state.id}`, obj, { headers: { 'Content-Type': 'multipart/form-data' } })
+                .then(() => {
+                    SwalStyled.fire('.ویرایش شد', '', 'success')
+                    setIsOpen(false)
+                    reload(Math.random())
+                }).catch(() => {
+                    SwalStyled.fire('.ویرایش نشد', '', 'error')
+                })
+        }
         else await axios.post(`/admin/categories`, category, { headers: { 'Content-Type': 'multipart/form-data' } })
             .then(() => {
                 SwalStyled.fire('.ثبت شد', '', 'success')

@@ -106,7 +106,7 @@ const Category = () => {
                                 return (
                                     <article className={`${style.article} ${categories.id === i.id ? style.active : ''}`} key={i.id} onClick={() => handleSelectCategory('gender', i)}>
                                         <div className={style.box_cat}>
-                                            <div className={style.art_img}><Image src={'/Images/apparel/man clothing/121228579.jpg'} placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} alt={i.name} /></div>
+                                            <div className={style.art_img}><Image src={!!i.icon ? i.icon : '/Images/placeholder-1.png'} placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} alt={i.name} /></div>
                                             <div className={style.art_name}><span>{i.name}</span></div>
                                         </div>
                                         <button className={style.E_d_i_t} onClick={(e) => handleEdit(e, i, 1)}><FiEdit3 /></button>
@@ -125,7 +125,7 @@ const Category = () => {
                                 return (
                                     <article className={`${style.article} ${categories.subCategories.id === i.id ? style.active : ''}`} key={i.id} onClick={() => handleSelectCategory('type', i)}>
                                         <div className={style.box_cat}>
-                                            <div className={style.art_img}><Image src={'/Images/apparel/man clothing/121228579.jpg'} placeholder='blur' blurDataURL='/Images/placeholder-1.png' unoptimized={true} alt={i.name} width={100} height={100} /></div>
+                                            <div className={style.art_img}><Image src={!!i.icon ? i.icon : '/Images/placeholder-1.png'} placeholder='blur' blurDataURL='/Images/placeholder-1.png' unoptimized={true} alt={i.name} width={100} height={100} /></div>
                                             <div className={style.art_name}><span>{i.name}</span></div>
                                         </div>
                                         <button className={style.E_d_i_t} onClick={(e) => handleEdit(e, i, 2)}><FiEdit3 /></button>
@@ -144,7 +144,7 @@ const Category = () => {
                                 return (
                                     <article className={style.article} key={i.id} onClick={() => handleSelectCategory('model', i)}>
                                         <div className={style.box_cat}>
-                                            <div className={style.art_img}><Image src={'/Images/apparel/man clothing/121228579.jpg'} placeholder='blur' blurDataURL='/Images/placeholder-1.png' unoptimized={true} alt={i.name} width={100} height={100} /></div>
+                                            <div className={style.art_img}><Image src={!!i.icon ? i.icon : '/Images/placeholder-1.png'} placeholder='blur' blurDataURL='/Images/placeholder-1.png' unoptimized={true} alt={i.name} width={100} height={100} /></div>
                                             <div className={style.art_name}><span>{i.name}</span></div>
                                         </div>
                                         <button className={style.E_d_i_t} onClick={(e) => handleEdit(e, i, 3)}><FiEdit3 /></button>

@@ -19,6 +19,7 @@ const Type = () => {
         if (category) {
             const ex = genderCategoryType[gender].find(o => o.category === category)
             const genderName = genders.find(g => g.key === gender)
+            console.log(ex, categoryName);
             return { category: ex.category, name: `${ex.name} ${genderName.name}` }
         } else {
             let typeCategory;
@@ -46,7 +47,7 @@ const Type = () => {
                 <section className={style.products} dir="auto">
                     <div className="container">
                         <div className={` d-flex`}>
-                            <Filters categories={22} />
+                            <Filters />
                             <div className={`${style.Lops} d-flex`}>
                                 <SortBy router={router} sort={router.query.sort} />
                                 <Products />

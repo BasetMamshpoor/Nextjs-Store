@@ -96,7 +96,7 @@
   box-shadow: 0 5px 10px 0px #349aff80;
 }
 .wrapper {
-  padding: 10px;
+  overflow: hidden;
   border-radius: 10px;
   padding: auto;
   flex: 0 0 30%;

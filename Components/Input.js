@@ -12,7 +12,8 @@ const Input = ({ value, isNumber = false, min, result, refrence, ...props }) => 
     }
 
     useEffect(() => {
-        value && setVal(value)
+        if (!!value) setVal(value)
+        else if (value === 0) setVal(value)
     }, [value])
 
     const handleBlur = () => {

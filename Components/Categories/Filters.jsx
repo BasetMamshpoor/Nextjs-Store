@@ -6,7 +6,7 @@ import style from './Filters.module.css'
 import { IoChevronDownOutline } from 'react-icons/io5'
 import Input from 'Components/Input';
 
-const Filters = ({ categories = 22 }) => {
+const Filters = ({ categories = 18 }) => {
     const router = useRouter()
 
     const [filters, setFilters] = useState({})
@@ -110,7 +110,7 @@ const Filters = ({ categories = 22 }) => {
                                 </div>
                                 <div className={style.vGex}>
                                     <label>تا</label>
-                                    <Input type="number" name='max' value={data.price.max} max={data.price.max} result={handleFilter} />
+                                    <Input type="number" name='max' value={filters.max ? filters.max[0].name : data.price.max} max={data.price.max} result={handleFilter} />
                                 </div>
                             </div>
                         </div>

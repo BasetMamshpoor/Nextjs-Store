@@ -16,7 +16,7 @@ const Products = ({ dataFilter }) => {
     }
 
 
-    const [products] = useRequest(`/products/filter/18?${decodeQueryData(router.query)}`)
+    const [products] = useRequest(`/products/filter/1?${decodeQueryData(router.query)}`,)
 
     let ZcfPa = {
         display: "grid",
@@ -29,9 +29,9 @@ const Products = ({ dataFilter }) => {
 
     return (
         <>
-            {products && <div style={ZcfPa}>
-                {products.length ? products.map(i => <Product key={i.id} {...i} />) : <p>no product</p>}
-            </div>}
+            {products && products.length ? <div style={ZcfPa}>
+                {products.map(i => <Product key={i.id} {...i} />)}
+            </div> : <p>محصولی پیدا نشد لطفا فیلتر ها رو تغییر بدید.</p>}
         </>
     );
 };
