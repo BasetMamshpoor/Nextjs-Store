@@ -1,5 +1,7 @@
 .NflOO {
   padding: 3rem 0;
+  direction: rtl;
+  width: 100%;
 }
 .BfpEw {
   margin: 1rem 0;
@@ -46,15 +48,6 @@
   padding: 0.3rem;
   border: none;
   font-size: 14px;
-}
-.mensActive span {
-  background: #9bcbfa;
-}
-.womensActive span {
-  background: #ffaed8;
-}
-.kidsActive span {
-  background: #aa9c78;
 }
 .cYaR::before,
 .cYaR::after {

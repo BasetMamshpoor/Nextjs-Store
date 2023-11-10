@@ -12,7 +12,7 @@ import { Functions } from 'providers/FunctionsProvider';
 
 const Slider = () => {
     const [currentpage, setCurrentpage] = useState(1)
-    const [data, setData, reload, paginations] = useRequest(`/admin/sliders?page=${currentpage}`)
+    const [data, setData, reload, paginations] = useRequest(`/admin/sliders`,currentpage)
     const { SwalStyled } = useContext(Functions)
 
     const handleDelete = (id) => {

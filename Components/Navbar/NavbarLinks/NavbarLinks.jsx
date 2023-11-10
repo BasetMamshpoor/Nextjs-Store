@@ -5,7 +5,7 @@ import Category from '../Category';
 import Link from 'next/link';
 
 const NavbarLinks = () => {
-    const [flow, setFlow] = useState(true)
+    const [flow, setFlow] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
 
     useEffect(() => {

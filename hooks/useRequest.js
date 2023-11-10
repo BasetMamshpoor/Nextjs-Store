@@ -8,7 +8,7 @@ const useRequest = (url, page = 1) => {
 
     useEffect(() => {
         const get = async () => {
-            await axios.get(url, { params: {page} })
+            await axios.get(url, { params: { page } })
                 .then(res => {
                     const { data, ...pagination } = res.data
                     setData(res.data.data)
@@ -17,7 +17,7 @@ const useRequest = (url, page = 1) => {
                 .catch(err => console.log(err))
         }
         get()
-    }, [url, reload])
+    }, [url, reload, page])
 
     return [data, setData, setReload, paginations]
 };

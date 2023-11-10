@@ -1,16 +1,16 @@
 import React from 'react';
 import style from './SelectCategory.module.css'
-import json from './categorydata.json'
 import Link from 'next/link';
+import Image from 'next/image';
 
-const SelectCategory = ({ gender, category }) => {
-    const makeElement = json[gender].map(item => {
+const SelectCategory = ({ categories }) => {
+    const makeElement = categories.map(item => {
         return (
-            <div key={item.id} className={`${style.mvHr} ${item.category === category ? style[`${gender}Active`] : ''}`}>
-                <Link href={`/category-${gender}-${item.category}`} className={style.HcrJ}>
+            <div key={item.id} className={style.mvHr}>
+                <Link href={`/category-${item.slug}`} className={style.HcrJ}>
                     <div className={style.cYaR}>
-                        <img src={item.img}
-                            alt={item.name} />
+                        <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png'
+                            width={100} height={100} unoptimized={true} src={item.icon} alt={item.name} />
                         <span>{item.name}</span>
                     </div>
                 </Link>

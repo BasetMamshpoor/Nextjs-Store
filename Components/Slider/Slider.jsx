@@ -11,43 +11,37 @@ import Link from 'next/link';
 
 const Slider = () => {
 
-    let style = {
-        width: '100%',
-        height: '28rem'
-    }
-    let styleA = {
-        display: 'block',
-        height: '100%',
-        width: '100%'
-    }
-
     const [data] = useRequest('/sliders')
 
     return (
         <>
-            <section className="slider">
-                <Swiper
-                    navigation
-                    modules={[Pagination, Autoplay, Navigation]}
-                    loop
-                    speed={300}
-                    spaceBetween={0}
-                    slidesPerView={1}
-                    pagination={{ clickable: true }}
-                    autoplay={{ disableOnInteraction: false, delay: 6000, reverseDirection: true }}
-                >
-                    {!!data && data.reverse().map(el => {
-                        return (
-                            <SwiperSlide key={el.id}>
-                                <div style={style}>
-                                    <Link href={el.link} style={styleA}>
-                                        <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={el.src} alt="" />
-                                    </Link>
-                                </div>
-                            </SwiperSlide>
-                        )
-                    })}
-                </Swiper>
+            <section className="main_slider">
+                <div className="container">
+                    <div className="main_slide">
+                        <Swiper
+                            navigation
+                            modules={[Pagination, Autoplay, Navigation]}
+                            loop
+                            speed={300}
+                            spaceBetween={0}
+                            slidesPerView={1}
+                            pagination={{ clickable: true }}
+                            autoplay={{ disableOnInteraction: false, delay: 6000, reverseDirection: true }}
+                        >
+                            {!!data && data.reverse().map(el => {
+                                return (
+                                    <SwiperSlide key={el.id}>
+                                        <div>
+                                            <Link href={el.link}>
+                                                <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={el.src} alt="" />
+                                            </Link>
+                                        </div>
+                                    </SwiperSlide>
+                                )
+                            })}
+                        </Swiper>
+                    </div>
+                </div>
             </section>
         </>
     );
