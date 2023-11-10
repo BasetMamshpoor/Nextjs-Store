@@ -7,6 +7,7 @@ import NextNProgress from 'Components/Progress/index'
 import useMediaQuery from "hooks/useMediaQuery"
 import MobileNavbar from "Components/Navbar/MobileNavbar"
 import FunctionsProvider from "providers/FunctionsProvider"
+import CategoriesProvider from "providers/CategoriesProvider"
 
 axios.defaults.baseURL = 'http://abm.me/api'
 // axios.defaults.baseURL = 'http://localhost:6500'
@@ -18,13 +19,15 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <FunctionsProvider>
-        <CartContextProvider>
-          {isMatch ? <MobileNavbar /> : <Navbar />}
-          <NextNProgress />
-          <Component {...pageProps} />
-          <Footer />
-          <div id="modal-container"></div>
-        </CartContextProvider>
+        <CategoriesProvider>
+          <CartContextProvider>
+            {isMatch ? <MobileNavbar /> : <Navbar />}
+            <NextNProgress />
+            <Component {...pageProps} />
+            <Footer />
+            <div id="modal-container"></div>
+          </CartContextProvider>
+        </CategoriesProvider>
       </FunctionsProvider>
     </>
   )

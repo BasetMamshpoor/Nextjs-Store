@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Filters from 'Components/Categories/Filters';
 import Products from 'Components/Categories/Products';
@@ -6,16 +6,16 @@ import SelectCategoryType from 'Components/Categories/SelectCategoryType';
 import SortBy from 'Components/Categories/SortBy';
 import style from './style.module.css'
 import { getAllRouteCategories } from 'lib/getStaticPaths';
-import { getCategories } from 'api/categories';
+import { Categories } from 'providers/CategoriesProvider';
 
 const Type = () => {
     const router = useRouter()
     const { gender, type } = router.query
     const [category, setCategory] = useState()
+    const { categories } = useContext(Categories)
 
     const getCategory = useCallback(async () => {
-        const category = await getCategories()
-        const { subCategories: categoryL2 } = category.find(c => c.slug === gender)
+        const { subCategories: categoryL2 } = categories.find(c => c.slug === gender)
         const Level2 = categoryL2.find(c => c.slug.split(/-(.*)/)[1] === type)
         if (!!Level2) setCategory(Level2)
         else for (const i in categoryL2)

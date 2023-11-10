@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import style from './Category.module.css'
-import apparelJson from 'Components/Categories/categorydata.json'
-import apparelTypeJson from 'Components/Categories/categoryTypedata.json'
-import genderJson from 'Components/Categories/gender.json'
 import Link from 'next/link';
 import Image from 'next/image';
+import { Categories } from 'providers/CategoriesProvider';
 
 const Category = ({ flow, setFlow }) => {
 
@@ -13,27 +11,34 @@ const Category = ({ flow, setFlow }) => {
         else document.body.style.overflow = 'auto'
     }, [flow])
 
-    const [gender, setGender] = useState("womens")
-    const [category, setCategory] = useState("clothing");
+    const { categories } = useContext(Categories)
+
+    const slugType = (slug) => slug.split(/-(.*)/)[1]
+    const firstCategoryL2 = slugType(categories[0].subCategories[0].slug)
+
+    const [gender, setGender] = useState(categories[0].slug)
+    const [category, setCategory] = useState(firstCategoryL2);
+
+    const categoryLevel2 = categories.find(c => c.slug === gender).subCategories
 
 
-    const genderElement = genderJson.map(item => {
-        return <li key={item.key}
-            className={`${style.gender} ${gender === item.key ? style.gender_active : ''}`}
-            onMouseEnter={() => { setGender(item.key); setCategory("clothing") }}>
-            <Link href={`/category-${item.key}-apparel`}>{item.name}</Link></li>
-    })
-    const apparelElement = apparelJson[gender].map(item => {
+    const genderElement = categories.map(item => {
         return <li key={item.id}
-            className={`${style.gender_apparel} ${category === item.category ? style.apparel_active : ''}`}
-            onMouseEnter={() => setCategory(item.category)}
-        ><Link href={`/category-${gender}-${item.category}`}>{item.name}</Link></li>
+            className={`${style.gender} ${gender === item.slug ? style.gender_active : ''}`}
+            onMouseEnter={() => { setGender(item.slug); setCategory(firstCategoryL2) }}>
+            <Link href={`/category-${item.slug}-apparel`}>{item.name}</Link></li>
     })
-    const apparelTypeElement = apparelTypeJson[gender][category].map(i => {
+    const apparelElement = categoryLevel2.map(item => {
+        return <li key={item.id}
+            className={`${style.gender_apparel} ${category === slugType(item.slug) ? style.apparel_active : ''}`}
+            onMouseEnter={() => setCategory(slugType(item.slug))}
+        ><Link href={`/category-${item.slug}`}>{item.name}</Link></li>
+    })
+    const apparelTypeElement = categoryLevel2.find(c => slugType(c.slug) === category).subCategories.map(i => {
         return (
             <article className={style.article} key={i.id}>
-                <Link href={`/category-${gender}-${i.path}`}>
-                    <div className={style.art_img}><Image src={i.img} alt={i.name} width={100} height={100} /></div>
+                <Link href={`/category-${i.slug}`}>
+                    <div className={style.art_img}><Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={i.icon} alt={i.name} /></div>
                     <div className={style.art_name}><span>{i.name}</span></div>
                 </Link>
             </article>
