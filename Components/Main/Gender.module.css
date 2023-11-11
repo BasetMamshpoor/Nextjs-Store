@@ -1,6 +1,5 @@
 .gender {
   margin: 3rem 0;
-  direction: rtl;
 }
 .tab_list {
   font-size: 18px;
@@ -9,6 +8,7 @@
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid #eee;
+  direction: rtl;
 }
 .tabs {
   position: relative;

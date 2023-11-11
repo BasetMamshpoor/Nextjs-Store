@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import axios from 'axios';
 import Specifications from 'Components/Detaile/Specifications';
 import Comments from 'Components/Detaile/Comments';
 import Stock from 'Components/Detaile/Stock';
@@ -12,41 +11,40 @@ import { AiOutlineSafety, AiOutlineFieldTime } from 'react-icons/ai'
 import { BsTruck } from 'react-icons/bs'
 import Baner from 'Components/Detaile/Baner';
 import Image from 'next/image';
+import useRequest from 'hooks/useRequest';
+import Breadcrumb from 'Components/Breadcrumb';
 
 const ProductDetaile = () => {
     const router = useRouter()
     const { id } = router.query
-    const [product, setProduct] = useState()
-    const [size, setSize] = useState()
+    const [data] = useRequest(`/products/show/${id}`)
+
+    const [size, setSize] = useState({})
 
     useEffect(() => {
-        const get = async () => {
-            if (id) {
-                await axios.get(`/products/show/${id}`)
-                    .then(res => {
-                        setSize(res.data.data.sizes[0])
-                        setProduct(res.data.data)
-                    })
-                    .catch(err => console.log(err))
-            }
-        }
-        get()
-    }, [id])
+        if (!!data) setSize(data.product.sizes[0])
+    }, [data])
 
 
     return (
         <>
-            {product ? <main>
+            {!!data ? <main className={style.main}>
+                <section dir='rtl'>
+                    <div className="container">
+                        <Breadcrumb breadcrumb={data.brearcrumb} />
+                    </div>
+                </section>
+
                 <section className={style.Iwalh}>
                     <div className="container">
-                        {product && <div className="row pb-3">
+                        {data.product && <div className="row pb-3">
                             <div className="col-7 d-flex flex-column" dir="rtl">
                                 <div className={style.Cxwply}>
-                                    <h1>{product.name}</h1>
+                                    <h1>{data.product.name}</h1>
                                 </div>
                                 <div className="row flex-grow-1">
                                     <div className="col-6 ps-0">
-                                        <Attributes product={product} />
+                                        <Attributes product={data.product} />
                                     </div>
                                     <div className="col-6 p-0 mt-4">
                                         <div className={style.esohby}>
@@ -79,10 +77,10 @@ const ProductDetaile = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <Stock product={product} size={size} setSize={setSize} />
+                                <Stock product={data.product} size={size} setSize={setSize} />
                             </div>
                             <div className="col-5">
-                                <DetaileSlider Images={product.images} />
+                                <DetaileSlider Images={data.product.images} />
                             </div>
                         </div>}
                     </div>
@@ -101,13 +99,13 @@ const ProductDetaile = () => {
                         <div className="row">
 
                             <div className="col-9 ps-3">
-                                <Specifications data={product.attributes} />
+                                <Specifications data={data.product.attributes} />
 
-                                <Comments id={id} rate={product.rate} />
+                                <Comments id={id} rate={data.product.rate} />
                             </div>
 
                             <div className="col-3 p-0">
-                                <Baner product={product} size={size} />
+                                <Baner product={data.product} size={size} />
                             </div>
                         </div>
 

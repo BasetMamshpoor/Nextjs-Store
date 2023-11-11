@@ -14,7 +14,7 @@ const Gender = () => {
 
     return (
         <div className={style.gender}>
-            <div className="container" dir='rtl'>
+            <div className="container">
                 <ul className={style.tab_list}>
                     {categories.map(c => {
                         return (

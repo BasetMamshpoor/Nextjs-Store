@@ -15,12 +15,12 @@ const Comments = ({ id, rate }) => {
 
     useEffect(() => {
         const get = async () => {
-            await axios.get(`/products/show/${id}/comments?page=${currentpage}`)
+            await axios.get(`/products/show/${id}/comments`, { params: { page: currentpage } })
                 .then(res => setComments(res.data))
                 .catch(err => console.log(err))
         }
         get()
-    }, [])
+    }, [currentpage])
 
 
     return (

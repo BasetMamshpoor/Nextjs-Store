@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const useRequest = (url, page = 1) => {
+    console.log(url);
     const [data, setData] = useState()
     const [paginations, setPaginations] = useState()
     const [reload, setReload] = useState(Math.random())

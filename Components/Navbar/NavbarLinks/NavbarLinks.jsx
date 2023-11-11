@@ -14,7 +14,7 @@ const NavbarLinks = () => {
     }, [])
 
     function checkScroll() {
-        if (document.documentElement.scrollTop !== 0) {
+        if (document.documentElement.scrollTop > 10) {
             setIsScrolled(true)
         } else {
             setIsScrolled(false)

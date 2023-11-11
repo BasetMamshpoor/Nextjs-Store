@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 
 const Brands = () => {
     const [currentpage, setCurrentpage] = useState(1)
-    const [brands, setBrands, reload, paginations] = useRequest(`/admin/brands?page=${currentpage}`)
+    const [brands, setBrands, reload, paginations] = useRequest(`/admin/brands`,currentpage)
     const { SwalStyled } = useContext(Functions)
 
     const handleDelete = (id) => {
