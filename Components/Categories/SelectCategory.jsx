@@ -5,7 +5,6 @@ import Image from 'next/image';
 
 const SelectCategory = ({ categories }) => {
     const makeElement = categories.map(item => {
-        console.log(item.name);
         return (
             <div key={item.id} className={style.mvHr}>
                 <Link href={`/category-${item.slug}`} className={style.HcrJ}>

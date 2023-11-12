@@ -1,12 +1,9 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Filters from 'Components/Categories/Filters';
-import Products from 'Components/Categories/Products';
 import SelectCategoryType from 'Components/Categories/SelectCategoryType';
-import SortBy from 'Components/Categories/SortBy';
-import style from './style.module.css'
 import { getAllRouteCategories } from 'lib/getStaticPaths';
 import { Categories } from 'providers/CategoriesProvider';
+import ProductList from 'Components/Categories/ProductList';
 
 const Type = () => {
     const router = useRouter()
@@ -35,17 +32,7 @@ const Type = () => {
                 {category.subCategories.length ?
                     <SelectCategoryType subCategories={category.subCategories} /> :
                     null}
-                <section className={style.products} dir="auto">
-                    <div className="container">
-                        <div className={` d-flex`}>
-                            <Filters category={category.id} />
-                            <div className={`${style.Lops} d-flex`}>
-                                <SortBy router={router} sort={router.query.sort} />
-                                <Products category={category.id} />
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <ProductList id={category.id} />
             </main>}
         </>
     );

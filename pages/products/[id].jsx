@@ -31,7 +31,7 @@ const ProductDetaile = () => {
             {!!data ? <main className={style.main}>
                 <section dir='rtl'>
                     <div className="container">
-                        <Breadcrumb breadcrumb={data.brearcrumb} />
+                        <Breadcrumb breadcrumb={data.breadcrumb} />
                     </div>
                 </section>
 

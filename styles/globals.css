@@ -94,6 +94,12 @@ textarea {
 .flex-column {
   flex-direction: column !important;
 }
+.align-center {
+  align-items: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
 .flex-grow-1 {
   flex-grow: 1 !important;
 }
@@ -137,6 +143,10 @@ textarea {
 }
 .p-0 {
   padding: 0 !important;
+}
+.px-3 {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
 }
 .py-5 {
   padding-top: 3rem !important;
@@ -295,7 +305,7 @@ textarea {
   justify-content: space-between;
   border-radius: 20px;
   background: #3499ff;
-  padding: .75rem;
+  padding: 0.75rem;
   padding-right: 0;
   overflow: hidden;
   height: 320px;
@@ -546,4 +556,11 @@ textarea {
   color: #fff;
   background-color: #7066e0;
   border-color: #7066e0;
+}
+.productList {
+  padding: 3rem 0;
+}
+.productList .Lops {
+  flex-direction: column;
+  flex-grow: 1;
 }

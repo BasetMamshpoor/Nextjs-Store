@@ -24,11 +24,13 @@
   max-width: 1200px;
   width: 100%;
   min-height: 390px;
-  height: fit-content;
+  max-height: 450px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   border-radius: 0 0 10px 10px;
   box-shadow: 0 1px 1px rgb(0 0 0 / 14%), 0 4px 8px rgb(0 0 0 / 30%);
+  overflow: hidden;
 }
 .cat_gender {
   padding: 0 1rem;
@@ -43,11 +45,14 @@
 .cat_gender_menu {
   flex-grow: 1;
   height: 100%;
-  padding: 0 1rem;
   display: flex;
 }
 .cat_gender_apparel {
   width: 120px;
+  height: 100%;
+  flex-shrink: 0;
+  overflow: scroll;
+  padding: 0 15px 0 5px;
 }
 .cat_gender_apparel ul {
   border-left: 1px solid #eee;
@@ -57,12 +62,14 @@
   flex-direction: column;
 }
 .apparel_type {
-  padding: 1rem;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
   flex-grow: 1;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   gap: 10px 20px;
+  overflow: scroll;
 }
 .gender {
   margin: 0 10px;
@@ -98,6 +105,7 @@
 }
 .article {
   height: fit-content;
+  flex: 0 0 15%;
 }
 .article a {
   display: flex;
@@ -116,9 +124,11 @@
 .art_img {
   transition: all 0.3s ease;
   margin-bottom: 0.5rem;
-  width: 96px;
+  width: 124px;
+  height: 124px;
   padding: 0.3rem;
   border-radius: 10px;
+  overflow: hidden;
 }
 .art_name span {
   font-size: 12px;

@@ -76,12 +76,13 @@
 .art_img {
   transition: all 0.3s ease;
   margin-bottom: 0.5rem;
-  width: 164px;
+  width: 176px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  max-height: 176px;
 }
 .art_name span {
   font-size: 12px;
