@@ -19,7 +19,7 @@ const useRequest = (url, page = 1) => {
         get()
     }, [url, reload, page])
 
-    return [data, setData, setReload, paginations]
+    return [data, setData, setReload, paginations, setPaginations]
 };
 
 export default useRequest;

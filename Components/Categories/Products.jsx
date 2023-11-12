@@ -1,14 +1,13 @@
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Product from './shared/Product';
 import InfiniteScroll from 'Components/InfiniteScroll';
-import useInfiniteScrollRequest from 'hooks/useInfiniteScrollRequest';
-import axios from 'axios';
+import useRequest from 'hooks/useRequest';
 import { e2p } from 'Functions/ConvertNumbers';
+import { getProducts } from 'api/products';
 
 const Products = ({ category, total_Items }) => {
     const router = useRouter()
-    const [currentPage, setCurrentPage] = useState(1)
 
     function decodeQueryData(data) {
         const ret = [];
@@ -20,7 +19,7 @@ const Products = ({ category, total_Items }) => {
     }
 
 
-    const [products, setProducts, reload, pagination] = useInfiniteScrollRequest(`/products/filter/${category}?${decodeQueryData(router.query)}`, currentPage)
+    const [products, setProducts, reload, pagination, setPagination] = useRequest(`/products/filter/${category}?${decodeQueryData(router.query)}`, 1)
 
     let ZcfPa = {
         display: "grid",
@@ -30,32 +29,30 @@ const Products = ({ category, total_Items }) => {
     }
 
     useEffect(() => {
-        // console.log(total_Items.current);
         total_Items.current.innerText = `${pagination ? e2p(pagination.meta.total) : e2p(0)} کالا`
     }, [pagination])
 
-    const loadMore = async () => {
-        await axios.get(`/products/filter/${category}?${decodeQueryData(router.query)}`, currentPage + 1)
-            .then(res => {
-                setProducts(prev => {
-                    return prev.concat(res.data.data)
-                })
+    const loadMoreItems = async (page) => {
+        const products = await getProducts(category, page)
+        if (!!products) {
+            setProducts(prev => {
+                return prev.concat(products.data)
             })
-        setCurrentPage(currentPage + 1)
-    };
-
-
+            const { data, ...pagination } = products
+            setPagination(pagination)
+        }
+        return true
+    }
 
     return (
         <>
             {products && products.length ? <div>
                 <InfiniteScroll
                     style={ZcfPa}
+                    loadMoreItems={loadMoreItems}
+                    isEnd={pagination.links.next ? false : true}
+                    dataLength={products.length}
                     pageStart={1}
-                    loadMore={loadMore}
-                    hasMore={pagination.links.next ? true : false}
-                    threshold={0}
-                    loader={''}
                 >
                     {products.map(i => <Product key={i.id} {...i} />)}
                 </InfiniteScroll>
