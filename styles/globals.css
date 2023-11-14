@@ -271,6 +271,10 @@ textarea {
   color: #000 !important;
 }
 @media (max-width: 1023.98px) {
+  .main_slide .swiper-slide div {
+    width: 100%;
+    height: 300px;
+  }
   .main_slider .swiper-pagination {
     left: 50% !important;
     transform: translate(-50%, -50%);

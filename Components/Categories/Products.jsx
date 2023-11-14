@@ -5,18 +5,10 @@ import InfiniteScroll from 'Components/InfiniteScroll';
 import useRequest from 'hooks/useRequest';
 import { e2p } from 'Functions/ConvertNumbers';
 import { getProducts } from 'api/products';
+import decodeQueryData from 'Functions/decodeQueryData';
 
 const Products = ({ category, total_Items }) => {
     const router = useRouter()
-
-    function decodeQueryData(data) {
-        const ret = [];
-        for (let d in data)
-            if (d !== 'type' && d !== 'gender') {
-                ret.push(decodeURIComponent(d) + '=' + decodeURIComponent(data[d]));
-            }
-        return ret.join('&');
-    }
 
 
     const [products, setProducts, reload, pagination, setPagination] = useRequest(`/products/filter/${category}?${decodeQueryData(router.query)}`, 1)
@@ -33,7 +25,7 @@ const Products = ({ category, total_Items }) => {
     }, [pagination])
 
     const loadMoreItems = async (page) => {
-        const products = await getProducts(category, page)
+        const products = await getProducts(category, router.query, page)
         if (!!products) {
             setProducts(prev => {
                 return prev.concat(products.data)

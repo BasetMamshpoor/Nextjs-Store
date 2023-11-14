@@ -26,6 +26,7 @@ const Filters = ({ category }) => {
 
 
     const handleFilter = (name, value) => {
+        console.log(value);
         setFilters(prev => {
             return {
                 ...prev,
@@ -98,6 +99,15 @@ const Filters = ({ category }) => {
                     array={makeFilter('sizes')} defaultValue={filters.sizes}
                     Multiple Searchable placeHolder='سایز' setState={handleFilter} name='sizes' label
                     styleBox={{ padding: 'calc(.75rem + 10px) 12px', borderBottom: '1px solid #ddd' }} />
+                <div className={style.discount}>
+                    <div className={style.dis_field}>
+                        <label htmlFor="discountField">
+                            تخفیف
+                        </label>
+                        <input type="checkbox" name="discount" id="discountField" checked={filters['discount'] ? true : false}
+                            onChange={({ target }) => target.checked ? handleFilter('discount', true) : handleFilter('discount', null)} />
+                    </div>
+                </div>
                 <div className={style.yqgi}>
                     <div className={style.typeF}>
                         <input className={style.checkprice} type="checkbox" id="price" hidden />

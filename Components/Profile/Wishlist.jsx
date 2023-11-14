@@ -26,36 +26,38 @@ const Wishlist = () => {
                         {wish?.map(i => {
                             const { id, product } = i
                             return (
-                                <div className={style.gali9_y} key={id}>
-                                    <Link href={`/product/${product.id}`} className={style.KK7f_ouq}>
-                                        <div className={style.hyyCr4_A}>
-                                        <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={product.image} alt="" />
-                                        </div>
-                                    </Link>
-                                    <div className={style.LassOing_R}>
-                                        <Link href={`/product/${product.id}`} className={style.fWcA4_Z}>
-                                            {product.name}
-                                        </Link>
-                                        <div className={style.OtDah2_1}>
-                                            <div className={style.nJxe3_iu}>
-                                                <p className={style.iBrJ6_e}>{addComma(product.offPrice.toString())}</p>
-                                                <span className={style.Off_persant_haZi}>%{e2p(product.offPercent)}</span>
+                                <>
+                                    {product && <div className={style.gali9_y} key={id}>
+                                        <Link href={`/product/${product.id}`} className={style.KK7f_ouq}>
+                                            <div className={style.hyyCr4_A}>
+                                                <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={product.image} alt="" />
                                             </div>
-                                            <p className={style.Off_3X5}>{addComma(product.price.toString())}
-                                            </p>
+                                        </Link>
+                                        <div className={style.LassOing_R}>
+                                            <Link href={`/product/${product.id}`} className={style.fWcA4_Z}>
+                                                {product.name}
+                                            </Link>
+                                            <div className={style.OtDah2_1}>
+                                                <div className={style.nJxe3_iu}>
+                                                    <p className={style.iBrJ6_e}>{addComma(product.offPrice.toString())}</p>
+                                                    <span className={style.Off_persant_haZi}>%{e2p(product.offPercent)}</span>
+                                                </div>
+                                                <p className={style.Off_3X5}>{addComma(product.price.toString())}
+                                                </p>
+                                            </div>
+                                            <div className={style.Add_obgUw}>
+                                                <a href=" " onClick={e => e.preventDefault()} className={style.AdDPIc3_}>
+                                                    <span>افزودن به لیست</span>
+                                                    <BsCart3 />
+                                                </a>
+                                                <button className={style.remove_iCrx4}>
+                                                    <span>حذف</span>
+                                                    <BsTrash />
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div className={style.Add_obgUw}>
-                                            <a href=" " onClick={e => e.preventDefault()} className={style.AdDPIc3_}>
-                                                <span>افزودن به لیست</span>
-                                                <BsCart3 />
-                                            </a>
-                                            <button className={style.remove_iCrx4}>
-                                                <span>حذف</span>
-                                                <BsTrash />
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                                    </div>}
+                                </>
                             )
                         })}
                     </div>
