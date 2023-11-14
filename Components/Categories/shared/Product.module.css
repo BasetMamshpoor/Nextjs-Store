@@ -1,4 +1,3 @@
-
 .Xqera {
   padding: 0.3rem;
   border-top: 1px solid rgba(231, 231, 231, 0.678);
@@ -20,12 +19,12 @@
   border-left: none;
 }
 .imgP {
-  padding: .5rem;
-  max-height: 180px;
+  padding: 0.5rem;
+  height: 180px;
 }
 .descP {
   flex-grow: 1;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   padding: 0 0.3rem;
 }
 .descP p {
@@ -70,4 +69,14 @@
 .priceP del {
   color: rgba(0, 0, 0, 0.4);
   padding-left: 2rem;
+}
+@media (max-width: 1279.98px) {
+  .imgP {
+    height: 240px;
+  }
+}
+@media (max-width: 1119.98px) {
+  .imgP {
+    height: 280px;
+  }
 }

@@ -13,13 +13,6 @@ const Products = ({ category, total_Items }) => {
 
     const [products, setProducts, reload, pagination, setPagination] = useRequest(`/products/filter/${category}?${decodeQueryData(router.query)}`, 1)
 
-    let ZcfPa = {
-        display: "grid",
-        gridTemplateColumns: "repeat(4, 1fr)",
-        padding: "1rem 0.5rem",
-        paddingTop: "0",
-    }
-
     useEffect(() => {
         total_Items.current.innerText = `${pagination ? e2p(pagination.meta.total) : e2p(0)} کالا`
     }, [pagination])
@@ -40,7 +33,6 @@ const Products = ({ category, total_Items }) => {
         <>
             {products && products.length ? <div>
                 <InfiniteScroll
-                    style={ZcfPa}
                     loadMoreItems={loadMoreItems}
                     isEnd={pagination.links.next ? false : true}
                     dataLength={products.length}

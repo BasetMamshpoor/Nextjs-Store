@@ -24,9 +24,7 @@ const Gender = () => {
                         )
                     })}
                 </ul>
-                <div className={style.content_container}>
-                    <SelectCategory categories={toggleState.subCategories} />
-                </div>
+                <SelectCategory categories={toggleState.subCategories} />
             </div>
         </div>
     );

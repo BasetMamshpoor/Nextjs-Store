@@ -27,8 +27,3 @@
   height: 3px;
   background: #5893f1;
 }
-.content_container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}

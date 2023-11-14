@@ -1,0 +1,14 @@
+.productList {
+  padding: 3rem 0;
+}
+.productList .Lops {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.oLkvy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}

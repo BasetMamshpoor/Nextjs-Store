@@ -25,7 +25,7 @@ const InfiniteScroll = ({ children, loadMoreItems, dataLength, isEnd, style, pag
 
     return (
         <>
-            <div style={style}>
+            <div className='productsList'>
                 {children}
             </div>
             {isFetching && !isEnd && <div className='loading'><img src={Loading} alt='loading' /></div>}

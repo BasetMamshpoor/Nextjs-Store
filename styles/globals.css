@@ -562,10 +562,20 @@ textarea {
   background-color: #7066e0;
   border-color: #7066e0;
 }
-.productList {
-  padding: 3rem 0;
+.productsList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 1rem 0.5rem;
+  padding-top: 0;
 }
-.productList .Lops {
-  flex-direction: column;
-  flex-grow: 1;
+
+@media (max-width: 1279.98px) {
+  .productsList {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 1119.98px) {
+  .productsList {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

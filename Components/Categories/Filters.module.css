@@ -8,6 +8,7 @@
   height: fit-content;
   padding: 10px;
   margin-left: 1rem;
+  margin-top: 1rem;
 }
 .header {
   display: flex;
@@ -160,4 +161,9 @@
 
 .discount input[type="checkbox"]:checked {
   background: #00ed64;
+}
+@media (max-width:1023.98px) {
+  .filters {
+    display: none;
+  }
 }

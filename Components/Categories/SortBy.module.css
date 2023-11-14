@@ -1,41 +1,44 @@
 .Cueq {
   display: flex;
-    margin-right: 1rem;
-    padding: 0.5rem 0;
-    align-items: center;
-    font-family: IRANYekan;
+  padding: 0.5rem 0;
+  align-items: center;
+  font-family: IRANYekan;
+}
+.Cueq label {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  color: #000;
+  font-weight: 500;
+}
+.sortList {
+  display: flex;
+  align-items: center;
+}
+.sortList li {
+  margin: 0 0.5rem;
+}
+.activeSort a {
+  color: #ee384e !important;
+}
+.sortList li a {
+  font-size: 14px;
+  color: #949494;
+  transition: all 0.3s linear;
+}
+.sortList li a:hover {
+  font-size: 14px;
+  color: #ee384e;
+}
+.Cueq label::before {
+  margin-left: 0.3rem;
+  content: "\F0B4\00FE0E";
+  font-family: Icon;
+  font-weight: 500;
+  font-size: 24px;
+}
+@media (max-width: 1023.98px) {
+  .Cueq {
+    display: none;
   }
-  .Cueq label {
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    color: #000;
-    font-weight: 500;
-  }
-  .sortList {
-    display: flex;
-    align-items: center;
-  }
-  .sortList li {
-    margin: 0 0.5rem;
-  }
-  .activeSort a {
-    color: #ee384e !important;
-  }
-  .sortList li a {
-    font-size: 14px;
-    color: #949494;
-    transition: all 0.3s linear;
-  }
-  .sortList li a:hover {
-    font-size: 14px;
-    color: #ee384e;
-  }
-  .Cueq label::before {
-    margin-left: 0.3rem;
-    content: "\F0B4\00FE0E";
-    font-family: Icon;
-    font-weight: 500;
-    font-size: 24px;
-  }
-  
+}
