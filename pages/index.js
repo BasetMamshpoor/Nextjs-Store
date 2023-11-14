@@ -1,3 +1,4 @@
+import Banner from "Components/Main/Banner";
 import Gender from "Components/Main/Gender";
 import MostSell from "Components/Main/MostSell";
 import DailyOffer from "Components/Slider/DailyOffer";
@@ -10,6 +11,8 @@ export default function Home() {
         <Slider />
 
         <DailyOffer />
+
+        <Banner />
 
         <Gender />
 

@@ -1,0 +1,29 @@
+.Banner {
+  margin: 3rem 0;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.baner {
+  flex: 0 0 calc(calc(100% / 4) - 0.8rem);
+  /* height: 227px; */
+  box-shadow: 0 10px 10px 0px #0000002d;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+@media (max-width:1023.98px) {
+    .baner {
+        flex:  0 0 calc(calc(100% / 2) - .5rem);
+    }
+}

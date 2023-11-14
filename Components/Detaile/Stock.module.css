@@ -38,7 +38,9 @@
   border-radius: 5px;
 }
 .EzP3_wzm1 span {
-  margin-bottom: -5px;
+  position: relative;
+  bottom: -1px;
+  left: 1px;
   letter-spacing: 2px;
   font-weight: 600;
 }
