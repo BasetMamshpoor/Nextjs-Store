@@ -38,15 +38,15 @@ const ProductDetaile = () => {
                 <section className={style.Iwalh}>
                     <div className="container">
                         {data.product && <div className="row pb-3">
-                            <div className="col-7 d-flex flex-column" dir="rtl">
+                            <div className="col-lg-7 d-flex flex-column" dir="rtl">
                                 <div className={style.Cxwply}>
                                     <h1>{data.product.name}</h1>
                                 </div>
                                 <div className="row flex-grow-1">
-                                    <div className="col-6 ps-0">
+                                    <div className="col-lg-6 ps-0">
                                         <Attributes product={data.product} />
                                     </div>
-                                    <div className="col-6 p-0 mt-4">
+                                    <div className="col-lg-6 p-0 mt-4">
                                         <div className={style.esohby}>
                                             <div className={style.cKyf}>
                                                 <div className={style.pxty}>
@@ -79,7 +79,7 @@ const ProductDetaile = () => {
                                 </div>
                                 <Stock product={data.product} size={size} setSize={setSize} />
                             </div>
-                            <div className="col-5">
+                            <div className="col-lg-5">
                                 <DetaileSlider Images={data.product.images} />
                             </div>
                         </div>}
@@ -98,13 +98,13 @@ const ProductDetaile = () => {
 
                         <div className="row">
 
-                            <div className="col-9 ps-3">
+                            <div className="col-lg-9 ps-3">
                                 <Specifications data={data.product.attributes} />
 
                                 <Comments id={id} rate={data.product.rate} />
                             </div>
 
-                            <div className="col-3 p-0">
+                            <div className="col-lg-3 p-0">
                                 <Baner product={data.product} size={size} />
                             </div>
                         </div>

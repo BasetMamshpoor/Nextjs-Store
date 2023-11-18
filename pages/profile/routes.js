@@ -15,7 +15,7 @@ let profileRoutes = [
     { link: 'wishlist', icon: <BsHeart />, name: 'لیست علاقه‌مندی', component: <Wishlist />, },
     { link: 'address', icon: <GrLocation />, name: 'آدرس‌ها', component: <Address />, },
     { link: 'comments', icon: <FaRegCommentDots />, name: 'دیدگاه‌ها', component: <Comments />, },
-    { link: '', icon: <MdOutlineMessage />, name: 'پیغام‌های پشتیبانی' },
-    { link: '', icon: <IoIosLogOut />, name: 'خروج' },
+    { link: 'messages', icon: <MdOutlineMessage />, name: 'پیغام‌های پشتیبانی' },
+    { link: 'exit', icon: <IoIosLogOut />, name: 'خروج' },
 ]
 export default profileRoutes;

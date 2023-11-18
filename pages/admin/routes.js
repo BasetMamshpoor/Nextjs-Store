@@ -1,4 +1,4 @@
-import { GiClothes } from 'react-icons/gi'
+import { GiClothes, GiKnightBanner } from 'react-icons/gi'
 import { MdOutlineFileUpload, MdSettings, MdSpaceDashboard } from 'react-icons/md'
 import { BsCart3, BsBuilding } from 'react-icons/bs'
 import { FiSliders } from 'react-icons/fi';
@@ -7,6 +7,8 @@ import Form from 'Components/Vendor/Form';
 import Slider from 'Components/Vendor/Slider';
 import Brands from 'Components/Vendor/Brands';
 import Category from 'Components/Vendor/Category';
+import Banner from 'Components/Vendor/Banner';
+import AdminProducts from 'Components/Vendor/Products/AdminProducts';
 
 let adminRoutes = [
     { link: 'dashboard', icon: <MdSpaceDashboard />, name: 'داشبورد' },
@@ -14,8 +16,9 @@ let adminRoutes = [
     { link: 'category', icon: <BiCategory />, name: 'دسته بندی', component: <Category />, },
     { link: 'brands', icon: <BsBuilding />, name: 'برندها', component: <Brands />, },
     { link: 'slider', icon: <FiSliders />, name: 'اسلایدر', component: <Slider />, },
-    { link: '', icon: <GiClothes />, name: 'محصولات' },
-    { link: '', icon: <BsCart3 />, name: 'سفارشات' },
-    { link: '', icon: <MdSettings />, name: 'تغییر مشخصات' },
+    { link: 'banners', icon: <GiKnightBanner />, name: 'بنرها', component: <Banner />, },
+    { link: 'products', icon: <GiClothes />, name: 'محصولات', component: <AdminProducts /> },
+    { link: 'orders', icon: <BsCart3 />, name: 'سفارشات' },
+    { link: 'setting', icon: <MdSettings />, name: 'تغییر مشخصات' },
 ]
 export default adminRoutes

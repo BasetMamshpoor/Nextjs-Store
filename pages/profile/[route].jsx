@@ -34,15 +34,11 @@ const Profile = () => {
     );
 };
 export async function getStaticPaths() {
-
+    const paths = profileRoutes.map(r => {
+        return { params: { route: r.link } }
+    })
     return {
-        paths: [
-            { params: { route: 'information' } },
-            { params: { route: 'wishlist' } },
-            { params: { route: 'address' } },
-            { params: { route: 'orders' } },
-            { params: { route: 'comments' } },
-        ],
+        paths,
         fallback: false
     }
 }

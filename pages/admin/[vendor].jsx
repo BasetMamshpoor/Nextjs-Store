@@ -20,17 +20,11 @@ const Vendor = () => {
 };
 
 export async function getStaticPaths() {
-
+    const paths = adminRoutes.map(r => {
+        return { params: { vendor: r.link } }
+    })
     return {
-        paths: [
-            { params: { vendor: 'new-product' } },
-            { params: { vendor: 'dashboard' } },
-            { params: { vendor: 'products' } },
-            { params: { vendor: 'slider' } },
-            { params: { vendor: 'orders' } },
-            { params: { vendor: 'category' } },
-            { params: { vendor: 'brands' } },
-        ],
+        paths,
         fallback: false
     }
 }

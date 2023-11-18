@@ -13,7 +13,7 @@ const Cart = () => {
                 <div className={style.ZolpWn__0_} dir="rtl">
                     <div className="container">
                         <div className="row mx-3">
-                            <div className="col-8">
+                            <div className="col-lg-8">
                                 <div className={style.SxSafd_b_3b}>
                                     <Product state={state.selectedItems} dispatch={dispatch} />
                                 </div>
@@ -24,7 +24,7 @@ const Cart = () => {
                                     }
                                 </div>
                             </div>
-                            <div className="col-4 p-0">
+                            <div className="col-lg-4 p-0">
                                 <div className={style.jMszopl_9Y_1}>
                                     <div className={style.KvxUs_LlI}>
                                         <div className={style.lBsNaA_J}>

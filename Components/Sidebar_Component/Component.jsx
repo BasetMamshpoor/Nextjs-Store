@@ -8,7 +8,7 @@ const Component = ({ page, query, links, children }) => {
         <>
             {!!links &&
                 <div className="row">
-                    <div className={`col-3 ${style.sidebar}`}>
+                    <div className={`col-lg-3 ${style.sidebar}`}>
                         {children}
                         <div className={style.loVgtSw_5Q}>
                             <ul className={style.OcWz_yc1a}>
@@ -28,7 +28,7 @@ const Component = ({ page, query, links, children }) => {
                             </ul>
                         </div>
                     </div>
-                    <div className={`col-9 ${style.col_9}`}>
+                    <div className={`col-lg-9 ${style.col_9}`}>
                         {links.find(routes => routes.link === query)?.component}
                     </div>
                 </div>

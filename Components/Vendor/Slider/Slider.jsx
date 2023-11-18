@@ -2,7 +2,7 @@ import Link from 'next/link';
 import style from './Slider.module.css'
 import { FiPlus, FiTrash2, FiEdit3 } from 'react-icons/fi'
 import createModal from 'Components/Modal';
-import NewSlide from './NewSlide';
+import NewSlide from '../New';
 import useRequest from 'hooks/useRequest';
 import Image from 'next/image';
 import axios from 'axios';

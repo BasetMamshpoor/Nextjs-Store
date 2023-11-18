@@ -31,7 +31,7 @@ const Comments = ({ id, rate }) => {
                     <p className={style.totalComments}>تعداد کل دیدگاه ها: <span>{!!comments && e2p(comments.meta.total)}</span></p>
                 </div>
                 {!!comments && <div className="row">
-                    <div className="col-3 ps-0">
+                    <div className="col-lg-3 ps-0">
                         <div className={style.cxyrd3}>
                             <div className={style.G4xP0sm3}>
                                 <p className={style.cxr8Jve}>{e2p(rate)}</p>
@@ -43,7 +43,7 @@ const Comments = ({ id, rate }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-9">
+                    <div className="col-lg-9">
                         {comments.data.map(c => {
                             return (<article className={style.comment} key={c.id}>
                                 <div className={style.qzoY3_jl}>

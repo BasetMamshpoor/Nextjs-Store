@@ -9,15 +9,15 @@ const Specifications = ({ data }) => {
                     <h5>مشخصات</h5>
                 </div>
                 <div className='row pt-3'>
-                    <div className={`${style.fjEsx} col-2`}>
+                    <div className={`${style.fjEsx} col-lg-2`}>
                         <div className={style.cfxrG}>
                             <p>ویژگی ها</p>
                         </div>
                     </div>
-                    <div className={`${style.hdoRE} col-10`}>
+                    <div className={`${style.hdoRE} col-lg-10`}>
                         <div className={style.ewZQpsi}>
                             <ul className={style.oVtn}>
-                                {data.map((s,i)=> {
+                                {data.map((s, i) => {
                                     return (
                                         <li key={i}>
                                             <p className={style.cXopw}>{s.name} :</p>

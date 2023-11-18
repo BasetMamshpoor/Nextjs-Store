@@ -1,9 +1,9 @@
-import style from './NewSlide.module.css'
+import style from './New.module.css'
 import { useRef, useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 
-const NewSlide = ({ data, setIsOpen, SwalStyled, reload }) => {
+const New = ({ data, setIsOpen, SwalStyled, reload }) => {
     const wrapper = useRef()
     const err = useRef()
     const [slide, setSlide] = useState(!!data ? { link: data.link, src: data.src } : {})
@@ -87,4 +87,4 @@ const NewSlide = ({ data, setIsOpen, SwalStyled, reload }) => {
     );
 };
 
-export default NewSlide;
+export default New;
