@@ -32,7 +32,7 @@ const Dropdown = ({ name, styles, styleBox, array, Multiple, setState, Searchabl
         if (Multiple) {
             if (!defaultValue) !filterByReference(array, selectedValue).length && setSelectedValue([])
         }
-        else !array.find(i => i.value === selectedValue?.value) && setSelectedValue(null)
+        else if (!defaultValue) !array.find(i => i.value === selectedValue?.value) && setSelectedValue(null)
     }, [array])
 
 

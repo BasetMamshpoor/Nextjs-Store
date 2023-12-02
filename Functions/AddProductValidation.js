@@ -19,18 +19,18 @@ function validation(product) {
     }
     // category
     if (product.category_id === null) {
-        errors.category_id = 'لطفا تمام سطح های دسته بندی را وارد کنید..'
+        errors.category_id = '.لطفا حداقل یک سطح دسته بندی را وارد کنید'
     } else {
         delete errors.category_id
     }
     // image
-    if (!product.image) {
+    if (!product._method && !product.image) {
         errors.image = 'لطفا عکس اصلی را وارد کنید.'
     } else {
         delete errors.image
     }
     //images
-    if (!product.images.length) {
+    if (!product._method && !product.images.length) {
         errors.images = 'لطفا حداقل یک عکس برای لیست انتخاب کنید.'
     } else {
         delete errors.images
@@ -79,7 +79,7 @@ function validation(product) {
         delete errors.colorCode
     }
     // sizes
-    if (!product.sizes.length) {
+    if (!product._method && !product.sizes.length) {
         errors.sizes = 'سایز و تعداد موجود رو وارد کنید.'
     } else {
         delete errors.sizes

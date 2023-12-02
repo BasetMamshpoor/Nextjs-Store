@@ -12,9 +12,11 @@ const ProductList = ({ id }) => {
         <>
             <section className={style.productList} dir="rtl">
                 <div className="container">
-                    <div className={`d-flex`}>
-                        <Filters category={id} />
-                        <div className={style.Lops}>
+                    <div className='row'>
+                        <div className='col-lg-3'>
+                            <Filters category={id} />
+                        </div>
+                        <div className={`${style.Lops} col-lg-9`}>
                             <div className={style.oLkvy}>
                                 <SortBy router={router} sort={router.query.sort} />
                                 <div className={style.totalItems} ref={total_Items}></div>

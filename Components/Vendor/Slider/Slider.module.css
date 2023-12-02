@@ -30,7 +30,7 @@
   margin: 1rem 0 2rem;
 }
 .i8yv_o1a {
-  flex: 0 0 calc(calc(100% - 2rem) / 3);
+  flex: 0 0 calc(calc(100% - 1rem) / 2);
   display: flex;
   align-items: center;
   flex-direction: column;

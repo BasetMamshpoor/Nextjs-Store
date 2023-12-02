@@ -24,9 +24,7 @@ const Filters = ({ category }) => {
         return array
     }
 
-
     const handleFilter = (name, value) => {
-        console.log(value);
         setFilters(prev => {
             return {
                 ...prev,
@@ -77,9 +75,11 @@ const Filters = ({ category }) => {
             );
         }
     }
+
     const clearFilters = () => {
         router.replace(router.asPath.split('?')[0], undefined, { shallow: true });
     }
+    
     return (
         <>
             {!!data && <div className={style.filters}>
@@ -102,7 +102,7 @@ const Filters = ({ category }) => {
                 <div className={style.discount}>
                     <div className={style.dis_field}>
                         <label htmlFor="discountField">
-                            تخفیف
+                            فقط تخفیف دار
                         </label>
                         <input type="checkbox" name="discount" id="discountField" checked={filters['discount'] ? true : false}
                             onChange={({ target }) => target.checked ? handleFilter('discount', true) : handleFilter('discount', null)} />

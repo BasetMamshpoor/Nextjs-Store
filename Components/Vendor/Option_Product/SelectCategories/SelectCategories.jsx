@@ -3,9 +3,11 @@ import useRequest from 'hooks/useRequest';
 import React, { useEffect, useState } from 'react';
 import style from './SelectCategories.module.css'
 
-const SelectCategories = ({ setProduct, touch, errors }) => {
-
-    const [categories, setCategories] = useState({ id: null, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } })
+const SelectCategories = ({ setProduct, touch, errors, data = [] }) => {
+    const categoryDefault = !!(data.length > 0) ?
+        { id: data[0]?.id, subCategories: { id: data[1]?.id, subCategories: { id: data[2]?.id, subCategories: {} } } } :
+        { id: null, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } };
+    const [categories, setCategories] = useState(categoryDefault)
     const [category, setCategory] = useState(null)
     const [categoryList] = useRequest('/categories')
 
@@ -51,11 +53,11 @@ const SelectCategories = ({ setProduct, touch, errors }) => {
     }
 
     const handleSelectCategory = (name, Value) => {
-        const value = Value ? Value : null
+        const value = Value ?? null
         switch (name) {
             case 'gender':
                 setCategories({ id: value, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } })
-                setCategory(null)
+                setCategory(value)
                 return;
             case 'type':
                 setCategories(prev => {
@@ -63,14 +65,14 @@ const SelectCategories = ({ setProduct, touch, errors }) => {
                     prev.subCategories.subCategories = { id: null, subCategories: {} }
                     return { ...prev }
                 })
-                setCategory(null)
+                !!value ? setCategory(value) : setCategory(categories.id)
                 return;
             case 'model':
                 setCategories(prev => {
                     prev.subCategories.subCategories.id = value
                     return { ...prev }
                 })
-                setCategory(value)
+                !!value ? setCategory(value) : setCategory(categories.subCategories.id)
                 return;
             default:
                 setCategories({ id: null, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } })
@@ -82,16 +84,16 @@ const SelectCategories = ({ setProduct, touch, errors }) => {
         <>{!!categoryList && <>
             <div className={style.nJe_3zq_plf}>
                 <DropDown array={gender()} name='gender'
-                    placeHolder='دسته بندی سطح اول' label setState={handleSelectCategory} />
+                    placeHolder='دسته بندی سطح اول' label setState={handleSelectCategory} defaultValue={categories.id} />
                 {touch.category_id && errors.category_id && <span className={style.errors_input}>{errors.category_id}</span>}
             </div>
             <div className={style.nJe_3zq_plf}>
                 <DropDown array={type()} name='type'
-                    Searchable placeHolder="دسته بندی سطح دوم" label setState={handleSelectCategory} />
+                    Searchable placeHolder="دسته بندی سطح دوم" label setState={handleSelectCategory} defaultValue={categories.subCategories.id} />
             </div>
             <div className={style.nJe_3zq_plf}>
                 <DropDown array={model()} name='model'
-                    Searchable placeHolder="دسته بندی سطح سوم" label setState={handleSelectCategory} />
+                    Searchable placeHolder="دسته بندی سطح سوم" label setState={handleSelectCategory} defaultValue={categories.subCategories.subCategories.id} />
             </div>
         </>}</>
     );

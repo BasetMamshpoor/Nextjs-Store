@@ -1,14 +1,9 @@
 .filters {
-  width: 300px;
   border: 1px solid rgba(87, 87, 87, 0.295);
   border-radius: 10px;
   position: sticky;
   top: 10rem;
-  flex-shrink: 0;
-  height: fit-content;
   padding: 10px;
-  margin-left: 1rem;
-  margin-top: 1rem;
 }
 .header {
   display: flex;

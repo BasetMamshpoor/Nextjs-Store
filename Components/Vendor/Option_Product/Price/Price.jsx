@@ -7,18 +7,13 @@ import persian_fa from "react-date-object/locales/persian_fa"
 import TimePicker from 'react-multi-date-picker/plugins/time_picker';
 import { p2e } from 'Functions/ConvertNumbers';
 
-const Price = ({ setProduct, offPrice, price, touch, errors }) => {
+const Price = ({ setProduct, offPrice, price, touch, errors, discountTime }) => {
 
     const input = useRef()
-    const checkBox = useRef()
     const newDate = new Date()
-    const [date, setDate] = useState({ off_date_from: newDate, off_date_to: new Date(Date.now() + (3600 * 1000 * 24)) })
-
-    useEffect(() => {
-        if (input.current.checked)
-            updateState()
-    }, [date])
-
+    const [checkbox, setCheckbox] = useState()
+    const [date, setDate] = useState()
+    const setDateState = (e, b) => setDate(prev => { return { ...prev, [b.input.name]: e.toDate() } })
 
     const handleResult = (name, Value) => {
         let value = parseInt(Value) || 0
@@ -30,12 +25,29 @@ const Price = ({ setProduct, offPrice, price, touch, errors }) => {
         })
     }
 
+    useEffect(() => {
+        if (offPrice) {
+            setCheckbox(true)
+            setDate(discountTime)
+        }
+        else {
+            setCheckbox(false)
+            setDate({ off_date_from: newDate, off_date_to: new Date(Date.now() + (3600 * 1000 * 24)) })
+        }
+    }, [offPrice])
+
+    useEffect(() => {
+        if (checkbox) updateState(false)
+    }, [date])
+
     const handleCheck = ({ target }) => {
         if (target.checked) {
             input.current.focus()
-            updateState()
+            updateState(true)
+            setCheckbox(true)
         }
         else {
+            setCheckbox(false)
             setProduct(prev => {
                 const { offPrice, off_date_from, off_date_to, ...previ } = prev
                 return {
@@ -45,20 +57,19 @@ const Price = ({ setProduct, offPrice, price, touch, errors }) => {
         }
     }
 
-    const updateState = () => setProduct(prev => {
+    const updateState = (check) => setProduct(prev => {
         let dateFrom = new DateObject({
             date: date.off_date_from,
-            format: "YYYY-MM-DD hh:mm:ss"
+            format: "YYYY-MM-DD HH:mm:ss"
         })
         let dateTo = new DateObject({
             date: date.off_date_to,
-            format: "YYYY-MM-DD hh:mm:ss"
+            format: "YYYY-MM-DD HH:mm:ss"
         })
-        const newFormatDate = { off_date_from: dateFrom.format(), off_date_to: dateTo.format() }
+        const newFormatDate = { off_date_from: dateFrom.format(), off_date_to: dateTo.format(), ...(check && { offPrice: prev.price ?? 1 }) }
         return { ...prev, ...newFormatDate }
     })
 
-    const setDateState = (e, b) => setDate(prev => { return { ...prev, [b.input.name]: e.toDate() } })
 
     const getToday = useCallback((date) => p2e(new DateObject(date).toDate().toLocaleDateString('fa-IR').split('/')[2]), [])
 
@@ -69,7 +80,7 @@ const Price = ({ setProduct, offPrice, price, touch, errors }) => {
                 {touch.price && errors.price && <span className={style.errors_input}>{errors.price}</span>}
             </div>
             <div className={style.FzwYa_4n4}>
-                <input ref={checkBox} type="checkbox" name="isOff_uAdd" id={style.IcE_22} hidden onChange={handleCheck} />
+                <input type="checkbox" name="isOff_uAdd" id={style.IcE_22} hidden onChange={handleCheck} checked={checkbox} />
                 <div className={style.locaZam_bor}>
                     <label htmlFor={style.IcE_22}>
                         <span className={style.p99_jbY}></span>
@@ -81,7 +92,7 @@ const Price = ({ setProduct, offPrice, price, touch, errors }) => {
                 </div>
                 {touch.offPrice && errors.offPrice && <span className={style.errors_input}>{errors.offPrice}</span>}
             </div>
-            {checkBox.current?.checked && <>
+            {checkbox && <>
                 <div className={style.prev_dis_parent}><label>شروع تخفیف:</label><div className={style.nJe_discount_plf}>
                     <DatePicker
                         name='off_date_from'

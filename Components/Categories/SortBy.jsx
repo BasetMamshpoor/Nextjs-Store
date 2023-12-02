@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import style from './SortBy.module.css'
 
-const SortBy = ({ router, sort = 'newset' }) => {
+const SortBy = ({ router, sort = 'newest' }) => {
     const { gender, type, ...Query } = router.query
 
 
@@ -11,10 +11,10 @@ const SortBy = ({ router, sort = 'newset' }) => {
             <div className={style.Cueq}>
                 <label>مرتب سازی :</label>
                 <ul className={style.sortList}>
-                    <li className={sort == 'newset' ? style.activeSort : ''}>
+                    <li className={sort == 'newest' ? style.activeSort : ''}>
                         <Link href={{
                             pathname: router.asPath.split('?')[0],
-                            query: { ...Query, sort: 'newset' },
+                            query: { ...Query, sort: 'newest' },
                         }}
                             passHref
                             shallow

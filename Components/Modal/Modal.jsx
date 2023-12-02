@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './Modal.module.css'
 import { SlClose } from 'react-icons/sl'
 
@@ -11,6 +11,10 @@ const Modal = ({ content }) => {
         }
         return child;
     });
+    useEffect(() => {
+        if (isOpen) document.body.style.overflow = 'hidden'
+        else document.body.style.overflow = 'auto'
+    }, [isOpen])
 
     return isOpen
         ? <>

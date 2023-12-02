@@ -1,13 +1,10 @@
-.uTyc_3Waxd1 {
-  border: 1px solid #eee;
-  padding: 30px 2rem 10px;
-  box-shadow: 0 5px 10px -5px #ddd;
-  border-radius: 10px;
-}
 .Kce_1W2M4_6 {
   display: flex;
   flex-direction: column;
   padding: 10px;
+}
+.editing {
+  max-height: 96vh;
 }
 .Hs_i8p4_gV {
   display: flex;
@@ -24,6 +21,12 @@
   width: 28px;
   height: 28px;
   margin-left: 10px;
+}
+.uTyc_3Waxd1 {
+  border: 1px solid #eee;
+  padding: 30px 2rem 10px;
+  box-shadow: 0 5px 10px -5px #ddd;
+  border-radius: 10px;
 }
 .qzE3_pNis__4 {
   margin-bottom: 0;
@@ -137,7 +140,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 .NbGvR {
   position: relative;
@@ -196,6 +199,10 @@
   align-items: center;
   flex-wrap: wrap;
 }
+.sizes {
+  display: flex;
+  flex-direction: column;
+}
 .hpxea_fzjbg {
   margin: 5px 3px;
   border: 1px solid gray;
@@ -229,26 +236,4 @@
 }
 .jCrxi_22A5 {
   position: relative;
-}
-
-.tcuExo0 {
-  margin-bottom: 1.5rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.textarea {
-  width: 100%;
-  max-width: 100%;
-  min-width: 100%;
-  max-height: 10rem;
-  min-height: 5rem;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid rgb(218, 225, 231);
-  outline: none;
-}
-.textarea:focus {
-  border-color: #3499ff;
 }

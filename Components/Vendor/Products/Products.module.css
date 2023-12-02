@@ -1,0 +1,17 @@
+.productsList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 1rem 0.5rem;
+  padding-top: 0;
+}
+
+@media (max-width: 1279.98px) {
+  .productsList {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 1119.98px) {
+  .productsList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

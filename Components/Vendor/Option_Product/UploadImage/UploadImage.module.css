@@ -1,0 +1,136 @@
+.iJIucw {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: rgb(43, 52, 69);
+  border: 1px dashed rgb(218, 225, 231);
+  border-radius: 10px;
+  padding: 10px;
+}
+.iJIucw img {
+  vertical-align: middle;
+}
+.upload__btn_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.upload__btn {
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  min-width: 116px;
+  width: 40%;
+  padding: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid #4045ba;
+  background: #4045ba;
+  border-radius: 10px;
+  user-select: none;
+}
+.upload__btn:hover {
+  background-color: unset;
+  color: #4045ba;
+  transition: all 0.3s ease;
+}
+.upload__img_wrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+.upload_main_img_wrap {
+  margin: 0 auto;
+}
+.upload__img_box {
+  position: relative;
+  height: 140px;
+  margin-top: 1rem;
+}
+.main_img {
+  position: relative;
+  width: 200px;
+  height: 160px;
+  margin: 1.5rem 10px 10px;
+}
+
+.main_img::after {
+  color: #fff;
+  content: "اصلی";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  transform: translate(-50%, -50%);
+}
+.upload__img_close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  line-height: 24px;
+  z-index: 98;
+  cursor: pointer;
+}
+.upload__img_close:after {
+  content: "\2716";
+  font-size: 14px;
+  color: white;
+  margin-bottom: -3px;
+}
+.form_group {
+  margin-bottom: 1rem;
+}
+.control_label {
+  display: block;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+}
+.input_image_post {
+  margin: 0;
+}
+.OvrcU {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+.ExBt_2 {
+  position: relative;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.ExBt_2 input:checked ~ .image_holder::after {
+  display: flex;
+}
+.image_holder {
+  display: block;
+  cursor: pointer;
+  height: 120px;
+  width: 100%;
+}
+.image_holder::after {
+  content: "\F09B\00FE0E";
+  font-family: Icon;
+  position: absolute;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  width: 24px;
+  height: 24px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: red;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: rgb(255, 255, 255);
+}

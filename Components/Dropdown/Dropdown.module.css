@@ -42,7 +42,7 @@
   overflow: auto;
   max-height: 200px;
   background-color: #fff;
-  z-index: 99;
+  z-index: 99999;
 }
 
 .dropdown_menu::-webkit-scrollbar {

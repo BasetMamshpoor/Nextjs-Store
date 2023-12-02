@@ -1,0 +1,139 @@
+.sfZr14_2 {
+  height: 46px;
+  border: 1px solid rgb(218, 225, 231);
+  border-radius: 5px;
+  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex: 0 0 68%;
+}
+.sfZr14_2:focus-within {
+  border-color: #3499ff;
+  box-shadow: rgb(255 225 230 / 10%) 1px 1px 8px 4px;
+}
+.kXe_zuIo input {
+  width: 49%;
+}
+.kXe_zuIo input:first-child {
+  border-left: 1px solid rgb(177, 177, 177) !important;
+}
+.kXe_zuIo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+.RcpIf_12 {
+  outline: none;
+  background: none;
+  border: none;
+  color: #9d34ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.RcpIf_12 svg {
+  width: 36px;
+  height: 36px;
+}
+.Fcximy {
+  position: absolute;
+  bottom: -1.4rem;
+  display: flex;
+  flex-direction: row;
+}
+.errors_span_input {
+  margin-left: 1rem;
+  font-size: 11px;
+  color: rgb(255, 104, 104);
+}
+.hpxea_fzjbg {
+  margin: 5px 3px;
+  border: 1px solid #ddd;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  padding: 2px 4px;
+}
+.cAzqpbg {
+  margin-left: 2px;
+  padding: 0 2px;
+  display: flex;
+  align-items: center;
+  margin-bottom: -3px;
+  user-select: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: 3px;
+}
+.remove_list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.remove_listSvg {
+  cursor: pointer;
+}
+.control_label {
+  display: flex;
+  margin: 1rem 0;
+}
+.OvrcU {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.ExBt_2 {
+  position: relative;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.checkSize:checked ~ .size_holder {
+  background: red;
+  color: #fff;
+}
+.size_holder {
+  background: #fff;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+  padding: 2px 6px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+.note {
+  position: relative;
+}
+.note span {
+  margin-right: 5px;
+  background: #000;
+  color: #fff;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.note span:hover ~ p {
+  display: block;
+}
+.note p {
+  display: none;
+  position: absolute;
+  background: #000;
+  max-width: 400px;
+  min-width: 200px;
+  z-index: 65;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 10px;
+  top: 0.8rem;
+  right: 1.5rem;
+}

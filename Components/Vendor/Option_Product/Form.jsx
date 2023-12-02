@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Input from '../../Input';
 import style from './Form.module.css'
 import AttributesList from './Attributes/AttributesList'
 import axios from 'axios';
 import validation from 'Functions/AddProductValidation';
-import { useRouter } from 'next/router';
 import Size from './Sizes';
 import SizesList from './Sizes/SizesList';
 import Attributes from './Attributes';
@@ -13,14 +12,27 @@ import UploadImage from './UploadImage';
 import { ImBoxAdd } from 'react-icons/im'
 import SelectCategories from './SelectCategories';
 import Brands from './Brands';
-import Swal from 'sweetalert2';
+import PrevSizes from './Sizes/PervSizes'
 
-const Form = () => {
-    const router = useRouter()
+const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
     const [product, setProduct] = useState({ category_id: null, sizes: [], attributes: [], images: [] })
     const [touch, setTouch] = useState({})
-
     const errors = validation(product)
+
+    useEffect(() => {
+        if (!!state) {
+            const { product } = state
+            const cleanState = (product.price === product.offPrice) ? filterState(product) : product;
+            const { brand, category, image, images, created_at, id, offPercent, rate, slug, sizes, ...prev } = cleanState
+            let newProductSatet = { ...prev, brand_id: brand.id, category_id: category.id, images: [], deletingImages: [], deletingSizes: [], sizes: [], _method: "PUT" };
+            setProduct(newProductSatet)
+        }
+    }, [state])
+
+    const filterState = (state) => {
+        const { offPrice, off_date_from, off_date_to, ...other } = state
+        return other
+    }
 
     const handleResult = (name, value) => {
         setProduct(prev => {
@@ -36,61 +48,77 @@ const Form = () => {
         if (Object.keys(errors).length) {
             setTouch({ name: true, brand_id: true, category_id: true, image: true, images: true, price: true, offPrice: true, color: true, colorCode: true, sizes: true, attributes: true, discountTime: true })
         } else {
-            await axios.post('/admin/products', product, { headers: { 'Content-Type': 'multipart/form-data' } })
-                .then(res => {
-                    Swal.fire({
-                        title: '.ثبت شد',
-                        text: ".محصول مورد نظر با موفقیت ثبت شد",
-                        icon: 'success'
-                    }).then(() => {
-                        router.push(`/products/${res.data.data.product.id}`)
+            if (!!state) {
+                await axios.post(`/admin/products/${state.product.id}`, product, { headers: { 'Content-Type': 'multipart/form-data' } })
+                    .then(res => {
+                        SwalStyled.fire({
+                            title: '.ویرایش شد',
+                            text: ".محصول مورد نظر با موفقیت ویرایش شد",
+                            icon: 'success'
+                        }).then(() => {
+                            reload(Math.random())
+                            setIsOpen(false)
+                        })
                     })
-                })
-                .catch(err => {
-                    Swal.fire(".ثبت نشد", ".مشکلی در فرایند ثبت محصول پیش آمده", "error")
-                })
+                    .catch(err => {
+                        SwalStyled.fire(".ویرایش نشد", ".مشکلی در فرایند ویرایش محصول پیش آمده", "error")
+                    })
+            } else {
+                await axios.post('/admin/products', product, { headers: { 'Content-Type': 'multipart/form-data' } })
+                    .then(res => {
+                        SwalStyled.fire({
+                            title: '.ثبت شد',
+                            text: ".محصول مورد نظر با موفقیت ثبت شد",
+                            icon: 'success'
+                        }).then(() => {
+                            push(`/products/${res.data.data.product.id}`)
+                        })
+                    })
+                    .catch(err => {
+                        SwalStyled.fire(".ثبت نشد", ".مشکلی در فرایند ثبت محصول پیش آمده", "error")
+                    })
+            }
         }
-
     }
 
     return (
         <>
-            <div className={style.Kce_1W2M4_6}>
+            <div className={`${style.Kce_1W2M4_6} ${!!state ? style.editing : ''}`} dir='rtl'>
                 <div className={style.Hs_i8p4_gV}>
                     <div>
                         <ImBoxAdd />
                     </div>
-                    <h6 className={style.qzE3_pNis__4}>افزودن محصول جدید</h6>
+                    <h6 className={style.qzE3_pNis__4}>{title}</h6>
                 </div>
                 <div className={style.uTyc_3Waxd1}>
                     <form className={style.WzlProductAdd_tce} method="post" onSubmit={handleSubmit}>
                         <div className={style.DxwzE_Os_T3}>
                             <div className={style.nJe_3zq_plf}>
-                                <Input type='text' placeholder="نام محصول" name='name' result={handleResult} className={style.input} />
+                                <Input type='text' placeholder="نام محصول" name='name' value={product.name} result={handleResult} className={style.input} />
                                 {touch.name && errors.name && <span className={style.errors_input}>{errors.name}</span>}
                             </div>
                             <div className={style.nJe_3zq_plf}>
-                                <Brands touch={touch} errors={errors} setProduct={setProduct} />
+                                <Brands touch={touch} errors={errors} setProduct={setProduct} id={state?.product.brand.id} />
                                 {touch.brand_id && errors.brand_id && <span className={style.errors_input}>{errors.brand_id}</span>}
                             </div>
-                            <SelectCategories touch={touch} errors={errors} setProduct={setProduct} />
+                            <SelectCategories touch={touch} errors={errors} setProduct={setProduct} data={state?.breadcrumb} />
                         </div>
                         <div className={style.Fv_tFExqlo}>
-                            <UploadImage setProduct={setProduct} images={product.images} />
+                            <UploadImage setProduct={setProduct} images={state?.product.images} image={state?.product.image} />
                             <div className={style.errors_div_input}>
                                 {touch.image && errors.image && <span>{errors.image}</span>}
                                 {touch.images && errors.images && <span>{errors.images}</span>}
                             </div>
                         </div>
                         <div className={style.DxwzE_Os_T3}>
-                            <Price setProduct={setProduct} offPrice={product.offPrice} price={product.price} discountTime={product.discountTime} touch={touch} errors={errors} style={style} />
+                            <Price setProduct={setProduct} offPrice={product.offPrice} price={product.price} touch={touch} errors={errors} discountTime={{ off_date_from: new Date(product.off_date_from), off_date_to: new Date(product.off_date_to) }} />
                         </div>
                         <div className={style.ICex11A_4}>
                             <div className={style.kctE_1Zq}>
                                 <div className={style.NbGvR}>
                                     <div className={style.jCrxy}>
-                                        <Input type='text' placeholder='رنگ' name='color' result={handleResult} />
-                                        <Input type='color' name='colorCode' result={handleResult} value='#ffffff' />
+                                        <Input type='text' placeholder='رنگ' name='color' result={handleResult} value={product.color} />
+                                        <Input type='color' name='colorCode' result={handleResult} value={product.colorCode} />
                                     </div>
                                     <div className={style.Fcximy}>
                                         {touch.color && errors.color && <span className={style.errors_span_input}>{errors.color}</span>}
@@ -102,6 +130,9 @@ const Form = () => {
                             <div className={style.vExpkqZu}>
                                 <SizesList setProduct={setProduct} sizes={product.sizes} />
                             </div>
+                            {!!state && <div className={style.sizes}>
+                                <PrevSizes setProduct={setProduct} sizes={state.product.sizes} />
+                            </div>}
                         </div>
                         <div className={style.bGCzu_wq}>
                             <Attributes setProduct={setProduct} />
@@ -110,11 +141,8 @@ const Form = () => {
                                 {touch.attributes && errors.attributes && <span className={style.errors_input_specif}>{errors.attributes}</span>}
                             </div>
                         </div>
-                        <div className={style.tcuExo0}>
-                            <textarea name='description' className={style.textarea} placeholder='توضیحات'></textarea>
-                        </div>
                         <div className={style.save_pro_qq}>
-                            <button className={style.onRc_12ar} onClick={handleSubmit}>ثبت محصول</button>
+                            <button className={style.onRc_12ar} onClick={handleSubmit}>{!!state ? 'ویرایش' : 'ثبت'} محصول</button>
                         </div>
                     </form>
                 </div>

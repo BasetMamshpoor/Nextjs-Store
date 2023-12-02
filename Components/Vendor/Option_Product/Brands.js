@@ -2,7 +2,7 @@ import DropDown from 'Components/Dropdown/DropDown';
 import useRequest from 'hooks/useRequest';
 import React, { useEffect, useState } from 'react';
 
-const Brands = ({ setProduct }) => {
+const Brands = ({ setProduct, id }) => {
 
     const [brands] = useRequest('/brands')
     const [list, setList] = useState([])
@@ -26,8 +26,8 @@ const Brands = ({ setProduct }) => {
 
     return (
         <>
-            {!!brands && <DropDown array={list} name='brand_id'
-                Searchable placeHolder='برندها' label setState={handleChange} />}
+            {!!list.length && <DropDown array={list} name='brand_id'
+                Searchable placeHolder='برندها' label setState={handleChange} defaultValue={id} />}
         </>
     );
 };

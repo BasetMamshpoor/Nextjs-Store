@@ -3,16 +3,16 @@ import { MdOutlineFileUpload, MdSettings, MdSpaceDashboard } from 'react-icons/m
 import { BsCart3, BsBuilding } from 'react-icons/bs'
 import { FiSliders } from 'react-icons/fi';
 import { BiCategory } from 'react-icons/bi';
-import Form from 'Components/Vendor/Form';
 import Slider from 'Components/Vendor/Slider';
 import Brands from 'Components/Vendor/Brands';
 import Category from 'Components/Vendor/Category';
 import Banner from 'Components/Vendor/Banner';
 import AdminProducts from 'Components/Vendor/Products/AdminProducts';
+import ProductForm from 'Components/Vendor/Option_Product/ProductForm';
 
 let adminRoutes = [
     { link: 'dashboard', icon: <MdSpaceDashboard />, name: 'داشبورد' },
-    { link: 'new-product', icon: <MdOutlineFileUpload />, name: 'اضافه کردن محصول جدید', component: <Form />, },
+    { link: 'new-product', icon: <MdOutlineFileUpload />, name: 'اضافه کردن محصول جدید', component: <ProductForm />, },
     { link: 'category', icon: <BiCategory />, name: 'دسته بندی', component: <Category />, },
     { link: 'brands', icon: <BsBuilding />, name: 'برندها', component: <Brands />, },
     { link: 'slider', icon: <FiSliders />, name: 'اسلایدر', component: <Slider />, },

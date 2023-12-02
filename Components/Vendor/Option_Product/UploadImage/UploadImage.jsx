@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import style from './UploadImage.module.css'
-const UploadImage = ({ setProduct, images }) => {
+const UploadImage = ({ setProduct, images, image }) => {
 
     useEffect(() => {
         window.addEventListener('click', handleRemove)
@@ -40,7 +40,7 @@ const UploadImage = ({ setProduct, images }) => {
 
     const handleMultipleImage = (e) => {
         const imgArray = [];
-        const fileArry = e.target.parentElement.parentElement.parentElement.children[2]
+        const fileArry = e.target.parentElement.parentElement.parentElement.children[3]
         for (const file of e.target.files) {
             imgArray.push(file);
             const reader = new FileReader();
@@ -63,7 +63,7 @@ const UploadImage = ({ setProduct, images }) => {
     }
 
     const handleMainImg = (e) => {
-        const fileArry = e.target.parentElement.parentElement.parentElement.children[1]
+        const fileArry = e.target.parentElement.parentElement.parentElement.children[2]
         fileArry.innerHTML = ''
         const file = e.target.files[0]
         const reader = new FileReader();
@@ -83,9 +83,48 @@ const UploadImage = ({ setProduct, images }) => {
             }
         })
     }
+
+    const handleImageOption = (e) => {
+        const name = parseInt(e.target.name)
+        setProduct(prev => {
+            const { deletingImages } = prev
+            if (!deletingImages.includes(name)) {
+                deletingImages.push(name);
+            } else {
+                deletingImages.splice(deletingImages.indexOf(name), 1);
+            }
+            return { ...prev }
+        })
+    }
+
     return (
         <>
             <div className={style.iJIucw}>
+                <div className={style.form_group}>
+                    {!!images && images.length > 0 &&
+                        <>
+                            <label className={style.control_label}>جهت حذف، روی عکس مورد نظر کلیک کنید.</label>
+                            <div className={style.OvrcU}>
+                                {images.map(i => {
+                                    return (
+                                        <div key={i.id} className={style.ExBt_2}>
+                                            <input
+                                                type="checkbox"
+                                                name={i.id}
+                                                id={`image${i.id}`}
+                                                hidden
+                                                onChange={handleImageOption}
+                                            />
+                                            <label htmlFor={`image${i.id}`} className={style.image_holder}>
+                                                <img src={i.src} alt="imagePost" />
+                                            </label>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </>
+                    }
+                </div>
                 <div className={style.upload__btn_box}>
                     <label className={style.upload__btn} htmlFor="inputFile">
                         <p>انتخاب تصویر اصلی</p>
@@ -102,7 +141,7 @@ const UploadImage = ({ setProduct, images }) => {
                     </label>
                 </div>
                 <div className={style.upload_main_img_wrap}></div>
-                <div className={style.upload__img_wrap}></div>
+                <div className={style.upload__img_wrap}> </div>
             </div>
         </>
     );

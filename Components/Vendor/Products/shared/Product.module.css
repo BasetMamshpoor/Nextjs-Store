@@ -1,34 +1,42 @@
 .Xqera {
+  position: relative;
   padding: 0.3rem;
   border-top: 1px solid rgba(231, 231, 231, 0.678);
   border-left: 1px solid rgba(231, 231, 231, 0.678);
   transition: all 0.3s ease;
-  height: 310px;
+  height: 150px;
 }
 .Xqera:hover {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
 }
 .Xqera a {
   display: flex;
-  flex-direction: column;
   height: 100%;
 }
 .Xqera a:hover {
   color: #000;
 }
-.Xqera:nth-child(4n) {
+.Xqera:nth-child(2n) {
   border-left: none;
 }
 .imgP {
   padding: 0.5rem;
-  height: 180px;
+  height: 140px;
+  flex: 0 0 40%;
+}
+.about {
+  flex: 1 0 60%;
+  padding: 0.5rem;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
 }
 .descP {
   flex-grow: 1;
   margin-bottom: 0.5rem;
-  padding: 0 0.3rem;
 }
 .descP h3 {
+  padding-left: 10px;
   font-weight: 100;
   font-size: 14px;
   color: #424750;
@@ -42,7 +50,6 @@
   direction: ltr;
   display: flex;
   flex-direction: column;
-  padding: 0 1rem;
   margin-bottom: 0.5rem;
 }
 .Cpou {
@@ -82,4 +89,45 @@
   .imgP {
     height: 280px;
   }
+}
+.option {
+  position: absolute;
+  top: 5px;
+  left: 0px;
+  z-index: 200;
+}
+.dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 5px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.dots:hover {
+  background: #eee;
+}
+.menu {
+  position: absolute;
+  top: 0.5rem;
+  left: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  flex-direction: column;
+  background: #fff;
+  padding: 3px;
+  width: 100px;
+}
+.menu_item {
+  padding: 8px 4px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.menu_item:hover {
+  background: #eee;
 }

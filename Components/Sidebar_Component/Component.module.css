@@ -6,9 +6,6 @@
   padding: 0;
   height: fit-content;
 }
-.col_9 {
-  padding-right: 2rem;
-}
 .cEdoly {
   display: flex;
   justify-content: flex-end;

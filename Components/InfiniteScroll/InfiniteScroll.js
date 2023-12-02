@@ -1,7 +1,7 @@
 import Loading from 'public/Images/loading.gif'
 import React, { useEffect, useState } from 'react';
 
-const InfiniteScroll = ({ children, loadMoreItems, dataLength, isEnd, style, pageStart = 1 }) => {
+const InfiniteScroll = ({ children, loadMoreItems, dataLength, isEnd,className, pageStart = 1 }) => {
     const [isFetching, setIsFetching] = useState(false)
     const [page, setPage] = useState(pageStart)
 
@@ -25,7 +25,7 @@ const InfiniteScroll = ({ children, loadMoreItems, dataLength, isEnd, style, pag
 
     return (
         <>
-            <div className='productsList'>
+            <div className={className}>
                 {children}
             </div>
             {isFetching && !isEnd && <div className='loading'><img src={Loading} alt='loading' /></div>}

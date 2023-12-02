@@ -141,3 +141,33 @@
   color: #3499ff;
   margin-right: 0.5rem;
 }
+.etmamMojody {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 1rem;
+}
+.etmamMojody b {
+  font-size: 18px;
+}
+.etmamMojody b::before,
+.etmamMojody b::after {
+  width: 25%;
+  content: "";
+  background: #81858b;
+  height: 3px;
+  position: absolute;
+  border-radius: 20px;
+  top: 50%;
+}
+.etmamMojody b::before {
+  left: 0rem;
+  transform: translate(50%, -50%);
+}
+.etmamMojody b::after {
+  right: 0rem;
+  transform: translate(-50%, -50%);
+}

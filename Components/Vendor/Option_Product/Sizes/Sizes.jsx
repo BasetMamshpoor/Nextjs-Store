@@ -23,15 +23,6 @@ const Size = ({ setProduct, errors, touch }) => {
             })
             return;
         }
-        // else if (!/[a-zA-z0-9]/.test(sizes.size)) {
-        //     setError(prev => {
-        //         return {
-        //             ...prev,
-        //             size: 'فقط حروف و اعداد انگلیسی مجاز است.'
-        //         }
-        //     })
-        //     return
-        // }
         setProduct(prev => {
             prev.sizes.push(sizes);
             return { ...prev }

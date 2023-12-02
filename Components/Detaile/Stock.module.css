@@ -1,17 +1,51 @@
 .qOOp {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-top: 1.5rem;
   padding: 0 1rem;
 }
-.qOOp label {
+.etmamMojody {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 1rem;
+}
+.etmamMojody b {
+  font-size: 18px;
+}
+.etmamMojody b::before,
+.etmamMojody b::after {
+  width: 180px;
+  content: "";
+  background: #81858b;
+  height: 3px;
+  position: absolute;
+  border-radius: 20px;
+  top: 50%;
+}
+.etmamMojody b::before {
+  left: 3rem;
+  transform: translate(50%,-50%);
+}
+.etmamMojody b::after {
+  right: 3rem;
+  transform: translate(-50%,-50%);
+}
+.sections {
+  display: flex;
+  align-items: center;
+}
+.sections label {
   font-size: 18px;
   font-weight: 600;
 }
 .Asewq {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
 }
 .EzP3_wzm2 {
   cursor: pointer;
