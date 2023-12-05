@@ -12,7 +12,7 @@ const Products = ({ category, total_Items }) => {
     const router = useRouter()
 
 
-    const [products, setProducts, reload, pagination, setPagination] = useRequest(`/products/filter/1`, 1)
+    const [products, setProducts, reload, pagination, setPagination] = useRequest(`/products`, 1)
 
     useEffect(() => {
         total_Items.current.innerText = `${pagination ? e2p(pagination.meta.total) : e2p(0)} کالا`

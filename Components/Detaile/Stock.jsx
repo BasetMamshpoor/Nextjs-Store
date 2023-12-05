@@ -6,10 +6,12 @@ import { useContext } from 'react';
 import { BsCart3 } from 'react-icons/bs';
 import { FiMinus, FiPlus, FiTrash2 } from 'react-icons/fi'
 import style from './Stock.module.css'
+import Timer from 'Components/Timer';
 
 const stock = ({ product, size, setSize }) => {
-    const { id, price, offPrice, sizes, color, colorCode, offPercent, off_date_from, off_date_to } = product
+    const { id, price, offPrice, sizes, color, colorCode, offPercent, off_date_to } = product
     const { state, dispatch } = useContext(CartContext)
+    const timeDiscount = ((new Date(off_date_to).getTime() - new Date().getTime()) / 1000)
 
     const sizeList = sizes.map((i, index) => <div className={`${style.EzP3_wzm1} ${size?.size === i.size ? style.det_active : ''}`} key={i.id} onClick={() => setSize(sizes[index])}><span>{i.size}</span></div>)
 
@@ -25,7 +27,9 @@ const stock = ({ product, size, setSize }) => {
                         <p>{color}</p>
                     </div>
                 </div>
-                {!!off_date_from && ((new Date(off_date_to).getTime() - new Date(off_date_from).getTime()) / 1000)}
+                {!!off_date_to && (timeDiscount < 86400) && <>
+                            <Timer time={timeDiscount} classNameProgress={style.progress} classNameTimer={style.timer} classNameEtmam={style.EtmamTakhfif} withProgress={false} />
+                        </>}
             </div>
             {!!sizes.length ? <>
                 <div className={style.qOOp}>

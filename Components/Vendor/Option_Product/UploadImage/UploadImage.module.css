@@ -109,6 +109,9 @@
 .ExBt_2 input:checked ~ .image_holder::after {
   display: flex;
 }
+.ExBt_2 input:checked ~ .image_holder::before {
+  display: block;
+}
 .image_holder {
   display: block;
   cursor: pointer;
@@ -131,6 +134,18 @@
   color: red;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   background: rgb(255, 255, 255);
+}
+.image_holder::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 0, 0, 0.2);
+  display: none;
 }

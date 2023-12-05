@@ -42,8 +42,7 @@
   direction: ltr;
   display: flex;
   flex-direction: column;
-  padding: 0 1rem;
-  margin-bottom: 0.5rem;
+  padding: 0 0.5rem;
 }
 .Cpou {
   display: flex;
@@ -52,10 +51,10 @@
 }
 .Cpou span:not([class]) {
   color: #fff;
-  padding: 0.2rem 0.4rem;
+  padding: 1px 4px;
   font-size: 12px;
   background: #ee384e;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 .priceR {
   font-size: 16px;
@@ -65,14 +64,88 @@
 .priceR::before {
   content: "\F142\00FE0E";
   margin-right: 4px;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 400;
   font-family: Icon;
 }
 .priceP del {
   color: rgba(0, 0, 0, 0.4);
-  padding-left: 2rem;
+  padding-left: 1.8rem;
+  margin-top: -3px;
 }
+
+.progress {
+  border-radius: 0px;
+  width: 100%;
+  height: 5px;
+}
+.progress::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 0px;
+}
+.progress::-webkit-progress-value {
+  background-color: red;
+}
+.timer {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+.EtmamTakhfif {
+  margin-top: 5px;
+  font-size: 12px;
+  position: relative;
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.EtmamTakhfif::before,
+.EtmamTakhfif::after {
+  width: 50px;
+  content: "";
+  background: rgba(255, 0, 0, 0.77);
+  height: 3px;
+  position: absolute;
+  border-radius: 20px;
+  top: 50%;
+}
+.EtmamTakhfif::before {
+  left: 2.5rem;
+  transform: translate(-50%, -50%);
+}
+.EtmamTakhfif::after {
+  right: 2.5rem;
+  transform: translate(50%, -50%);
+}
+.etmamMojody {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 1rem;
+}
+.etmamMojody b::before,
+.etmamMojody b::after {
+  width: 25%;
+  content: "";
+  background: #81858b;
+  height: 3px;
+  position: absolute;
+  border-radius: 20px;
+  top: 50%;
+}
+.etmamMojody b::before {
+  left: 0rem;
+  transform: translate(50%, -50%);
+}
+.etmamMojody b::after {
+  right: 0rem;
+  transform: translate(-50%, -50%);
+}
+
 @media (max-width: 1279.98px) {
   .imgP {
     height: 240px;
