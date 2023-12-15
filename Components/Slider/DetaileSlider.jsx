@@ -19,7 +19,7 @@ const DetaileSlider = ({ Images }) => {
 
     return (
         <>
-            <div dir="rtl" className='DetailSlider' >
+            <div dir="rtl" className={`DetailSlider ${style.slider}`} >
                 <Swiper
                     navigation={true}
                     thumbs={{ swiper: thumbsSwiper }}
@@ -53,7 +53,7 @@ const DetaileSlider = ({ Images }) => {
                         )
                     })}
                 </Swiper>
-            </div>
+            </div >
         </>
     );
 }

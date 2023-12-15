@@ -8,15 +8,7 @@ import { ImFire } from 'react-icons/im'
 
 const MostSell = () => {
     const [data] = useRequest('/products/top-orders')
-
-    const com = () => {
-        let array = []
-        for (let index = 0; index < 19; index++) {
-            const element = data?.data[index];
-            if (index % 3 === 0) console.log(data.data.slice(0, index));
-        }
-    };
-    // !!data && com()
+    const data15length = !!data ? data.slice(0, 16) : null
 
     return (
         <>
@@ -31,18 +23,21 @@ const MostSell = () => {
                         </div>
                         <div className={style.BgmSf}>
                             <div className={style.bmgCy}>
-                                {!!data && data.map((el, index) => {
-                                    if (index < 15) return (
-                                        <Link href={`/products/${el.id}`} className={style.Ecio} key={el.id}>
-                                            <div className={style.NgImg}>
-                                                <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={el.image} alt="" />
-                                            </div>
-                                            <span className={style.Qxunt}>{e2p(index + 1)}</span>
-                                            <div className={style.lRcu}>
-                                                <p>{el.name}</p>
-                                            </div>
-                                        </Link>)
-                                })}
+                                {!!data15length && [...Array(Math.ceil(data15length.length / 4))].map((_, i) => (
+                                    <div key={i} className={style.column}>
+                                        {data15length.slice(i * 4, i * 4 + 4).map((el, index) => (
+                                            <Link href={`/products/${el.id}`} className={style.Ecio} key={el.id}>
+                                                <div className={style.NgImg}>
+                                                    <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={el.image} alt={el.name} />
+                                                </div>
+                                                <span className={style.Qxunt}>{e2p((i * 4 + index) + 1)}</span>
+                                                <div className={style.lRcu}>
+                                                    <p>{el.name}</p>
+                                                </div>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>

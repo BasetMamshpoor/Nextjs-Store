@@ -21,7 +21,7 @@ const stock = ({ product, size, setSize }) => {
                 <div className={style.sections}>
                     <label>رنگ:</label>
                     <div className={style.Asewq}>
-                        <div className={`${style.EzP3_wzm2} ${style.det_active}`}>
+                        <div className={style.EzP3_wzm2}>
                             <span style={{ background: colorCode }}></span>
                         </div>
                         <p>{color}</p>
@@ -43,7 +43,7 @@ const stock = ({ product, size, setSize }) => {
                 <div className={style.WZZps} dir="ltr">
                     <div className={style.hJkg}>
                         <div className={style.ogSeft}>{addComma(offPrice.toString())}</div>
-                        {price !== offPrice && < div className={style.OFFqap}><span>%{e2p(offPercent)}</span><del>{addComma(price.toString())}</del>
+                        {price !== offPrice && <div className={style.OFFqap}><span>%{e2p(offPercent)}</span><del>{addComma(price.toString())}</del>
                         </div>}
                     </div>
                     <div className={style.Sxpot}>

@@ -9,7 +9,7 @@ const CategoriesProvider = ({ children }) => {
     return (
         <>
             <Categories.Provider value={{ categories, setCategories, reload }}>
-                {!!categories && children}
+                {!!categories ? children:<p>nothing</p>}
             </Categories.Provider>
         </>
     );

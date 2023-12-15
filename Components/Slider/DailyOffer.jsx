@@ -56,7 +56,7 @@ const DailyOffer = () => {
                                         <div className="box_offer">
                                             <CiDiscount1 />
                                         </div>
-                                        <a href=".">مشاهده همه</a>
+                                        <Link href="/category-mens-apparel?discount=true">مشاهده همه</Link>
                                     </div>
                                 </SwiperSlide>
                                 {data.map((el, index) => {

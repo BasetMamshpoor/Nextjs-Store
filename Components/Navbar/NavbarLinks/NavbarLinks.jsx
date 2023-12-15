@@ -40,8 +40,8 @@ const NavbarLinks = () => {
                         <div className={style.navBarLinks}>
                             <ul className={style.eopfu}>
                                 <li><Link href="/">خانه</Link></li>
-                                <li><Link href="">پرفروش&zwnj;ترین&zwnj;ها</Link></li>
-                                <li><Link href="">تخفیف&zwnj;ها و پیشنهادات</Link></li>
+                                <li><Link href="/">پرفروش&zwnj;ترین&zwnj;ها</Link></li>
+                                <li><Link href="/">تخفیف&zwnj;ها و پیشنهادات</Link></li>
                                 <li><Link href="/profile/information">حساب کاربری</Link></li>
                                 <li><Link href="/admin/new-product">حساب فروشنده</Link></li>
                             </ul>

@@ -39,6 +39,11 @@ body {
 main {
   min-height: 55vh;
 }
+@media (max-width: 1023.98px) {
+  main {
+    padding-bottom: 5rem;
+  }
+}
 ul {
   margin: 0;
   padding: 0;
@@ -170,6 +175,11 @@ textarea {
 .pe-0 {
   padding-right: 0 !important;
 }
+@media (max-width: 1023.98px) {
+  .pe-lg-0 {
+    padding: 0 !important;
+  }
+}
 .row > * {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
@@ -249,7 +259,7 @@ textarea {
 .main_slider .swiper-pagination-bullet-active {
   background: #fff;
   border-radius: 8px;
-  width: 22px;
+  width: 18px !important;
 }
 .main_slider .swiper-button-next,
 .main_slider .swiper-button-prev {
@@ -278,8 +288,7 @@ textarea {
     height: 300px;
   }
   .main_slider .swiper-pagination {
-    left: 50% !important;
-    transform: translate(-50%, -50%);
+    transform: translate(0, -50%);
   }
   .main_slider .swiper-pagination-bullet {
     width: 8px;
@@ -290,16 +299,10 @@ textarea {
   }
   .main_slider .swiper-button-next,
   .main_slider .swiper-button-prev {
-    visibility: hidden;
-    opacity: 0;
+    display: none;
     transition: all 0.2s ease;
     width: 36px !important;
     height: 36px;
-  }
-  .main_slider:hover.main_slider .swiper-button-next,
-  .main_slider:hover.main_slider .swiper-button-prev {
-    visibility: visible;
-    opacity: 1;
   }
 }
 .dealyOff {
@@ -517,6 +520,13 @@ textarea {
 .DetailSlider .swiper-button-next:after,
 .DetailSlider .swiper-button-prev:after {
   font-size: 28px;
+}
+
+@media (max-width: 1023.98px) {
+  .DetailSlider .swiper-button-next,
+  .DetailSlider .swiper-button-prev {
+    display: none;
+  }
 }
 
 .btn {

@@ -1,5 +1,4 @@
-
-import style from './Style.module.css'
+import style from './Comments.module.css'
 
 const Specifications = ({ data }) => {
     return (

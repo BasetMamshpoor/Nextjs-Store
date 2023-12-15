@@ -171,3 +171,9 @@
   right: 0rem;
   transform: translate(-50%, -50%);
 }
+
+@media (max-width: 1023.98px) {
+  .Hxiq3Dx {
+    display: none;
+  }
+}

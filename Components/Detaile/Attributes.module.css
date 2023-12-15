@@ -32,3 +32,8 @@
 .desc {
   font-size: 13px;
 }
+@media (max-width:1023.98px) {
+  .Cezp {
+    padding-left: 1rem;
+  }
+}

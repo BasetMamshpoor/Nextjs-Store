@@ -40,15 +40,20 @@
 .bmgCy {
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
   gap: 4px;
+  overflow-y: hidden;
+}
+.column {
+  flex: 0 0 calc(25% - 8px);
+  display: flex;
+  flex-direction: column;
 }
 .Ecio {
-  flex: 0 0 calc(25% - 8px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 4px;
+  min-width: 230px;
 }
 .Ecio:hover {
   color: #000;
@@ -85,7 +90,7 @@
   overflow: hidden;
 }
 
-.Ecio:nth-child(-n + 8) .lRcu:before {
+.Ecio:nth-child(-n + 3) .lRcu:before {
   content: "";
   position: absolute;
   display: block;
@@ -97,13 +102,17 @@
   z-index: 10;
 }
 
-@media (max-width: 1099.98px) {
-  .Ecio {
-    flex: 0 0 calc(calc(100% / 3) - 8px);
+@media (max-width: 1023.98px) {
+  .bmgCy {
+    overflow-x: auto;
   }
-}
-@media (max-width: 879.98px) {
+  .bmgCy::-webkit-scrollbar {
+    height: 5px;
+  }
+  .bmgCy::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+  }
   .Ecio {
-    flex: 0 0 calc(50% - 8px);
+    min-width: 260px;
   }
 }

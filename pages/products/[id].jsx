@@ -85,7 +85,7 @@ const ProductDetaile = () => {
 
                 <section className={style.Iwalh}>
                     <div className="container">
-                        {data.product && <div className="row pb-3">
+                        {!!data.product && <div className={`row pb-3 ${style.mobile_Dis}`}>
                             <div className="col-lg-7 d-flex flex-column" dir="rtl">
                                 <div className={style.Cxwply}>
                                     <h1>{data.product.name}</h1>

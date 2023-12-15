@@ -1,5 +1,5 @@
 .NflOO {
-  padding: 3rem 0 0;
+  padding: 1rem 0 0;
   width: 100%;
   direction: rtl;
 }
@@ -11,8 +11,8 @@
   flex-wrap: wrap;
 }
 .mvHr {
-  height: 230px;
-  flex: 0 0 230px;
+  height: fit-content;
+  flex: 0 0 calc(25% - 50px);
   box-shadow: 0 10px 10px 0px #0000002d;
   border-radius: 10px;
   overflow: hidden;
@@ -26,7 +26,7 @@
   color: #000;
 }
 .HcrJ:hover .cYaR img {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 .cYaR {
   position: relative;
@@ -36,6 +36,7 @@
 }
 .cYaR img {
   transition: all 0.3s ease;
+  transform: scale(1.05);
 }
 .cYaR span {
   font-family: IRANYekan, IRANSans, sans-serif;
@@ -75,7 +76,6 @@
     justify-content: space-evenly;
   }
   .mvHr {
-    height: 190px;
-    flex: 0 0 190px;
+    flex: 0 0 calc(50% - 10px);
   }
 }

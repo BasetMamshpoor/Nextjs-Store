@@ -177,3 +177,16 @@
   align-items: center;
   justify-content: center;
 }
+
+/* responsive */
+@media (max-width: 1023.98px) {
+  .main {
+    padding-top: 0;
+  }
+  .mobile_Dis {
+    flex-direction: column-reverse;
+  }
+  .Cxwply {
+    margin-top: 1rem;
+  }
+}

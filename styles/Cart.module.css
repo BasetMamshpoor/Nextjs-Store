@@ -5,9 +5,11 @@
   display: flex;
   flex-direction: column;
 }
-.jMszopl_9Y_1 {
+.banner_sticky {
   position: sticky;
-  top: 3rem;
+  top: 10rem;
+}
+.jMszopl_9Y_1 {
   display: flex;
   flex-direction: column;
   padding: 8px 0 20px;
@@ -27,6 +29,9 @@
   margin: 0.5rem 0;
 }
 .lBsNaA_J p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 14px;
   font-family: "IRANYekan";
   font-weight: 600;
@@ -68,6 +73,30 @@
     margin: 0 0.3rem;
   }
 }
+.nav_ORder {
+  display: none;
+  position: fixed;
+  bottom: 4rem;
+  left: 0;
+  background: #fff;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+.mobile_order {
+  width: 240px;
+  margin: 0 0.5rem;
+}
+.left_nav {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 0.5rem;
+}
+.left_nav p {
+  font-size: 12px;
+}
 /* ==================== */
 .opTions {
   padding: 0 1rem;
@@ -80,4 +109,52 @@
   background: #3499ff;
   padding: 8px 12px;
   border-radius: 5px;
+}
+.parag {
+  color: #81858b;
+  margin: 1rem 0;
+  padding: 0 15px;
+  font-size: 12px;
+}
+@media (max-width: 1023.98px) {
+  .ZolpWn__0_ {
+    padding: 1rem 0;
+  }
+  .SxSafd_b_3b div[id]:last-child {
+    border: none;
+  }
+  .banner_sticky {
+    position: relative;
+    top: 0;
+    margin-bottom: 3rem;
+  }
+  .jMszopl_9Y_1 {
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+    padding-bottom: 5px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+  }
+  .KvxUs_LlI {
+    margin-bottom: 0;
+  }
+  .large_screen {
+    display: none;
+  }
+  .small_screen {
+    display: flex;
+  }
+  .clear {
+    font-size: 12px;
+  }
+  .pq_HhFcy:hover {
+    animation: none;
+  }
+}
+@media (max-width: 767.98px) {
+  .mobile_order {
+    font-size: 12px;
+    width: 200px;
+  }
 }

@@ -37,11 +37,11 @@
 }
 .etmamMojody b::before {
   left: 3rem;
-  transform: translate(50%,-50%);
+  transform: translate(50%, -50%);
 }
 .etmamMojody b::after {
   right: 3rem;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 .sections {
   display: flex;
@@ -195,4 +195,44 @@
 .enughNumber {
   opacity: 0.5;
   pointer-events: none;
+}
+
+@media (max-width: 1199.98px) {
+  .TcoPjy:hover svg {
+    transform: none;
+  }
+}
+@media (max-width: 1023.98px) {
+  .sections label {
+    font-size: 14px;
+  }
+  .det_active {
+    padding: 2px 4px;
+  }
+  .EzP3_wzm1 {
+    font-size: 14px;
+  }
+  .ogSeft {
+    font-size: 20px;
+  }
+  .ogSeft::before {
+    font-size: 20px;
+  }
+  .OFFqap span {
+    font-size: 12px;
+  }
+  .OFFqap del {
+    font-size: 14px;
+  }
+  .Sxpot {
+    width: 200px;
+  }
+  .TcoPjy {
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+  .TcoPjy svg {
+    width: 20px;
+    height: 20px;
+  }
 }

@@ -19,7 +19,7 @@
   display: inline-block;
 }
 .totalComments {
-  margin-left:1rem;
+  margin-left: 1rem;
   color: #000;
   display: flex;
   align-items: center;
@@ -161,4 +161,26 @@
 .C_body {
   font-size: 12px;
   line-height: 2.5;
+}
+@media (max-width: 1023.98px) {
+  .cxyrd3 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1rem;
+  }
+  .exW3mo {
+    width: 100px;
+  }
+  .oVtn {
+    padding: 0 1rem;
+  }
+}
+@media (max-width: 549.98px) {
+  .cXopw {
+    max-width: 100px !important;
+  }
+}
+@media (max-width: 424.98px) {
+  .cXopw {
+    max-width: 80px !important;
+  }
 }

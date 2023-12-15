@@ -3,7 +3,7 @@ import { e2p } from 'Functions/ConvertNumbers';
 import { useEffect, useState } from 'react';
 import Pagination from '../Pagination/Pagination';
 import AddComment from './AddComment';
-import style from './Style.module.css'
+import style from './Comments.module.css'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import axios from 'axios';
 

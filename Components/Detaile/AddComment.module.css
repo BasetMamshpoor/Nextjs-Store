@@ -5,6 +5,7 @@
   min-width: 460px;
   background: #fff;
   user-select: none;
+  border: 1px solid #ccc;
 }
 .Exolap {
   padding: 1.5rem 0;
@@ -47,7 +48,7 @@
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
-.point{
+.point {
   margin-right: 6px;
 }
 .PybIec {
@@ -80,11 +81,13 @@
   border: none;
   height: 8px;
   border-radius: 10px;
-  background: linear-gradient(var(--bg), var(--bg)) 100% / var(--sx) 100% no-repeat,
+  background: linear-gradient(var(--bg), var(--bg)) 100% / var(--sx) 100%
+      no-repeat,
     #ddd;
 }
 .PybIec::-moz-range-track {
-  background: linear-gradient(var(--bg), var(--bg)) 100% / var(--sx) 100% no-repeat,
+  background: linear-gradient(var(--bg), var(--bg)) 100% / var(--sx) 100%
+      no-repeat,
     #ddd;
   height: 8px;
   border-radius: 10px;

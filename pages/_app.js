@@ -11,7 +11,7 @@ import CategoriesProvider from "providers/CategoriesProvider"
 
 axios.defaults.baseURL = 'http://abm.me/api'
 // axios.defaults.baseURL = 'http://localhost:6500'
-// axios.defaults.baseURL = 'http://192.168.176.239:6500'
+// axios.defaults.baseURL = 'http://192.168.1.101/api'
 
 
 export default function App({ Component, pageProps }) {
