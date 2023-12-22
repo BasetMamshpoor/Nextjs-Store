@@ -5,9 +5,11 @@ import Link from 'next/link';
 import React from 'react';
 import style from './MostSell.module.css'
 import { ImFire } from 'react-icons/im'
+import useSwipeScroll from 'hooks/useHorizontalScroll';
 
 const MostSell = () => {
     const [data] = useRequest('/products/top-orders')
+    const scrollRef = useSwipeScroll();
     const data15length = !!data ? data.slice(0, 16) : null
 
     return (
@@ -22,7 +24,7 @@ const MostSell = () => {
                             </div>
                         </div>
                         <div className={style.BgmSf}>
-                            <div className={style.bmgCy}>
+                            <div className={style.bmgCy} ref={scrollRef}>
                                 {!!data15length && [...Array(Math.ceil(data15length.length / 4))].map((_, i) => (
                                     <div key={i} className={style.column}>
                                         {data15length.slice(i * 4, i * 4 + 4).map((el, index) => (

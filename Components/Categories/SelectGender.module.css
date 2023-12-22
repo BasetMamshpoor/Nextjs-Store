@@ -57,4 +57,41 @@
 .gif_women:hover {
   background-image: url(/images/gif/women1.gif);
 }
+.seletGender {
+  display: none;
+  direction: rtl;
+}
+.genders {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+}
+.gender {
+  border-radius: 10px;
+  max-width: 180px;
+  box-shadow: 0 0px 10px 0 #0000002e;
+}
+.act_gender {
+  box-shadow: 0 0px 10px 0 #349aff4e;
+}
+.g_link {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 5px;
+}
+.g_link p {
+  font-size: 14px;
+  color: #818181;
+}
 /* ======================================== */
+@media (max-width: 1023.98px) {
+  .fCpO {
+    display: none;
+  }
+  .seletGender {
+    display: block;
+  }
+}

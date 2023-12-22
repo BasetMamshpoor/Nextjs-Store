@@ -11,3 +11,35 @@
   justify-content: space-between;
   padding: 0 1rem;
 }
+.options {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.btn {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.filters_btn::before {
+  content: "\F0A2\00FE0E";
+  font-family: Icon;
+  font-weight: 500;
+  font-size: 24px;
+  margin-left: 0.3rem;
+}
+.sortBy_btn::before {
+  margin-left: 0.3rem;
+  content: "\F0B4\00FE0E";
+  font-family: Icon;
+  font-weight: 500;
+  font-size: 24px;
+}
+@media (max-width: 1023.98px) {
+  .options {
+    display: flex;
+  }
+}

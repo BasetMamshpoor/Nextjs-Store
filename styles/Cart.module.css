@@ -4,6 +4,7 @@
 .SxSafd_b_3b {
   display: flex;
   flex-direction: column;
+  gap: 5px;
 }
 .banner_sticky {
   position: sticky;

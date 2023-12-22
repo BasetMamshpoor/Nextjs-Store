@@ -11,17 +11,20 @@ function useSwipeScroll() {
         let scrollLeft;
 
         slider.addEventListener('mousedown', (e) => {
+            e.preventDefault();
             isDown = true;
             startX = e.pageX - slider.offsetLeft;
             scrollLeft = slider.scrollLeft;
             cancelMomentumTracking();
         });
 
-        slider.addEventListener('mouseleave', () => {
+        slider.addEventListener('mouseleave', (e) => {
+            e.preventDefault();
             isDown = false;
         });
 
-        slider.addEventListener('mouseup', () => {
+        slider.addEventListener('mouseup', (e) => {
+            e.preventDefault();
             isDown = false;
             beginMomentumTracking();
             setTimeout(() => setHasSwiped(false), 0)
@@ -45,6 +48,7 @@ function useSwipeScroll() {
         let momentumID;
 
         slider.addEventListener('wheel', (e) => {
+            e.preventDefault();
             cancelMomentumTracking();
         });
 

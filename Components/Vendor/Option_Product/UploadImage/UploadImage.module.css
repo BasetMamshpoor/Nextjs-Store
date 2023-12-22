@@ -150,3 +150,23 @@
   background: rgba(255, 0, 0, 0.2);
   display: none;
 }
+@media (max-width: 787.98px) {
+  .upload__img_wrap {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 424.98px) {
+  .upload__btn_box {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .upload__btn {
+    font-weight: 300;
+    color: #fff;
+    width: 100%;
+    font-size: 12px;
+  }
+  .upload__img_wrap {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

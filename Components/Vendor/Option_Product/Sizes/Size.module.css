@@ -137,3 +137,16 @@
   top: 0.8rem;
   right: 1.5rem;
 }
+@media (max-width: 1099.98px) {
+  .sfZr14_2 {
+    flex: 0 0 60%;
+  }
+}
+@media (max-width: 819.98px) {
+  .sfZr14_2 {
+    flex: 1 0 50%;
+  }
+  .kXe_zuIo input {
+    width: 140px !important;
+  }
+}

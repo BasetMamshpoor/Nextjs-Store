@@ -1,19 +1,16 @@
 import Dropdown from 'Components/Dropdown/DropDown';
 import useRequest from 'hooks/useRequest';
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import style from './Filters.module.css'
 import { IoChevronDownOutline } from 'react-icons/io5'
 import Input from 'Components/Input';
 
-const Filters = ({ category }) => {
-    const router = useRouter()
-
+const Filters = ({ category, router, setIsOpen }) => {
     const [filters, setFilters] = useState({})
     const [data] = useRequest(`/products/getfilters/${category}`)
 
     useEffect(() => {
-        if (router.isReady) setFilters(readUrl())
+        if (router?.isReady) setFilters(readUrl())
     }, [router])
 
     const makeFilter = (filter) => {
@@ -78,11 +75,12 @@ const Filters = ({ category }) => {
 
     const clearFilters = () => {
         router.replace(router.asPath.split('?')[0], undefined, { shallow: true });
+        if (!!setIsOpen) setIsOpen(false)
     }
-    
+
     return (
         <>
-            {!!data && <div className={style.filters}>
+            {!!data ? <div className={style.filters}>
                 <div className={style.header}>
                     <p className={style.Rwxaq}>فیلتر ها</p>
                     <span className={style.clearFilters} onClick={clearFilters}>حذف فیلترها</span>
@@ -126,7 +124,7 @@ const Filters = ({ category }) => {
                         </div>
                     </div>
                 </div>
-            </div>}
+            </div> : <p>loading...</p>}
         </>
     );
 };

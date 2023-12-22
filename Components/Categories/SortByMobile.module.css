@@ -1,0 +1,78 @@
+.Cueq {
+  display: flex;
+  padding: 0.5rem 0;
+  align-items: center;
+  font-family: IRANYekan;
+  direction: rtl;
+  flex-direction: column;
+  padding: 1rem;
+  width: 90%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 600px;
+}
+.parent {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+}
+.Cueq label {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  color: #000;
+  font-weight: 500;
+}
+.sortList {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 1rem 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.sortList li {
+  margin: 0 0.5rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+}
+.sortList li:last-child {
+  border: none;
+}
+.sortList li svg {
+  color: #949494;
+}
+.activeSort a,
+.activeSort svg {
+  color: #ee384e !important;
+}
+.sortList li a {
+  font-size: 14px;
+  color: #949494;
+  transition: all 0.3s linear;
+}
+.sortList li a:hover {
+  font-size: 14px;
+  color: #ee384e;
+}
+.Cueq label::before {
+  margin-left: 0.3rem;
+  content: "\F0B4\00FE0E";
+  font-family: Icon;
+  font-weight: 500;
+  font-size: 24px;
+}
+@media (max-width:1023.98px) {
+    .Cueq {
+        min-width: none;
+    }
+}

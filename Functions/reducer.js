@@ -10,6 +10,21 @@ const sumItems = (items) => {
 
 const reducer = (state, action) => {
     switch (action.type) {
+        case "UPDATE_CART":
+            const clearUnexist = action.payload.filter(pr => {
+                const deltedProduct = pr.messages.find(m => m.type === 'deleted')
+                if (!deltedProduct) return pr
+            });
+            localStorage.setItem('cart', JSON.stringify({
+                ...state,
+                selectedItems: [...clearUnexist],
+                ...sumItems(action.payload)
+            }))
+            return {
+                ...state,
+                selectedItems: [...clearUnexist],
+                ...sumItems(action.payload)
+            }
         case "ADD_ITEM":
             if (!state.selectedItems.find(item => item.idp === action.payload.idp)) {
                 state.selectedItems.push({

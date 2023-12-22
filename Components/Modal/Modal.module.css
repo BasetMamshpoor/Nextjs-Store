@@ -8,13 +8,17 @@
 
   background: rgba(black, 0.5);
   backdrop-filter: blur(1px);
-  z-index: 999000;
+  z-index: 1058;
 }
 
 .modal {
   position: fixed;
   top: 50%;
   left: 50%;
+
+  min-width: 300px;
+  min-height: 300px;
+  padding: 3rem;
 
   display: flex;
   align-items: center;
@@ -28,7 +32,7 @@
 
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-  z-index: 999001;
+  z-index: 1059;
 }
 @media (max-width: 1023.98px) {
   .modal {

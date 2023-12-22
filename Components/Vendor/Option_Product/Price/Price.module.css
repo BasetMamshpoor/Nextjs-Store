@@ -141,3 +141,29 @@
   -webkit-appearance: none;
   border: none;
 }
+@media (max-width: 767.98px) {
+  .nJe_3zq_plf {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .FzwYa_4n4 {
+    flex: 0 0 100%;
+  }
+  .prev_dis_parent {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+@media (max-width: 424.98px) {
+  .nJe_discount_plf {
+    flex: 1 0 50%;
+  }
+  .prev_dis_parent {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    flex: 0 0 100%;
+  }
+  .locaZam_bor label {
+    font-size: 12px;
+  }
+}

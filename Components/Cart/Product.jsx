@@ -12,8 +12,9 @@ const Product = ({ state, dispatch }) => {
     return (
         <>
             {state.length ? state.map(p => {
+                const isDeleted = p.messages?.find(m => m.type === 'deleted')
                 return (
-                    <div className={style.tEl_7HqZy} key={p.idp} id='product'>
+                    <div className={`${style.tEl_7HqZy} ${isDeleted ? style.deleted_pro : ''}`} key={p.idp} id='product'>
                         <div className={style.LbOT_Plwz33}>
                             <Link href={`/products/${p.id}`} state={p.sizes} className={style.C41A__jF}>
                                 <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={p.image} alt="" />
@@ -21,22 +22,35 @@ const Product = ({ state, dispatch }) => {
                             <div className={style.lGJkVwYt}>
                                 <h3 className={style.RxQOi_5_ed}>{p.name}</h3>
                                 <div className={style.MncBgTfd_Pr}>
-                                    <div className={style.Detail_Pnmvg}><span style={{ background: p.colorCode }}></span></div>
-                                    <p>{p.color}</p>
+                                    <div className={style.box}>
+                                        <div className={style.Detail_Pnmvg}><span style={{ background: p.colorCode }}></span></div>
+                                        <p>{p.color}</p>
+                                    </div>
+                                    <div className={style.box}>
+                                        <div className={style.Detail_Pnmvg}>
+                                            <TfiRuler />
+                                        </div>
+                                        <p>{p.sizes?.size}</p>
+                                    </div>
                                 </div>
                                 <div className={style.MncBgTfd_Pr}>
-                                    <div className={style.Detail_Pnmvg}>
-                                        <TfiRuler />
-                                    </div>
-                                    <p>{p.sizes.size}</p>
+                                    {p.messages && <div className={style.message}>
+                                        {
+                                            p.messages.map(m => {
+                                                return (
+                                                    <p className={style[m.type]}>{m.text}</p>
+                                                )
+                                            })
+                                        }
+                                    </div>}
                                 </div>
-                                <div className={style.vVBE__0Oiju}>
+                                {!isDeleted && <div className={style.vVBE__0Oiju}>
                                     <div className={style.G_VwXabc_99L}>
                                         <p className={style.price_3Sproduct}>{addComma(p.offPrice.toString())}</p>
                                         {p.offPrice !== p.price && <div className={style.UcUrzyq}>{addComma(p.price.toString())}<span>تخفیف</span></div>}
                                     </div>
                                     <div className={`${style.Dc_Oi88Ted} ${style.lg_screen}`}>
-                                        <button className={`${style.bTxn} ${p.quantity >= p.sizes.stock ? style.enughNumber : ''}`} onClick={() => dispatch({ type: "INCREASE", payload: p })}>
+                                        <button className={`${style.bTxn} ${p.quantity >= p.sizes?.stock ? style.enughNumber : ''}`} onClick={() => dispatch({ type: "INCREASE", payload: p })}>
                                             <FiPlus />
                                         </button>
                                         <span className={style.num_2Cproduct}>{e2p(p.quantity)}</span>
@@ -47,11 +61,11 @@ const Product = ({ state, dispatch }) => {
                                             }
                                         </button>
                                     </div>
-                                </div>
+                                </div>}
                             </div>
                         </div>
                         <div className={`${style.Dc_Oi88Ted_sm}`}>
-                            <button className={`${style.bTxn} ${p.quantity >= p.sizes.stock ? style.enughNumber : ''}`} onClick={() => dispatch({ type: "INCREASE", payload: p })}>
+                            <button className={`${style.bTxn} ${p.quantity >= p.sizes?.stock ? style.enughNumber : ''}`} onClick={() => dispatch({ type: "INCREASE", payload: p })}>
                                 <FiPlus />
                             </button>
                             <span className={style.num_2Cproduct}>{e2p(p.quantity)}</span>

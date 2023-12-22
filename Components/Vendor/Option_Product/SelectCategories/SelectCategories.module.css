@@ -18,3 +18,9 @@
   white-space: nowrap;
   color: rgb(255, 104, 104);
 }
+
+@media (max-width: 767.98px) {
+  .nJe_3zq_plf {
+    flex: 0 0 100%;
+  }
+}

@@ -1,5 +1,7 @@
 import { createContext, useEffect, useReducer } from 'react';
 import reducer from 'Functions/reducer';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 
 const initState = {
@@ -13,17 +15,30 @@ const initState = {
 export const CartContext = createContext()
 
 const CartContextProvider = ({ children }) => {
+    const router = useRouter()
 
     const [state, dispatch] = useReducer(reducer, initState)
 
     useEffect(() => {
-        if (JSON.parse(localStorage.getItem("cart"))) {
+        const storage = JSON.parse(localStorage.getItem("cart"));
+        if (storage) {
             dispatch({
                 type: "INIT_STORED_CART",
-                payload: JSON.parse(localStorage.getItem("cart")),
+                payload: storage
             });
+            const update = async () => {
+                await axios.post('/check-cart', storage.selectedItems)
+                    .then(res => {
+                        dispatch({
+                            type: "UPDATE_CART",
+                            payload: res.data
+                        })
+                    })
+                    .catch(err => console.log(err))
+            }
+            update()
         }
-    }, []);
+    }, [router]);
 
 
     return (

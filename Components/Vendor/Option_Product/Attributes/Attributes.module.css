@@ -63,3 +63,10 @@
   white-space: nowrap;
   color: rgb(255, 104, 104);
 }
+
+@media (max-width: 424.98px) {
+  .RcpIf_11 svg {
+    width: 24px;
+    height: 24px;
+  }
+}
