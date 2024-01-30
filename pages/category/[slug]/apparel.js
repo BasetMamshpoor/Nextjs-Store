@@ -8,29 +8,29 @@ import { useContext, useEffect, useState } from 'react';
 
 const Apparel = () => {
     const router = useRouter();
-    const { gender } = router.query
+    const { slug } = router.query
     const { categories } = useContext(Categories)
-    const [category, setCategory] = useState(categories.find(c => c.slug === gender))
+    const [category, setCategory] = useState()
 
     useEffect(() => {
-        setCategory(categories.find(c => c.slug === gender))
-    }, [gender])
+        setCategory(categories.find(c => c.slug === slug))
+    }, [slug])
 
     return (
         <>
-            <SelectGender gender={gender} />
-            <SelectCategory categories={categories.find(c => c.slug === gender).subCategories} />
-            <ProductList id={category.id} />
+            {!!category && <>
+                <SelectGender slug={slug} />
+                <SelectCategory categories={category.subCategories} />
+                <ProductList id={category.id} />
+            </>}
         </>
     );
 };
 export async function getStaticPaths() {
-
     const category = await getCategories()
     const paths = category.map(c => {
-        return { params: { gender: c.slug } }
+        return { params: { slug: c.slug } }
     })
-
     return {
         paths,
         fallback: false

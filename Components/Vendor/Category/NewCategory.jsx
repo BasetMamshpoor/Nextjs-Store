@@ -9,6 +9,9 @@ import axios from 'axios';
 const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen, SwalStyled }) => {
     const [category, setCategory] = useState(!!state ? { ...state, parent_id: state.parent.id } : { parent_id: categoryLevel.id })
     const wrapper = useRef()
+    const [loading, setLoading] = useState(false);
+    const [progress, setProgress] = useState(0)
+
     const imagePlaceholder = '/Images/placeholder-1.png'
 
     const handleChange = (name, value) => {
@@ -60,11 +63,21 @@ const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen, SwalStyle
             return { ...prev, icon: file }
         })
     }
+
     const handleSubmit = async () => {
+        setLoading(true)
         if (!!state) {
             const { icon, ...data } = category
             let obj = typeof category.icon === 'object' ? { ...category, _method: "PUT" } : { ...data, _method: "PUT" }
-            await axios.post(`/admin/categories/${state.id}`, obj, { headers: { 'Content-Type': 'multipart/form-data' } })
+            await axios.post(`/admin/categories/${state.id}`, obj, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+                onUploadProgress: (progressEvent) => {
+                    const percentCompleted = Math.round(
+                        (progressEvent.loaded * 100) / progressEvent.total
+                    );
+                    setProgress(percentCompleted);
+                },
+            })
                 .then(() => {
                     SwalStyled.fire('.ویرایش شد', '', 'success')
                     setIsOpen(false)
@@ -73,7 +86,15 @@ const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen, SwalStyle
                     SwalStyled.fire('.ویرایش نشد', '', 'error')
                 })
         }
-        else await axios.post(`/admin/categories`, category, { headers: { 'Content-Type': 'multipart/form-data' } })
+        else await axios.post(`/admin/categories`, category, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+            onUploadProgress: (progressEvent) => {
+                const percentCompleted = Math.round(
+                    (progressEvent.loaded * 100) / progressEvent.total
+                );
+                setProgress(percentCompleted);
+            },
+        })
             .then(() => {
                 SwalStyled.fire('.ثبت شد', '', 'success')
                 setIsOpen(false)
@@ -115,7 +136,9 @@ const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen, SwalStyle
                                 </div>
                             </div>
                             <div className={style.buttons}>
-                                <button type='button' className={style.btnSubmit} onClick={handleSubmit}>{!!state ? 'ویرایش' : 'ثبت'}
+                                <button type='button' className={`${style.btnSubmit} ${loading ? style.startSubmit : ''}`} onClick={handleSubmit}
+                                    style={loading ? { background: `linear-gradient(to right, #3499ff ${progress}%, #fff 0%)` } : {}}>
+                                    {loading ? (progress + '%') : !!state ? 'ویرایش' : 'ثبت'}
                                     <span>{!!state ? <FiEdit3 /> : <FiCheckCircle />}</span>
                                 </button>
                                 {!!state && level !== 1 && <button type='button' className={style.btnDelete} onClick={handleDelete}>حذف <span><FiTrash2 /></span></button>}

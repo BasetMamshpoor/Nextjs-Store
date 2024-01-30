@@ -26,20 +26,21 @@ const CartContextProvider = ({ children }) => {
                 type: "INIT_STORED_CART",
                 payload: storage
             });
-            const update = async () => {
-                await axios.post('/check-cart', storage.selectedItems)
-                    .then(res => {
-                        dispatch({
-                            type: "UPDATE_CART",
-                            payload: res.data
+            if (router.asPath === '/cart') {
+                const update = async () => {
+                    await axios.post('/check-cart', storage.selectedItems)
+                        .then(res => {
+                            dispatch({
+                                type: "UPDATE_CART",
+                                payload: res.data
+                            })
                         })
-                    })
-                    .catch(err => console.log(err))
+                        .catch(err => console.log(err))
+                }
+                update()
             }
-            update()
         }
     }, [router]);
-
 
     return (
         <>

@@ -93,5 +93,12 @@
   width: 50%;
   border-radius: 5px;
   color: #fff;
-  padding: .5rem;
+  padding: 0.5rem;
+}
+.startSubmit {
+  background: #fff;
+  color: #000;
+  font-weight: 900;
+  font-size: 16px;
+  border: 1px solid #3499ff;
 }

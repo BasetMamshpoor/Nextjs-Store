@@ -1,64 +1,5 @@
-.fCpO {
-  background: url(/images/gif/mall-32459491.jpg) no-repeat;
-  background-size: cover;
-  position: relative;
-}
-
-.vfrs {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 10;
-}
-.bGtde {
-  height: 280px;
-  overflow: hidden;
-  opacity: 0.9;
-}
-.bGtde:first-child {
-  width: 200px;
-}
-.bGtde:nth-child(2) {
-  width: 350px;
-}
-.bGtde:last-child {
-  width: 350px;
-}
-.categoryActive {
-  opacity: 1;
-  border-bottom: 3px solid #3499ff;
-  margin-bottom: 0.3rem;
-}
-
-.bGtde div {
+.selectGender {
   display: block;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-}
-.gif_kid {
-  background-image: url(/images/gif/kid.png);
-}
-.gif_kid:hover {
-  background-image: url(/images/gif/kid1.gif);
-}
-.gif_man {
-  background-image: url(/images/gif/man.png);
-}
-.gif_man:hover {
-  background-image: url(/images/gif/man1.gif);
-}
-.gif_women {
-  background-image: url(/images/gif/women.png);
-}
-.gif_women:hover {
-  background-image: url(/images/gif/women1.gif);
-}
-.seletGender {
-  display: none;
   direction: rtl;
 }
 .genders {
@@ -85,13 +26,4 @@
 .g_link p {
   font-size: 14px;
   color: #818181;
-}
-/* ======================================== */
-@media (max-width: 1023.98px) {
-  .fCpO {
-    display: none;
-  }
-  .seletGender {
-    display: block;
-  }
 }

@@ -49,8 +49,7 @@
 }
 .article {
   position: relative;
-  height: fit-content;
-  width: 20%;
+  flex: 0 0 20%;
   cursor: pointer;
 }
 .active span {

@@ -9,7 +9,7 @@ import SizesList from './Sizes/SizesList';
 import Attributes from './Attributes';
 import Price from './Price';
 import UploadImage from './UploadImage';
-import { ImBoxAdd } from 'react-icons/im'
+import { ImBoxAdd, ImCheckmark } from 'react-icons/im'
 import SelectCategories from './SelectCategories';
 import Brands from './Brands';
 import PrevSizes from './Sizes/PervSizes'
@@ -17,6 +17,8 @@ import PrevSizes from './Sizes/PervSizes'
 const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
     const [product, setProduct] = useState({ category_id: null, sizes: [], attributes: [], images: [] })
     const [touch, setTouch] = useState({})
+    const [loading, setLoading] = useState(false);
+    const [progress, setProgress] = useState(0)
     const errors = validation(product)
 
     useEffect(() => {
@@ -48,8 +50,17 @@ const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
         if (Object.keys(errors).length) {
             setTouch({ name: true, brand_id: true, category_id: true, image: true, images: true, price: true, offPrice: true, color: true, colorCode: true, sizes: true, attributes: true, discountTime: true })
         } else {
+            setLoading(true)
             if (!!state) {
-                await axios.post(`/admin/products/${state.product.id}`, product, { headers: { 'Content-Type': 'multipart/form-data' } })
+                await axios.post(`/admin/products/${state.product.id}`, product, {
+                    headers: { 'Content-Type': 'multipart/form-data' },
+                    onUploadProgress: (progressEvent) => {
+                        const percentCompleted = Math.round(
+                            (progressEvent.loaded * 100) / progressEvent.total
+                        );
+                        setProgress(percentCompleted);
+                    },
+                })
                     .then(res => {
                         SwalStyled.fire({
                             title: '.ویرایش شد',
@@ -64,7 +75,15 @@ const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
                         SwalStyled.fire(".ویرایش نشد", ".مشکلی در فرایند ویرایش محصول پیش آمده", "error")
                     })
             } else {
-                await axios.post('/admin/products', product, { headers: { 'Content-Type': 'multipart/form-data' } })
+                await axios.post('/admin/products', product, {
+                    headers: { 'Content-Type': 'multipart/form-data' },
+                    onUploadProgress: (progressEvent) => {
+                        const percentCompleted = Math.round(
+                            (progressEvent.loaded * 100) / progressEvent.total
+                        );
+                        setProgress(percentCompleted);
+                    },
+                })
                     .then(res => {
                         SwalStyled.fire({
                             title: '.ثبت شد',
@@ -80,7 +99,24 @@ const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
             }
         }
     }
-
+    const getProgress = () => {
+        if (progress >= 100) {
+            return {
+                top: { clip: `rect(25px, 200px, 50px, 0px)`, borderColor: '#4BB543' },
+                bottom: { clip: `rect(25px, 200px, 50px, 0px)`, borderColor: '#4BB543' }
+            }
+        } else if (progress > 50) {
+            const percentAbove50 = progress - 50;
+            return {
+                top: { clip: `rect(0px,${(percentAbove50 * 4)}px, 50px,0px)` },
+                bottom: { clip: `rect(25px, 200px, 50px, 0px)` }
+            }
+        } else if (progress <= 50) {
+            return {
+                bottom: { clip: `rect(25px, ${(progress * 4)}px, 50px, 0px)` },
+            }
+        }
+    }
     return (
         <>
             <div className={`${style.Kce_1W2M4_6} ${!!state ? style.editing : ''}`} dir='rtl'>
@@ -142,7 +178,13 @@ const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
                             </div>
                         </div>
                         <div className={style.save_pro_qq}>
-                            <button className={style.onRc_12ar} onClick={handleSubmit}>{!!state ? 'ویرایش' : 'ثبت'} محصول</button>
+                            <button className={`${style.onRc_12ar} ${loading ? style.activeProgress : ''} ${progress === 100 ? style.Uploaded : ''}`} onClick={handleSubmit}>
+                                {progress === 100 ? <ImCheckmark color='#4BB543' /> : loading ? 'آپلــــــود تصــاویــر...' : !!state ? 'ویرایش محصول' : 'ثبت محصول'}
+                                {loading ? <>
+                                    <span className={style.progress_top} style={getProgress().top} />
+                                    <span className={style.progress_bottom} style={getProgress().bottom} />
+                                </> : ''}
+                            </button>
                         </div>
                     </form>
                 </div>

@@ -1,0 +1,106 @@
+.e1Wz0E {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.drag_drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem 0;
+  border-radius: 5px;
+}
+.drag_drop p {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  color: #3499ff;
+  margin: 1rem auto;
+}
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 100%;
+  max-height: 240px;
+  overflow: hidden;
+}
+.icon svg {
+  filter: opacity(0.5);
+  fill: gray;
+  width: 146px;
+  height: 146px;
+}
+.drag_drop span {
+  margin: 2rem 0 1rem;
+}
+.drag_drop label {
+  border: 1px solid #3499ff;
+  color: #3499ff;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 900;
+  padding: 0.5rem;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+.drag_drop label:hover {
+  background: #3499ff;
+  color: #fff;
+}
+.dropdown {
+  border: 1px solid;
+  width: 60%;
+  direction: rtl;
+}
+.link {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+.link span {
+  text-align: right;
+  font-size: 14px;
+  font-weight: 500;
+}
+.link input {
+  width: 100%;
+  outline: none;
+  padding: 4px 6px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin: 0.5rem 0;
+}
+.link input:focus {
+  outline: none;
+  border-color: #3499ff;
+}
+.Errors p {
+  direction: rtl;
+  color: red;
+}
+
+.submit {
+  border: none;
+  background: #3499ff;
+  width: 50%;
+  border-radius: 5px;
+  color: #fff;
+  padding: 0.5rem;
+  margin-top: 1rem;
+}
+.startSubmit {
+  background: #fff;
+  color: #000;
+  font-weight: 900;
+  font-size: 16px;
+  border: 1px solid #3499ff;
+}

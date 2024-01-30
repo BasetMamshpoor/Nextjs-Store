@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import style from './NavbarLinks.module.css'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import Category from '../Category';
 import Link from 'next/link';
+import { Categories } from 'providers/CategoriesProvider';
 
 const NavbarLinks = () => {
     const [flow, setFlow] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
+    const { categories } = useContext(Categories)
 
     useEffect(() => {
         window.addEventListener('scroll', checkScroll)
@@ -28,7 +30,7 @@ const NavbarLinks = () => {
                 <div className='container'>
                     <nav className={style.kBud}>
                         <div className={style.category}>
-                            <Link href='/category-womens-apparel' className={`${style.categoryBurger} ${flow ? style.hover : ''}`} onMouseEnter={() => setFlow(true)} onMouseLeave={() => setFlow(false)}>
+                            <Link href={`/category-${categories[0].slug}-apparel`} className={`${style.categoryBurger} ${flow ? style.hover : ''}`} onMouseEnter={() => setFlow(true)} onMouseLeave={() => setFlow(false)}>
                                 <span>
                                     <RxHamburgerMenu />
                                 </span>

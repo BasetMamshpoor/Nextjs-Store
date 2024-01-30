@@ -1,12 +1,15 @@
-import style from './New.module.css'
+import style from './NewSlide.module.css'
 import { useRef, useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 
-const New = ({ data, setIsOpen, SwalStyled, reload }) => {
+const NewSlide = ({ data, setIsOpen, SwalStyled, reload }) => {
     const wrapper = useRef()
     const err = useRef()
     const [slide, setSlide] = useState(!!data ? { link: data.link, src: data.src } : {})
+    const [loading, setLoading] = useState(false);
+    const [progress, setProgress] = useState(0)
+
     const imagePlaceholder = '/Images/placeholder-1.png'
 
     const handleUpload = (e, t) => {
@@ -25,7 +28,7 @@ const New = ({ data, setIsOpen, SwalStyled, reload }) => {
         else {
             file = null
             wrapper.current.src = imagePlaceholder
-            setCategory(prev => {
+            setSlide(prev => {
                 return { ...prev, src: file }
             })
             err.current.innerText = '!فایلی پیدا نشد'
@@ -43,16 +46,33 @@ const New = ({ data, setIsOpen, SwalStyled, reload }) => {
     }
     const handleSubmit = async (event) => {
         event.preventDefault()
+        setLoading(true)
         if (!!data) {
             let obj = typeof slide.src === 'object' ? { ...slide, _method: "PUT" } : { link: slide.link, _method: "PUT" }
-            await axios.post(`/admin/sliders/${data.id}`, obj, { headers: { 'Content-Type': 'multipart/form-data' } })
+            await axios.post(`/admin/sliders/${data.id}`, obj, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+                onUploadProgress: (progressEvent) => {
+                    const percentCompleted = Math.round(
+                        (progressEvent.loaded * 100) / progressEvent.total
+                    );
+                    setProgress(percentCompleted);
+                },
+            })
                 .then(() => {
                     SwalStyled.fire('.ویرایش شد', '.اسلاید مورد نظر با موفقیت ویرایش شد', 'success')
                     reload(Math.random())
                     setIsOpen(false)
                 }).catch(() => SwalStyled.fire('.ویرایش نشد', '.اسلاید مورد نظر با موفقیت ویرایش نشد', 'error'))
         }
-        else await axios.post('/admin/sliders', slide, { headers: { 'Content-Type': 'multipart/form-data' } })
+        else await axios.post('/admin/sliders', slide, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+            onUploadProgress: (progressEvent) => {
+                const percentCompleted = Math.round(
+                    (progressEvent.loaded * 100) / progressEvent.total
+                );
+                setProgress(percentCompleted);
+            },
+        })
             .then(() => {
                 SwalStyled.fire('.ثبت شد', '.اسلاید جدیدی با موفقیت ثبت شد', 'success')
                 reload(Math.random())
@@ -80,11 +100,11 @@ const New = ({ data, setIsOpen, SwalStyled, reload }) => {
                     <div className={style.Errors}>
                         <p ref={err}></p>
                     </div>
-                    <button className={style.submit}>{!!data ? 'ویرایش' : 'ثبت'}</button>
+                    <button className={`${style.submit} ${loading ? style.startSubmit : ''}`} style={loading ? { background: `linear-gradient(to right, #3499ff ${progress}%, #fff 0%)` } : {}}>{loading ? (progress + '%') : !!data ? 'ویرایش' : 'ثبت'}</button>
                 </form>
             </div>
         </>
     );
 };
 
-export default New;
+export default NewSlide;

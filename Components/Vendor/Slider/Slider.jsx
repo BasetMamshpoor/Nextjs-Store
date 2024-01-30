@@ -2,7 +2,7 @@ import Link from 'next/link';
 import style from './Slider.module.css'
 import { FiPlus, FiTrash2, FiEdit3 } from 'react-icons/fi'
 import createModal from 'Components/Modal';
-import NewSlide from '../New';
+import NewSlide from './NewSlide';
 import useRequest from 'hooks/useRequest';
 import Image from 'next/image';
 import axios from 'axios';
@@ -12,7 +12,7 @@ import { Functions } from 'providers/FunctionsProvider';
 
 const Slider = () => {
     const [currentpage, setCurrentpage] = useState(1)
-    const [data, setData, reload, paginations] = useRequest(`/admin/sliders`,currentpage)
+    const [data, setData, reload, paginations] = useRequest(`/admin/sliders`, currentpage)
     const { SwalStyled } = useContext(Functions)
 
     const handleDelete = (id) => {

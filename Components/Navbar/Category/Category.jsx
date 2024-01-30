@@ -13,28 +13,28 @@ const Category = ({ flow, setFlow }) => {
 
     const { categories } = useContext(Categories)
 
-    const slugType = (slug) => slug.split(/-(.*)/)[1]
-    const firstCategoryL2 = slugType(categories[0].subCategories[0].slug)
-
     const [gender, setGender] = useState(categories[0].slug)
-    const [category, setCategory] = useState(firstCategoryL2);
+    const [category, setCategory] = useState(categories[0].subCategories[0].slug);
 
     const categoryLevel2 = categories.find(c => c.slug === gender).subCategories
 
-
-    const genderElement = categories.map(item => {
+    const genderElement = categories.map((item, index) => {
         return <li key={item.id}
             className={`${style.gender} ${gender === item.slug ? style.gender_active : ''}`}
-            onMouseEnter={() => { setGender(item.slug); setCategory(firstCategoryL2) }}>
+            onMouseEnter={() => { setGender(item.slug); setCategory(categories[index].subCategories[0].slug) }}>
             <Link href={`/category-${item.slug}-apparel`}>{item.name}</Link></li>
     })
+
+
     const apparelElement = categoryLevel2.map(item => {
         return <li key={item.id}
-            className={`${style.gender_apparel} ${category === slugType(item.slug) ? style.apparel_active : ''}`}
-            onMouseEnter={() => setCategory(slugType(item.slug))}
+            className={`${style.gender_apparel} ${category === item.slug ? style.apparel_active : ''}`}
+            onMouseEnter={() => setCategory(item.slug)}
         ><Link href={`/category-${item.slug}`}>{item.name}</Link></li>
     })
-    const apparelTypeElement = categoryLevel2.find(c => slugType(c.slug) === category).subCategories.map(i => {
+
+
+    const apparelTypeElement = categoryLevel2.find(c => c.slug === category).subCategories.map(i => {
         return (
             <article className={style.article} key={i.id}>
                 <Link href={`/category-${i.slug}`}>

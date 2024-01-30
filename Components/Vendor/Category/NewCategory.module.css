@@ -151,3 +151,13 @@
   pointer-events: none;
 }
 
+.startSubmit {
+  background: #fff;
+  color: #000;
+  font-weight: 900;
+  font-size: 16px;
+  border: 1px solid #3499ff;
+}
+.startSubmit span {
+  color: #fff;
+}

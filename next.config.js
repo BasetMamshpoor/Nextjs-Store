@@ -28,9 +28,13 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: '/category-:gender-:type',
-        destination: '/category/:gender/:type'
-      }
+        source: '/category-:slug-apparel',
+        destination: '/category/:slug/apparel',
+      },
+      {
+        source: '/category-:slug',
+        destination: '/category/:slug'
+      },
     ]
   },
 }

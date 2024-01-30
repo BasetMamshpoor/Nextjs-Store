@@ -8,6 +8,7 @@ import useMediaQuery from "hooks/useMediaQuery"
 import MobileNavbar from "Components/Navbar/MobileNavbar"
 import FunctionsProvider from "providers/FunctionsProvider"
 import CategoriesProvider from "providers/CategoriesProvider"
+import { useRouter } from "next/router"
 
 axios.defaults.baseURL = 'http://abm.me/api'
 // axios.defaults.baseURL = 'http://localhost:6500'
@@ -16,15 +17,18 @@ axios.defaults.baseURL = 'http://abm.me/api'
 
 export default function App({ Component, pageProps }) {
   const isMatch = useMediaQuery('(max-width: 1023.98px)')
+  const router = useRouter()
+  const isLogin = router.pathname === '/login' ? true : false
+
   return (
     <>
       <FunctionsProvider>
         <CategoriesProvider>
           <CartContextProvider>
-            {isMatch ? <MobileNavbar /> : <Navbar />}
+            {!isLogin && (isMatch ? <MobileNavbar /> : <Navbar />)}
             <NextNProgress />
             <Component {...pageProps} />
-            <Footer />
+            {!isLogin && <Footer />}
             <div id="modal-container"></div>
           </CartContextProvider>
         </CategoriesProvider>
