@@ -59,13 +59,13 @@ const Filters = ({ category, router, setIsOpen }) => {
             }
         }) : str = value
         if (str === null) {
-            const { [name]: O, gender, type, ...query } = router.query
+            const { [name]: O, slug, ...query } = router.query
             router.replace({ pathname: router.asPath.split('?')[0], query: { ...query }, },
                 undefined,
                 { shallow: true }
             );
         } else {
-            const { gender, type, ...query } = router.query
+            const { slug, ...query } = router.query
             router.replace({ pathname: router.asPath.split('?')[0], query: { ...query, [name]: str }, },
                 undefined,
                 { shallow: true }

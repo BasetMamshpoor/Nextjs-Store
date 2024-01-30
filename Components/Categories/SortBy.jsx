@@ -3,7 +3,7 @@ import React from 'react';
 import style from './SortBy.module.css'
 
 const SortBy = ({ router, sort = 'newest' }) => {
-    const { gender, type, ...Query } = router.query
+    const { slug, ...Query } = router.query
 
 
     return (

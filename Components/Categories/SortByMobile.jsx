@@ -2,7 +2,7 @@ import React from 'react';
 import style from './SortByMobile.module.css'
 import { FaAngleLeft } from "react-icons/fa6";
 const SortByMobile = ({ router, sort = 'newest', setIsOpen }) => {
-    const { gender, type, ...Query } = router.query
+    const { slug, ...Query } = router.query
     const handleClick = (e, tg) => {
         e.preventDefault();
         router.push({
