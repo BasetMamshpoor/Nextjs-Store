@@ -44,7 +44,7 @@ const AdminProducts = () => {
                             </div>
                         </div>
                         <button type='button'
-                            onClick={() => createModal(<Filters category={1} router={router} />)}
+                            onClick={() => createModal(<Filters category={categoryId} router={router} />)}
                             className={[style.filters_btn, style.btn].join(' ')}>فیلتر</button>
                         <button type='button'
                             onClick={() => createModal(<SortByMobile router={router} sort={router.query.sort} />)}
