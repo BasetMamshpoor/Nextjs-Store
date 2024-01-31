@@ -124,7 +124,7 @@ const Filters = ({ category, router, setIsOpen }) => {
                         </div>
                     </div>
                 </div>
-            </div> : <p>loading...</p>}
+            </div> : <p>... درحال‌ بارگذاری</p>}
         </>
     );
 };

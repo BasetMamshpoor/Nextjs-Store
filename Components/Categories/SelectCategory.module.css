@@ -11,16 +11,17 @@
   flex-wrap: wrap;
 }
 .mvHr {
-  height: fit-content;
-  flex: 0 0 calc(25% - 50px);
-  box-shadow: 0 10px 10px 0px #0000002d;
-  border-radius: 10px;
-  overflow: hidden;
+  flex: 0 0 calc(22% - 50px);
 }
 .HcrJ {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
+  position: relative;
+  gap: 1.5rem;
 }
 .HcrJ:hover {
   color: #000;
@@ -29,53 +30,45 @@
   transform: scale(1.1);
 }
 .cYaR {
-  position: relative;
   width: 100%;
   height: 100%;
   background: #eee;
+  box-shadow: 0 10px 10px 0px #0000002d;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .cYaR img {
   transition: all 0.3s ease;
-  transform: scale(1.05);
 }
-.cYaR span {
+.name {
   font-family: IRANYekan, IRANSans, sans-serif;
-  position: absolute;
   font-weight: 600;
-  right: 20%;
-  top: 85%;
-  transform: translate(50%, -50%);
-  z-index: 20;
-  border-radius: 5px;
-  background: #fff;
-  padding: 0.3rem;
-  border: none;
-  font-size: 14px;
-}
-.cYaR::before,
-.cYaR::after {
-  content: "";
-  position: absolute;
-  background: #fff;
-  z-index: 10;
-}
-.cYaR::before {
-  top: 85%;
-  right: 0;
-  width: 100%;
-  height: 1px;
-}
-.cYaR::after {
-  top: 0;
-  right: 20%;
-  width: 1px;
-  height: 100%;
+  font-size: 16px;
 }
 @media (max-width: 1023.98px) {
   .BfpEw {
     justify-content: center;
   }
   .mvHr {
+    flex: 0 0 calc(25% - 25px);
+  }
+}
+@media (max-width: 768.98px) {
+  .mvHr {
+    flex: 0 0 calc(33% - 25px);
+  }
+  .name {
+    font-size: 13px;
+  }
+}
+@media (max-width: 425.98px) {
+  .mvHr {
     flex: 0 0 calc(50% - 25px);
+  }
+  .cYaR img {
+    transform: scale(1.12);
   }
 }

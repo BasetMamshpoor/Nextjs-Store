@@ -7,6 +7,7 @@ import SortByMobile from 'Components/Categories/SortByMobile';
 import { useRouter } from 'next/router';
 import { BiChevronDown } from 'react-icons/bi';
 import CategoryFilter from 'Components/Categories/CategoryFilter';
+import { e2p } from 'Functions/ConvertNumbers';
 
 
 const AdminProducts = () => {
@@ -27,10 +28,14 @@ const AdminProducts = () => {
     }, [])
 
     const handleHide = (event) => {
-        if (popup.current && !popup.current.contains(event.target)) {
+        if (popup.current && !popup.current.contains(event.target))
             popup.current.classList.remove(style.activePopup)
-        }
     }
+
+    useEffect(() => {
+        if (total_Items.current && categoryId === 0)
+            total_Items.current.innerText = `${e2p(0)} کالا`
+    }, [categoryId])
 
     return (
         <>
@@ -43,18 +48,18 @@ const AdminProducts = () => {
                                 <CategoryFilter categoryId={categoryId} setCategoryId={setCategoryId} />
                             </div>
                         </div>
-                        <button type='button'
-                            onClick={() => createModal(<Filters category={categoryId ? categoryId : 1} router={router} />)}
-                            className={[style.filters_btn, style.btn].join(' ')}>فیلتر</button>
+                        {categoryId !== 0 ? <button type='button'
+                            onClick={() => createModal(<Filters category={categoryId} router={router} />)}
+                            className={[style.filters_btn, style.btn].join(' ')}>فیلتر</button> : null}
                         <button type='button'
                             onClick={() => createModal(<SortByMobile router={router} sort={router.query.sort} />)}
                             className={[style.sortBy_btn, style.btn].join(' ')}>مرتب سازی</button>
                     </div>
                     <div className={style.total_items} ref={total_Items}></div>
                 </div>
-                <div className={style.product_list}>
-                    <Products category={categoryId} total_Items={total_Items} />
-                </div>
+                {categoryId === 0 ?
+                    <p className={style.noCategory}>لطفا دسته بندی را انتخاب کنید.</p>
+                    : <Products category={categoryId} total_Items={total_Items} />}
             </div>
         </>
     );

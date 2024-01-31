@@ -11,8 +11,8 @@ const SelectCategory = ({ categories }) => {
                     <div className={style.cYaR}>
                         <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png'
                             width={100} height={100} unoptimized={true} src={item.icon} alt={item.name} />
-                        <span>{item.name}</span>
                     </div>
+                    <span className={style.name}>{item.name}</span>
                 </Link>
             </div>
         )

@@ -79,11 +79,6 @@
   color: rgba(0, 0, 0, 0.4);
   padding-left: 2rem;
 }
-/* @media (max-width: 1279.98px) {
-  .imgP {
-    height: 240px;
-  }
-} */
 .option {
   position: absolute;
   top: 5px;
@@ -124,4 +119,25 @@
 }
 .menu_item:hover {
   background: #eee;
+}
+@media (max-width: 649.98px) {
+  .Xqera {
+    border-bottom: 1px solid rgba(231, 231, 231, 0.678);
+    border-left: none;
+  }
+}
+@media (max-width: 425.98px) {
+  .Xqera {
+    padding: 0;
+  }
+  .imgP {
+    padding-right: 0;
+    height: 180px;
+  }
+  .priceR {
+    font-size: 14px;
+  }
+  .priceR::before {
+    font-size: 20px;
+  }
 }

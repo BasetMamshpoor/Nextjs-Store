@@ -12,14 +12,14 @@ const Products = ({ category, total_Items }) => {
     const router = useRouter()
     const { vendor, ...query } = router.query
 
-    const [products, setProducts, reload, pagination, setPagination] = useRequest(`/products/filter/${category !== 0 ? category : 1}?${decodeQueryData(query)}`, 1)
+    const [products, setProducts, reload, pagination, setPagination] = useRequest(`/products/filter/${category}?${decodeQueryData(query)}`, 1)
 
     useEffect(() => {
         total_Items.current.innerText = `${pagination ? e2p(pagination.meta.total) : e2p(0)} کالا`
     }, [pagination])
 
     const loadMoreItems = async (page) => {
-        const products = await getProducts(category !== 0 ? category : 1, query, page)
+        const products = await getProducts(category, query, page)
         if (!!products) {
             setProducts(prev => {
                 return prev.concat(products.data)
@@ -32,7 +32,7 @@ const Products = ({ category, total_Items }) => {
 
     return (
         <>
-            {products && products.length ? <div>
+            {products && products.length ? <>
                 <InfiniteScroll
                     loadMoreItems={loadMoreItems}
                     isEnd={pagination.links.next ? false : true}
@@ -42,7 +42,7 @@ const Products = ({ category, total_Items }) => {
                 >
                     {products.map(i => <Product key={i.id} {...i} setProducts={setProducts} />)}
                 </InfiniteScroll>
-            </div> : <p>محصولی پیدا نشد لطفا فیلتر ها رو تغییر بدید.</p>}
+            </> : <p>محصولی پیدا نشد لطفا فیلتر ها رو تغییر بدید.</p>}
         </>
     );
 };

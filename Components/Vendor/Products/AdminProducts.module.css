@@ -65,3 +65,29 @@
   width: 300px;
   opacity: 1;
 }
+.noCategory {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 1rem;
+}
+@media (max-width: 425.98px) {
+  .popup {
+    right: -10px;
+  }
+  .category_btn i {
+    margin-right: 1px;
+  }
+  .options {
+    gap: 0.5rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .btn {
+    font-size: 13px;
+  }
+  .total_items {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+}

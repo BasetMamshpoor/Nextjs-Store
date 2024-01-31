@@ -8,17 +8,19 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { CartContext } from 'providers/CartContextProvider';
 import { e2p } from 'Functions/ConvertNumbers';
+import { Categories } from 'providers/CategoriesProvider';
 
 
 const MobileNavbar = () => {
     const router = useRouter()
     const { state } = useContext(CartContext)
+    const { categories } = useContext(Categories)
 
 
     const Menu = () => {
         let arr = [
             { route: '/', iconOutline: <BsHouse />, iconeFill: <BsHouseFill />, value: 'خانه' },
-            { route: '/category-womens-apparel', iconOutline: <MdOutlineCategory />, iconeFill: <MdCategory />, value: 'دسته بندی' },
+            { route: `/category-${categories[0].slug}-apparel`, iconOutline: <MdOutlineCategory />, iconeFill: <MdCategory />, value: 'دسته بندی' },
             { route: '/cart', iconOutline: <BsCart />, iconeFill: <BsCartFill />, value: 'سبد خرید' },
             { route: '/profile', iconOutline: <BsPerson />, iconeFill: <BsPersonFill />, value: 'صفحه من' },
         ]
