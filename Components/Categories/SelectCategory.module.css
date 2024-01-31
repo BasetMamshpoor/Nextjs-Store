@@ -76,6 +76,6 @@
     justify-content: center;
   }
   .mvHr {
-    flex: 0 0 calc(50% - 10px);
+    flex: 0 0 calc(50% - 25px);
   }
 }

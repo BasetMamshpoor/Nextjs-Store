@@ -105,6 +105,18 @@ const UploadImage = ({ setProduct, images, image }) => {
                         <>
                             <label className={style.control_label}>جهت حذف، روی عکس مورد نظر کلیک کنید.</label>
                             <div className={style.OvrcU}>
+                                <div className={style.ExBt_2}>
+                                    <input
+                                        type="checkbox"
+                                        name={image.name}
+                                        id={`image`}
+                                        hidden
+                                        onChange={handleImageOption}
+                                    />
+                                    <label htmlFor={`image`} className={style.image_holder}>
+                                        <img src={image} alt="imagePost" />
+                                    </label>
+                                </div>
                                 {images.map(i => {
                                     return (
                                         <div key={i.id} className={style.ExBt_2}>

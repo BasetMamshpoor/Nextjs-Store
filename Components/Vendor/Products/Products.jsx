@@ -10,31 +10,31 @@ import decodeQueryData from 'Functions/decodeQueryData';
 
 const Products = ({ category, total_Items }) => {
     const router = useRouter()
+    const { vendor, ...query } = router.query
 
-
-    const [products, setProducts, reload, pagination, setPagination] = useRequest(`/products`, 1)
+    const [products, setProducts, reload, pagination, setPagination] = useRequest(`/products/filter/${category !== 0 ? category : 1}?${decodeQueryData(query)}`, 1)
 
     useEffect(() => {
         total_Items.current.innerText = `${pagination ? e2p(pagination.meta.total) : e2p(0)} کالا`
     }, [pagination])
 
-    // const loadMoreItems = async (page) => {
-    //     const products = await getProducts(category, router.query, page)
-    //     if (!!products) {
-    //         setProducts(prev => {
-    //             return prev.concat(products.data)
-    //         })
-    //         const { data, ...pagination } = products
-    //         setPagination(pagination)
-    //     }
-    //     return true
-    // }
+    const loadMoreItems = async (page) => {
+        const products = await getProducts(category !== 0 ? category : 1, query, page)
+        if (!!products) {
+            setProducts(prev => {
+                return prev.concat(products.data)
+            })
+            const { data, ...pagination } = products
+            setPagination(pagination)
+        }
+        return true
+    }
 
     return (
         <>
             {products && products.length ? <div>
                 <InfiniteScroll
-                    // loadMoreItems={loadMoreItems}
+                    loadMoreItems={loadMoreItems}
                     isEnd={pagination.links.next ? false : true}
                     dataLength={products.length}
                     pageStart={1}
