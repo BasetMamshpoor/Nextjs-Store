@@ -13,7 +13,7 @@ import Head from "next/head"
 
 axios.defaults.baseURL = 'http://abm.me/api'
 // axios.defaults.baseURL = 'http://localhost:6500'
-// axios.defaults.baseURL = 'http://192.168.1.101:8000/api'
+// axios.defaults.baseURL = 'http://192.168.1.105:8000/api'
 
 
 export default function App({ Component, pageProps }) {

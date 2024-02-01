@@ -38,7 +38,9 @@ const Category = ({ flow, setFlow }) => {
         return (
             <article className={style.article} key={i.id}>
                 <Link href={`/category-${i.slug}`}>
-                    <div className={style.art_img}><Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={i.icon} alt={i.name} /></div>
+                    <div className={style.art_img}>
+                        <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png'
+                            width={100} height={100} unoptimized={true} src={i.icon} alt={i.name} /></div>
                     <div className={style.art_name}><span>{i.name}</span></div>
                 </Link>
             </article>

@@ -20,10 +20,8 @@ const SelectCategoryType = ({ subCategories }) => {
         <>
             <section className={style.gwzu}>
                 <div className='container' dir="rtl">
-                    <div className={style.yvEq}>
-                        <div className={style.xrcwea}>
-                            {makeElement}
-                        </div>
+                    <div className={style.xrcwea}>
+                        {makeElement}
                     </div>
                 </div>
             </section>

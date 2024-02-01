@@ -64,9 +64,25 @@
     font-size: 13px;
   }
 }
-@media (max-width: 425.98px) {
+@media (max-width: 475.98px) {
+  .BfpEw {
+    flex-wrap: nowrap;
+    overflow-y: hidden;
+    overflow-x: auto;
+    padding: 1rem 0.5rem;
+    justify-content: flex-start;
+  }
+  .BfpEw::-webkit-scrollbar {
+    height: 4px;
+    background: #fff;
+  }
+  .BfpEw::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 10px;
+  }
   .mvHr {
-    flex: 0 0 calc(50% - 25px);
+    flex: 0 0 150px;
+    height: 180px;
   }
   .cYaR img {
     transform: scale(1.12);

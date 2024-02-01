@@ -34,7 +34,7 @@ const CategoryFilter = ({ categoryId, setCategoryId }) => {
                             <div className={`${style.label} ${show.L1 === c.id ? style.active : ''}`} onClick={(e) => handleShowHide(e, { L1: c.id, L2: 0 })}>
                                 <div className={style.text}>
                                     <input type="checkbox" id={c.id} hidden checked={categoryId === c.id ? true : false} onChange={(e) => handleCheck(e, c.id)} />
-                                    <label htmlFor={c.id} className={style.gbPol}></label> {console.log(categoryId === c.id)}
+                                    <label htmlFor={c.id} className={style.gbPol}></label>
                                     <p>{c.name}</p>
                                 </div>
                                 <div className={style.label_icon} style={show.L1 === c.id ? { transform: 'rotate(180deg)' } : {}}>{<BiChevronDown />}</div>

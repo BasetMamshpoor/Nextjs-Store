@@ -11,10 +11,10 @@ const Modal = ({ content }) => {
         }
         return child;
     });
+    
     useEffect(() => {
-        document.body.style.overflow = 'hidden'
-        // if (isOpen) {}
-        // else document.body.style.overflow = 'auto'
+        if (isOpen) document.body.style.overflow = 'hidden'
+        else document.body.style.overflow = 'auto'
     }, [isOpen])
 
     return isOpen
