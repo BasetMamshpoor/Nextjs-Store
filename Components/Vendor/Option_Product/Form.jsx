@@ -178,7 +178,8 @@ const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
                             </div>
                         </div>
                         <div className={style.save_pro_qq}>
-                            <button className={`${style.onRc_12ar} ${loading ? style.activeProgress : ''} ${progress === 100 ? style.Uploaded : ''}`} onClick={handleSubmit}>
+                            <button className={`${style.onRc_12ar} ${loading ? style.activeProgress : ''} ${progress === 100 ? style.Uploaded : ''}`}
+                             onClick={handleSubmit}>
                                 {progress === 100 ? <ImCheckmark color='#4BB543' /> : loading ? 'آپلــــــود تصــاویــر...' : !!state ? 'ویرایش محصول' : 'ثبت محصول'}
                                 {loading ? <>
                                     <span className={style.progress_top} style={getProgress().top} />

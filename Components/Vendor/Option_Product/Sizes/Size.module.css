@@ -150,3 +150,15 @@
     width: 140px !important;
   }
 }
+@media (max-width: 425.98px) {
+  .sfZr14_2 {
+    flex: 1 0 100%;
+  }
+  .kXe_zuIo input {
+    width: 120px !important;
+  }
+  .RcpIf_12 svg {
+    width: 30px;
+    height: 30px;
+  }
+}

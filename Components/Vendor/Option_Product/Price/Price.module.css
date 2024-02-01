@@ -141,7 +141,7 @@
   -webkit-appearance: none;
   border: none;
 }
-@media (max-width: 767.98px) {
+@media (max-width: 768.98px) {
   .nJe_3zq_plf {
     flex: 0 0 100%;
     max-width: 100%;
@@ -154,7 +154,7 @@
     gap: 1rem;
   }
 }
-@media (max-width: 424.98px) {
+@media (max-width: 425.98px) {
   .nJe_discount_plf {
     flex: 1 0 50%;
   }
