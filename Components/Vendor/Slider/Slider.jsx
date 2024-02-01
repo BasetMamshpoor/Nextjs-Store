@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import style from './Slider.module.css'
-import { FiPlus, FiTrash2, FiEdit3 } from 'react-icons/fi'
+import { FiPlus, FiEdit3 } from 'react-icons/fi'
 import createModal from 'Components/Modal';
 import NewSlide from './NewSlide';
 import useRequest from 'hooks/useRequest';
@@ -56,9 +56,6 @@ const Slider = () => {
                                 <div className={style.slideOption} >
                                     <div className={style.edit} onClick={() => createModal(<NewSlide SwalStyled={SwalStyled} data={e} reload={reload} />)}>
                                         <FiEdit3 />
-                                    </div>
-                                    <div className={style.Exw11_O0} onClick={() => handleDelete(e.id)}>
-                                        <FiTrash2 />
                                     </div>
                                 </div>
                             </div>

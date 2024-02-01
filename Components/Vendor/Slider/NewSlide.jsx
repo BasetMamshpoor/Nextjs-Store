@@ -2,6 +2,7 @@ import style from './NewSlide.module.css'
 import { useRef, useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
+import { FiTrash2 } from 'react-icons/fi';
 
 const NewSlide = ({ data, setIsOpen, SwalStyled, reload }) => {
     const wrapper = useRef()
@@ -79,6 +80,24 @@ const NewSlide = ({ data, setIsOpen, SwalStyled, reload }) => {
                 setIsOpen(false)
             }).catch(({ response }) => SwalStyled.fire('.ثبت نشد', response.data.message, 'error'))
     }
+    const handleDelete = () => {
+        SwalStyled.fire({
+            title: "آیا مطمئن هستید؟",
+            text: "!شما نمی توانید این اسلاید را برگردانید",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "بله حذف شود"
+        }).then((result) => {
+            if (result.isConfirmed) axios.delete(`/admin/sliders/${data.id}`)
+                .then(res => {
+                    setData(prev => {
+                        const Prev = prev.filter(s => s.id !== data.id)
+                        return Prev
+                    })
+                    SwalStyled.fire("!حذف شد", ".اسلاید مورد نظر با موفقیت حذف شد", "success");
+                }).catch(err => SwalStyled.fire("!حذف نشد", ".اسلاید مورد نظر با موفقیت حذف نشد", "error"))
+        });
+    }
     return (
         <>
             <div className={style.hVhBe3q}>
@@ -88,9 +107,10 @@ const NewSlide = ({ data, setIsOpen, SwalStyled, reload }) => {
                         <div className={style.drag_drop} onDragOver={e => e.preventDefault()} onDrop={(e) => handleUpload(e, 'dataTransfer')}>
                             <p>.عکس را داخل بیندازید</p>
                             <div className={style.icon} >
-                                <Image ref={wrapper} src={!data ? imagePlaceholder : !!data.src ? data.src : imagePlaceholder} width={100} height={100} placeholder='blur' unoptimized={true} blurDataURL={imagePlaceholder} alt='' />
+                                <Image ref={wrapper} src={!data ? imagePlaceholder : !!data.src ? data.src : imagePlaceholder}
+                                    width={100} height={100} placeholder='blur' unoptimized={true} blurDataURL={imagePlaceholder} alt='' />
                             </div>
-                            <span> یا <label htmlFor="file"> انتخاب عکس </label></span>
+                            <div className={style.pick}> یا <label htmlFor="file"> انتخاب عکس </label></div>
                         </div>
                     </div>
                     <label htmlFor="link" className={style.link}>
@@ -100,7 +120,12 @@ const NewSlide = ({ data, setIsOpen, SwalStyled, reload }) => {
                     <div className={style.Errors}>
                         <p ref={err}></p>
                     </div>
-                    <button className={`${style.submit} ${loading ? style.startSubmit : ''}`} style={loading ? { background: `linear-gradient(to right, #3499ff ${progress}%, #fff 0%)` } : {}}>{loading ? (progress + '%') : !!data ? 'ویرایش' : 'ثبت'}</button>
+                    <div className={style.buttons}>
+                        <button type='button' className={style.btnDelete} onClick={handleDelete}>حذف <span><FiTrash2 /></span></button>
+                        <button className={`${style.submit} ${loading ? style.startSubmit : ''}`}
+                            style={loading ? { background: `linear-gradient(to right, #3499ff ${progress}%, #fff 0%)` } : {}}>
+                            {loading ? (progress + '%') : !!data ? 'ویرایش' : 'ثبت'}</button>
+                    </div>
                 </form>
             </div>
         </>

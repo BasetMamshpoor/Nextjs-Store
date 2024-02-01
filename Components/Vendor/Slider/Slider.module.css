@@ -30,7 +30,7 @@
   margin: 1rem 0 2rem;
 }
 .i8yv_o1a {
-  flex: 0 0 calc(calc(100% - 1rem) / 2);
+  flex: 0 0 calc(50% - 0.5rem);
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -58,14 +58,12 @@
 .slideOption {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   width: 100%;
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
 }
-.Exw11_O0,
 .edit {
   cursor: pointer;
   background: rgba(204, 204, 204, 0.6);
@@ -80,4 +78,9 @@
 .Exw11_O0 svg {
   width: 20px;
   height: 20px;
+}
+@media (max-width: 768.98px) {
+  .i8yv_o1a {
+    flex: 0 0 100%;
+  }
 }

@@ -1,7 +1,12 @@
+.hVhBe3q {
+  padding: 0 1rem 1rem;
+}
 .e1Wz0E {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
 }
 .upload {
   display: flex;
@@ -13,24 +18,22 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1rem 0;
   border-radius: 5px;
+  gap: 10px;
 }
 .drag_drop p {
-  display: flex;
-  align-items: center;
   font-size: 18px;
   color: #3499ff;
-  margin: 1rem auto;
+  margin: 0 auto;
 }
 .icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: fit-content;
-  height: 100%;
-  max-height: 240px;
+  min-width: 240px;
+  height: 240px;
   overflow: hidden;
+  margin-bottom: 1rem;
 }
 .icon svg {
   filter: opacity(0.5);
@@ -38,10 +41,10 @@
   width: 146px;
   height: 146px;
 }
-.drag_drop span {
-  margin: 2rem 0 1rem;
+.pick {
+  margin: 0 auto;
 }
-.drag_drop label {
+.pick label {
   border: 1px solid #3499ff;
   color: #3499ff;
   border-radius: 10px;
@@ -51,14 +54,9 @@
   white-space: nowrap;
   transition: all 0.3s ease;
 }
-.drag_drop label:hover {
+.pick label:hover {
   background: #3499ff;
   color: #fff;
-}
-.dropdown {
-  border: 1px solid;
-  width: 60%;
-  direction: rtl;
 }
 .link {
   width: 100%;
@@ -87,7 +85,6 @@
   direction: rtl;
   color: red;
 }
-
 .submit {
   border: none;
   background: #3499ff;
@@ -103,4 +100,37 @@
   font-weight: 900;
   font-size: 16px;
   border: 1px solid #3499ff;
+}
+@media (max-width: 1023.98px) {
+  .hVhBe3q {
+    border: 1px solid #eee;
+    border-radius: 15px;
+    margin-bottom: 3rem;
+  }
+  .e1Wz0E {
+    padding: 1rem;
+  }
+}
+@media (max-width: 768.98px) {
+  .icon {
+    height: auto;
+    width: auto;
+    max-width: 400px;
+    max-height: 300px;
+  }
+  .hVhBe3q {
+    padding-top: 1rem;
+  }
+  .e1Wz0E {
+    padding: 0;
+  }
+}
+@media (max-width: 425.98px) {
+  .hVhBe3q {
+    border: 0;
+    border-radius: 0;
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
 }

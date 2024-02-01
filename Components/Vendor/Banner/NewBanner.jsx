@@ -78,9 +78,10 @@ const NewBanner = ({ data, setIsOpen, SwalStyled, reload }) => {
                         <div className={style.drag_drop} onDragOver={e => e.preventDefault()} onDrop={(e) => handleUpload(e, 'dataTransfer')}>
                             <p>.عکس را داخل بیندازید</p>
                             <div className={style.icon}>
-                                <Image ref={wrapper} src={!data ? imagePlaceholder : !!data.src ? data.src : imagePlaceholder} width={100} height={100} placeholder='blur' unoptimized={true} blurDataURL={imagePlaceholder} alt='' />
+                                <Image ref={wrapper} src={!data ? imagePlaceholder : !!data.src ? data.src : imagePlaceholder}
+                                    width={100} height={100} placeholder='blur' unoptimized={true} blurDataURL={imagePlaceholder} alt='' />
                             </div>
-                            <span> یا <label htmlFor="file"> انتخاب عکس </label></span>
+                            <div className={style.pick}> یا <label htmlFor="file"> انتخاب عکس </label></div>
                         </div>
                     </div>
                     {/* <div className={style.dropdown}>
@@ -93,7 +94,9 @@ const NewBanner = ({ data, setIsOpen, SwalStyled, reload }) => {
                     <div className={style.Errors}>
                         <p ref={err}></p>
                     </div>
-                    <button className={`${style.submit} ${loading ? style.startSubmit : ''}`} style={loading ? { background: `linear-gradient(to right, #3499ff ${progress}%, #fff 0%)` } : {}}>{loading ? (progress + '%') : !!data ? 'ویرایش' : 'ثبت'}</button>
+                    <button className={`${style.submit} ${loading ? style.startSubmit : ''}`}
+                        style={loading ? { background: `linear-gradient(to right, #3499ff ${progress}%, #fff 0%)` } : {}}>
+                        {loading ? (progress + '%') : !!data ? 'ویرایش' : 'ثبت'}</button>
                 </form>
             </div >
         </>

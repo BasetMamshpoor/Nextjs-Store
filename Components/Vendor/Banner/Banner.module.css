@@ -13,15 +13,14 @@
 .banners {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 .baner {
   margin: 0 auto;
   overflow: hidden;
   border-radius: 10px;
-  flex: 0 0 calc(calc(100% / 2) - 50px);
-  height: 280px;
+  flex: 0 0 calc(33.33% - 20px);
   box-shadow: 0 10px 10px 0px #0000002d;
   position: relative;
 }
@@ -52,4 +51,26 @@
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
+}
+@media (max-width: 992.98px) {
+  .option {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+@media (max-width: 768.98px) {
+  .baner {
+    flex: 0 0 calc(50% - 10px);
+  }
+}
+@media (max-width: 599.98px) {
+  .option {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
+@media (max-width: 425.98px) {
+  .baner {
+    flex: 0 0 calc(100%);
+  }
 }
