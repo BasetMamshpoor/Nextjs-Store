@@ -22,7 +22,7 @@ const reducer = (state, action) => {
             }))
             return {
                 ...state,
-                selectedItems: [...clearUnexist],
+                selectedItems: action.payload,
                 ...sumItems(action.payload)
             }
         case "ADD_ITEM":

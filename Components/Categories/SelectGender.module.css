@@ -33,8 +33,12 @@
     width: 160px;
   }
 }
-@media (max-width: 425.98px) {
+@media (max-width: 475.98px) {
+  .genders {
+    gap: 15px 5px;
+    justify-content: space-evenly;
+  }
   .gender {
-    width: 120px;
+    width: 100px;
   }
 }
