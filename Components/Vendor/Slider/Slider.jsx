@@ -5,7 +5,6 @@ import createModal from 'Components/Modal';
 import NewSlide from './NewSlide';
 import useRequest from 'hooks/useRequest';
 import Image from 'next/image';
-import axios from 'axios';
 import Pagination from 'Components/Pagination/Pagination';
 import { useContext, useState } from 'react';
 import { Functions } from 'providers/FunctionsProvider';
@@ -14,25 +13,6 @@ const Slider = () => {
     const [currentpage, setCurrentpage] = useState(1)
     const [data, setData, reload, paginations] = useRequest(`/admin/sliders`, currentpage)
     const { SwalStyled } = useContext(Functions)
-
-    const handleDelete = (id) => {
-        SwalStyled.fire({
-            title: "آیا مطمئن هستید؟",
-            text: "!شما نمی توانید این اسلاید را برگردانید",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "بله حذف شود"
-        }).then((result) => {
-            if (result.isConfirmed) axios.delete(`/admin/sliders/${id}`)
-                .then(res => {
-                    setData(prev => {
-                        const Prev = prev.filter(s => s.id !== id)
-                        return Prev
-                    })
-                    SwalStyled.fire("!حذف شد", ".اسلاید مورد نظر با موفقیت حذف شد", "success");
-                }).catch(err => SwalStyled.fire("!حذف نشد", ".اسلاید مورد نظر با موفقیت حذف نشد", "error"))
-        });
-    }
 
     return (
         <>
@@ -54,7 +34,7 @@ const Slider = () => {
                                     {e.link}
                                 </Link>
                                 <div className={style.slideOption} >
-                                    <div className={style.edit} onClick={() => createModal(<NewSlide SwalStyled={SwalStyled} data={e} reload={reload} />)}>
+                                    <div className={style.edit} onClick={() => createModal(<NewSlide SwalStyled={SwalStyled} setData={setData} data={e} reload={reload} />)}>
                                         <FiEdit3 />
                                     </div>
                                 </div>

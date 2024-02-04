@@ -1,6 +1,7 @@
 import { GiClothes, GiKnightBanner } from 'react-icons/gi'
 import { MdOutlineFileUpload, MdSettings, MdSpaceDashboard } from 'react-icons/md'
 import { BsCart3, BsBuilding } from 'react-icons/bs'
+import { FaUsers } from "react-icons/fa";
 import { FiSliders } from 'react-icons/fi';
 import { BiCategory } from 'react-icons/bi';
 import Slider from 'Components/Vendor/Slider';
@@ -20,5 +21,6 @@ let adminRoutes = [
     { link: 'products', icon: <GiClothes />, name: 'محصولات', component: <AdminProducts /> },
     { link: 'orders', icon: <BsCart3 />, name: 'سفارشات' },
     { link: 'setting', icon: <MdSettings />, name: 'تغییر مشخصات' },
+    { link: 'users', icon: <FaUsers />, name: 'کاربران' },
 ]
 export default adminRoutes

@@ -4,7 +4,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import { FiTrash2 } from 'react-icons/fi';
 
-const NewSlide = ({ data, setIsOpen, SwalStyled, reload }) => {
+const NewSlide = ({ data, setData, setIsOpen, SwalStyled, reload }) => {
     const wrapper = useRef()
     const err = useRef()
     const [slide, setSlide] = useState(!!data ? { link: data.link, src: data.src } : {})
@@ -120,8 +120,8 @@ const NewSlide = ({ data, setIsOpen, SwalStyled, reload }) => {
                     <div className={style.Errors}>
                         <p ref={err}></p>
                     </div>
-                    <div className={style.buttons}>
-                        <button type='button' className={style.btnDelete} onClick={handleDelete}>حذف <span><FiTrash2 /></span></button>
+                    <div className={style.buttons} style={!!data ? {} : { justifyContent: 'center' }}>
+                        {!!data ? <button type='button' className={style.btnDelete} onClick={handleDelete}>حذف <span><FiTrash2 /></span></button> : ''}
                         <button className={`${style.submit} ${loading ? style.startSubmit : ''}`}
                             style={loading ? { background: `linear-gradient(to right, #3499ff ${progress}%, #fff 0%)` } : {}}>
                             {loading ? (progress + '%') : !!data ? 'ویرایش' : 'ثبت'}</button>
