@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-const useRequest = (url, page = 1, obj) => {
+const useGetRequest = (url, page = 1, obj) => {
     const [data, setData] = useState()
     const [paginations, setPaginations] = useState()
     const [reload, setReload] = useState(Math.random())
 
     useEffect(() => {
         const get = async () => {
-            await axios.get(url, { params: {...obj, page } })
+            await axios.get(url, { params: { ...obj, page } })
                 .then(res => {
                     const { data, ...pagination } = res.data
                     setData(res.data.data)
@@ -22,4 +22,4 @@ const useRequest = (url, page = 1, obj) => {
     return [data, setData, setReload, paginations, setPaginations]
 };
 
-export default useRequest;
+export default useGetRequest;

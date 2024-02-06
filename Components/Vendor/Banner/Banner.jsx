@@ -5,10 +5,10 @@ import { FiEdit3 } from "react-icons/fi";
 import Link from 'next/link';
 import Image from 'next/image';
 import NewBanner from './NewBanner';
-import useRequest from 'hooks/useRequest';
+import useGetRequest from 'hooks/useGetRequest';
 import { Functions } from 'providers/FunctionsProvider'
 const Banner = () => {
-    const [banners, setBaneers, reload] = useRequest('/admin/banners', 1, { type: 'homepage' })
+    const [banners, setBaneers, reload] = useGetRequest('/admin/banners', 1, { type: 'homepage' })
     const { SwalStyled } = useContext(Functions)
     return (
         <>

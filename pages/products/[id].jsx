@@ -11,7 +11,7 @@ import { AiOutlineSafety, AiOutlineFieldTime } from 'react-icons/ai'
 import { BsTruck } from 'react-icons/bs'
 import Baner from 'Components/Detaile/Baner';
 import Image from 'next/image';
-import useRequest from 'hooks/useRequest';
+import useGetRequest from 'hooks/useGetRequest';
 import Breadcrumb from 'Components/Breadcrumb';
 import createModal from 'Components/Modal';
 import Form from 'Components/Vendor/Option_Product/Form';
@@ -23,7 +23,7 @@ const ProductDetaile = () => {
     const dots = useRef()
 
     const { id } = router.query
-    const [data, setData, reload] = useRequest(`/products/show/${id}`)
+    const [data, setData, reload] = useGetRequest(`/products/show/${id}`)
     const { SwalStyled } = useContext(Functions)
 
 

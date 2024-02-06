@@ -2,9 +2,9 @@ import React from 'react';
 import style from './Banner.module.css'
 import Link from 'next/link';
 import Image from 'next/image';
-import useRequest from 'hooks/useRequest';
+import useGetRequest from 'hooks/useGetRequest';
 const Banner = () => {
-    const [ banners ] = useRequest('/banners', 1, { type: 'homepage' })
+    const [banners] = useGetRequest('/banners', 1, { type: 'homepage' })
     return (
         <>
             <div className={style.Banner}>

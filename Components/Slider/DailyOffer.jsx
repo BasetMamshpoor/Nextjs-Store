@@ -5,7 +5,7 @@ import amazing from 'public/Images/amazing-typo.svg'
 import 'swiper/css/navigation'
 import 'swiper/css';
 import Image from 'next/image';
-import useRequest from 'hooks/useRequest';
+import useGetRequest from 'hooks/useGetRequest';
 import Link from 'next/link';
 import { e2p } from 'Functions/ConvertNumbers';
 import addComma from 'Functions/addComma';
@@ -14,7 +14,7 @@ import { Categories } from 'providers/CategoriesProvider';
 
 const DailyOffer = () => {
 
-    const [data] = useRequest('/products/discounts')
+    const [data] = useGetRequest('/products/discounts')
     const { categories } = useContext(Categories)
 
     return (

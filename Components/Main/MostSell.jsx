@@ -1,5 +1,5 @@
 import { e2p } from 'Functions/ConvertNumbers';
-import useRequest from 'hooks/useRequest';
+import useGetRequest from 'hooks/useGetRequest';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -8,7 +8,7 @@ import { ImFire } from 'react-icons/im'
 import useSwipeScroll from 'hooks/useHorizontalScroll';
 
 const MostSell = () => {
-    const [data] = useRequest('/products/top-orders')
+    const [data] = useGetRequest('/products/top-orders')
     const scrollRef = useSwipeScroll();
     const data15length = !!data ? data.slice(0, 16) : null
 

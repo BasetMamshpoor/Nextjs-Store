@@ -6,12 +6,12 @@ import 'swiper/css/navigation'
 import 'swiper/css/autoplay';
 import 'swiper/css';
 import Image from 'next/image';
-import useRequest from 'hooks/useRequest';
+import useGetRequest from 'hooks/useGetRequest';
 import Link from 'next/link';
 
 const Slider = () => {
 
-    const [data] = useRequest('/sliders')
+    const [data] = useGetRequest('/sliders')
 
     return (
         <>

@@ -1,5 +1,5 @@
 import Dropdown from 'Components/Dropdown/DropDown';
-import useRequest from 'hooks/useRequest';
+import useGetRequest from 'hooks/useGetRequest';
 import React, { useEffect, useState } from 'react';
 import style from './Filters.module.css'
 import { IoChevronDownOutline } from 'react-icons/io5'
@@ -7,7 +7,7 @@ import Input from 'Components/Input';
 
 const Filters = ({ category, router, setIsOpen }) => {
     const [filters, setFilters] = useState({})
-    const [data] = useRequest(`/products/getfilters/${category}`)
+    const [data] = useGetRequest(`/products/getfilters/${category}`)
 
     useEffect(() => {
         if (router?.isReady) setFilters(readUrl())

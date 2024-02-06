@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import style from './Component.module.css'
 import Link from 'next/link';
 import { GrClose } from 'react-icons/gr';
+import { Authorization } from 'providers/AuthorizationProvider';
+import { IoIosLogOut } from 'react-icons/io';
 
 const Component = ({ page, query, links, children }) => {
     const [isOpen, setIsOpen] = useState(false)
+    const { logOut } = useContext(Authorization)
+
     const handleOpen = () => {
         setIsOpen(!isOpen)
     }
+
     return (
         <>
             {!!links &&
@@ -41,6 +46,16 @@ const Component = ({ page, query, links, children }) => {
                                                     </Link>
                                                 </li>)
                                             })}
+                                            <li className={style.list} onClick={logOut}>
+                                                <a className={style.JbxnrS_6g6d}>
+                                                    <div className={style.cxZw_p112}>
+                                                        <div>
+                                                            <IoIosLogOut />
+                                                        </div>
+                                                        <p>خروج</p>
+                                                    </div>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -62,6 +77,16 @@ const Component = ({ page, query, links, children }) => {
                                                 </Link>
                                             </li>)
                                         })}
+                                        <li className={style.list} onClick={logOut}>
+                                            <a className={style.JbxnrS_6g6d}>
+                                                <div className={style.cxZw_p112}>
+                                                    <div>
+                                                        <IoIosLogOut />
+                                                    </div>
+                                                    <p>خروج</p>
+                                                </div>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

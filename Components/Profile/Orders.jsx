@@ -2,14 +2,14 @@ import { MdShoppingBag } from 'react-icons/md'
 import { BsArrowLeft } from 'react-icons/bs'
 import style from './Orders.module.css'
 import Pagination from 'Components/Pagination/Pagination';
-import useRequest from 'hooks/useRequest';
+import useGetRequest from 'hooks/useGetRequest';
 import Link from 'next/link';
 import addComma from 'Functions/addComma';
 import { e2p } from 'Functions/ConvertNumbers';
 
 const Orders = () => {
 
-    const [orders] = useRequest('/profile/orders')
+    const [orders] = useGetRequest('/profile/orders')
 
     const statusOrser = (status) => {
         const json = [
@@ -23,11 +23,11 @@ const Orders = () => {
         //             <span>در انتظار پرداخت</span>
         //         </div>
         //     )
-            return (
-                <div className={`${style.aR9_nu} ${json[status].class}`}>
-                    <span>{json[status].value}</span>
-                </div>
-            )
+        return (
+            <div className={`${style.aR9_nu} ${json[status].class}`}>
+                <span>{json[status].value}</span>
+            </div>
+        )
     }
 
     return (

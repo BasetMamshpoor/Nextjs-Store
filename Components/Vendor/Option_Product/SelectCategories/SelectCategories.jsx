@@ -1,5 +1,5 @@
 import DropDown from 'Components/Dropdown/DropDown';
-import useRequest from 'hooks/useRequest';
+import useGetRequest from 'hooks/useGetRequest';
 import React, { useEffect, useState } from 'react';
 import style from './SelectCategories.module.css'
 
@@ -9,7 +9,7 @@ const SelectCategories = ({ setProduct, touch, errors, data = [] }) => {
         { id: null, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } };
     const [categories, setCategories] = useState(categoryDefault)
     const [category, setCategory] = useState(null)
-    const [categoryList] = useRequest('/categories')
+    const [categoryList] = useGetRequest('/categories')
 
     useEffect(() => {
         setProduct(prev => { return { ...prev, category_id: category } })

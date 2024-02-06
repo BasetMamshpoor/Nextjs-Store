@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Pagination from 'Components/Pagination/Pagination';
-import useRequest from 'hooks/useRequest';
+import useGetRequest from 'hooks/useGetRequest';
 import React, { useContext, useState } from 'react';
 import { BsPencilSquare, BsPlus, BsTrash } from 'react-icons/bs';
 import style from './Brands.module.css'
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 
 const Brands = () => {
     const [currentpage, setCurrentpage] = useState(1)
-    const [brands, setBrands, reload, paginations] = useRequest(`/admin/brands`,currentpage)
+    const [brands, setBrands, reload, paginations] = useGetRequest(`/admin/brands`, currentpage)
     const { SwalStyled } = useContext(Functions)
 
     const handleDelete = (id) => {

@@ -1,15 +1,16 @@
 import UserProf from '/public/Images/Ei-user.svg'
 import { useRouter } from 'next/router';
 import style from './Profile.module.css'
-import useRequest from 'hooks/useRequest';
+import useGetRequest from 'hooks/useGetRequest';
 import profileRoutes from './routes';
 import Component from 'Components/Sidebar_Component';
-
 
 const Profile = () => {
     const router = useRouter();
     const { route } = router.query
-    const [info] = useRequest('/profile/information')
+    const [info] = useGetRequest('/profile/information')
+
+
 
     return (
         <>

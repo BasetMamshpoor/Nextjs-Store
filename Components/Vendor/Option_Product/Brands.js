@@ -1,10 +1,10 @@
 import DropDown from 'Components/Dropdown/DropDown';
-import useRequest from 'hooks/useRequest';
+import useGetRequest from 'hooks/useGetRequest';
 import React, { useEffect, useState } from 'react';
 
 const Brands = ({ setProduct, id }) => {
 
-    const [brands] = useRequest('/brands')
+    const [brands] = useGetRequest('/brands')
     const [list, setList] = useState([])
 
     useEffect(() => {

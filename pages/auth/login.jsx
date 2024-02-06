@@ -1,10 +1,13 @@
 import React, { useRef } from 'react';
-import style from '../styles/Login.module.css'
-import Logo from '../public/Images/logo-no-background-transformed.png'
+import style from '../../styles/Login.module.css'
+import Logo from '../../public/Images/logo-no-background-transformed.png'
 import Link from 'next/link';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 const Login = () => {
     const Error = useRef()
+    const { push } = useRouter()
+
     const handleSubmit = async event => {
         event.preventDefault()
         const value = event.target[0].value
@@ -14,9 +17,20 @@ const Login = () => {
             Error.current.innerText = 'آدرس ایمیل معتبر نیست.'
         } else {
             Error.current.innerText = ''
-            await axios.post(`/auth/send-otp`, { email: value,password:'12345678' })
-                .then(res => console.log(res))
-                .catch(err => console.log(err))
+            await axios.post(`/auth/check-email`, { email: value })
+                .then(({ data }) => {
+                    if (data.registered)
+                        push({
+                            pathname: '/auth/password',
+                            query: { email: value }
+                        })
+                    else
+                        push({
+                            pathname: '/auth/verify',
+                            query: { email: value }
+                        })
+                })
+                .catch(err => Error.current.innerText = 'با عرض پوزش مشکلی به وجود آمده')
         }
     }
     return (
@@ -35,10 +49,10 @@ const Login = () => {
                         </div>
                         <form className={style.form} onSubmit={handleSubmit}>
                             <div className={style.input_sec}>
-                                <input type="text" name='contact' required />
+                                <input type="email" name='contact' required />
                             </div>
                             <span className={style.error} ref={Error}></span>
-                            <button className={style.btn}>ورود</button>
+                            <button className={style.btn}>بررسی</button>
                         </form>
                     </div>
                 </section>

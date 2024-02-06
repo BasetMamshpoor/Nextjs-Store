@@ -1,13 +1,13 @@
 import React from 'react';
 import style from './TwoBanners.module.css'
-import useRequest from 'hooks/useRequest';
+import useGetRequest from 'hooks/useGetRequest';
 import Link from 'next/link';
 import Image from 'next/image';
 
 
 const TwoBanners = () => {
 
-    const [banners] = useRequest('/banners', 1, { type: 'homepage', order: 1 })
+    const [banners] = useGetRequest('/banners', 1, { type: 'homepage', order: 1 })
 
     return (
         <>

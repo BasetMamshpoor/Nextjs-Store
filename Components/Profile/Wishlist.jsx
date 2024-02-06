@@ -3,13 +3,13 @@ import { BsHeartFill, BsCart3, BsTrash } from 'react-icons/bs'
 import Link from 'next/link';
 import addComma from 'Functions/addComma';
 import { e2p } from 'Functions/ConvertNumbers';
-import useRequest from 'hooks/useRequest';
+import useGetRequest from 'hooks/useGetRequest';
 import Pagination from 'Components/Pagination/Pagination';
 import Image from 'next/image';
 
 const Wishlist = () => {
 
-    const [wish] = useRequest('/profile/bookmarks')
+    const [wish] = useGetRequest('/profile/bookmarks')
 
 
     return (

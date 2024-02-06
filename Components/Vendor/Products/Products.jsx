@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import Product from './shared/Product';
 import InfiniteScroll from 'Components/InfiniteScroll';
-import useRequest from 'hooks/useRequest';
+import useGetRequest from 'hooks/useGetRequest';
 import { e2p } from 'Functions/ConvertNumbers';
 import style from './Products.module.css'
 import { getProducts } from 'api/products';
@@ -12,7 +12,7 @@ const Products = ({ category, total_Items }) => {
     const router = useRouter()
     const { vendor, ...query } = router.query
 
-    const [products, setProducts, reload, pagination, setPagination] = useRequest(`/products/filter/${category}?${decodeQueryData(query)}`, 1)
+    const [products, setProducts, reload, pagination, setPagination] = useGetRequest(`/products/filter/${category}?${decodeQueryData(query)}`, 1)
 
     useEffect(() => {
         total_Items.current.innerText = `${pagination ? e2p(pagination.meta.total) : e2p(0)} کالا`
