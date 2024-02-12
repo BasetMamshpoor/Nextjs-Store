@@ -4,12 +4,12 @@ import { FiEdit3 } from 'react-icons/fi'
 import { BsTrash, BsPerson, BsTelephone } from 'react-icons/bs'
 import { GoMail } from 'react-icons/go'
 import { e2p } from 'Functions/ConvertNumbers'
-import useGetRequest from 'hooks/useGetRequest'
+import useGetPrivetRequest from 'hooks/useGetPrivetRequest'
 import Pagination from 'Components/Pagination/Pagination'
 
 const Address = () => {
 
-    const [addresses] = useGetRequest('/profile/addresses')
+    const [addresses] = useGetPrivetRequest('/profile/addresses')
 
     return (
         <>

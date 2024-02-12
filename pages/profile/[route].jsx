@@ -1,20 +1,27 @@
 import UserProf from '/public/Images/Ei-user.svg'
 import { useRouter } from 'next/router';
 import style from './Profile.module.css'
-import useGetRequest from 'hooks/useGetRequest';
+import useGetPrivetRequest from 'hooks/useGetPrivetRequest';
 import profileRoutes from './routes';
 import Component from 'Components/Sidebar_Component';
+import { useContext, useEffect } from 'react';
+import { Authorization } from 'providers/AuthorizationProvider';
 
 const Profile = () => {
     const router = useRouter();
     const { route } = router.query
-    const [info] = useGetRequest('/profile/information')
+    const { tokens, user } = useContext(Authorization)
+
+    useEffect(() => {
+        if (!tokens)
+            router.push('/auth/login')
+    }, [])
 
 
 
     return (
         <>
-            <main>
+            {!!tokens ? <main>
                 <div className="my-5" dir='rtl'>
                     <div className="container">
                         <Component page='profile' links={profileRoutes} query={route}>
@@ -23,14 +30,14 @@ const Profile = () => {
                                     <img src={UserProf.src} alt="" />
                                 </div>
                                 <div className={style.loBycI}>
-                                    <p>{info?.name}</p>
+                                    <p>{user?.name}</p>
                                     <span>۳۰۰۰۱۵۳۸۹۲۳۴۱</span>
                                 </div>
                             </div>
                         </Component>
                     </div>
                 </div>
-            </main>
+            </main> : 'لطفا وارد حساب کاربری خود شوید'}
         </>
     );
 };

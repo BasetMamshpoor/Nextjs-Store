@@ -2,14 +2,14 @@ import { MdShoppingBag } from 'react-icons/md'
 import { BsArrowLeft } from 'react-icons/bs'
 import style from './Orders.module.css'
 import Pagination from 'Components/Pagination/Pagination';
-import useGetRequest from 'hooks/useGetRequest';
+import useGetPrivetRequest from 'hooks/useGetPrivetRequest';
 import Link from 'next/link';
 import addComma from 'Functions/addComma';
 import { e2p } from 'Functions/ConvertNumbers';
 
 const Orders = () => {
 
-    const [orders] = useGetRequest('/profile/orders')
+    const [orders] = useGetPrivetRequest('/profile/orders')
 
     const statusOrser = (status) => {
         const json = [

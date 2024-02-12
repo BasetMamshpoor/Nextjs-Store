@@ -12,9 +12,9 @@ const Banner = () => {
                     <div className={style.wrapper}>
                         {banners && banners.map(b => {
                             return (
-                                <div className={style.baner}>
+                                <div className={style.baner} key={b.id}>
                                     <Link href={b.link} className={style.link}>
-                                        <Image src={b.src} placeholder='blur' blurDataURL='/Images/placeholder-1.png' unoptimized={true} width={100} height={100} />
+                                        <Image src={b.src} placeholder='blur' blurDataURL='/Images/placeholder-1.png' unoptimized={true} width={100} height={100} alt='' />
                                     </Link>
                                 </div>)
                         })}

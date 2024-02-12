@@ -3,8 +3,9 @@ import style from './VerifyCode.module.css'
 import axios from 'axios';
 import { Functions } from 'providers/FunctionsProvider';
 import { Authorization } from 'providers/AuthorizationProvider';
+import { useRouter } from 'next/router';
 
-const VerifyCode = ({ email, push }) => {
+const VerifyCode = ({ email, register, forword = '/profile' }) => {
     const inputRefs = Array.from({ length: 6 }, () => useRef(null));
     const Error = useRef()
     const [KEYBOARDS] = useState({
@@ -14,6 +15,7 @@ const VerifyCode = ({ email, push }) => {
     });
     const { SwalStyled } = useContext(Functions)
     const { getTokens } = useContext(Authorization)
+    const { push } = useRouter()
 
     const handleInput = (e, index) => {
         const nextInput = inputRefs[index + 1];
@@ -74,17 +76,24 @@ const VerifyCode = ({ email, push }) => {
             Error.current.innerText = 'طول کد 6 واحد است.'
         } else {
             Error.current.innerText = ''
-            const data = {
-                grant_type: 'otp_grant',
-                client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
-                client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
-                email,
-                otp: value,
-                provider: 'users'
+            if (register) {
+                const data = {
+                    grant_type: 'otp_grant',
+                    client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
+                    client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
+                    email,
+                    otp: value,
+                    provider: 'users'
+                }
+                await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/oauth/token`, data)
+                    .then(({ data }) => {
+                        getTokens(data)
+                        push(forword)
+                    })
+                    .catch(err => SwalStyled.fire('', err.response.data.message, 'error'))
+            } else {
+                push({ pathname: forword, query: { code: value } }, forword)
             }
-            await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/oauth/token`, data)
-                .then(({ data }) => getTokens(data))
-                .catch(err => SwalStyled.fire('', err.response.data.message, 'error'))
         }
     }
 

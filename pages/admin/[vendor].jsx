@@ -1,10 +1,18 @@
 import { useRouter } from 'next/router';
 import adminRoutes from './routes';
 import Component from 'Components/Sidebar_Component';
+import { Authorization } from 'providers/AuthorizationProvider';
+import { useContext, useEffect } from 'react';
 
 const Vendor = () => {
     const router = useRouter()
     const { vendor } = router.query
+    const { tokens } = useContext(Authorization)
+
+    useEffect(() => {
+        if (!tokens)
+            router.push('/auth/login')
+    }, [])
 
     return (
         <>

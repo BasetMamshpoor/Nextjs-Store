@@ -20,7 +20,7 @@ axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api`
 export default function App({ Component, pageProps }) {
   const isMatch = useMediaQuery('(max-width: 1023.98px)')
   const router = useRouter()
-  const authRoutes = ['login', 'password', 'verify']
+  const authRoutes = ['login', 'password', 'verify', 'forgotpassword']
   const isLogin = authRoutes.find(r => `/auth/${r}` === router.pathname) ? true : false
 
   return (

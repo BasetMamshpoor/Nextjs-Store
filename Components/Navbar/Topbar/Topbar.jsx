@@ -1,4 +1,4 @@
-
+import { e2p } from 'Functions/ConvertNumbers';
 import style from './Topbar.module.css'
 import { AiOutlinePhone, AiOutlineMail } from 'react-icons/ai'
 
@@ -10,7 +10,7 @@ const TopBar = () => {
                 <div className={`container ${style.tpc}`}>
                     <div className={`${style.tcExi} d-flex`}>
                         <div className={style.contact}>
-                            <span className='ml-2'>۰۹۱۰۱۲۳۴۳۲۱</span>
+                            <span href='tel:110' className='ml-2'>{e2p('0910 111 1001')}</span>
                             <AiOutlinePhone />
                         </div>
                         <div className={`${style.contact} ml-3`}>

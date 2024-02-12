@@ -74,7 +74,7 @@ const Filters = ({ category, router, setIsOpen }) => {
     }
 
     const clearFilters = () => {
-        router.replace(router.asPath.split('?')[0], undefined, { shallow: true });
+        router.replace(router.asPath.split('?')[0]);
         if (!!setIsOpen) setIsOpen(false)
     }
 

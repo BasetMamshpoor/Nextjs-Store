@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Input = ({ value, isNumber = false, min, result, refrence, ...props }) => {
+const Input = ({ value, isNumber = false, result, refrence, ...props }) => {
     const [val, setVal] = useState()
     const handleChange = event => {
         const { value } = event.target
@@ -22,7 +22,7 @@ const Input = ({ value, isNumber = false, min, result, refrence, ...props }) => 
 
     return (
         <>
-            <input ref={refrence && refrence} onBlur={handleBlur} onChange={handleChange} value={val} min={min && min} {...props} />
+            <input ref={refrence && refrence} onBlur={handleBlur} onChange={handleChange} value={val} {...props} />
         </>
     );
 };

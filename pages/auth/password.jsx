@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import style from '../../styles/Login.module.css'
+import style from 'styles/Login.module.css'
 import Logo from '../../public/Images/logo-no-background-transformed.png'
 import Link from 'next/link';
 import { useContext, useEffect, useRef } from 'react';
@@ -33,7 +33,11 @@ const password = () => {
                 password: value
             }
             await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/oauth/token`, data)
-                .then(({ data }) => getTokens(data))
+                .then(({ data }) => {
+                    SwalStyled.fire('انجام شد', 'رمز عبور با موفقیت تغییر کرد', 'success')
+                    getTokens(data)
+                    push('/profile/information')
+                })
                 .catch(err => SwalStyled.fire('', '.رمز عبور وارد شده اشتباه است', 'error'))
         }
     }

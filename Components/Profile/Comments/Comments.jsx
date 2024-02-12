@@ -1,16 +1,15 @@
-import useGetRequest from 'hooks/useGetRequest';
-import React from 'react';
+import useGetPrivetRequest from 'hooks/useGetPrivetRequest';
 import style from './Comments.module.css'
 
 const Comments = () => {
 
-    // const [comments] = useGetRequest('/profile/comments')
+    const [comments] = useGetPrivetRequest('/profile/comments')
 
 
     return (
         <>
             <div className={style.QaybTx}>
-
+                {comments}
             </div>
         </>
     );

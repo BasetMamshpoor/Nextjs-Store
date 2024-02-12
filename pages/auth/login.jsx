@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import style from '../../styles/Login.module.css'
+import style from 'styles/Login.module.css'
 import Logo from '../../public/Images/logo-no-background-transformed.png'
 import Link from 'next/link';
 import axios from 'axios';
@@ -27,7 +27,7 @@ const Login = () => {
                     else
                         push({
                             pathname: '/auth/verify',
-                            query: { email: value }
+                            query: { email: value, forword: '/profile/information', register: true }
                         })
                 })
                 .catch(err => Error.current.innerText = 'با عرض پوزش مشکلی به وجود آمده')
