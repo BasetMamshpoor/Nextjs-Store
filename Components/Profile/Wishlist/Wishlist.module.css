@@ -2,10 +2,11 @@
   margin-bottom: 3rem;
 }
 .uE2X0_Qz {
-  margin-bottom: 1rem;
   display: flex;
-  padding-right: 1rem;
   align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
 }
 .rP4_Zk svg {
   fill: red;
@@ -148,7 +149,7 @@
 .remove_iCrx4 svg {
   fill: #81858b;
   transition: all 0.3s ease;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 .remove_iCrx4:hover {
   background: rgb(255, 141, 141);
@@ -157,4 +158,22 @@
 }
 .remove_iCrx4:hover svg {
   fill: #fff;
+}
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.pHvtxu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.pic {
+  height: 200px;
+}
+.pHvtxu p {
+  font-size: 18px;
 }

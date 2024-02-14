@@ -1,4 +1,5 @@
 import DropDown from 'Components/Dropdown/DropDown';
+import Loading from 'Components/Loading';
 import useGetRequest from 'hooks/useGetRequest';
 import React, { useEffect, useState } from 'react';
 
@@ -26,8 +27,8 @@ const Brands = ({ setProduct, id }) => {
 
     return (
         <>
-            {!!list.length && <DropDown array={list} name='brand_id'
-                Searchable placeHolder='برندها' label setState={handleChange} defaultValue={id} />}
+            {!!list.length ? <DropDown array={list} name='brand_id'
+                Searchable placeHolder='برندها' label setState={handleChange} defaultValue={id} /> : <Loading />}
         </>
     );
 };

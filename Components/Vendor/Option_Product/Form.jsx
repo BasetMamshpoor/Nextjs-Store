@@ -35,7 +35,6 @@ const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
         const { offPrice, off_date_from, off_date_to, ...other } = state
         return other
     }
-
     const handleResult = (name, value) => {
         setProduct(prev => {
             return {
@@ -44,7 +43,6 @@ const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
             }
         })
     }
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (Object.keys(errors).length) {

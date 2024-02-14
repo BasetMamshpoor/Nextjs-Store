@@ -22,8 +22,12 @@ const useGetRequest = (url, page = 1, obj) => {
                         setPaginations(pagination)
                     })
                     .catch(err => {
-                        router.back()
-                        SwalStyled.fire('ایراد در سرور', 'مشکلی به وجود آمده لطفا با پشتیبانی تماس بگیرید', 'error')
+                        SwalStyled.fire({
+                            title: 'ایراد در سرور',
+                            text: 'مشکلی به وجود آمده لطفا با پشتیبانی تماس بگیرید',
+                            icon: 'error',
+                            willClose: () => router.back()
+                        })
                     })
             }
             get()

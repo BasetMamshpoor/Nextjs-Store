@@ -5,6 +5,7 @@ import { Authorization } from 'providers/AuthorizationProvider';
 import createModal from 'Components/Modal';
 import ChangePassword from './ChangePassword';
 import { Functions } from 'providers/FunctionsProvider';
+import Loading from 'Components/Loading';
 
 const Information = () => {
     const { tokens, user } = useContext(Authorization)
@@ -12,7 +13,7 @@ const Information = () => {
     return (
         <>
             <div className={style.UBtgvIR4}>
-                <div className={style.lOmph0}>
+                {Object.keys(user).length > 0 ? <div className={style.lOmph0}>
                     <div className={style.kLRx8Fh}>
                         <div className={style.nbGr5K}>
                             <FiEdit />
@@ -79,7 +80,7 @@ const Information = () => {
                             <p className={style.RcnlEx}>۱۳۸۱/۱۲/۲۶</p>
                         </div>
                     </div>
-                </div>
+                </div> : <Loading />}
             </div>
         </>
     );

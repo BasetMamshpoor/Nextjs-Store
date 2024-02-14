@@ -1,15 +1,16 @@
 import axios from 'axios';
 import Pagination from 'Components/Pagination/Pagination';
-import useGetRequest from 'hooks/useGetRequest';
+import useGetPrivatRequest from 'hooks/useGetPrivatRequest';
 import React, { useContext, useState } from 'react';
 import { BsPencilSquare, BsPlus, BsTrash } from 'react-icons/bs';
 import style from './Brands.module.css'
 import { Functions } from 'providers/FunctionsProvider';
 import Swal from 'sweetalert2'
+import Loading from 'Components/Loading';
 
 const Brands = () => {
     const [currentpage, setCurrentpage] = useState(1)
-    const [brands, setBrands, reload, paginations] = useGetRequest(`/admin/brands`, currentpage)
+    const [brands, setBrands, reload, paginations] = useGetPrivatRequest(`/admin/brands`, currentpage)
     const { SwalStyled } = useContext(Functions)
 
     const handleDelete = (id) => {
@@ -79,7 +80,7 @@ const Brands = () => {
     }
     return (
         <>
-            {!!brands && <div className={style.brands}>
+            {!!brands ? <div className={style.brands}>
                 <div className={style.container}>
                     <div className={style.header}>
                         <div className={style.name}>برند ها</div>
@@ -103,7 +104,7 @@ const Brands = () => {
                     </div>
                 </div>
                 <Pagination currentPage={currentpage} setCurrentPage={setCurrentpage} dataLength={paginations.meta.total} itemsPerPage={paginations.meta.per_page} boxShadow={false} />
-            </div>}
+            </div> : <Loading />}
         </>
     );
 };

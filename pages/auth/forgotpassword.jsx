@@ -78,7 +78,8 @@ const ForgotPassword = () => {
                         </div>
                         <form className={style.form} onSubmit={handleSubmit}>
                             <div className={style.inputField}>
-                                <input ref={input1} className={style.input} type="password" name='password' onChange={handleChange} placeholder='رمز جدید' />
+                                <input ref={input1} className={style.input} type="password" name='password'
+                                    onCopy={e => e.preventDefault()} onCut={e => e.preventDefault()} onChange={handleChange} placeholder='رمز جدید' />
                                 <div className={style.eye} onClick={(e) => toggleShow(e, input1)}>
                                     <span><IoEyeOutline /></span>
                                     <span style={{ display: 'none' }}><IoEyeOffOutline /></span>
@@ -111,7 +112,8 @@ const ForgotPassword = () => {
                                 </ul>
                             </div>
                             <div className={style.inputField}>
-                                <input className={style.input} type="password" name='password_confirmation' onChange={handleChange} placeholder='تکرار رمز' />
+                                <input className={style.input} type="password" name='password_confirmation'
+                                    onCopy={e => e.preventDefault()} onCut={e => e.preventDefault()} onChange={handleChange} placeholder='تکرار رمز' />
                             </div>
                             <div className={style.rules}>
                                 <ul className={style.ruleList}>

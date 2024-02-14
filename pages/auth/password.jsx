@@ -34,7 +34,7 @@ const password = () => {
             }
             await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/oauth/token`, data)
                 .then(({ data }) => {
-                    SwalStyled.fire('انجام شد', 'رمز عبور با موفقیت تغییر کرد', 'success')
+                    SwalStyled.fire('انجام شد', 'وارد حساب کاربری می شوید', 'success')
                     getTokens(data)
                     push('/profile/information')
                 })

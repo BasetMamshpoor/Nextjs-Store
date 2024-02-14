@@ -2,13 +2,18 @@ import { useContext } from 'react';
 import style from './MiddleNavbar.module.css'
 import Logo from 'public/Images/logo-no-background-transformed.png'
 import { BsSearch, BsCart3, BsPerson } from 'react-icons/bs'
+// import { GrUserAdmin } from "react-icons/gr";
 import Link from 'next/link';
 import { e2p } from 'Functions/ConvertNumbers';
 import { CartContext } from 'providers/CartContextProvider';
 import Image from 'next/image';
+import { Authorization } from 'providers/AuthorizationProvider';
 
 const MiddleNavbar = () => {
+
     const { state } = useContext(CartContext)
+    const { user } = useContext(Authorization)
+
     return (
         <>
             <section className={style.middleNav}>
@@ -26,15 +31,18 @@ const MiddleNavbar = () => {
                             </form>
                         </div>
                         <div className={style.user}>
+                            {/* <Link href={user.is_admin ? '/admin/new-product' : '/profile/information'} className={style.navUser}>
+                                {user.is_admin ? <GrUserAdmin /> : <BsPerson />}
+                            </Link> */}
+                            <Link href='/profile/information' className={style.navUser}>
+                                <BsPerson />
+                            </Link>
+                            <div className={style.border}></div>
                             <Link href='/cart' className={style.navCart}>
                                 <div className={style.countItem}>
                                     <span>{!!state.itemsCounter && e2p(state.itemsCounter)}</span>
                                 </div >
                                 <BsCart3 />
-                            </Link>
-                            <div className={style.border}></div>
-                            <Link href='/profile/information' className={style.navUser}>
-                                <BsPerson />
                             </Link>
                         </div>
                     </div>

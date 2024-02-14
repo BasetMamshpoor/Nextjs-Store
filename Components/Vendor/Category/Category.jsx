@@ -6,6 +6,7 @@ import createModal from 'Components/Modal';
 import NewCategory from './NewCategory';
 import { Functions } from 'providers/FunctionsProvider';
 import { Categories } from 'providers/CategoriesProvider';
+import Loading from 'Components/Loading';
 
 const Category = () => {
     const [category, setCategory] = useState({ id: null, name: '', slug: '', subCategories: { id: null, subCategories: { id: null, subCategories: {} } } })
@@ -97,7 +98,7 @@ const Category = () => {
 
     return (
         <>
-            {!!categories && <div className={style.category}>
+            {!!categories ? <div className={style.category}>
                 <div className={style.Ec7Hy2}>
                     <div className={style.cat_lvl_}>
                         <div className={style.Head_t0}><p>سطح ۱</p></div>
@@ -165,7 +166,7 @@ const Category = () => {
                         </div>
                     </div>
                 </div>
-            </div>}
+            </div> : <Loading />}
         </>
     );
 };

@@ -1,3 +1,4 @@
+import Loading from 'Components/Loading';
 import useGetRequest from 'hooks/useGetRequest';
 import React, { createContext } from 'react';
 
@@ -9,7 +10,7 @@ const CategoriesProvider = ({ children }) => {
     return (
         <>
             <Categories.Provider value={{ categories, setCategories, reload }}>
-                {!!categories ? children : <p>nothing</p>}
+                {!!categories ? children : <Loading />}
             </Categories.Provider>
         </>
     );

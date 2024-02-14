@@ -3,20 +3,21 @@ import style from './Slider.module.css'
 import { FiPlus, FiEdit3 } from 'react-icons/fi'
 import createModal from 'Components/Modal';
 import NewSlide from './NewSlide';
-import useGetRequest from 'hooks/useGetRequest';
+import useGetPrivatRequest from 'hooks/useGetPrivatRequest';
 import Image from 'next/image';
 import Pagination from 'Components/Pagination/Pagination';
 import { useContext, useState } from 'react';
 import { Functions } from 'providers/FunctionsProvider';
+import Loading from 'Components/Loading';
 
 const Slider = () => {
     const [currentpage, setCurrentpage] = useState(1)
-    const [data, setData, reload, paginations] = useGetRequest(`/admin/sliders`, currentpage)
+    const [data, setData, reload, paginations] = useGetPrivatRequest(`/admin/sliders`, currentpage)
     const { SwalStyled } = useContext(Functions)
 
     return (
         <>
-            {!!data && <div className={style.Ezioq7_9}>
+            {!!data ? <div className={style.Ezioq7_9}>
                 <div className={style.header}>
                     <h2>اسلایدر صفحه اصلی</h2>
                     <div className={style.newSlide} onClick={() => createModal(<NewSlide SwalStyled={SwalStyled} reload={reload} />)}>
@@ -43,7 +44,7 @@ const Slider = () => {
                     })}
                 </div>
                 <Pagination currentPage={currentpage} setCurrentPage={setCurrentpage} dataLength={paginations.meta.total} itemsPerPage={paginations.meta.per_page} boxShadow={false} />
-            </div>}
+            </div> : <Loading />}
         </>
     );
 };

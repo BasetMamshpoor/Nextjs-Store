@@ -1,7 +1,6 @@
 import UserProf from '/public/Images/Ei-user.svg'
 import { useRouter } from 'next/router';
 import style from './Profile.module.css'
-import useGetPrivetRequest from 'hooks/useGetPrivetRequest';
 import profileRoutes from './routes';
 import Component from 'Components/Sidebar_Component';
 import { useContext, useEffect } from 'react';
@@ -13,7 +12,7 @@ const Profile = () => {
     const { tokens, user } = useContext(Authorization)
 
     useEffect(() => {
-        if (!tokens)
+        if (!tokens && !Object.keys(user).length)
             router.push('/auth/login')
     }, [])
 
@@ -31,7 +30,7 @@ const Profile = () => {
                                 </div>
                                 <div className={style.loBycI}>
                                     <p>{user?.name}</p>
-                                    <span>۳۰۰۰۱۵۳۸۹۲۳۴۱</span>
+                                    <span>{user?.email}</span>
                                 </div>
                             </div>
                         </Component>

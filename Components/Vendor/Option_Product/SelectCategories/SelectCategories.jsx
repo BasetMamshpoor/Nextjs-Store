@@ -1,7 +1,9 @@
 import DropDown from 'Components/Dropdown/DropDown';
-import useGetRequest from 'hooks/useGetRequest';
-import React, { useEffect, useState } from 'react';
+import useGetPrivatRequest from 'hooks/useGetPrivatRequest';
+import React, { useContext, useEffect, useState } from 'react';
 import style from './SelectCategories.module.css'
+import { Categories } from 'providers/CategoriesProvider';
+import Loading from 'Components/Loading';
 
 const SelectCategories = ({ setProduct, touch, errors, data = [] }) => {
     const categoryDefault = !!(data.length > 0) ?
@@ -9,7 +11,7 @@ const SelectCategories = ({ setProduct, touch, errors, data = [] }) => {
         { id: null, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } };
     const [categories, setCategories] = useState(categoryDefault)
     const [category, setCategory] = useState(null)
-    const [categoryList] = useGetRequest('/categories')
+    const { categories: categoryList } = useContext(Categories)
 
     useEffect(() => {
         setProduct(prev => { return { ...prev, category_id: category } })
@@ -81,21 +83,23 @@ const SelectCategories = ({ setProduct, touch, errors, data = [] }) => {
         }
     }
     return (
-        <>{!!categoryList && <>
-            <div className={style.nJe_3zq_plf}>
-                <DropDown array={gender()} name='gender'
-                    placeHolder='دسته بندی سطح اول' label setState={handleSelectCategory} defaultValue={categories.id} />
-                {touch.category_id && errors.category_id && <span className={style.errors_input}>{errors.category_id}</span>}
-            </div>
-            <div className={style.nJe_3zq_plf}>
-                <DropDown array={type()} name='type'
-                    Searchable placeHolder="دسته بندی سطح دوم" label setState={handleSelectCategory} defaultValue={categories.subCategories.id} />
-            </div>
-            <div className={style.nJe_3zq_plf}>
-                <DropDown array={model()} name='model'
-                    Searchable placeHolder="دسته بندی سطح سوم" label setState={handleSelectCategory} defaultValue={categories.subCategories.subCategories.id} />
-            </div>
-        </>}</>
+        <>
+            {!!categoryList ? <>
+                <div className={style.nJe_3zq_plf}>
+                    <DropDown array={gender()} name='gender'
+                        placeHolder='دسته بندی سطح اول' label setState={handleSelectCategory} defaultValue={categories.id} />
+                    {touch.category_id && errors.category_id && <span className={style.errors_input}>{errors.category_id}</span>}
+                </div>
+                <div className={style.nJe_3zq_plf}>
+                    <DropDown array={type()} name='type'
+                        Searchable placeHolder="دسته بندی سطح دوم" label setState={handleSelectCategory} defaultValue={categories.subCategories.id} />
+                </div>
+                <div className={style.nJe_3zq_plf}>
+                    <DropDown array={model()} name='model'
+                        Searchable placeHolder="دسته بندی سطح سوم" label setState={handleSelectCategory} defaultValue={categories.subCategories.subCategories.id} />
+                </div>
+            </> : <Loading />}
+        </>
     );
 };
 

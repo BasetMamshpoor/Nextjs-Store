@@ -5,10 +5,11 @@ import { FiEdit3 } from "react-icons/fi";
 import Link from 'next/link';
 import Image from 'next/image';
 import NewBanner from './NewBanner';
-import useGetRequest from 'hooks/useGetRequest';
+import useGetPrivatRequest from 'hooks/useGetPrivatRequest';
 import { Functions } from 'providers/FunctionsProvider'
+import Loading from 'Components/Loading';
 const Banner = () => {
-    const [banners, setBaneers, reload] = useGetRequest('/admin/banners', 1, { type: 'homepage' })
+    const [banners, setBaneers, reload] = useGetPrivatRequest('/admin/banners', 1, { type: 'homepage' })
     const { SwalStyled } = useContext(Functions)
     return (
         <>
@@ -18,7 +19,7 @@ const Banner = () => {
                         <h3>بنر های صفحه اصلی</h3>
                     </div>
                     <div className={style.banners}>
-                        {banners && banners.map(b => {
+                        {!!banners ? banners.map(b => {
                             return (
                                 <div className={style.baner}>
                                     <Link href={b.link} className={style.link}>
@@ -26,7 +27,7 @@ const Banner = () => {
                                     </Link>
                                     <span className={style.option} onClick={() => createModal(<NewBanner data={b} reload={reload} SwalStyled={SwalStyled} />)}><FiEdit3 /></span>
                                 </div>)
-                        })}
+                        }) : <Loading />}
                     </div>
                 </div>
             </div>

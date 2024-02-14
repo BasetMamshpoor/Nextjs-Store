@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from 'react';
 import VerifyCode from 'Components/auth/VerifyCode'
 import axios from 'axios';
 import { Functions } from 'providers/FunctionsProvider';
+import Loading from 'Components/Loading';
 
 const verify = () => {
     const { query, push } = useRouter()
@@ -54,7 +55,7 @@ const verify = () => {
                                 pathname: '/auth/password',
                                 query: { email: query.email }
                             }}>ورود با رمز عبور</Link> : null}
-                        </> : 'درحال ارسال کد...'}
+                        </> : <Loading />}
                     </div>
                 </section>
             </main >

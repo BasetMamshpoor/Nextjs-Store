@@ -19,9 +19,8 @@ const Component = ({ page, query, links, children }) => {
                 <div className="row">
                     <div className='col-lg-3'>
                         <div className={style.sidebar}>
-                            <input type="checkbox" checked={isOpen} hidden id={style.burger_box} />
                             <div className={style.burger_menu}>
-                                <label htmlFor={style.burger_box} className={style.burger} onClick={handleOpen}>
+                                <label className={style.burger} onClick={handleOpen}>
                                     <span></span><span></span><span></span>
                                 </label>
                             </div>

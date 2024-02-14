@@ -1,9 +1,9 @@
-import useGetPrivetRequest from 'hooks/useGetPrivetRequest';
+import useGetPrivatRequest from 'hooks/useGetPrivatRequest';
 import style from './Comments.module.css'
 
 const Comments = () => {
 
-    const [comments] = useGetPrivetRequest('/profile/comments')
+    const [comments] = useGetPrivatRequest('/profile/comments')
 
 
     return (

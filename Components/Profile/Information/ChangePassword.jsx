@@ -66,7 +66,8 @@ const ChangePassword = ({ swal, token, email, setIsOpen }) => {
                         </div>
                     </div>
                     <div className={style.inputField}>
-                        <input ref={input2} type="password" name='password' className={style.input}
+                        <input ref={input2} type="password" name='password'
+                            onCopy={e => e.preventDefault()} onCut={e => e.preventDefault()} className={style.input}
                             value={state.password} onChange={handleChange} placeholder='رمز عبور جدید' />
                         <div className={style.eye} onClick={(e) => toggleShow(e, input2)}>
                             <span><IoEyeOutline /></span>
@@ -101,7 +102,8 @@ const ChangePassword = ({ swal, token, email, setIsOpen }) => {
                     </div>
                     <div className={style.inputField}>
                         <input ref={input3} type="password" name='password_confirmation' className={style.input}
-                            value={state.password_confirmation} onChange={handleChange} placeholder='تکرار رمز عبور' />
+                            value={state.password_confirmation} onChange={handleChange}
+                            onCopy={e => e.preventDefault()} onCut={e => e.preventDefault()} placeholder='تکرار رمز عبور' />
                         <div className={style.eye} onClick={(e) => toggleShow(e, input3)}>
                             <span><IoEyeOutline /></span>
                             <span style={{ display: 'none' }}><IoEyeOffOutline /></span>

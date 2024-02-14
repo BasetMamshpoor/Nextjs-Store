@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 const TwoBanners = () => {
 
-    const [banners] = useGetRequest('/banners', 1, { type: 'homepage', order: 1 })
+    const [banners] = useGetRequest('/banners', 1, { type: 'homepage', order: 0 })
 
     return (
         <>
