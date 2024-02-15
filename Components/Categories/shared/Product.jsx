@@ -4,8 +4,9 @@ import { e2p } from 'Functions/ConvertNumbers';
 import addComma from 'Functions/addComma';
 import Image from 'next/image';
 import Timer from 'Components/Timer';
+import { FaStar } from "react-icons/fa";
 
-const Product = ({ id, name, price, offPercent, offPrice, image, off_date_to, is_available }) => {
+const Product = ({ id, name, price, rate, offPercent, offPrice, image, off_date_to, is_available }) => {
     const timeDiscount = ((new Date(off_date_to).getTime() - new Date().getTime()) / 1000)
     return (
         <>
@@ -18,6 +19,10 @@ const Product = ({ id, name, price, offPercent, offPrice, image, off_date_to, is
                         <div className={style.descP}>
                             <h3>{name}</h3>
                         </div>
+                        <div className={style.rate}>
+                            <span>{e2p(rate)}</span>
+                            <div className={style.star}><FaStar /></div>
+                        </div>
                         {is_available ? <div className={style.priceP}>
                             <div className={style.Cpou}>
                                 <span className={style.priceR}>{addComma(offPrice.toString())}</span>
@@ -25,7 +30,7 @@ const Product = ({ id, name, price, offPercent, offPrice, image, off_date_to, is
                             </div>
                             {price !== offPrice && <del>{addComma(price.toString())}</del>}
                             {!!off_date_to && (timeDiscount < 86400) && <>
-                                <Timer time={timeDiscount} classNameProgress={style.progress} classNameTimer={style.timer} classNameEtmam={style.EtmamTakhfif} />
+                                <Timer message='اتمام تخفیف' time={timeDiscount} classNameProgress={style.progress} classNameTimer={style.timer} classNameEtmam={style.EtmamTakhfif} />
                             </>}
                         </div> :
                             <div className={style.etmamMojody}>

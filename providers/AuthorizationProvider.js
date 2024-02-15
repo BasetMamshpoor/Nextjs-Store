@@ -13,11 +13,19 @@ const AuthorizationProvider = ({ children }) => {
     const { SwalStyled } = useContext(Functions)
     const router = useRouter()
 
-    const getUserInformation = async (token) =>
-        await axios.get('/profile/information', { headers: { Authorization: `${token.token_type} ${token.access_token}` } })
-            .then(({ data }) => setUser(data.data))
-            .catch(() => SwalStyled.fire('پیدا نشد', 'اطلاعات کاربر پیدا نشد', 'error'))
-
+    const getUserInformation = async (token) => {
+        const data = await axios.get('/profile/information',
+            { headers: { Authorization: `${token.token_type} ${token.access_token}` } })
+            .then(({ data }) => {
+                setUser(data.data)
+                return data.data
+            })
+            .catch((err) => {
+                console.log(err);
+                SwalStyled.fire('پیدا نشد', 'اطلاعات کاربر پیدا نشد', 'error')
+            })
+        return data
+    }
 
     useEffect(() => {
         if (tokens) getUserInformation(tokens)
@@ -42,7 +50,8 @@ const AuthorizationProvider = ({ children }) => {
         tokens,
         user,
         logOut,
-        getTokens
+        getTokens,
+        getUserInformation
     }
 
     return (

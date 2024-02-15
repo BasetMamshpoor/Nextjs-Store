@@ -27,20 +27,4 @@ const Vendor = () => {
     );
 };
 
-export async function getStaticPaths() {
-    const paths = adminRoutes.map(r => {
-        return { params: { vendor: r.link ?? '' } }
-    })
-    return {
-        paths,
-        fallback: false
-    }
-}
-export async function getStaticProps() {
-
-    return {
-        props: {}
-    }
-}
-
 export default Vendor;

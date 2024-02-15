@@ -25,6 +25,7 @@
 .info {
   display: flex;
   flex-direction: column;
+  gap: 3px;
 }
 .descP {
   flex-grow: 1;
@@ -40,6 +41,25 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+.rate {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+.star {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: -2px;
+}
+.star svg {
+  fill: #f9bc00;
+  width: 18px;
+  height: 18px;
 }
 .priceP {
   direction: ltr;

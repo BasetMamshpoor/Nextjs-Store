@@ -27,7 +27,7 @@ const Login = () => {
                     else
                         push({
                             pathname: '/auth/verify',
-                            query: { email: value, forword: '/profile/information', register: true }
+                            query: { email: value }
                         })
                 })
                 .catch(err => Error.current.innerText = 'با عرض پوزش مشکلی به وجود آمده')

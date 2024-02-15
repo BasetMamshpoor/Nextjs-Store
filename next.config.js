@@ -12,16 +12,6 @@ module.exports = {
         source: '/s',
         destination: '/',
         permanent: true,
-      },
-      {
-        source: '/profile',
-        destination: '/profile/information',
-        permanent: true
-      },
-      {
-        source: '/admin',
-        destination: '/admin/new-product',
-        permanent: true
       }
     ]
   },

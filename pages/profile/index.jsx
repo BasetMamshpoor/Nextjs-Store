@@ -1,12 +1,12 @@
-import UserProf from '/public/Images/Ei-user.svg'
+import Component from 'Components/Sidebar_Component/Component';
 import { useRouter } from 'next/router';
-import style from './Profile.module.css'
-import profileRoutes from './routes';
-import Component from 'Components/Sidebar_Component';
-import { useContext, useEffect } from 'react';
 import { Authorization } from 'providers/AuthorizationProvider';
+import React, { useContext, useEffect } from 'react';
+import profileRoutes from './routes';
+import style from './Profile.module.css'
+import UserProf from '/public/Images/Ei-user.svg'
 
-const Profile = () => {
+const profile = () => {
     const router = useRouter();
     const { route } = router.query
     const { tokens, user } = useContext(Authorization)
@@ -15,8 +15,6 @@ const Profile = () => {
         if (!tokens && !Object.keys(user).length)
             router.push('/auth/login')
     }, [])
-
-
 
     return (
         <>
@@ -40,20 +38,5 @@ const Profile = () => {
         </>
     );
 };
-export async function getStaticPaths() {
-    const paths = profileRoutes.map(r => {
-        return { params: { route: r.link ?? '' } }
-    })
-    return {
-        paths,
-        fallback: false
-    }
-}
-export async function getStaticProps() {
 
-    return {
-        props: {}
-    }
-}
-
-export default Profile;
+export default profile;

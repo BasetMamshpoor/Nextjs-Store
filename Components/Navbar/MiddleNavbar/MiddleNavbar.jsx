@@ -12,7 +12,7 @@ import { Authorization } from 'providers/AuthorizationProvider';
 const MiddleNavbar = () => {
 
     const { state } = useContext(CartContext)
-    const { user } = useContext(Authorization)
+    const { user, tokens } = useContext(Authorization)
 
     return (
         <>
@@ -31,10 +31,10 @@ const MiddleNavbar = () => {
                             </form>
                         </div>
                         <div className={style.user}>
-                            {/* <Link href={user.is_admin ? '/admin/new-product' : '/profile/information'} className={style.navUser}>
+                            {/* <Link href={user.is_admin ? '/admin' : '/profile'} className={style.navUser}>
                                 {user.is_admin ? <GrUserAdmin /> : <BsPerson />}
                             </Link> */}
-                            <Link href='/profile/information' className={style.navUser}>
+                            <Link href={!!tokens ? '/profile' : '/auth/login'} className={style.navUser}>
                                 <BsPerson />
                             </Link>
                             <div className={style.border}></div>

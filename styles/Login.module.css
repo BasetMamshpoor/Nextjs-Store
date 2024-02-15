@@ -38,9 +38,6 @@
   color: #3f4064;
   margin-bottom: 1rem;
 }
-.form {
-  position: relative;
-}
 .input_sec {
   width: 100%;
   border: 1px solid #ccc;
@@ -64,16 +61,7 @@
   border: none;
   outline: none;
 }
-.error {
-  position: absolute;
-  top: 2.5rem;
-  right: 5px;
-  color: red;
-  font-size: 12px;
-  margin: 10px 0;
-}
 .btn {
-  margin-top: 2rem;
   width: 100%;
   background: #3499ff;
   color: #fff;
@@ -82,5 +70,54 @@
   outline: none;
   padding: 10px;
   border-radius: 10px;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
+}
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.verify {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  direction: ltr;
+}
+.form_control {
+  display: block;
+  text-align: center;
+  font-size: 1.25rem;
+  width: calc(calc(100% / 6) - 8px);
+  height: 50px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  font-family: "IRANYekan";
+}
+.form_control:focus {
+  color: #495057;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.error {
+  position: absolute;
+  top: 4.5rem;
+  right: 5px;
+  color: red;
+  font-size: 12px;
+  margin: 10px 0;
+}
+.expire {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sendAgain {
+  cursor: pointer;
+  color: #3499ff;
 }

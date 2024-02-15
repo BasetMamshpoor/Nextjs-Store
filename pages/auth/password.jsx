@@ -11,7 +11,7 @@ const password = () => {
     const Error = useRef()
     const { query, push } = useRouter()
     const { SwalStyled } = useContext(Functions)
-    const { getTokens } = useContext(Authorization)
+    const { getTokens, getUserInformation } = useContext(Authorization)
     useEffect(() => {
         if (!query.email)
             push('/auth/login')
@@ -33,10 +33,15 @@ const password = () => {
                 password: value
             }
             await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/oauth/token`, data)
-                .then(({ data }) => {
-                    SwalStyled.fire('انجام شد', 'وارد حساب کاربری می شوید', 'success')
+                .then(async ({ data }) => {
                     getTokens(data)
-                    push('/profile/information')
+                    const user = await getUserInformation(data)
+                    SwalStyled.fire({
+                        title: 'وارد شدید',
+                        text: 'با موفقیت وارد حساب کاربری شدید',
+                        icon: 'success',
+                        willClose: () => push(`/${user.role}`)
+                    })
                 })
                 .catch(err => SwalStyled.fire('', '.رمز عبور وارد شده اشتباه است', 'error'))
         }

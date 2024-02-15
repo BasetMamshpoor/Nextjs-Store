@@ -4,6 +4,7 @@ import { BsCart3, BsBuilding } from 'react-icons/bs'
 import { FaUsers } from "react-icons/fa";
 import { FiSliders } from 'react-icons/fi';
 import { BiCategory } from 'react-icons/bi';
+import { GrUserAdmin } from "react-icons/gr";
 import Slider from 'Components/Vendor/Slider';
 import Brands from 'Components/Vendor/Brands';
 import Category from 'Components/Vendor/Category';
@@ -12,6 +13,7 @@ import AdminProducts from 'Components/Vendor/Products/AdminProducts';
 import ProductForm from 'Components/Vendor/Option_Product/ProductForm';
 
 let adminRoutes = [
+    { link: undefined, icon: <GrUserAdmin />, name: 'ادمین' },
     { link: 'dashboard', icon: <MdSpaceDashboard />, name: 'داشبورد' },
     { link: 'new-product', icon: <MdOutlineFileUpload />, name: 'اضافه کردن محصول جدید', component: <ProductForm />, },
     { link: 'category', icon: <BiCategory />, name: 'دسته بندی', component: <Category />, },

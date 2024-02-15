@@ -28,8 +28,8 @@ const stock = ({ product, size, setSize }) => {
                     </div>
                 </div>
                 {!!off_date_to && (timeDiscount < 86400) && <>
-                            <Timer time={timeDiscount} classNameProgress={style.progress} classNameTimer={style.timer} classNameEtmam={style.EtmamTakhfif} withProgress={false} />
-                        </>}
+                    <Timer time={timeDiscount} message='اتمام تخفیف' classNameProgress={style.progress} classNameTimer={style.timer} classNameEtmam={style.EtmamTakhfif} withProgress={false} />
+                </>}
             </div>
             {!!sizes.length ? <>
                 <div className={style.qOOp}>
