@@ -34,7 +34,7 @@ const Component = ({ page, query, links, children }) => {
                                         <ul className={style.OcWz_yc1a}>
                                             {links.map(route => {
                                                 return (<li className={style.list} key={route.name}>
-                                                    <Link href={`/${page}/${route.link}`} onClick={handleOpen}
+                                                    <Link href={`/${page}/${route.link ?? ''}`} onClick={handleOpen}
                                                         className={`${style.JbxnrS_6g6d} ${!!(query === route.link) ? style.JbxnrS_active : ''}`}>
                                                         <div className={style.cxZw_p112}>
                                                             <div>

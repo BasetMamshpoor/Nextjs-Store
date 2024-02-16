@@ -13,6 +13,7 @@ import { ImBoxAdd, ImCheckmark } from 'react-icons/im'
 import SelectCategories from './SelectCategories';
 import Brands from './Brands';
 import PrevSizes from './Sizes/PervSizes'
+import Cookies from 'js-cookie';
 
 const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
     const [product, setProduct] = useState({ category_id: null, sizes: [], attributes: [], images: [] })
@@ -20,6 +21,7 @@ const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0)
     const errors = validation(product)
+    const token = Cookies.get('token')
 
     useEffect(() => {
         if (!!state) {
@@ -49,9 +51,10 @@ const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
             setTouch({ name: true, brand_id: true, category_id: true, image: true, images: true, price: true, offPrice: true, color: true, colorCode: true, sizes: true, attributes: true, discountTime: true })
         } else {
             setLoading(true)
+            const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${token.token_type} ${token.access_token}` }
             if (!!state) {
                 await axios.post(`/admin/products/${state.product.id}`, product, {
-                    headers: { 'Content-Type': 'multipart/form-data' },
+                    headers,
                     onUploadProgress: (progressEvent) => {
                         const percentCompleted = Math.round(
                             (progressEvent.loaded * 100) / progressEvent.total
@@ -74,7 +77,7 @@ const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
                     })
             } else {
                 await axios.post('/admin/products', product, {
-                    headers: { 'Content-Type': 'multipart/form-data' },
+                    headers,
                     onUploadProgress: (progressEvent) => {
                         const percentCompleted = Math.round(
                             (progressEvent.loaded * 100) / progressEvent.total
@@ -177,7 +180,7 @@ const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
                         </div>
                         <div className={style.save_pro_qq}>
                             <button className={`${style.onRc_12ar} ${loading ? style.activeProgress : ''} ${progress === 100 ? style.Uploaded : ''}`}
-                             onClick={handleSubmit}>
+                                onClick={handleSubmit}>
                                 {progress === 100 ? <ImCheckmark color='#4BB543' /> : loading ? 'آپلــــــود تصــاویــر...' : !!state ? 'ویرایش محصول' : 'ثبت محصول'}
                                 {loading ? <>
                                     <span className={style.progress_top} style={getProgress().top} />

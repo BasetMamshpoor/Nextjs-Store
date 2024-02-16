@@ -7,11 +7,14 @@ import style from './Brands.module.css'
 import { Functions } from 'providers/FunctionsProvider';
 import Swal from 'sweetalert2'
 import Loading from 'Components/Loading';
+import Cookies from 'js-cookie';
 
 const Brands = () => {
     const [currentpage, setCurrentpage] = useState(1)
     const [brands, setBrands, reload, paginations] = useGetPrivatRequest(`/admin/brands`, currentpage)
     const { SwalStyled } = useContext(Functions)
+    const token = Cookies.get('token')
+    const headers = { Authorization: `${token.token_type} ${token.access_token}` }
 
     const handleDelete = (id) => {
         SwalStyled.fire({
@@ -23,7 +26,7 @@ const Brands = () => {
             icon: 'warning'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                await axios.delete(`/admin/brands/${id}`)
+                await axios.delete(`/admin/brands/${id}`, { headers })
                     .then(() => {
                         SwalStyled.fire({ title: '.حذف شد', text: '.برند مورد نظر با موفقیت حذف شد', icon: 'success' })
                         setBrands(prev => {
@@ -53,7 +56,7 @@ const Brands = () => {
                 confirmButtonText: 'تایید'
             });
             if (text)
-                await axios.put(`/admin/brands/${id}`, { name: text })
+                await axios.put(`/admin/brands/${id}`, { name: text }, { headers })
                     .then(() => {
                         SwalStyled.fire('.ویرایش شد', '.برند مورد نظر با موفقیت ویرایش شد', 'success')
                         reload(Math.random())
@@ -70,7 +73,7 @@ const Brands = () => {
                 confirmButtonText: 'تایید'
             });
             if (text)
-                await axios.post('/admin/brands', { name: text })
+                await axios.post('/admin/brands', { name: text }, { headers })
                     .then(() => {
                         SwalStyled.fire('.ثبت شد', '.برند مورد نظر با موفقیت ثبت شد', 'success')
                         reload(Math.random())

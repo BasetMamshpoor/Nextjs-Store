@@ -44,8 +44,8 @@ const NavbarLinks = () => {
                                 <li><Link href="/">خانه</Link></li>
                                 <li><Link href="/">پرفروش&zwnj;ترین&zwnj;ها</Link></li>
                                 <li><Link href="/">تخفیف&zwnj;ها و پیشنهادات</Link></li>
-                                <li><Link href="/profile/information">حساب کاربری</Link></li>
-                                <li><Link href="/admin/new-product">حساب فروشنده</Link></li>
+                                <li><Link href="/profile">حساب کاربری</Link></li>
+                                <li><Link href="/admin">حساب فروشنده</Link></li>
                             </ul>
                         </div>
                     </nav>

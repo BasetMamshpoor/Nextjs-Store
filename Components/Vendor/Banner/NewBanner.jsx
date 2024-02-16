@@ -2,6 +2,7 @@ import style from './NewBanner.module.css'
 import { useRef, useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
+import Cookies from 'js-cookie';
 
 const NewBanner = ({ data, setIsOpen, SwalStyled, reload }) => {
     const wrapper = useRef()
@@ -9,6 +10,8 @@ const NewBanner = ({ data, setIsOpen, SwalStyled, reload }) => {
     const [banner, setBanner] = useState(!!data ? { link: data.link, src: data.src } : {})
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0)
+    const token = Cookies.get('token')
+    const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${token.token_type} ${token.access_token}` }
     const imagePlaceholder = '/Images/placeholder-1.png'
 
     const handleUpload = (e, t) => {
@@ -48,7 +51,7 @@ const NewBanner = ({ data, setIsOpen, SwalStyled, reload }) => {
         setLoading(true)
         let obj = typeof banner.src === 'object' ? { ...banner, _method: "PUT", type: "homepage" } : { link: banner.link, _method: "PUT", type: "homepage" }
         await axios.post(`/admin/banners/${data.id}`, obj, {
-            headers: { 'Content-Type': 'multipart/form-data' },
+            headers,
             onUploadProgress: (progressEvent) => {
                 const percentCompleted = Math.round(
                     (progressEvent.loaded * 100) / progressEvent.total
@@ -62,7 +65,7 @@ const NewBanner = ({ data, setIsOpen, SwalStyled, reload }) => {
         }).catch(() => SwalStyled.fire('.ویرایش نشد', '.بنر مورد نظر با موفقیت ویرایش نشد', 'error'))
         // if (!!data) {
         // }
-        // else await axios.post('/admin/banners', banner, { headers: { 'Content-Type': 'multipart/form-data' } })
+        // else await axios.post('/admin/banners', banner, { headers })
         //     .then(() => {
         //         SwalStyled.fire('.ثبت شد', '.بنر جدیدی با موفقیت ثبت شد', 'success')
         //         reload(Math.random())

@@ -11,9 +11,10 @@ const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen, SwalStyle
     const wrapper = useRef()
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0)
-
+    const token = Cookies.get('token')
+    const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${token.token_type} ${token.access_token}` }
     const imagePlaceholder = '/Images/placeholder-1.png'
-
+    
     const handleChange = (name, value) => {
         setCategory(prev => {
             return { ...prev, [name]: value }
@@ -29,7 +30,7 @@ const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen, SwalStyle
             denyButtonText: `لغو`,
         }).then(async (result) => {
             if (result.isConfirmed) {
-                await axios.delete(`/admin/categories/${state.id}`)
+                await axios.delete(`/admin/categories/${state.id}`,{headers})
                     .then(() => {
                         SwalStyled.fire({ title: '.حذف شد', text: '.دسته مورد نظر با موفقیت حذف شد', icon: 'success' })
                         setIsOpen(false)
@@ -70,7 +71,7 @@ const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen, SwalStyle
             const { icon, ...data } = category
             let obj = typeof category.icon === 'object' ? { ...category, _method: "PUT" } : { ...data, _method: "PUT" }
             await axios.post(`/admin/categories/${state.id}`, obj, {
-                headers: { 'Content-Type': 'multipart/form-data' },
+                headers,
                 onUploadProgress: (progressEvent) => {
                     const percentCompleted = Math.round(
                         (progressEvent.loaded * 100) / progressEvent.total
@@ -87,7 +88,7 @@ const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen, SwalStyle
                 })
         }
         else await axios.post(`/admin/categories`, category, {
-            headers: { 'Content-Type': 'multipart/form-data' },
+            headers,
             onUploadProgress: (progressEvent) => {
                 const percentCompleted = Math.round(
                     (progressEvent.loaded * 100) / progressEvent.total

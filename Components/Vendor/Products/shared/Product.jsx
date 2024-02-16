@@ -7,11 +7,13 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { PiDotsThreeOutlineVerticalFill, PiTrashLight } from "react-icons/pi";
 import axios from 'axios';
 import { Functions } from 'providers/FunctionsProvider';
+import Cookies from 'js-cookie';
 
 const Product = ({ id, name, price, offPercent, offPrice, image, setProducts }) => {
     const [isOpen, setIsOpen] = useState(false)
     const dots = useRef()
-
+    const token = Cookies.get('token')
+    const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${token.token_type} ${token.access_token}` }
     const { SwalStyled } = useContext(Functions)
 
     const handleOpen = () => {
@@ -38,7 +40,7 @@ const Product = ({ id, name, price, offPercent, offPrice, image, setProducts }) 
             denyButtonText: `لغو`,
         }).then(async (result) => {
             if (result.isConfirmed) {
-                await axios.delete(`/admin/products/${id}`)
+                await axios.delete(`/admin/products/${id}`, { headers })
                     .then(() => {
                         SwalStyled.fire({ title: '.حذف شد', text: '.محصول مورد نظر با موفقیت حذف شد', icon: 'success' })
                         setProducts(prev => {

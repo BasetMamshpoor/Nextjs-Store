@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import { FiTrash2 } from 'react-icons/fi';
+import Cookies from 'js-cookie';
 
 const NewSlide = ({ data, setData, setIsOpen, SwalStyled, reload }) => {
     const wrapper = useRef()
@@ -10,7 +11,8 @@ const NewSlide = ({ data, setData, setIsOpen, SwalStyled, reload }) => {
     const [slide, setSlide] = useState(!!data ? { link: data.link, src: data.src } : {})
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0)
-
+    const token = Cookies.get('token')
+    const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${token.token_type} ${token.access_token}` }
     const imagePlaceholder = '/Images/placeholder-1.png'
 
     const handleUpload = (e, t) => {
@@ -51,7 +53,7 @@ const NewSlide = ({ data, setData, setIsOpen, SwalStyled, reload }) => {
         if (!!data) {
             let obj = typeof slide.src === 'object' ? { ...slide, _method: "PUT" } : { link: slide.link, _method: "PUT" }
             await axios.post(`/admin/sliders/${data.id}`, obj, {
-                headers: { 'Content-Type': 'multipart/form-data' },
+                headers,
                 onUploadProgress: (progressEvent) => {
                     const percentCompleted = Math.round(
                         (progressEvent.loaded * 100) / progressEvent.total
@@ -66,7 +68,7 @@ const NewSlide = ({ data, setData, setIsOpen, SwalStyled, reload }) => {
                 }).catch(() => SwalStyled.fire('.ویرایش نشد', '.اسلاید مورد نظر با موفقیت ویرایش نشد', 'error'))
         }
         else await axios.post('/admin/sliders', slide, {
-            headers: { 'Content-Type': 'multipart/form-data' },
+            headers,
             onUploadProgress: (progressEvent) => {
                 const percentCompleted = Math.round(
                     (progressEvent.loaded * 100) / progressEvent.total
@@ -88,7 +90,7 @@ const NewSlide = ({ data, setData, setIsOpen, SwalStyled, reload }) => {
             showCancelButton: true,
             confirmButtonText: "بله حذف شود"
         }).then((result) => {
-            if (result.isConfirmed) axios.delete(`/admin/sliders/${data.id}`)
+            if (result.isConfirmed) axios.delete(`/admin/sliders/${data.id}`, { headers })
                 .then(res => {
                     setData(prev => {
                         const Prev = prev.filter(s => s.id !== data.id)
