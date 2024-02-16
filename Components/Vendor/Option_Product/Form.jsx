@@ -21,7 +21,7 @@ const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0)
     const errors = validation(product)
-    const token = Cookies.get('token')
+    const token = JSON.parse(Cookies.get('token'))
 
     useEffect(() => {
         if (!!state) {

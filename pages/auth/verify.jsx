@@ -36,12 +36,12 @@ const verify = () => {
                 await axios.post('/auth/send-otp', { email: query.email })
                     .then(res => {
                         setLoadin(false)
-                        SwalStyled.fire('ارسال شد', `ارسال شد ${query.email} کد فعال سازی به ایمیل `, 'success')
+                        SwalStyled.fire('ارسال شد', res.data.message, 'success')
                         setResponse(res.data)
                     })
                     .catch(err => {
                         setLoadin(false)
-                        setResponse({ expires_in: 120 })
+                        setResponse({ expires_in: 0 })
                         SwalStyled.fire('ارسال نشد', err.response.data.message, 'error')
                     })
             }

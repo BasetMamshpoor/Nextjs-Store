@@ -13,7 +13,7 @@ const Brands = () => {
     const [currentpage, setCurrentpage] = useState(1)
     const [brands, setBrands, reload, paginations] = useGetPrivatRequest(`/admin/brands`, currentpage)
     const { SwalStyled } = useContext(Functions)
-    const token = Cookies.get('token')
+    const token = JSON.parse(Cookies.get('token'))
     const headers = { Authorization: `${token.token_type} ${token.access_token}` }
 
     const handleDelete = (id) => {

@@ -11,7 +11,7 @@ const NewSlide = ({ data, setData, setIsOpen, SwalStyled, reload }) => {
     const [slide, setSlide] = useState(!!data ? { link: data.link, src: data.src } : {})
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0)
-    const token = Cookies.get('token')
+    const token = JSON.parse(Cookies.get('token'))
     const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${token.token_type} ${token.access_token}` }
     const imagePlaceholder = '/Images/placeholder-1.png'
 

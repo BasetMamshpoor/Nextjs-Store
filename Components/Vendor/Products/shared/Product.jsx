@@ -12,7 +12,7 @@ import Cookies from 'js-cookie';
 const Product = ({ id, name, price, offPercent, offPrice, image, setProducts }) => {
     const [isOpen, setIsOpen] = useState(false)
     const dots = useRef()
-    const token = Cookies.get('token')
+    const token = JSON.parse(Cookies.get('token'))
     const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${token.token_type} ${token.access_token}` }
     const { SwalStyled } = useContext(Functions)
 
