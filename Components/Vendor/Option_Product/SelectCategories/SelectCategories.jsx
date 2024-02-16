@@ -1,8 +1,7 @@
 import DropDown from 'Components/Dropdown/DropDown';
-import useGetPrivatRequest from 'hooks/useGetPrivatRequest';
-import React, { useContext, useEffect, useState } from 'react';
+import useGetRequest from 'hooks/useGetRequest';
+import React, { useEffect, useState } from 'react';
 import style from './SelectCategories.module.css'
-import { Categories } from 'providers/CategoriesProvider';
 import Loading from 'Components/Loading';
 
 const SelectCategories = ({ setProduct, touch, errors, data = [] }) => {
@@ -11,7 +10,7 @@ const SelectCategories = ({ setProduct, touch, errors, data = [] }) => {
         { id: null, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } };
     const [categories, setCategories] = useState(categoryDefault)
     const [category, setCategory] = useState(null)
-    const { categories: categoryList } = useContext(Categories)
+    const [categoryList] = useGetRequest('/categories')
 
     useEffect(() => {
         setProduct(prev => { return { ...prev, category_id: category } })
