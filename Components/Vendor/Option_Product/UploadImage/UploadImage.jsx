@@ -12,28 +12,16 @@ const UploadImage = ({ setProduct, images, image }) => {
             const el = e.target.parentElement
             const file = el.getAttribute('data-file')
             const fileName = el.getAttribute('file-name')
-            if (fileName) {
-                setProduct(prev => {
+            setProduct(prev => {
+                if (fileName) {
                     const { image, ...data } = prev
                     return { ...data }
-                })
-            }
-            for (const i of images) {
-                if (i.name === file) {
-                    setProduct(prev => {
-                        prev.images.splice(i, 1)
-                        return { ...prev }
-                    })
-                    break;
+                } else if (file) {
+                    const deletedImage = prev.images.find(i => i.name === file)
+                    const clearList = prev.images.filter(i => i !== deletedImage)
+                    return { ...prev, images: clearList }
                 }
-                else if (i.name === fileName) {
-                    setProduct(prev => {
-                        prev.images.splice(i, 1)
-                        return { ...prev }
-                    })
-                    break;
-                }
-            }
+            })
             el.remove();
         }
     }
@@ -105,18 +93,6 @@ const UploadImage = ({ setProduct, images, image }) => {
                         <>
                             <label className={style.control_label}>جهت حذف، روی عکس مورد نظر کلیک کنید.</label>
                             <div className={style.OvrcU}>
-                                <div className={style.ExBt_2}>
-                                    <input
-                                        type="checkbox"
-                                        name={image.name}
-                                        id={`image`}
-                                        hidden
-                                        onChange={handleImageOption}
-                                    />
-                                    <label htmlFor={`image`} className={style.image_holder}>
-                                        <img src={image} alt="imagePost" />
-                                    </label>
-                                </div>
                                 {images.map(i => {
                                     return (
                                         <div key={i.id} className={style.ExBt_2}>

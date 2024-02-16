@@ -20,10 +20,7 @@ const AuthorizationProvider = ({ children }) => {
                 setUser(data.data)
                 return data.data
             })
-            .catch((err) => {
-                console.log(err);
-                SwalStyled.fire('پیدا نشد', 'اطلاعات کاربر پیدا نشد', 'error')
-            })
+            .catch(err => SwalStyled.fire('پیدا نشد', 'اطلاعات کاربر پیدا نشد', 'error'))
         return data
     }
 
