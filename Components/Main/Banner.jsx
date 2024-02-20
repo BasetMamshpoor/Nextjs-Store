@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useGetRequest from 'hooks/useGetRequest';
 const Banner = () => {
-    const [banners] = useGetRequest('/banners', 1, { type: 'homepage' })
+    const [banners] = useGetRequest('/banners', 1, { type: 'homepage', order: 0 })
     return (
         <>
             <div className={style.Banner}>

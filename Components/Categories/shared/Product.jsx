@@ -19,10 +19,10 @@ const Product = ({ id, name, price, rate, offPercent, offPrice, image, off_date_
                         <div className={style.descP}>
                             <h3>{name}</h3>
                         </div>
-                        <div className={style.rate}>
+                        {rate > 0 && <div className={style.rate}>
                             <span>{e2p(rate)}</span>
                             <div className={style.star}><FaStar /></div>
-                        </div>
+                        </div>}
                         {is_available ? <div className={style.priceP}>
                             <div className={style.Cpou}>
                                 <span className={style.priceR}>{addComma(offPrice.toString())}</span>

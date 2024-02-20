@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 const NewBanner = ({ data, setIsOpen, SwalStyled, reload }) => {
     const wrapper = useRef()
     const err = useRef()
-    const [banner, setBanner] = useState(!!data ? { link: data.link, src: data.src } : {})
+    const [banner, setBanner] = useState({ link: data.link, src: data.src })
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0)
     const token = JSON.parse(Cookies.get('token'))
@@ -63,14 +63,6 @@ const NewBanner = ({ data, setIsOpen, SwalStyled, reload }) => {
             reload(Math.random())
             setIsOpen(false)
         }).catch(() => SwalStyled.fire('.ویرایش نشد', '.بنر مورد نظر با موفقیت ویرایش نشد', 'error'))
-        // if (!!data) {
-        // }
-        // else await axios.post('/admin/banners', banner, { headers })
-        //     .then(() => {
-        //         SwalStyled.fire('.ثبت شد', '.بنر جدیدی با موفقیت ثبت شد', 'success')
-        //         reload(Math.random())
-        //         setIsOpen(false)
-        //     }).catch(({ response }) => SwalStyled.fire('.ثبت نشد', response.data.message, 'error'))
     }
     return (
         <>
@@ -87,9 +79,6 @@ const NewBanner = ({ data, setIsOpen, SwalStyled, reload }) => {
                             <div className={style.pick}> یا <label htmlFor="file"> انتخاب عکس </label></div>
                         </div>
                     </div>
-                    {/* <div className={style.dropdown}>
-                        <DropDown array={[]} placeHolder='انتخاب مکان' />
-                    </div> */}
                     <label htmlFor="link" className={style.link}>
                         <span>: لینک</span>
                         <input required type="url" id='link' onChange={({ target }) => setBanner(prev => { return { ...prev, link: target.value } })} value={banner.link} />
@@ -99,7 +88,7 @@ const NewBanner = ({ data, setIsOpen, SwalStyled, reload }) => {
                     </div>
                     <button className={`${style.submit} ${loading ? style.startSubmit : ''}`}
                         style={loading ? { background: `linear-gradient(to right, #3499ff ${progress}%, #fff 0%)` } : {}}>
-                        {loading ? (progress + '%') : !!data ? 'ویرایش' : 'ثبت'}</button>
+                        {loading ? (progress + '%') : 'ویرایش'}</button>
                 </form>
             </div >
         </>

@@ -10,13 +10,13 @@ import { PiDotsThreeOutlineVerticalFill, PiPencilSimpleLine, PiTrashLight } from
 import { AiOutlineSafety, AiOutlineFieldTime } from 'react-icons/ai'
 import { BsTruck } from 'react-icons/bs'
 import Baner from 'Components/Detaile/Baner';
-import Image from 'next/image';
 import useGetRequest from 'hooks/useGetRequest';
 import Breadcrumb from 'Components/Breadcrumb';
 import createModal from 'Components/Modal';
 import Form from 'Components/Vendor/Option_Product/Form';
 import axios from 'axios';
 import { Functions } from 'providers/FunctionsProvider';
+import Loading from 'Components/Loading';
 
 const ProductDetaile = () => {
     const router = useRouter()
@@ -76,108 +76,105 @@ const ProductDetaile = () => {
 
     return (
         <>
-            {!!data ? <main className={style.main}>
-                <section dir='rtl'>
-                    <div className="container">
-                        <Breadcrumb breadcrumb={data.breadcrumb} />
-                    </div>
-                </section>
-
-                <section className={style.Iwalh}>
-                    <div className="container">
-                        {!!data.product && <div className={`row pb-3 ${style.mobile_Dis}`}>
-                            <div className="col-lg-7 d-flex flex-column" dir="rtl">
-                                <div className={style.Cxwply}>
-                                    <h1>{data.product.name}</h1>
-                                    <div className={style.option}>
-                                        <span className={style.dots} ref={dots} onClick={handleOpen}><PiDotsThreeOutlineVerticalFill /></span>
-                                        {isOpen ? (
-                                            <ul className={style.menu} >
-                                                <li className={style.menu_item} onClick={handleEdit}>
-                                                    ویرایش <PiPencilSimpleLine />
-                                                </li>
-                                                <li className={style.menu_item} onClick={handleDelete}>
-                                                    حذف <PiTrashLight />
-                                                </li>
-                                            </ul>
-                                        ) : null}
-                                    </div>
-                                </div>
-                                <div className="row flex-grow-1">
-                                    <div className={`col-lg-${!!data.product.sizes.length ? '6' : '12'} ps-0`}>
-                                        <Attributes product={data.product} />
-                                    </div>
-                                    {!!data.product.sizes.length && <div className="col-lg-6 p-0 mt-4">
-                                        <div className={style.esohby}>
-                                            <div className={style.cKyf}>
-                                                <div className={style.pxty}>
-                                                    <AiOutlineSafety />
-                                                </div>
-                                                <span>ضمانت اصل بودن و سلامت کالا</span>
-                                            </div>
-                                            <div className={style.cKyf}>
-                                                <div className={style.pxty}>
-                                                    <BsTruck />
-                                                </div>
-                                                <span>ارسال فوری و آسان با پست</span>
-                                            </div>
-                                            <div className={style.cKyf}>
-                                                <div className={style.pxty}>
-                                                    <AiOutlineFieldTime />
-                                                </div>
-                                                <span>۲۴ ساعته و ۷ روز هفته</span>
-                                            </div>
-                                        </div>
-                                        <div className={style.zOiOz}>
-                                            <div className={`${style.Redxws} ${style.Fcesop}`}>
-                                                <p>آماده ارسال</p>
-                                            </div>
-                                            <div className={`${style.Redxws} ${style.LttOp}`}>
-                                                <p>گارانتی اصالت و سلامت فیزیکی کالا</p>
-                                            </div>
-                                        </div>
-                                    </div>}
-                                </div>
-                                <Stock product={data.product} size={size} setSize={setSize} />
-                            </div>
-                            <div className="col-lg-5">
-                                <DetaileSlider Images={data.product.images} />
-                            </div>
-                        </div>}
-                    </div>
-                </section>
-
-                <section className={style.hFcte} dir="rtl">
-                    <div className="container">
-
-                        <div className={style.c9C4xp}>
-                            <ul className={style.p_Eoxf}>
-                                <li className={`${style.ycrQl} ${style.obActive}`}><a href="#Specifications">مشخصات</a></li>
-                                <li className={style.ycrQl}><a href="#comments">نظرات</a></li>
-                            </ul>
+            <main className={style.main}>
+                {!!data ? <>
+                    <section dir='rtl'>
+                        <div className="container">
+                            <Breadcrumb breadcrumb={data.breadcrumb} />
                         </div>
+                    </section>
 
-                        <div className="row">
-
-                            <div className="col-lg-9 ps-3">
-                                <Specifications data={data.product.attributes} />
-
-                                <Comments id={id} rate={data.product.rate} />
-                            </div>
-
-                            <div className="col-lg-3 p-0">
-                                <Baner product={data.product} size={size} />
-                            </div>
+                    <section className={style.Iwalh}>
+                        <div className="container">
+                            {!!data.product ? <div className={`row pb-3 ${style.mobile_Dis}`}>
+                                <div className="col-lg-7 d-flex flex-column" dir="rtl">
+                                    <div className={style.Cxwply}>
+                                        <h1>{data.product.name}</h1>
+                                        <div className={style.option}>
+                                            <span className={style.dots} ref={dots} onClick={handleOpen}><PiDotsThreeOutlineVerticalFill /></span>
+                                            {isOpen ? (
+                                                <ul className={style.menu} >
+                                                    <li className={style.menu_item} onClick={handleEdit}>
+                                                        ویرایش <PiPencilSimpleLine />
+                                                    </li>
+                                                    <li className={style.menu_item} onClick={handleDelete}>
+                                                        حذف <PiTrashLight />
+                                                    </li>
+                                                </ul>
+                                            ) : null}
+                                        </div>
+                                    </div>
+                                    <div className="row flex-grow-1">
+                                        <div className={`col-lg-${!!data.product.sizes.length ? '6' : '12'} ps-0`}>
+                                            <Attributes product={data.product} />
+                                        </div>
+                                        {!!data.product.sizes.length && <div className="col-lg-6 p-0 mt-4">
+                                            <div className={style.esohby}>
+                                                <div className={style.cKyf}>
+                                                    <div className={style.pxty}>
+                                                        <AiOutlineSafety />
+                                                    </div>
+                                                    <span>ضمانت اصل بودن و سلامت کالا</span>
+                                                </div>
+                                                <div className={style.cKyf}>
+                                                    <div className={style.pxty}>
+                                                        <BsTruck />
+                                                    </div>
+                                                    <span>ارسال فوری و آسان با پست</span>
+                                                </div>
+                                                <div className={style.cKyf}>
+                                                    <div className={style.pxty}>
+                                                        <AiOutlineFieldTime />
+                                                    </div>
+                                                    <span>۲۴ ساعته و ۷ روز هفته</span>
+                                                </div>
+                                            </div>
+                                            <div className={style.zOiOz}>
+                                                <div className={`${style.Redxws} ${style.Fcesop}`}>
+                                                    <p>آماده ارسال</p>
+                                                </div>
+                                                <div className={`${style.Redxws} ${style.LttOp}`}>
+                                                    <p>گارانتی اصالت و سلامت فیزیکی کالا</p>
+                                                </div>
+                                            </div>
+                                        </div>}
+                                    </div>
+                                    <Stock product={data.product} size={size} setSize={setSize} />
+                                </div>
+                                <div className="col-lg-5">
+                                    <DetaileSlider Images={data.product.images} />
+                                </div>
+                            </div> : <Loading />}
                         </div>
+                    </section>
 
-                    </div>
-                </section>
+                    <section className={style.hFcte} dir="rtl">
+                        <div className="container">
 
-            </main> :
-                <div className={style.Loading}>
-                    <Image width={100} height={100} unoptimized={true} src='/Images/loading.gif' alt="" />
-                </div>
-            }
+                            <div className={style.c9C4xp}>
+                                <ul className={style.p_Eoxf}>
+                                    <li className={`${style.ycrQl} ${style.obActive}`}><a href="#Specifications">مشخصات</a></li>
+                                    <li className={style.ycrQl}><a href="#comments">نظرات</a></li>
+                                </ul>
+                            </div>
+
+                            <div className="row">
+
+                                <div className="col-lg-9 ps-3">
+                                    <Specifications data={data.product.attributes} />
+
+                                    <Comments id={id} rate={data.product.rate} />
+                                </div>
+
+                                <div className="col-lg-3 p-0">
+                                    <Baner product={data.product} size={size} />
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                </> : <Loading />}
+            </main>
         </>
     );
 };

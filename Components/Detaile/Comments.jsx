@@ -1,36 +1,28 @@
 import createModal from 'Components/Modal';
 import { e2p } from 'Functions/ConvertNumbers';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Pagination from '../Pagination/Pagination';
 import AddComment from './AddComment';
 import style from './Comments.module.css'
 import { BsThreeDotsVertical } from 'react-icons/bs'
-import axios from 'axios';
+import useGetRequest from 'hooks/useGetRequest';
+import Loading from 'Components/Loading';
 
 const Comments = ({ id, rate }) => {
 
     const [currentpage, setCurrentpage] = useState(1)
 
-    const [comments, setComments] = useState()
-
-    useEffect(() => {
-        const get = async () => {
-            await axios.get(`/products/show/${id}/comments`, { params: { page: currentpage } })
-                .then(res => setComments(res.data))
-                .catch(err => console.log(err))
-        }
-        get()
-    }, [currentpage])
+    const [comments, setComments, reload, pagination] = useGetRequest(`/products/show/${id}/comments`, currentpage)
 
 
     return (
         <>
-            <div className={style.r0Oi2} id="comments">
+            {!!comments ? <div className={style.r0Oi2} id="comments">
                 <div className={style.x3qao_hj}>
                     <h5>امتیاز و نظرات</h5>
-                    <p className={style.totalComments}>تعداد کل دیدگاه ها: <span>{!!comments && e2p(comments.meta.total)}</span></p>
+                    <p className={style.totalComments}>تعداد کل دیدگاه ها: <span>{!!pagination && e2p(pagination.meta.total)}</span></p>
                 </div>
-                {!!comments && <div className="row">
+                <div className="row">
                     <div className="col-lg-3 ps-0">
                         <div className={style.cxyrd3}>
                             <div className={style.G4xP0sm3}>
@@ -44,7 +36,7 @@ const Comments = ({ id, rate }) => {
                         </div>
                     </div>
                     <div className="col-lg-9">
-                        {comments.data.map(c => {
+                        {comments.map(c => {
                             return (<article className={style.comment} key={c.id}>
                                 <div className={style.qzoY3_jl}>
                                     <div className={style.pExiP} rate={c.rate}><span>{e2p(c.rate)}</span></div>
@@ -62,10 +54,10 @@ const Comments = ({ id, rate }) => {
                                 </div>
                             </article>)
                         })}
-                        <Pagination currentPage={currentpage} setCurrentPage={setCurrentpage} dataLength={comments.meta.total} itemsPerPage={comments.meta.per_page} boxShadow={false} />
+                        <Pagination currentPage={currentpage} setCurrentPage={setCurrentpage} dataLength={pagination.meta.total} itemsPerPage={pagination.meta.per_page} boxShadow={false} />
                     </div>
-                </div>}
-            </div>
+                </div>
+            </div> : <Loading />}
         </>
     );
 };
