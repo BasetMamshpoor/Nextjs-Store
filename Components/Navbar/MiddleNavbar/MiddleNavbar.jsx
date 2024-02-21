@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import style from './MiddleNavbar.module.css'
 import Logo from 'public/Images/logo-no-background-transformed.png'
 import { BsSearch, BsCart3, BsPerson } from 'react-icons/bs'
-// import { GrUserAdmin } from "react-icons/gr";
+import { RiAdminLine } from "react-icons/ri";
 import Link from 'next/link';
 import { e2p } from 'Functions/ConvertNumbers';
 import { CartContext } from 'providers/CartContextProvider';
@@ -31,11 +31,8 @@ const MiddleNavbar = () => {
                             </form>
                         </div>
                         <div className={style.user}>
-                            {/* <Link href={user.is_admin ? '/admin' : '/profile'} className={style.navUser}>
-                                {user.is_admin ? <GrUserAdmin /> : <BsPerson />}
-                            </Link> */}
-                            <Link href={!!tokens ? '/profile' : '/auth/login'} className={style.navUser}>
-                                <BsPerson />
+                            <Link href={!tokens ? '/auth/login' : user.is_admin ? '/admin' : '/profile'} className={style.navUser}>
+                                {!tokens ? <BsPerson /> : user.is_admin ? < RiAdminLine /> : <BsPerson />}
                             </Link>
                             <div className={style.border}></div>
                             <Link href='/cart' className={style.navCart}>

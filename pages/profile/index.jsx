@@ -5,6 +5,7 @@ import React, { useContext, useEffect } from 'react';
 import profileRoutes from './routes';
 import style from './Profile.module.css'
 import UserProf from '/public/Images/Ei-user.svg'
+import withAuth from 'Components/Private/withAuth';
 
 const profile = () => {
     const router = useRouter();
@@ -39,4 +40,4 @@ const profile = () => {
     );
 };
 
-export default profile;
+export default withAuth(profile);

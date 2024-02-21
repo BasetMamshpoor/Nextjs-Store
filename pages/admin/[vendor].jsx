@@ -3,6 +3,7 @@ import adminRoutes from './routes';
 import Component from 'Components/Sidebar_Component';
 import { Authorization } from 'providers/AuthorizationProvider';
 import { useContext, useEffect } from 'react';
+import withAuth from 'Components/Private/withAuth';
 
 const Vendor = () => {
     const router = useRouter()
@@ -43,4 +44,4 @@ export async function getStaticProps() {
     }
 }
 
-export default Vendor;
+export default withAuth(Vendor);

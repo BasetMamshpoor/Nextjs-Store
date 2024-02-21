@@ -114,12 +114,15 @@
   height: 100%;
   width: 100%;
   gap: 0.5rem;
+  transition: all 0.3s ease;
 }
 .article a:hover span {
   color: #000;
 }
 .article a:hover .art_img {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+}
+.article a:hover .art_img img {
   transform: scale(1.1);
 }
 .art_img {
@@ -129,6 +132,9 @@
   flex-grow: 1;
   width: 100%;
   height: 100%;
+}
+.art_img img {
+  transition: all 0.3s ease;
 }
 .art_name span {
   font-size: 12px;

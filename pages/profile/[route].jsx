@@ -5,6 +5,7 @@ import profileRoutes from './routes';
 import Component from 'Components/Sidebar_Component';
 import { useContext, useEffect } from 'react';
 import { Authorization } from 'providers/AuthorizationProvider';
+import withAuth from 'Components/Private/withAuth';
 
 const Profile = () => {
     const router = useRouter();
@@ -56,4 +57,4 @@ export async function getStaticProps() {
     }
 }
 
-export default Profile;
+export default withAuth(Profile);
