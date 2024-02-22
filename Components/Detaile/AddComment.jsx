@@ -96,7 +96,7 @@ const AddComment = ({ id, SwalStyled, push, setIsOpen }) => {
                         </div>
                         <div className={style.VqoJu}>
                             <label className={style.e3Xipy}>متن نظر!<span className={style.requierd}>*</span></label>
-                            <textarea minLength={5} required className={style.TciBol} onChange={({ target }) => setData(prev => { return { ...prev, text: target.value } })} placeholder="این محصول ..."></textarea>
+                            <textarea minLength={5} maxLength={300} required className={style.TciBol} onChange={({ target }) => setData(prev => { return { ...prev, text: target.value } })} placeholder="این محصول ..."></textarea>
                         </div>
                         <div className={style.Oibt0s}>
                             <input className={style.form_check_input} type="checkbox"

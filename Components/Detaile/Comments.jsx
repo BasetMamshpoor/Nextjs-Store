@@ -9,11 +9,13 @@ import useGetRequest from 'hooks/useGetRequest';
 import Loading from 'Components/Loading';
 import { Functions } from 'providers/FunctionsProvider';
 import { useRouter } from 'next/router';
+import { Authorization } from 'providers/AuthorizationProvider';
 
 const Comments = ({ id, rate }) => {
     const router = useRouter()
     const [currentpage, setCurrentpage] = useState(1)
     const { SwalStyled } = useContext(Functions)
+    const { user } = useContext(Authorization)
     const [comments, setComments, reload, pagination] = useGetRequest(`/products/show/${id}/comments`, currentpage)
 
 
@@ -31,10 +33,10 @@ const Comments = ({ id, rate }) => {
                                 <p className={style.cxr8Jve}>{e2p(rate)}</p>
                                 <p>از ۵</p>
                             </div>
-                            <div className={style.cs3qp}>
+                            {!user.is_admin && <div div className={style.cs3qp}>
                                 <p>شما هم درباره این کالا دیدگاه ثبت کنید.</p>
                                 <button className={style.exW3mo} onClick={() => createModal(<AddComment push={router.push} SwalStyled={SwalStyled} id={id} />)}>ثبت دیدگاه</button>
-                            </div>
+                            </div>}
                         </div>
                     </div>
                     <div className="col-lg-9">
@@ -59,7 +61,8 @@ const Comments = ({ id, rate }) => {
                         <Pagination currentPage={currentpage} setCurrentPage={setCurrentpage} dataLength={pagination.meta.total} itemsPerPage={pagination.meta.per_page} boxShadow={false} />
                     </div>
                 </div>
-            </div> : <Loading />}
+            </div > : <Loading />
+            }
         </>
     );
 };
