@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import style from './UploadImage.module.css'
-const UploadImage = ({ setProduct, images, image }) => {
+const UploadImage = ({ setProduct, images }) => {
 
     useEffect(() => {
         window.addEventListener('click', handleRemove)

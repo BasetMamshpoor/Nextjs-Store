@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 const NewBanner = ({ data, setIsOpen, SwalStyled, reload }) => {
     const wrapper = useRef()
     const err = useRef()
-    const [banner, setBanner] = useState({ link: data.link, src: data.src })
+    const [banner, setBanner] = useState({ ...data, _method: "PUT", type: "homepage" })
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0)
     const token = JSON.parse(Cookies.get('token'))
@@ -49,7 +49,8 @@ const NewBanner = ({ data, setIsOpen, SwalStyled, reload }) => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         setLoading(true)
-        let obj = typeof banner.src === 'object' ? { ...banner, _method: "PUT", type: "homepage" } : { link: banner.link, _method: "PUT", type: "homepage" }
+        const { src: img, ...bannerData } = banner
+        let obj = typeof img === 'object' ? { ...banner } : { ...bannerData }
         await axios.post(`/admin/banners/${data.id}`, obj, {
             headers,
             onUploadProgress: (progressEvent) => {

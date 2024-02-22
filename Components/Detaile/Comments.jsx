@@ -1,17 +1,19 @@
 import createModal from 'Components/Modal';
 import { e2p } from 'Functions/ConvertNumbers';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Pagination from '../Pagination/Pagination';
 import AddComment from './AddComment';
 import style from './Comments.module.css'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import useGetRequest from 'hooks/useGetRequest';
 import Loading from 'Components/Loading';
+import { Functions } from 'providers/FunctionsProvider';
+import { useRouter } from 'next/router';
 
 const Comments = ({ id, rate }) => {
-
+    const router = useRouter()
     const [currentpage, setCurrentpage] = useState(1)
-
+    const { SwalStyled } = useContext(Functions)
     const [comments, setComments, reload, pagination] = useGetRequest(`/products/show/${id}/comments`, currentpage)
 
 
@@ -31,7 +33,7 @@ const Comments = ({ id, rate }) => {
                             </div>
                             <div className={style.cs3qp}>
                                 <p>شما هم درباره این کالا دیدگاه ثبت کنید.</p>
-                                <button className={style.exW3mo} onClick={() => createModal(<AddComment id={id} />)}>ثبت دیدگاه</button>
+                                <button className={style.exW3mo} onClick={() => createModal(<AddComment push={router.push} SwalStyled={SwalStyled} id={id} />)}>ثبت دیدگاه</button>
                             </div>
                         </div>
                     </div>
@@ -41,7 +43,7 @@ const Comments = ({ id, rate }) => {
                                 <div className={style.qzoY3_jl}>
                                     <div className={style.pExiP} rate={c.rate}><span>{e2p(c.rate)}</span></div>
                                     <div className={style.C_Header}>
-                                        <p className={style.C_time}>{"دوشنبه ۱۴۰۲/۲/۴"}</p>
+                                        <p className={style.C_time}>{new Date(c.time).toLocaleDateString('fa-IR', { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' })}</p>
                                         <p className={style.C_name}>{c.user}</p>
                                     </div>
                                     <div className={style.Qzoli_2}>

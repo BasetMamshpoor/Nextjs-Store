@@ -3,11 +3,14 @@ import { e2p } from 'Functions/ConvertNumbers';
 import { useEffect, useRef, useState } from 'react';
 import style from './AddComment.module.css'
 import { BsDot } from 'react-icons/bs'
+import Cookies from 'js-cookie';
 
-const AddComment = ({ id, setIsOpen }) => {
+const AddComment = ({ id, SwalStyled, push, setIsOpen }) => {
     const input = useRef();
     const parent = useRef()
-    const [data, setData] = useState({ product_id: id, point: 1, user_id: null, date: new Date().toLocaleDateString('fa-IR', { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' }) })
+    const [data, setData] = useState({ product_id: id, text: '', rate: 1, user_id: null, })
+    const token = Cookies.get('token') ? JSON.parse(Cookies.get('token')) : null
+    const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${token?.token_type} ${token?.access_token}` }
 
     useEffect(() => {
         const e = input.current
@@ -25,10 +28,27 @@ const AddComment = ({ id, setIsOpen }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await axios.post('/comments', data)
-            .then(() => setIsOpen(false))
-            .then(() => parent.current.previousSibling.click())
-            .catch(err => console.log(err))
+        if (!token)
+            SwalStyled.fire({
+                title: 'ایراد در شناسایی',
+                text: 'لطفا ابتدا وارد حساب کاربری شوید',
+                icon: 'warning',
+                showCancelButton: true,
+                cancleButtonText: '',
+                confirmButtonText: 'ورود',
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                willClose: () => setIsOpen(false)
+            }).then((result) => {
+                if (result.isConfirmed) push('/auth/login')
+            })
+        else
+            await axios.post('/comment', data, { headers })
+                .then((res) => {
+                    SwalStyled.fire('ثبت شد', res.data.message, 'success')
+                    setIsOpen(false)
+                })
+                .catch(err => SwalStyled.fire('مشکلی وجود دارد.', err.response.data.message, 'error'))
     }
     return (
         <>
@@ -39,8 +59,8 @@ const AddComment = ({ id, setIsOpen }) => {
                 <form onSubmit={handleSubmit}>
                     <main className={style.gtDComm}>
                         <div className={style.ocRxiu}>
-                            <label htmlFor='point' className={style.ibtc}>امتیاز دهید.<span className={style.point}>{e2p(data.point)}</span></label>
-                            <input id='point' ref={input} className={style.PybIec} type="range" min="1" max="5" defaultValue='1' onInput={(e) => setData(prev => { return { ...prev, point: e.target.value } })} />
+                            <label htmlFor='rate' className={style.ibtc}>امتیاز دهید.<span className={style.point}>{e2p(data.rate)}</span></label>
+                            <input id='rate' ref={input} className={style.PybIec} type="range" min="1" max="5" defaultValue='1' onInput={(e) => setData(prev => { return { ...prev, rate: e.target.value } })} />
                             <ul className={style.Rcoply}>
                                 <li>
                                     <span>
@@ -76,7 +96,7 @@ const AddComment = ({ id, setIsOpen }) => {
                         </div>
                         <div className={style.VqoJu}>
                             <label className={style.e3Xipy}>متن نظر!<span className={style.requierd}>*</span></label>
-                            <textarea className={style.TciBol} onChange={({ target }) => setData(prev => { return { ...prev, text: target.value } })} placeholder="این محصول ..."></textarea>
+                            <textarea minLength={5} required className={style.TciBol} onChange={({ target }) => setData(prev => { return { ...prev, text: target.value } })} placeholder="این محصول ..."></textarea>
                         </div>
                         <div className={style.Oibt0s}>
                             <input className={style.form_check_input} type="checkbox"
@@ -86,7 +106,7 @@ const AddComment = ({ id, setIsOpen }) => {
                         </div>
                     </main>
                     <footer className={style.PohtI9}>
-                        <button className={style.Opibt} onClick={handleSubmit}>ثبت دیدگاه</button>
+                        <button className={style.Opibt}>ثبت دیدگاه</button>
                         <label className={style.iOnht}>ثبت دیدگاه به معنی قبول
                             <a href="."> قوانین ما </a>
                             است.</label>
