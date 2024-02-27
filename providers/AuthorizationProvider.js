@@ -39,7 +39,7 @@ const AuthorizationProvider = ({ children }) => {
     const logOut = () => {
         router.push('/')
         setTokens(null)
-        setUser(null)
+        setUser({})
         Cookies.remove('token')
     }
 
