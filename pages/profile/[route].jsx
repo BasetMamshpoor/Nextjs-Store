@@ -1,9 +1,9 @@
 import UserProf from '/public/Images/Ei-user.svg'
 import { useRouter } from 'next/router';
 import style from './Profile.module.css'
-import profileRoutes from './routes';
+import { profileRoutes } from 'lib/profileRoutes';
 import Component from 'Components/Sidebar_Component';
-import { useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Authorization } from 'providers/AuthorizationProvider';
 import withAuth from 'Components/Private/withAuth';
 
@@ -42,9 +42,11 @@ const Profile = () => {
     );
 };
 export async function getStaticPaths() {
-    const paths = profileRoutes.map(r => {
-        return { params: { route: r.link ?? '' } }
-    })
+    const paths = profileRoutes
+        .filter(r => r.link !== undefined)
+        .map(r => {
+            return { params: { route: r.link ?? '' } }
+        })
     return {
         paths,
         fallback: false

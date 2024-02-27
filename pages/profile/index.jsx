@@ -2,7 +2,7 @@ import Component from 'Components/Sidebar_Component/Component';
 import { useRouter } from 'next/router';
 import { Authorization } from 'providers/AuthorizationProvider';
 import React, { useContext, useEffect } from 'react';
-import profileRoutes from './routes';
+import { profileRoutes } from '../../lib/profileRoutes';
 import style from './Profile.module.css'
 import UserProf from '/public/Images/Ei-user.svg'
 import withAuth from 'Components/Private/withAuth';

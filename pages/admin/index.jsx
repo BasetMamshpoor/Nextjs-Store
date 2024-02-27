@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import adminRoutes from './routes';
+import { adminRoutes } from '../../lib/adminRoutes';
 import Component from 'Components/Sidebar_Component';
 import { Authorization } from 'providers/AuthorizationProvider';
 import { useContext, useEffect } from 'react';

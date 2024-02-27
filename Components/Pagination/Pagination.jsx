@@ -53,12 +53,12 @@ function Pagination({ currentPage = 1, setCurrentPage, itemsPerPage = 10, dataLe
 
     let pageIncrementBtn = null;
     if (pages.length > maxPageNumberLimit) {
-        pageIncrementBtn = <li className={style.dots} onClick={handleNextbtn}> &hellip; </li>;
+        pageIncrementBtn = <li className={style.dots}> &hellip; </li>;
     }
 
     let pageDecrementBtn = null;
     if (minPageNumberLimit >= 1) {
-        pageDecrementBtn = <li className={style.dots} onClick={handlePrevbtn}> &hellip; </li>;
+        pageDecrementBtn = <li className={style.dots}> &hellip; </li>;
     };
 
     return (

@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
-import adminRoutes from './routes';
+import { adminRoutes } from 'lib/adminRoutes';
 import Component from 'Components/Sidebar_Component';
 import { Authorization } from 'providers/AuthorizationProvider';
-import { useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import withAuth from 'Components/Private/withAuth';
 
 const Vendor = () => {
@@ -29,9 +29,11 @@ const Vendor = () => {
 };
 
 export async function getStaticPaths() {
-    const paths = adminRoutes.map(r => {
-        return { params: { vendor: r.link ?? '' } }
-    })
+    const paths = adminRoutes
+        .filter(r => r.link !== undefined)
+        .map(r => {
+            return { params: { vendor: r.link ?? '' } }
+        })
     return {
         paths,
         fallback: false

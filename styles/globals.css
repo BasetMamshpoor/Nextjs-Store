@@ -589,3 +589,50 @@ textarea {
   background-color: #7066e0;
   border-color: #7066e0;
 }
+
+.p404 {
+  margin: 3rem 0;
+}
+.p404_box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3rem;
+}
+.p404_text p {
+  font-size: 16px;
+  font-weight: 600;
+}
+.p404_text a {
+  color: #19bfd3;
+}
+.p404_text {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+.p404_image {
+  width: 310px;
+  height: 310px;
+}
+@media (max-width:768.98px) {
+  .p404 {
+    margin: 2rem 0;
+  }
+  .p404_box {
+    gap: 2rem;
+  }
+  .p404_text p {
+    font-size: 14px;
+  }
+  .p404_text a {
+    font-size: 12px
+  }
+  .p404_image {
+    width: 240px;
+    height: 240px;
+  }
+}
