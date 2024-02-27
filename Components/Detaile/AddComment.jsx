@@ -57,7 +57,7 @@ const AddComment = ({ id, SwalStyled, push, setIsOpen }) => {
                     <p className={style.yxewQ}>دیدگاه خود را در مورد این محصول وارد کنید.</p>
                 </header>
                 <form onSubmit={handleSubmit}>
-                    <main className={style.gtDComm}>
+                    <content className={style.gtDComm}>
                         <div className={style.ocRxiu}>
                             <label htmlFor='rate' className={style.ibtc}>امتیاز دهید.<span className={style.point}>{e2p(data.rate)}</span></label>
                             <input id='rate' ref={input} className={style.PybIec} type="range" min="1" max="5" defaultValue='1' onInput={(e) => setData(prev => { return { ...prev, rate: e.target.value } })} />
@@ -104,7 +104,7 @@ const AddComment = ({ id, SwalStyled, push, setIsOpen }) => {
                             <label htmlFor="anonymousComment" className={style.WcMql}>ارسال به صورت
                                 ناشناس</label>
                         </div>
-                    </main>
+                    </content>
                     <footer className={style.PohtI9}>
                         <button className={style.Opibt}>ثبت دیدگاه</button>
                         <label className={style.iOnht}>ثبت دیدگاه به معنی قبول

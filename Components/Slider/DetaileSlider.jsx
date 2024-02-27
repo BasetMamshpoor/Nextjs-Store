@@ -22,6 +22,7 @@ const DetaileSlider = ({ Images }) => {
             <div dir="rtl" className={`DetailSlider ${style.slider}`} >
                 <Swiper
                     navigation={true}
+                    spaceBetween={15}
                     thumbs={{ swiper: thumbsSwiper }}
                     modules={[Navigation, Thumbs]}
                     className={style.productImg}

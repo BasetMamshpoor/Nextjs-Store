@@ -13,7 +13,7 @@ const SelectGender = ({ slug }) => {
                     <div className={style.genders}>
                         {!!categories && categories.map(c => {
                             return (
-                                <div className={`${style.gender} ${slug === c.slug ? style.act_gender : ''}`}>
+                                <div className={`${style.gender} ${slug === c.slug ? style.act_gender : ''}`} key={c.id}>
                                     <Link className={style.g_link} href={`/category-${c.slug}-apparel`}>
                                         <div>
                                             <img src={c.icon} alt='gender' />

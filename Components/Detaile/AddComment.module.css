@@ -185,3 +185,28 @@
 .iOnht a {
   color: #3499ff;
 }
+@media (max-width: 599.98px) {
+  .spOil8 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+    max-width: 100vw;
+    width: 100%;
+    min-width: auto;
+    border: 0;
+  }
+  .PohtI9 {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .gtDComm {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+    min-height: auto;
+  }
+}

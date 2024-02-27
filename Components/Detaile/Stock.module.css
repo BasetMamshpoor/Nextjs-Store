@@ -36,11 +36,11 @@
   top: 50%;
 }
 .etmamMojody b::before {
-  left: 3rem;
+  left: 2rem;
   transform: translate(50%, -50%);
 }
 .etmamMojody b::after {
-  right: 3rem;
+  right: 2rem;
   transform: translate(-50%, -50%);
 }
 .sections {
@@ -234,5 +234,97 @@
   .TcoPjy svg {
     width: 20px;
     height: 20px;
+  }
+}
+@media (max-width: 767.98px) {
+  .qOOp {
+    margin-top: 0.5rem;
+    padding: 0 0.5rem;
+  }
+  .sections label {
+    font-size: 12px;
+  }
+  .Asewq p {
+    font-size: 12px;
+  }
+  .EzP3_wzm2 {
+    width: 22px;
+    height: 22px;
+  }
+  .EzP3_wzm2 span {
+    width: 20px;
+    height: 20px;
+  }
+  .EzP3_wzm1 {
+    padding: 2px 4px;
+  }
+  .EzP3_wzm1 span {
+    font-size: 12px;
+  }
+  .WZZps {
+    margin-top: 0.5rem;
+  }
+  .hJkg {
+    padding-right: 1rem;
+  }
+  .ogSeft {
+    font-size: 20px;
+  }
+  .ogSeft::before {
+    font-size: 28px;
+    margin-top: -5px;
+  }
+  .OFFqap span {
+    margin-right: 0.3rem;
+  }
+  .OFFqap del {
+    font-size: 15px;
+    padding-left: 0.2rem;
+  }
+}
+@media (max-width: 599.98px) {
+  .ogSeft {
+    font-size: 16px;
+  }
+  .ogSeft::before {
+    font-size: 20px;
+    margin-top: -5px;
+  }
+  .OFFqap span {
+    margin-right: 0.3rem;
+    font-size: 10px;
+  }
+  .OFFqap del {
+    font-size: 12px;
+  }
+  .Sxpot {
+    width: auto;
+  }
+  .TcoPjy {
+    font-size: 14px;
+    padding: 0px 1rem;
+    justify-content: center;
+    font-size: 12px;
+    margin: 0;
+    height: 2.5rem;
+  }
+  .TcoPjy svg {
+    display: none;
+  }
+  .etmamMojody {
+    margin-top: .5rem;
+  }
+  .etmamMojody b {
+    font-size: 14px;
+  }
+  .etmamMojody b::before,
+  .etmamMojody b::after {
+    width: 20%;
+  }
+  .etmamMojody b::before {
+    left: 1rem;
+  }
+  .etmamMojody b::after {
+    right: 1rem;
   }
 }

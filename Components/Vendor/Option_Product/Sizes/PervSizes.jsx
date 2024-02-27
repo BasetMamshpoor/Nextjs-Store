@@ -39,7 +39,7 @@ const PervSizes = ({ setProduct, sizes }) => {
                                         className={style.checkSize}
                                     />
                                     <label htmlFor={`size${i.id}`} className={style.size_holder}>
-                                        <span>{i.size}</span>~<span>({e2p(i.stock)})</span>
+                                        <span>({e2p(i.stock)})</span>~<span>{i.size}</span>
                                     </label>
                                 </div>
                             )

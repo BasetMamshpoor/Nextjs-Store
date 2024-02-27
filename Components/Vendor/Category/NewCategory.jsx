@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { FiCheckCircle, FiEdit3, FiTrash2 } from 'react-icons/fi';
 import { useRef, useState } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen, SwalStyled }) => {
     const [category, setCategory] = useState(!!state ? { ...state, parent_id: state.parent.id } : { parent_id: categoryLevel.id })

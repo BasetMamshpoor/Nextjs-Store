@@ -11,7 +11,13 @@
 .link {
   display: flex;
   align-items: center;
+  color: #888;
 }
 .link span {
-    margin: 0 12px;
+  margin: 0 12px;
+}
+@media (max-width: 599.98px) {
+  .link {
+    font-size: 12px;
+  }
 }

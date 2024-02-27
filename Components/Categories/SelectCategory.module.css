@@ -65,7 +65,10 @@
     font-size: 13px;
   }
 }
-@media (max-width: 475.98px) {
+@media (max-width: 599.98px) {
+  .NflOO {
+    padding: 0;
+  }
   .BfpEw {
     flex-wrap: nowrap;
     overflow-y: hidden;
@@ -78,12 +81,11 @@
     background: #fff;
   }
   .BfpEw::-webkit-scrollbar-thumb {
-    background: #000;
+    background: #ccc;
     border-radius: 10px;
   }
   .mvHr {
     flex: 0 0 100px;
     height: auto;
   }
-
 }

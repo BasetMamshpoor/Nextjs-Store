@@ -9,7 +9,7 @@ import axios from 'axios';
 import { Functions } from 'providers/FunctionsProvider';
 import Cookies from 'js-cookie';
 
-const Product = ({ id, name, price, offPercent, offPrice, image, setProducts }) => {
+const Product = ({ id, name, price, offPercent, offPrice, image, is_available, setProducts }) => {
     const [isOpen, setIsOpen] = useState(false)
     const dots = useRef()
     const token = JSON.parse(Cookies.get('token'))
@@ -67,13 +67,15 @@ const Product = ({ id, name, price, offPercent, offPrice, image, setProducts }) 
                         <div className={style.descP}>
                             <h3>{name}</h3>
                         </div>
-                        <div className={style.priceP}>
+                        {is_available ? <div className={style.priceP}>
                             <div className={style.Cpou}>
                                 <span className={style.priceR}>{addComma(offPrice.toString())}</span>
                                 {price !== offPrice && <span>%{e2p(offPercent)}</span>}
                             </div>
                             {price !== offPrice && <del>{addComma(price.toString())}</del>}
-                        </div>
+                        </div> : <div className={style.etmamMojody}>
+                            <b>ناموجود</b>
+                        </div>}
                     </div>
                 </Link>
                 <div className={style.option}>

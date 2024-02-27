@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import style from './MobileNavbar.module.css'
 import { BsPerson, BsSearch, BsHouse, BsCart, BsHouseFill, BsCartFill, BsPersonFill } from 'react-icons/bs'
 import { MdCategory, MdOutlineCategory } from 'react-icons/md'
@@ -15,29 +15,33 @@ import { Authorization } from 'providers/AuthorizationProvider';
 
 const MobileNavbar = () => {
     const router = useRouter()
+    const path = router.asPath
     const { state } = useContext(CartContext)
     const { categories } = useContext(Categories)
     const { user, tokens } = useContext(Authorization)
 
-    const Menu = () => {
+    const Menu = useMemo(() => {
         let arr = [
-            { route: '/', iconOutline: <BsHouse />, iconeFill: <BsHouseFill />, value: 'خانه' },
-            { route: `/category-${categories[0].slug}-apparel`, iconOutline: <MdOutlineCategory />, iconeFill: <MdCategory />, value: 'دسته بندی' },
-            { route: '/cart', iconOutline: <BsCart />, iconeFill: <BsCartFill />, value: 'سبد خرید' },
+            { route: '', iconOutline: <BsHouse />, iconeFill: <BsHouseFill />, value: 'خانه' },
+            { route: `category-${categories[0].slug}-apparel`, iconOutline: <MdOutlineCategory />, iconeFill: <MdCategory />, value: 'دسته بندی' },
+            { route: 'cart', iconOutline: <BsCart />, iconeFill: <BsCartFill />, value: 'سبد خرید' },
             {
-                route: !tokens ? '/auth/login' : user?.is_admin ? '/admin' : '/profile',
+                route: !tokens ? 'auth/login' : user?.is_admin ? 'admin' : 'profile',
                 iconOutline: !tokens ? <BsPerson /> : user?.is_admin ? <RiAdminLine /> : <BsPerson />,
                 iconeFill: !tokens ? <BsPersonFill /> : user?.is_admin ? <RiAdminFill /> : <BsPersonFill />,
                 value: !!tokens ? 'صفحه من' : 'ورود'
             },
         ]
+        const startWith = path.split('/')[1]
         return arr.map((obj, i) => {
-            let isActive = obj.route === router.asPath
+            let isActive = obj.route === startWith
+            let isActive2 = (startWith.startsWith('category') ? startWith.slice(0, ('category').length) : false) ===
+                (obj.route.startsWith('category') ? obj.route.slice(0, ('category').length) : '')
             return (
                 <li className={style.item} key={i}>
-                    <Link className={`${style.link} ${isActive ? style.active : ''}`} href={obj.route}>
+                    <Link className={`${style.link} ${(isActive || isActive2) ? style.active : ''}`} href={`/${obj.route}`}>
                         <div className={style.menuIcone}>
-                            {isActive ? obj.iconeFill : obj.iconOutline}
+                            {(isActive || isActive2) ? obj.iconeFill : obj.iconOutline}
                             {obj.route === '/cart' && state.itemsCounter > 0 &&
                                 <div className={style.itemsCounter}><span>{e2p(state.itemsCounter)}</span></div>}
                         </div>
@@ -46,7 +50,7 @@ const MobileNavbar = () => {
                 </li>
             )
         })
-    }
+    }, [router.asPath])
 
     return (
         <>
@@ -68,7 +72,7 @@ const MobileNavbar = () => {
             <section className={style.menu}>
                 <div className={style.Exune}>
                     <ul className={style.wrapper}>
-                        {Menu()}
+                        {Menu}
                     </ul>
                 </div>
             </section>

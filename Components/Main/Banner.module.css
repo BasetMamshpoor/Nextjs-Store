@@ -27,3 +27,14 @@
     flex: 0 0 calc(50% - 0.5rem);
   }
 }
+@media (max-width: 599.98px) {
+  .Banner {
+    margin: 1rem 0;
+  }
+  .wrapper {
+    gap: 5px;
+  }
+  .baner {
+    flex: 0 0 calc(50% - 3px);
+  }
+}

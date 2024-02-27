@@ -17,6 +17,7 @@ import Form from 'Components/Vendor/Option_Product/Form';
 import axios from 'axios';
 import { Functions } from 'providers/FunctionsProvider';
 import Loading from 'Components/Loading';
+import { Authorization } from 'providers/AuthorizationProvider';
 
 const ProductDetaile = () => {
     const router = useRouter()
@@ -25,6 +26,7 @@ const ProductDetaile = () => {
     const { id } = router.query
     const [data, setData, reload] = useGetRequest(`/products/show/${id}`)
     const { SwalStyled } = useContext(Functions)
+    const { user } = useContext(Authorization)
 
 
     const [isOpen, setIsOpen] = useState(false)
@@ -90,7 +92,7 @@ const ProductDetaile = () => {
                                 <div className="col-lg-7 d-flex flex-column" dir="rtl">
                                     <div className={style.Cxwply}>
                                         <h1>{data.product.name}</h1>
-                                        <div className={style.option}>
+                                        {!!user.is_admin && <div className={style.option}>
                                             <span className={style.dots} ref={dots} onClick={handleOpen}><PiDotsThreeOutlineVerticalFill /></span>
                                             {isOpen ? (
                                                 <ul className={style.menu} >
@@ -102,13 +104,13 @@ const ProductDetaile = () => {
                                                     </li>
                                                 </ul>
                                             ) : null}
-                                        </div>
+                                        </div>}
                                     </div>
                                     <div className="row flex-grow-1">
                                         <div className={`col-lg-${!!data.product.sizes.length ? '6' : '12'} ps-0`}>
                                             <Attributes product={data.product} />
                                         </div>
-                                        {!!data.product.sizes.length && <div className="col-lg-6 p-0 mt-4">
+                                        {!!data.product.sizes.length && <div className="col-lg-6 p-0">
                                             <div className={style.esohby}>
                                                 <div className={style.cKyf}>
                                                     <div className={style.pxty}>

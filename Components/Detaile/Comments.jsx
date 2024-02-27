@@ -21,7 +21,7 @@ const Comments = ({ id, rate }) => {
 
     return (
         <>
-            {!!comments ? <div className={style.r0Oi2} id="comments">
+            {!!comments ? <div className={`${style.r0Oi2} ${style.r0Oi3}`} id="comments">
                 <div className={style.x3qao_hj}>
                     <h5>امتیاز و نظرات</h5>
                     <p className={style.totalComments}>تعداد کل دیدگاه ها: <span>{!!pagination && e2p(pagination.meta.total)}</span></p>
@@ -40,7 +40,7 @@ const Comments = ({ id, rate }) => {
                         </div>
                     </div>
                     <div className="col-lg-9">
-                        {comments.map(c => {
+                        {comments.length ? comments.map(c => {
                             return (<article className={style.comment} key={c.id}>
                                 <div className={style.qzoY3_jl}>
                                     <div className={style.pExiP} rate={c.rate}><span>{e2p(c.rate)}</span></div>
@@ -57,7 +57,7 @@ const Comments = ({ id, rate }) => {
                                     <p className={style.C_body}>{c.text}</p>
                                 </div>
                             </article>)
-                        })}
+                        }) : <p className={style.empty_comment}>اولین نفری باشید که برای این محصول نظر می دهید</p>}
                         <Pagination currentPage={currentpage} setCurrentPage={setCurrentpage} dataLength={pagination.meta.total} itemsPerPage={pagination.meta.per_page} boxShadow={false} />
                     </div>
                 </div>

@@ -186,3 +186,31 @@
     margin-top: 1rem;
   }
 }
+@media (max-width: 767.98px) {
+  .Iwalh {
+    padding: 0;
+  }
+  .c9C4xp {
+    display: none;
+  }
+  .Cxwply h1 {
+    padding-right: .5rem;
+    font-size: 14px;
+  }
+  .pxty svg {
+    margin-bottom: 0.5rem;
+    width: 24px;
+    height: 24px;
+    color: #34506dc5;
+  }
+  .cKyf span {
+    font-size: 11px;
+    color: #3d4146a4;
+  }
+  .zOiOz {
+    margin-top: .5rem;
+  }
+  .Redxws p {
+    font-size: 11px;
+  }
+}

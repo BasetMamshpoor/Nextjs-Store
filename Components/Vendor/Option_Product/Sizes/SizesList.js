@@ -16,9 +16,9 @@ const SpecificationsList = ({ setProduct, sizes = [] }) => {
                     return (
                         <div className={style.hpxea_fzjbg} key={index}>
                             <div className={style.cAzqpbg}>
-                                <span>{i.size}</span>
-                                _
                                 <span>({e2p(i.stock)})</span>
+                                _
+                                <span>{i.size}</span>
                             </div>
                             <span className={style.remove_list}
                                 onClick={() => handleDelete(index)}>

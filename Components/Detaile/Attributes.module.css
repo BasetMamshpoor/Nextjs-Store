@@ -37,3 +37,8 @@
     padding-left: 1rem;
   }
 }
+@media (max-width: 767.98px) {
+  .Cezp {
+    display: none;
+  }
+}

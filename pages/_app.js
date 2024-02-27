@@ -13,8 +13,6 @@ import Head from "next/head"
 import AuthorizationProvider from "providers/AuthorizationProvider"
 
 axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api`
-// axios.defaults.baseURL = 'http://localhost:6500'
-// axios.defaults.baseURL = 'http://192.168.1.105:8000/api'
 
 
 export default function App({ Component, pageProps }) {

@@ -27,3 +27,12 @@
   height: 3px;
   background: #5893f1;
 }
+@media (max-width: 599.98px) {
+  .gender {
+    margin: 1rem 0;
+  }
+  .tab_list {
+    font-size: 14px;
+    padding: 0 0.5rem;
+  }
+}
