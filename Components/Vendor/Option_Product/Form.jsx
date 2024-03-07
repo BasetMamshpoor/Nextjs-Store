@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import Input from '../../Input';
 import style from './Form.module.css'
 import AttributesList from './Attributes/AttributesList'
@@ -12,31 +12,24 @@ import UploadImage from './UploadImage';
 import { ImBoxAdd, ImCheckmark } from 'react-icons/im'
 import SelectCategories from './SelectCategories';
 import Brands from './Brands';
-import PrevSizes from './Sizes/PervSizes'
-import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
+import { Functions } from 'providers/FunctionsProvider';
+import { Authorization } from 'providers/AuthorizationProvider';
 
-const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
+const Form = () => {
+    const { push } = useRouter()
+
     const [product, setProduct] = useState({ category_id: null, sizes: [], attributes: [], images: [] })
-    const [touch, setTouch] = useState({})
+
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0)
+
+    const [touch, setTouch] = useState({})
     const errors = validation(product)
-    const token = JSON.parse(Cookies.get('token'))
 
-    useEffect(() => {
-        if (!!state) {
-            const { product } = state
-            const cleanState = (product.price === product.offPrice) ? filterState(product) : product;
-            const { brand, category, image, images, created_at, id, offPercent, rate, slug, sizes, ...prev } = cleanState
-            let newProductSatet = { ...prev, brand_id: brand.id, category_id: category.id, images: [], deletingImages: [], deletingSizes: [], sizes: [], _method: "PUT" };
-            setProduct(newProductSatet)
-        }
-    }, [state])
+    const { SwalStyled } = useContext(Functions)
+    const { tokens } = useContext(Authorization)
 
-    const filterState = (state) => {
-        const { offPrice, off_date_from, off_date_to, ...other } = state
-        return other
-    }
     const handleResult = (name, value) => {
         setProduct(prev => {
             return {
@@ -51,53 +44,28 @@ const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
             setTouch({ name: true, brand_id: true, category_id: true, image: true, images: true, price: true, offPrice: true, color: true, colorCode: true, sizes: true, attributes: true, discountTime: true })
         } else {
             setLoading(true)
-            const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${token.token_type} ${token.access_token}` }
-            if (!!state) {
-                await axios.post(`/admin/products/${state.product.id}`, product, {
-                    headers,
-                    onUploadProgress: (progressEvent) => {
-                        const percentCompleted = Math.round(
-                            (progressEvent.loaded * 100) / progressEvent.total
-                        );
-                        setProgress(percentCompleted);
-                    },
+            const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${tokens.token_type} ${tokens.access_token}` }
+            await axios.post('/admin/products', product, {
+                headers,
+                onUploadProgress: (progressEvent) => {
+                    const percentCompleted = Math.round(
+                        (progressEvent.loaded * 100) / progressEvent.total
+                    );
+                    setProgress(percentCompleted);
+                },
+            })
+                .then(res => {
+                    SwalStyled.fire({
+                        title: '.ثبت شد',
+                        text: ".محصول مورد نظر با موفقیت ثبت شد",
+                        icon: 'success'
+                    }).then(() => {
+                        push(`/products/${res.data.data.product.id}`)
+                    })
                 })
-                    .then(res => {
-                        SwalStyled.fire({
-                            title: '.ویرایش شد',
-                            text: ".محصول مورد نظر با موفقیت ویرایش شد",
-                            icon: 'success'
-                        }).then(() => {
-                            reload(Math.random())
-                            setIsOpen(false)
-                        })
-                    })
-                    .catch(err => {
-                        SwalStyled.fire(".ویرایش نشد", ".مشکلی در فرایند ویرایش محصول پیش آمده", "error")
-                    })
-            } else {
-                await axios.post('/admin/products', product, {
-                    headers,
-                    onUploadProgress: (progressEvent) => {
-                        const percentCompleted = Math.round(
-                            (progressEvent.loaded * 100) / progressEvent.total
-                        );
-                        setProgress(percentCompleted);
-                    },
+                .catch(err => {
+                    SwalStyled.fire(".ثبت نشد", ".مشکلی در فرایند ثبت محصول پیش آمده", "error")
                 })
-                    .then(res => {
-                        SwalStyled.fire({
-                            title: '.ثبت شد',
-                            text: ".محصول مورد نظر با موفقیت ثبت شد",
-                            icon: 'success'
-                        }).then(() => {
-                            push(`/products/${res.data.data.product.id}`)
-                        })
-                    })
-                    .catch(err => {
-                        SwalStyled.fire(".ثبت نشد", ".مشکلی در فرایند ثبت محصول پیش آمده", "error")
-                    })
-            }
         }
     }
     const getProgress = () => {
@@ -118,15 +86,16 @@ const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
             }
         }
     }
+
     return (
         <>
-            <div className={`${style.Kce_1W2M4_6} ${!!state ? style.editing : ''}`} dir='rtl'>
+            <div className={style.Kce_1W2M4_} dir='rtl'>
                 <div className={style.navBar_}>
                     <div className={style.Hs_i8p4_gV}>
                         <div>
                             <ImBoxAdd />
                         </div>
-                        <h6 className={style.qzE3_pNis__4}>{title}</h6>
+                        <h6 className={style.qzE3_pNis__4}>افزودن محصول جدید</h6>
                     </div>
                 </div>
                 <div className={style.uTyc_3Waxd1}>
@@ -137,13 +106,13 @@ const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
                                 {touch.name && errors.name && <span className={style.errors_input}>{errors.name}</span>}
                             </div>
                             <div className={style.nJe_3zq_plf}>
-                                <Brands touch={touch} errors={errors} setProduct={setProduct} id={state?.product.brand.id} />
+                                <Brands touch={touch} errors={errors} setProduct={setProduct} />
                                 {touch.brand_id && errors.brand_id && <span className={style.errors_input}>{errors.brand_id}</span>}
                             </div>
-                            <SelectCategories touch={touch} errors={errors} setProduct={setProduct} data={state?.breadcrumb} />
+                            <SelectCategories touch={touch} errors={errors} setProduct={setProduct} />
                         </div>
                         <div className={style.Fv_tFExqlo}>
-                            <UploadImage setProduct={setProduct} images={state?.product.images} image={state?.product.image} />
+                            <UploadImage setProduct={setProduct} />
                             <div className={style.errors_div_input}>
                                 {touch.image && errors.image && <span>{errors.image}</span>}
                                 {touch.images && errors.images && <span>{errors.images}</span>}
@@ -169,9 +138,6 @@ const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
                             <div className={style.vExpkqZu}>
                                 <SizesList setProduct={setProduct} sizes={product.sizes} />
                             </div>
-                            {!!state && <div className={style.sizes}>
-                                <PrevSizes setProduct={setProduct} sizes={state.product.sizes} />
-                            </div>}
                         </div>
                         <div className={style.bGCzu_wq}>
                             <Attributes setProduct={setProduct} />
@@ -183,7 +149,7 @@ const Form = ({ state, title, push, setIsOpen, reload, SwalStyled }) => {
                         <div className={style.save_pro_qq}>
                             <button className={`${style.onRc_12ar} ${loading ? style.activeProgress : ''} ${progress === 100 ? style.Uploaded : ''}`}
                                 onClick={handleSubmit}>
-                                {progress === 100 ? <ImCheckmark color='#4BB543' /> : loading ? 'آپلــــــود تصــاویــر...' : !!state ? 'ویرایش محصول' : 'ثبت محصول'}
+                                {progress === 100 ? <ImCheckmark color='#4BB543' /> : loading ? 'آپلــــــود محصــول...' : 'ثبت محصول'}
                                 {loading ? <>
                                     <span className={style.progress_top} style={getProgress().top} />
                                     <span className={style.progress_bottom} style={getProgress().bottom} />
