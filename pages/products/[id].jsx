@@ -10,7 +10,7 @@ import { PiDotsThreeOutlineVerticalFill, PiPencilSimpleLine, PiTrashLight } from
 import { AiOutlineSafety, AiOutlineFieldTime } from 'react-icons/ai'
 import { BsTruck } from 'react-icons/bs'
 import Baner from 'Components/Detaile/Baner';
-import useGetRequest from 'hooks/useGetRequest';
+import useGetPrivatRequest from 'hooks/useGetPrivatRequest';
 import Breadcrumb from 'Components/Breadcrumb';
 import createModal from 'Components/Modal';
 import Form from 'Components/Vendor/Option_Product/Form';
@@ -18,20 +18,19 @@ import axios from 'axios';
 import { Functions } from 'providers/FunctionsProvider';
 import Loading from 'Components/Loading';
 import { Authorization } from 'providers/AuthorizationProvider';
+import OfferTime from 'Components/Detaile/OfferTime';
 
 const ProductDetaile = () => {
     const router = useRouter()
     const dots = useRef()
 
     const { id } = router.query
-    const [data, setData, reload] = useGetRequest(`/products/show/${id}`)
+    const [data, setData, reload] = useGetPrivatRequest(`/products/show/${id}`)
     const { SwalStyled } = useContext(Functions)
     const { user } = useContext(Authorization)
 
-
     const [isOpen, setIsOpen] = useState(false)
     const [size, setSize] = useState({})
-
 
     useEffect(() => {
         if (!!data) setSize(data.product.sizes[0])
@@ -144,7 +143,8 @@ const ProductDetaile = () => {
                                     <Stock product={data.product} size={size} setSize={setSize} />
                                 </div>
                                 <div className="col-lg-5">
-                                    <DetaileSlider Images={data.product.images} />
+                                    {!!data.product.off_date_to && <OfferTime off_date_to={data.product.off_date_to} />}
+                                    <DetaileSlider Images={data.product.images} isBookmarked={data.product.isBookmarked} id={data.product.id} />
                                 </div>
                             </div> : <Loading />}
                         </div>

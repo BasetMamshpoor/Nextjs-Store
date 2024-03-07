@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -14,8 +14,60 @@ import style from "./DetaileSlider.module.css";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import Image from "next/image";
 
-const DetaileSlider = ({ Images }) => {
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { BiShare } from "react-icons/bi";
+import { MdOutlineReportProblem } from "react-icons/md";
+import axios from "axios";
+import { Authorization } from "providers/AuthorizationProvider";
+import { Functions } from "providers/FunctionsProvider";
+
+const DetaileSlider = ({ Images, isBookmarked, id }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const [like, setLike] = useState(isBookmarked)
+    const { tokens } = useContext(Authorization)
+    const { SwalStyled } = useContext(Functions)
+    const headers = {
+        Authorization: `${tokens.token_type} ${tokens.access_token}`
+    }
+    
+    const handleBookmark = async () => {
+        if (tokens) {
+            await axios.post('/bookmark', { product_id: id }, { headers })
+                .then(res => {
+                    SwalStyled.fire('تایید شد', res.data.message, 'success')
+                    setLike(!like)
+                })
+        } else SwalStyled.fire({
+            title: 'ایراد در شناسایی',
+            text: 'لطفا ابتدا وارد حساب کاربری شوید',
+            icon: 'warning',
+            showCancelButton: true,
+            cancleButtonText: '',
+            confirmButtonText: 'ورود',
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            willClose: () => setIsOpen(false)
+        }).then((result) => {
+            if (result.isConfirmed) push('/auth/login')
+        })
+    }
+    const handleCopy = () => {
+        SwalStyled.fire({
+            title: "اشتراک‌گذاری",
+            text: 'این کالا را با دوستان خود به اشتراک بگذارید!',
+            showDenyButton: true,
+            confirmButtonText: "کپی کردن لینک",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    SwalStyled.fire("کپی شد!", "", "success");
+                } catch (error) {
+                    SwalStyled.fire("کپی نشد!", error, "error");
+                }
+            }
+        })
+    }
 
     return (
         <>
@@ -54,6 +106,17 @@ const DetaileSlider = ({ Images }) => {
                         )
                     })}
                 </Swiper>
+                <div className={style.actions}>
+                    <div className={style.item} onClick={handleBookmark}>
+                        {like ? <FaHeart fill="red" /> : <FaRegHeart />}
+                    </div>
+                    <div className={style.item} onClick={handleCopy}>
+                        <BiShare />
+                    </div>
+                    <div className={style.item}>
+                        <MdOutlineReportProblem />
+                    </div>
+                </div>
             </div >
         </>
     );

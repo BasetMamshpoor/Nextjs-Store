@@ -11,7 +11,6 @@ import Timer from 'Components/Timer';
 const stock = ({ product, size, setSize }) => {
     const { id, price, offPrice, sizes, color, colorCode, offPercent, off_date_to } = product
     const { state, dispatch } = useContext(CartContext)
-    const timeDiscount = ((new Date(off_date_to).getTime() - new Date().getTime()) / 1000)
 
     const sizeList = sizes.map((i, index) => <div className={`${style.EzP3_wzm1} ${size?.size === i.size ? style.det_active : ''}`} key={i.id} onClick={() => setSize(sizes[index])}><span>{i.size}</span></div>)
 
@@ -27,9 +26,6 @@ const stock = ({ product, size, setSize }) => {
                         <p>{color}</p>
                     </div>
                 </div>
-                {!!off_date_to && (timeDiscount < 86400) && <>
-                    <Timer time={timeDiscount} message='اتمام تخفیف' classNameProgress={style.progress} classNameTimer={style.timer} classNameEtmam={style.EtmamTakhfif} withProgress={false} />
-                </>}
             </div>
             {!!sizes.length ? <>
                 <div className={style.qOOp}>

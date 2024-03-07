@@ -6,13 +6,38 @@ import { e2p } from 'Functions/ConvertNumbers';
 import useGetPrivatRequest from 'hooks/useGetPrivatRequest';
 import Pagination from 'Components/Pagination/Pagination';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import img from 'public/Images/favorites-list-empty.svg'
 import Loading from 'Components/Loading';
+import axios from 'axios';
+import { Authorization } from 'providers/AuthorizationProvider';
+import { Functions } from 'providers/FunctionsProvider';
 
 const Wishlist = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [wish, setWish, reload, pagination] = useGetPrivatRequest('/profile/bookmarks')
+    const { tokens } = useContext(Authorization)
+    const { SwalStyled } = useContext(Functions)
+    const headers = {
+        Authorization: `${tokens.token_type} ${tokens.access_token}`
+    }
+    const handleDelete = (id) =>
+        SwalStyled.fire({
+            title: 'حذف',
+            text: 'آیا از حذف محصول از لیست علاقه مندی اطمینان دارید؟',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'بله',
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+        }).then(async (result) => {
+            if (result.isConfirmed)
+                await axios.post('/bookmark', { product_id: id }, { headers })
+                    .then(res => {
+                        SwalStyled.fire('تایید شد', res.data.message, 'success')
+                        reload(Math.random())
+                    })
+        })
 
 
     return (
@@ -32,7 +57,7 @@ const Wishlist = () => {
                                 return (
                                     <>
                                         {product && <div className={style.gali9_y} key={id}>
-                                            <Link href={`/product/${product.id}`} className={style.KK7f_ouq}>
+                                            <Link href={`/products/${product.id}`} className={style.KK7f_ouq}>
                                                 <div className={style.hyyCr4_A}>
                                                     <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={product.image} alt="" />
                                                 </div>
@@ -50,11 +75,11 @@ const Wishlist = () => {
                                                     </p>
                                                 </div>
                                                 <div className={style.Add_obgUw}>
-                                                    <a href=" " onClick={e => e.preventDefault()} className={style.AdDPIc3_}>
+                                                    <Link href={`/product/${product.id}`} onClick={e => e.preventDefault()} className={style.AdDPIc3_}>
                                                         <span>افزودن به لیست</span>
                                                         <BsCart3 />
-                                                    </a>
-                                                    <button className={style.remove_iCrx4}>
+                                                    </Link>
+                                                    <button className={style.remove_iCrx4} onClick={() => handleDelete(product.id)}>
                                                         <span>حذف</span>
                                                         <BsTrash />
                                                     </button>

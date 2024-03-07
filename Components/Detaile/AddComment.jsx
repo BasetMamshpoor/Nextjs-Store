@@ -5,17 +5,17 @@ import style from './AddComment.module.css'
 import { BsDot } from 'react-icons/bs'
 import Cookies from 'js-cookie';
 
-const AddComment = ({ id, SwalStyled, push, setIsOpen }) => {
+const AddComment = ({ state, id, SwalStyled, push, setIsOpen }) => {
     const input = useRef();
     const parent = useRef()
-    const [data, setData] = useState({ product_id: id, text: '', rate: 1, user_id: null, })
+    const [data, setData] = useState(!!state ? state : { product_id: id, text: '', rate: 1, user_id: null, is_anonymous: false })
     const token = Cookies.get('token') ? JSON.parse(Cookies.get('token')) : null
     const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${token?.token_type} ${token?.access_token}` }
 
     useEffect(() => {
         const e = input.current
         e.style.setProperty('--value', e.value);
-        e.style.setProperty('--bg', '#f9bc00');
+        e.style.setProperty('--bg', e.value > 3 ? '#00a049' : '#f9bc00');
         const style = () => {
             e.style.setProperty('--value', e.value)
             e.style.setProperty('--bg', e.value > 3 ? '#00a049' : '#f9bc00')
@@ -60,7 +60,7 @@ const AddComment = ({ id, SwalStyled, push, setIsOpen }) => {
                     <content className={style.gtDComm}>
                         <div className={style.ocRxiu}>
                             <label htmlFor='rate' className={style.ibtc}>امتیاز دهید.<span className={style.point}>{e2p(data.rate)}</span></label>
-                            <input id='rate' ref={input} className={style.PybIec} type="range" min="1" max="5" defaultValue='1' onInput={(e) => setData(prev => { return { ...prev, rate: e.target.value } })} />
+                            <input id='rate' ref={input} className={style.PybIec} type="range" min="1" max="5" defaultValue={state ? state.rate : '1'} onInput={(e) => setData(prev => { return { ...prev, rate: e.target.value } })} />
                             <ul className={style.Rcoply}>
                                 <li>
                                     <span>
@@ -96,11 +96,11 @@ const AddComment = ({ id, SwalStyled, push, setIsOpen }) => {
                         </div>
                         <div className={style.VqoJu}>
                             <label className={style.e3Xipy}>متن نظر!<span className={style.requierd}>*</span></label>
-                            <textarea minLength={5} maxLength={300} required className={style.TciBol} onChange={({ target }) => setData(prev => { return { ...prev, text: target.value } })} placeholder="این محصول ..."></textarea>
+                            <textarea value={state?.text} minLength={5} maxLength={300} required className={style.TciBol} onChange={({ target }) => setData(prev => { return { ...prev, text: target.value } })} placeholder="این محصول ..."></textarea>
                         </div>
                         <div className={style.Oibt0s}>
-                            <input className={style.form_check_input} type="checkbox"
-                                id="anonymousComment" />
+                            <input className={style.form_check_input} type="checkbox" onChange={() => setData(prev => { return { ...prev, is_anonymous: !prev.is_anonymous } })}
+                                id="anonymousComment" checked={data.is_anonymous ? true : false} />
                             <label htmlFor="anonymousComment" className={style.WcMql}>ارسال به صورت
                                 ناشناس</label>
                         </div>

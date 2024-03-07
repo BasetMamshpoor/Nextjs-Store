@@ -31,6 +31,24 @@ const useGetRequest = (url, page = 1, obj) => {
                     })
             }
             get()
+        } else {
+            const get = async () => {
+                await axios.get(url, { params: { ...obj, page } })
+                    .then(res => {
+                        const { data, ...pagination } = res.data
+                        setData(res.data.data)
+                        setPaginations(pagination)
+                    })
+                    .catch(err => {
+                        SwalStyled.fire({
+                            title: 'ایراد در سرور',
+                            text: 'مشکلی به وجود آمده لطفا با پشتیبانی تماس بگیرید',
+                            icon: 'error',
+                            willClose: () => router.back()
+                        })
+                    })
+            }
+            get()
         }
     }, [tokens, url, reload, page])
 

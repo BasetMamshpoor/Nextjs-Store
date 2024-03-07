@@ -1,0 +1,30 @@
+.offer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 5px 0;
+}
+.img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.1rem;
+}
+.timer {
+  direction: ltr;
+  color: #E6123D;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 16px;
+}
+.EtmamTakhfif {
+  font-size: 16px;
+  color: #E6123D;
+}
+@media (max-width:1023.98px) {
+  .offer {
+    justify-content: space-between;
+    padding: 5px;
+  }
+}

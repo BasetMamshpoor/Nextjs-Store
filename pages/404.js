@@ -12,7 +12,7 @@ export default function Custom404() {
               <Link href='/'>صفحه اصلی</Link>
             </div>
             <div className="p404_image">
-              <Image src={img.src} width={100} height={100} />
+              <Image src={img.src} width={100} height={100} alt=""/>
             </div>
           </div>
         </div>

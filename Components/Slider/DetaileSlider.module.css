@@ -1,3 +1,6 @@
+.slider {
+  position: relative;
+}
 .productImg .swiper_slide {
   display: flex;
   justify-content: center;
@@ -25,7 +28,25 @@
 .productListImg {
   padding: 2rem 0 0;
 }
-
+.actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 65;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  padding: 6px 4px;
+  border-radius: 0 0 0 15px;
+}
+.item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 @media (max-width: 1023.98px) {
   .productListImg {
     display: none;

@@ -22,11 +22,13 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-around;
 }
 .gali9_y {
   padding: 20px;
   margin: 10px;
   flex: 0 0 calc(50% - 40px);
+  min-width: 350px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -38,12 +40,7 @@
   justify-content: center;
 }
 .hyyCr4_A {
-  width: 50%;
-}
-.hyyCr4_A img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 12rem;
 }
 .LassOing_R {
   display: flex;
@@ -106,6 +103,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 1rem;
+  gap: 1rem;
 }
 .AdDPIc3_ {
   border: 1px solid #3499ff;
@@ -139,7 +137,6 @@
   border: 1px solid #e0e0e2;
   background: none;
   padding: 5px 15px;
-  margin-left: 1rem;
   border-radius: 10px;
   color: #81858b;
   font-weight: 400;
@@ -176,4 +173,27 @@
 }
 .pHvtxu p {
   font-size: 18px;
+}
+@media (max-width: 767.98px) {
+  .gali9_y {
+    flex: 0 0 90%;
+  }
+}
+@media (max-width: 599.98px) {
+  .gali9_y {
+    flex: 0 0 90%;
+    min-width: 0px;
+  }
+  .hyyCr4_A {
+    height: 10rem;
+  }
+}
+@media (max-width: 450.98px) {
+  .Add_obgUw {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .Add_obgUw > * {  
+    width: 100%;
+  }
 }

@@ -1,16 +1,56 @@
-.QaybTx {
-  width: 100%;
-  overflow: hidden;
+.navbar {
+  padding: 6px 4px;
 }
-.head {
+.tabs {
   border-bottom: 1px solid #ccc;
-  padding: 8px 5px;
+}
+.tab {
+  cursor: pointer;
+  padding: 10px;
+  font-weight: 600;
+  margin: 0 5px;
+}
+.active {
+  border-bottom: 3px solid #3499ff;
+  color: #3499ff;
 }
 .commentsList {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 10px 5px;
+}
+.comment_section {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+.option_right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.option_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+}
+.check {
+  border-color: green;
+}
+.close {
+  border-color: red;
+}
+.check svg {
+  fill: green;
+}
+.close svg {
+  fill: red;
 }
 .comment {
   display: flex;
@@ -19,6 +59,7 @@
   border-radius: 10px;
   padding: 10px;
   overflow: hidden;
+  flex-grow: 1;
 }
 .right {
   display: flex;
@@ -85,7 +126,7 @@
   gap: 1rem;
 }
 .situation {
-  border: 2px solid red;
+  border: 1px solid red;
   color: rgb(54, 0, 0);
   background: rgba(255, 0, 0, 0.1);
   border-radius: 20px;
