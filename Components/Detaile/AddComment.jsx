@@ -8,7 +8,7 @@ import Cookies from 'js-cookie';
 const AddComment = ({ state, id, SwalStyled, push, setIsOpen }) => {
     const input = useRef();
     const parent = useRef()
-    const [data, setData] = useState(!!state ? state : { product_id: id, text: '', rate: 1, user_id: null, is_anonymous: false })
+    const [data, setData] = useState(!!state ? state : { product_id: id, text: '', rate: 1, user_id: null, is_anonymous: 0 })
     const token = Cookies.get('token') ? JSON.parse(Cookies.get('token')) : null
     const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${token?.token_type} ${token?.access_token}` }
 
@@ -99,7 +99,7 @@ const AddComment = ({ state, id, SwalStyled, push, setIsOpen }) => {
                             <textarea value={state?.text} minLength={5} maxLength={300} required className={style.TciBol} onChange={({ target }) => setData(prev => { return { ...prev, text: target.value } })} placeholder="این محصول ..."></textarea>
                         </div>
                         <div className={style.Oibt0s}>
-                            <input className={style.form_check_input} type="checkbox" onChange={() => setData(prev => { return { ...prev, is_anonymous: !prev.is_anonymous } })}
+                            <input className={style.form_check_input} type="checkbox" onChange={() => setData(prev => { return { ...prev, is_anonymous: prev.is_anonymous ? 0 : 1 } })}
                                 id="anonymousComment" checked={data.is_anonymous ? true : false} />
                             <label htmlFor="anonymousComment" className={style.WcMql}>ارسال به صورت
                                 ناشناس</label>
