@@ -28,6 +28,7 @@ const AddComment = ({ state, id, SwalStyled, push, setIsOpen }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
         if (!token)
             SwalStyled.fire({
                 title: 'ایراد در شناسایی',
@@ -43,12 +44,22 @@ const AddComment = ({ state, id, SwalStyled, push, setIsOpen }) => {
                 if (result.isConfirmed) push('/auth/login')
             })
         else
-            await axios.post('/comment', data, { headers })
-                .then((res) => {
-                    SwalStyled.fire('ثبت شد', res.data.message, 'success')
-                    setIsOpen(false)
-                })
-                .catch(err => SwalStyled.fire('مشکلی وجود دارد.', err.response.data.message, 'error'))
+            if (!!state) {
+                const { product, ...comment } = data
+                await axios.put(`/profile/comments/${state.id}`, comment, { headers })
+                    .then((res) => {
+                        SwalStyled.fire('ویرایش شد', res.data.message, 'success')
+                        setIsOpen(false)
+                    })
+                    .catch(err => SwalStyled.fire('مشکلی وجود دارد.', err.response.data.message, 'error'))
+
+            } else
+                await axios.post('/comment', data, { headers })
+                    .then((res) => {
+                        SwalStyled.fire('ثبت شد', res.data.message, 'success')
+                        setIsOpen(false)
+                    })
+                    .catch(err => SwalStyled.fire('مشکلی وجود دارد.', err.response.data.message, 'error'))
     }
     return (
         <>
@@ -96,7 +107,7 @@ const AddComment = ({ state, id, SwalStyled, push, setIsOpen }) => {
                         </div>
                         <div className={style.VqoJu}>
                             <label className={style.e3Xipy}>متن نظر!<span className={style.requierd}>*</span></label>
-                            <textarea value={state?.text} minLength={5} maxLength={300} required className={style.TciBol} onChange={({ target }) => setData(prev => { return { ...prev, text: target.value } })} placeholder="این محصول ..."></textarea>
+                            <textarea defaultValue={state?.text} minLength={5} maxLength={300} required className={style.TciBol} onChange={({ target }) => setData(prev => { return { ...prev, text: target.value } })} placeholder="این محصول ..."></textarea>
                         </div>
                         <div className={style.Oibt0s}>
                             <input className={style.form_check_input} type="checkbox" onChange={() => setData(prev => { return { ...prev, is_anonymous: prev.is_anonymous ? 0 : 1 } })}
