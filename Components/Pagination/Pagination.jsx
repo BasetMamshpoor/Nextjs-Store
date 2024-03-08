@@ -1,5 +1,5 @@
 import { e2p } from "Functions/ConvertNumbers";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./Pagination.module.css";
 
 function Pagination({ currentPage = 1, setCurrentPage, itemsPerPage = 10, dataLength = 100, showLimit = 5, boxShadow = true }) {
@@ -8,6 +8,12 @@ function Pagination({ currentPage = 1, setCurrentPage, itemsPerPage = 10, dataLe
     const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(showLimit);
     const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
     const pageNumber = Math.ceil(dataLength / itemsPerPage)
+
+
+    useEffect(() => {
+        setmaxPageNumberLimit(showLimit);
+        setminPageNumberLimit(0);
+    }, [dataLength])
 
     const handleClick = (event) => {
         setCurrentPage(Number(event.target.id));
@@ -46,7 +52,7 @@ function Pagination({ currentPage = 1, setCurrentPage, itemsPerPage = 10, dataLe
     const handlePrevbtn = () => {
         setCurrentPage(currentPage - 1);
 
-        if ((currentPage - 1) % pageNumberLimit == 0) {
+        if ((currentPage - 2) < minPageNumberLimit) {
             setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
             setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
         }

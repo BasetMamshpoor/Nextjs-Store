@@ -59,8 +59,8 @@ const Comments = () => {
                 <div className={style.container}>
                     <div className={style.navbar}>
                         <ul className={style.tabs}>
-                            <li className={[style.tab, tab === 0 ? style.active : ''].join(' ')} onClick={() => setTab(0)}>در انتظار ثبت</li>
-                            <li className={[style.tab, tab === 1 ? style.active : ''].join(' ')} onClick={() => setTab(1)}>دیدگاه ها</li>
+                            <li className={[style.tab, tab === 0 ? style.active : ''].join(' ')} onClick={() => { setTab(0), setCurrentPage(1) }}>در انتظار ثبت</li>
+                            <li className={[style.tab, tab === 1 ? style.active : ''].join(' ')} onClick={() => { setTab(1), setCurrentPage(1) }}>دیدگاه ها</li>
                         </ul>
                     </div>
                     {!!comments ? <div className={style.content}>
@@ -121,7 +121,7 @@ const Comments = () => {
                                 </div>
                             </div>}
                         </div>
-                        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} dataLength={pagination.meta.total} boxShadow={false} />
+                        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} dataLength={pagination.meta.total} showLimit={3} itemsPerPage={pagination.meta.per_page} boxShadow={false} />
                     </div> : <Loading />}
                 </div>
             </div >

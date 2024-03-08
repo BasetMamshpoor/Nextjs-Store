@@ -29,10 +29,11 @@
 .pageNumber li.numb {
   list-style: none;
   height: 30px;
-  width: 30px;
+  min-width: 30px;
   margin: 0 8px;
+  padding: 0 5px;
   line-height: 45px;
-  border-radius: 50%;
+  border-radius: 10px;
 }
 .pageNumber li.numb.first {
   margin: 0px 3px 0 -5px;
