@@ -7,13 +7,14 @@ function Pagination({ currentPage = 1, setCurrentPage, itemsPerPage = 10, dataLe
     const pageNumberLimit = showLimit
     const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(showLimit);
     const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
+    const pageNumber = Math.ceil(dataLength / itemsPerPage)
 
     const handleClick = (event) => {
         setCurrentPage(Number(event.target.id));
     };
 
     let pages = [];
-    for (let i = 1; i <= Math.ceil(dataLength / itemsPerPage); i++) {
+    for (let i = 1; i <= pageNumber; i++) {
         pages.push(i);
     }
     const renderPageNumbers = pages.map((number) => {
@@ -51,19 +52,39 @@ function Pagination({ currentPage = 1, setCurrentPage, itemsPerPage = 10, dataLe
         }
     };
 
+    const handleFirstPage = (event) => {
+        setCurrentPage(Number(event.target.id));
+        setmaxPageNumberLimit(showLimit);
+        setminPageNumberLimit(0);
+    }
+
+    const handleLastPage = (event) => {
+        setCurrentPage(Number(event.target.id));
+        setmaxPageNumberLimit(pageNumber);
+        setminPageNumberLimit(pageNumber - showLimit);
+    }
+
     let pageIncrementBtn = null;
+    let lastPage = null;
     if (pages.length > maxPageNumberLimit) {
         pageIncrementBtn = <li className={style.dots}> &hellip; </li>;
+        lastPage = <li id={pageNumber} className={`${style.numb} ${currentPage == pageNumber ? style.active : null}`}
+            onClick={handleLastPage}>{e2p(pageNumber)}</li>;
     }
 
     let pageDecrementBtn = null;
+    let firstPage = null;
     if (minPageNumberLimit >= 1) {
         pageDecrementBtn = <li className={style.dots}> &hellip; </li>;
+        firstPage = <li id={1} className={`${style.numb} ${currentPage == 1 ? style.active : null}`}
+            onClick={handleFirstPage}>{e2p(1)}</li>;
     };
+
+
 
     return (
         <>
-            {Math.ceil(dataLength / itemsPerPage) > 1 &&
+            {pageNumber > 1 &&
                 <div className={style.pagination}>
                     <ul className={`${style.pageNumber} ${boxShadow && style.boxShadow}`}>
                         <li
@@ -72,9 +93,11 @@ function Pagination({ currentPage = 1, setCurrentPage, itemsPerPage = 10, dataLe
                             className={`${style.btn} ${currentPage == pages[0] ? style.disable : ''}`}>
                             <svg viewBox="0 0 8 16"><path d="M7.5 8l-5 5L1 11.5 4.75 8 1 4.5 2.5 3l5 5z"></path></svg>
                         </li>
+                        {firstPage}
                         {pageDecrementBtn}
                         {renderPageNumbers}
                         {pageIncrementBtn}
+                        {lastPage}
                         <li
                             onClick={handleNextbtn}
                             // disabled={currentPage == pages[pages.length - 1] ? true : false}

@@ -1,11 +1,8 @@
 .hidden {
-  opacity: 0;
-  visibility: hidden;
+  display: none !important;
 }
 .show {
-  opacity: 1;
-  visibility: visible;
-  transition: all 0.3s ease;
+  display: flex;
 }
 .categorybg {
   position: fixed;
