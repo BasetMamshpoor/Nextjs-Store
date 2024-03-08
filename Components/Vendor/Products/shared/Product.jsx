@@ -4,17 +4,21 @@ import { e2p } from 'Functions/ConvertNumbers';
 import addComma from 'Functions/addComma';
 import Image from 'next/image';
 import { useContext, useEffect, useRef, useState } from 'react';
-import { PiDotsThreeOutlineVerticalFill, PiTrashLight } from "react-icons/pi";
+import { PiDotsThreeOutlineVerticalFill, PiTrashLight, PiPencilSimpleLine } from "react-icons/pi";
 import axios from 'axios';
 import { Functions } from 'providers/FunctionsProvider';
 import Cookies from 'js-cookie';
+import createModal from 'Components/Modal';
+import EditForm from 'Components/Vendor/Option_Product/EditForm'
 
-const Product = ({ id, name, price, offPercent, offPrice, image, is_available, setProducts }) => {
+const Product = ({ id, name, price, offPercent, offPrice, image, is_available, setProducts, reload }) => {
     const [isOpen, setIsOpen] = useState(false)
     const dots = useRef()
+
+    const { SwalStyled } = useContext(Functions)
+
     const token = JSON.parse(Cookies.get('token'))
     const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${token.token_type} ${token.access_token}` }
-    const { SwalStyled } = useContext(Functions)
 
     const handleOpen = () => {
         setIsOpen(!isOpen);
@@ -30,6 +34,8 @@ const Product = ({ id, name, price, offPercent, offPrice, image, is_available, s
             setIsOpen(false);
         }
     };
+
+    const handleEdit = () => createModal(<EditForm id={id} SwalStyled={SwalStyled} reload={reload} />)
 
     const handleDelete = async () => {
         SwalStyled.fire({
@@ -82,6 +88,9 @@ const Product = ({ id, name, price, offPercent, offPrice, image, is_available, s
                     <span className={style.dots} ref={dots} onClick={handleOpen}><PiDotsThreeOutlineVerticalFill /></span>
                     {isOpen ? (
                         <ul className={style.menu} >
+                            <li className={style.menu_item} onClick={handleEdit}>
+                                ویرایش <PiPencilSimpleLine />
+                            </li>
                             <li className={style.menu_item} onClick={handleDelete}>
                                 حذف <PiTrashLight />
                             </li>

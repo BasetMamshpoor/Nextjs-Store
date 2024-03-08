@@ -4,13 +4,26 @@ import React, { useEffect, useState } from 'react';
 import style from './SelectCategories.module.css'
 import Loading from 'Components/Loading';
 
-const SelectCategories = ({ setProduct, touch, errors, data = [] }) => {
-    const categoryDefault = !!(data.length > 0) ?
-        { id: data[0]?.id, subCategories: { id: data[1]?.id, subCategories: { id: data[2]?.id, subCategories: {} } } } :
-        { id: null, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } };
-    const [categories, setCategories] = useState(categoryDefault)
+const SelectCategories = ({ setProduct, touch, errors, data }) => {
+    const [categories, setCategories] = useState({ id: null, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } })
     const [category, setCategory] = useState(null)
     const [categoryList] = useGetRequest('/categories')
+
+    useEffect(() => {
+        if (!!data) {
+            const categoryDefault = !!(data.length > 0) ?
+                { id: data[0]?.id, subCategories: { id: data[1]?.id, subCategories: { id: data[2]?.id, subCategories: {} } } } :
+                { id: null, subCategories: { id: null, subCategories: { id: null, subCategories: {} } } };
+            setCategories(categoryDefault)
+            setCategory(() => {
+                const L3 = categoryDefault.subCategories.subCategories.id
+                const L2 = categoryDefault.subCategories.id
+                const L1 = categoryDefault.id
+                return L3 ?? L2 ?? L1 ?? null
+            })
+        }
+    }, [data])
+
 
     useEffect(() => {
         setProduct(prev => { return { ...prev, category_id: category } })

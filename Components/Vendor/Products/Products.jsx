@@ -40,7 +40,7 @@ const Products = ({ category, total_Items }) => {
                     pageStart={1}
                     className={style.productsList}
                 >
-                    {products.map(i => <Product key={i.id} {...i} setProducts={setProducts} />)}
+                    {products.map(i => <Product key={i.id} {...i} setProducts={setProducts} reload={reload} />)}
                 </InfiniteScroll>
             </> : <p>محصولی پیدا نشد لطفا فیلتر ها رو تغییر بدید.</p>}
         </>

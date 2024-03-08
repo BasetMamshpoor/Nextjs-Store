@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Input from '../../Input';
 import style from './Form.module.css'
 import AttributesList from './Attributes/AttributesList'
@@ -13,10 +13,9 @@ import { ImBoxAdd, ImCheckmark, ImSearch } from 'react-icons/im'
 import SelectCategories from './SelectCategories';
 import Brands from './Brands';
 import PrevSizes from './Sizes/PervSizes'
-import { Functions } from 'providers/FunctionsProvider';
-import { Authorization } from 'providers/AuthorizationProvider';
+import Cookies from 'js-cookie';
 
-const Form = () => {
+const EditForm = ({ id, SwalStyled, setIsOpen, reload }) => {
     const [product, setProduct] = useState({ category_id: null, sizes: [], attributes: [], images: [] })
     const [state, setState] = useState()
 
@@ -26,9 +25,11 @@ const Form = () => {
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0)
 
-    const { tokens } = useContext(Authorization)
-    const { SwalStyled } = useContext(Functions)
+    const tokens = JSON.parse(Cookies.get('token'))
 
+    useEffect(() => {
+        if (!!id) handleSearch({ target: [{ value: id }], preventDefault: () => { } })
+    }, [id])
 
     const handleSearch = async event => {
         event.preventDefault()
@@ -81,6 +82,10 @@ const Form = () => {
                         text: ".محصول مورد نظر با موفقیت ویرایش شد",
                         icon: 'success'
                     })
+                    setLoading(false)
+                    setProgress(0)
+                    if (typeof setIsOpen === 'function') setIsOpen(false)
+                    if (typeof reload === 'function') reload(Math.random())
                 })
                 .catch(err => {
                     SwalStyled.fire(".ویرایش نشد", ".مشکلی در فرایند ویرایش محصول پیش آمده", "error")
@@ -107,7 +112,7 @@ const Form = () => {
     }
     return (
         <>
-            <div className={`${style.Kce_1W2M4_6}`} dir='rtl'>
+            <div className={`${style.Kce_1W2M4_6} ${!!id ? style.editing : ''}`} dir='rtl'>
                 <div className={style.navBar_}>
                     <div className={style.Hs_i8p4_gV}>
                         <div>
@@ -115,14 +120,14 @@ const Form = () => {
                         </div>
                         <h6 className={style.qzE3_pNis__4}>ویرایش محصول</h6>
                     </div>
-                    <div className={style.nav_search}>
+                    {!id && <div div className={style.nav_search}>
                         <form onSubmit={handleSearch}>
                             <div className={style.search_input}>
                                 <input className={style.input} type="number" placeholder='آیدی محصول' />
                             </div>
                             <button className={style.search_btn}><ImSearch /></button>
                         </form>
-                    </div>
+                    </div>}
                 </div>
                 {!!state ? <div className={style.uTyc_3Waxd1}>
                     <form className={style.WzlProductAdd_tce} method="post" onSubmit={handleSubmit}>
@@ -178,7 +183,7 @@ const Form = () => {
                         <div className={style.save_pro_qq}>
                             <button className={`${style.onRc_12ar} ${loading ? style.activeProgress : ''} ${progress === 100 ? style.Uploaded : ''}`}
                                 onClick={handleSubmit}>
-                                {progress === 100 ? <ImCheckmark color='#4BB543' /> : loading ? 'آپلــــــود محصول...' : 'ویرایش محصول'}
+                                {progress === 100 ? <ImCheckmark color='#4BB543' /> : loading ? 'آپلــــــود محصـول...' : 'ویرایش محصول'}
                                 {loading ? <>
                                     <span className={style.progress_top} style={getProgress().top} />
                                     <span className={style.progress_bottom} style={getProgress().bottom} />
@@ -186,10 +191,11 @@ const Form = () => {
                             </button>
                         </div>
                     </form>
-                </div> : <p className={style.text_warning}>لطفا ابتدا آیدی محصول را وارد کنید.</p>}
-            </div>
+                </div> : !!id ? <p className={style.text_warning}>در حال بارگذاری...</p>
+                    : <p className={style.text_warning}>لطفا ابتدا آیدی محصول را وارد کنید.</p>}
+            </div >
         </>
     );
 };
 
-export default Form;
+export default EditForm;
