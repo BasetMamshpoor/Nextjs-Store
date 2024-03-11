@@ -10,7 +10,7 @@ const AddComment = ({ state, id, SwalStyled, push, setIsOpen }) => {
     const parent = useRef()
     const [data, setData] = useState(!!state ? state : { product_id: id, text: '', rate: 1, user_id: null, is_anonymous: 0 })
     const token = Cookies.get('token') ? JSON.parse(Cookies.get('token')) : null
-    const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${token?.token_type} ${token?.access_token}` }
+    const headers = { Authorization: `${token?.token_type} ${token?.access_token}` }
 
     useEffect(() => {
         const e = input.current
