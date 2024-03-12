@@ -15,7 +15,7 @@ import { Functions } from 'providers/FunctionsProvider';
 
 const Wishlist = () => {
     const [currentPage, setCurrentPage] = useState(1)
-    const [wish, setWish, reload, pagination] = useGetPrivatRequest('/profile/bookmarks')
+    const [wish, setWish, reload, pagination] = useGetPrivatRequest('/profile/bookmarks', currentPage)
     const { tokens } = useContext(Authorization)
     const { SwalStyled } = useContext(Functions)
     const headers = {
@@ -66,19 +66,22 @@ const Wishlist = () => {
                                                 <Link href={`/product/${product.id}`} className={style.fWcA4_Z}>
                                                     {product.name}
                                                 </Link>
-                                                <div className={style.OtDah2_1}>
-                                                    <div className={style.nJxe3_iu}>
-                                                        <p className={style.iBrJ6_e}>{addComma(product.offPrice.toString())}</p>
-                                                        <span className={style.Off_persant_haZi}>%{e2p(product.offPercent)}</span>
-                                                    </div>
-                                                    <p className={style.Off_3X5}>{addComma(product.price.toString())}
-                                                    </p>
-                                                </div>
+                                                {!!product.is_available ?
+                                                    <div className={style.OtDah2_1}>
+                                                        <div className={style.nJxe3_iu}>
+                                                            <p className={style.iBrJ6_e}>{addComma(product.offPrice.toString())}</p>
+                                                            {product.price !== product.offPrice && <span className={style.Off_persant_haZi}>%{e2p(product.offPercent)}</span>}
+                                                        </div>
+                                                        {product.price !== product.offPrice && <p className={style.Off_3X5}>{addComma(product.price.toString())}</p>}
+                                                    </div> :
+                                                    <div className={style.etmamMojody}>
+                                                        <b>ناموجود</b>
+                                                    </div>}
                                                 <div className={style.Add_obgUw}>
-                                                    <Link href={`/product/${product.id}`} onClick={e => e.preventDefault()} className={style.AdDPIc3_}>
+                                                    {product.is_available && <Link href={`/product/${product.id}`} onClick={e => e.preventDefault()} className={style.AdDPIc3_}>
                                                         <span>افزودن به لیست</span>
                                                         <BsCart3 />
-                                                    </Link>
+                                                    </Link>}
                                                     <button className={style.remove_iCrx4} onClick={() => handleDelete(product.id)}>
                                                         <span>حذف</span>
                                                         <BsTrash />
@@ -98,7 +101,7 @@ const Wishlist = () => {
                                     </div>
                                 </div>}
                         </div>
-                        <Pagination currentPage={currentPage} setCurrentPage={(e) => setCurrentPage(e)} dataLength={pagination.meta.total} boxShadow={false} />
+                        <Pagination currentPage={currentPage} setCurrentPage={(e) => setCurrentPage(e)} dataLength={pagination.meta.total} itemsPerPage={pagination.meta.per_page} boxShadow={false} />
                     </> : <Loading />}
                 </div>
             </div>

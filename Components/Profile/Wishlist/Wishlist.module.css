@@ -25,10 +25,10 @@
   justify-content: space-around;
 }
 .gali9_y {
-  padding: 20px;
+  padding: 20px 10px;
   margin: 10px;
-  flex: 0 0 calc(50% - 40px);
-  min-width: 350px;
+  flex: 0 0 calc(35% - 40px);
+  min-height: 460px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -57,6 +57,7 @@
   font-size: 14px;
   line-height: 2;
   font-family: "IRANYekan", sans-serif;
+  flex-grow: 1;
 }
 .fWcA4_Z:hover {
   color: #000;
@@ -66,6 +67,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 0.5rem;
+  flex-grow: 1;
 }
 .nJxe3_iu {
   display: flex;
@@ -100,7 +102,7 @@
 .Add_obgUw {
   direction: ltr;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
   margin-top: 1rem;
   gap: 1rem;
@@ -174,6 +176,34 @@
 .pHvtxu p {
   font-size: 18px;
 }
+.etmamMojody {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 1rem;
+  flex-grow: 1;
+}
+.etmamMojody b::before,
+.etmamMojody b::after {
+  width: 22%;
+  content: "";
+  background: #81858b;
+  height: 3px;
+  position: absolute;
+  border-radius: 20px;
+  top: 50%;
+}
+.etmamMojody b::before {
+  left: 0rem;
+  transform: translate(50%, -50%);
+}
+.etmamMojody b::after {
+  right: 0rem;
+  transform: translate(-50%, -50%);
+}
 @media (max-width: 767.98px) {
   .gali9_y {
     flex: 0 0 90%;
@@ -193,7 +223,7 @@
     flex-direction: column;
     gap: 8px;
   }
-  .Add_obgUw > * {  
+  .Add_obgUw > * {
     width: 100%;
   }
 }
