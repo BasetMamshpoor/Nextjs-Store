@@ -89,6 +89,8 @@ const EditForm = ({ id, SwalStyled, setIsOpen, reload }) => {
                 })
                 .catch(err => {
                     SwalStyled.fire(".ویرایش نشد", ".مشکلی در فرایند ویرایش محصول پیش آمده", "error")
+                    setLoading(false)
+                    setProgress(0)
                 })
         }
     }

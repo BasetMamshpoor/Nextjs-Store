@@ -62,9 +62,13 @@ const Form = () => {
                     }).then(() => {
                         push(`/products/${res.data.data.product.id}`)
                     })
+                    setLoading(false)
+                    setProgress(0)
                 })
                 .catch(err => {
                     SwalStyled.fire(".ثبت نشد", ".مشکلی در فرایند ثبت محصول پیش آمده", "error")
+                    setLoading(false)
+                    setProgress(0)
                 })
         }
     }
