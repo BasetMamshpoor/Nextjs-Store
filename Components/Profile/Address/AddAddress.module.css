@@ -1,0 +1,112 @@
+.addAddress {
+  position: relative;
+  direction: rtl;
+}
+.search {
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+  width: 100%;
+  padding: 0 48px;
+}
+.form {
+  position: relative;
+  z-index: 9;
+}
+.inputField {
+  box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  padding: 12px 16px;
+  background: #fff;
+  border-radius: 10px;
+}
+.inputField input {
+  width: 100%;
+  direction: rtl;
+  border: none;
+  outline: none;
+  height: 28px;
+  font-size: 16px;
+  color: #81858b;
+}
+.form_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+}
+.result {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-direction: column;
+  background: #fff;
+  position: relative;
+  z-index: 65;
+  border-radius: 0 0 10px 10px;
+}
+.place {
+  padding: 0 20px;
+  cursor: pointer;
+}
+.place:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.placeinfo {
+  display: flex;
+}
+.placeIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px 0 0 12px;
+  height: fit-content;
+}
+.placeName {
+  padding: 8px 0;
+  flex-grow: 1;
+  border-bottom: 1px solid #eee;
+  font-family: "IRANYekan";
+}
+.bottom {
+  font-size: 11px;
+  color: #81858b;
+  margin-top: 5px;
+}
+.map {
+  position: relative;
+}
+.neshan {
+  width: 780px;
+  height: 400px;
+}
+.marker {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+.footer {
+  border-top: 1px solid#ccc;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.submit {
+  background: #3499ff;
+  color: #fff;
+  border: 1px solid #3499ff;
+  font-size: 16px;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+}
+.disable {
+  background: #349aff85;
+  cursor: default;
+}

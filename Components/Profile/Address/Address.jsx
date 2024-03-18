@@ -6,13 +6,17 @@ import { GoMail } from 'react-icons/go'
 import { e2p } from 'Functions/ConvertNumbers'
 import useGetPrivatRequest from 'hooks/useGetPrivatRequest'
 import Pagination from 'Components/Pagination/Pagination'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Loading from 'Components/Loading'
 import img from 'public/Images/address.svg'
+import createModal from 'Components/Modal'
+import AddAddress from './AddAddress'
+import { Functions } from 'providers/FunctionsProvider'
 
 const Address = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [addresses, setAddress, reload, pagination] = useGetPrivatRequest('/profile/addresses')
+    const { SwalStyled } = useContext(Functions)
 
     return (
         <>
@@ -25,7 +29,7 @@ const Address = () => {
                             </div>
                             <h5>آدرس ها</h5>
                         </div>
-                        <button className={style.OTxe3_M}>ثبت آدرس جدید</button>
+                        <button className={style.OTxe3_M} onClick={() => createModal(<AddAddress reload={reload} SwalStyled={SwalStyled} />)}>ثبت آدرس جدید</button>
                     </div>
                     {!!pagination ? <>
                         <div className={style.Ubx7_O3}>

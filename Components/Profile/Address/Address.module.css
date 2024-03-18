@@ -36,9 +36,8 @@
   border: 2px solid #3499ff;
   background: #fff;
   color: #3499ff;
-  padding: 0.5rem 1rem;
+  padding: 6px 12px;
   border-radius: 10px;
-  font-size: 13px;
   font-weight: 600;
   transition: all 0.3s ease;
 }

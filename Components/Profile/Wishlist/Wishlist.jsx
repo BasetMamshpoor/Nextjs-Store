@@ -15,7 +15,7 @@ import { Functions } from 'providers/FunctionsProvider';
 
 const Wishlist = () => {
     const [currentPage, setCurrentPage] = useState(1)
-    const [wish, setWish, reload, pagination] = useGetPrivatRequest('/profile/bookmarks', currentPage)
+    const [wish, setWish, reload, pagination] = useGetPrivatRequest('/profile/bookmarks?items_perpage=9', currentPage)
     const { tokens } = useContext(Authorization)
     const { SwalStyled } = useContext(Functions)
     const headers = {

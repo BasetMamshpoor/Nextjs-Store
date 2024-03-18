@@ -663,3 +663,6 @@ textarea {
     height: 240px;
   }
 }
+.neshan_map .ol-viewport div:last-child {
+  display: none;
+}
