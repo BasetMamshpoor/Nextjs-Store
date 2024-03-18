@@ -14,12 +14,12 @@ const AddAddress = () => {
     const [latlng, setLatlng] = useState()
     const [searchResult, setSearchResult] = useState([])
 
-    // useEffect(() => {
-    //     const handleContextmenu = e => e.preventDefault()
+    useEffect(() => {
+        const handleContextmenu = e => e.preventDefault()
 
-    //     document.addEventListener('contextmenu', handleContextmenu)
-    //     return ()=> document.removeEventListener('contextmenu', handleContextmenu)
-    // }, [])
+        document.addEventListener('contextmenu', handleContextmenu)
+        return ()=> document.removeEventListener('contextmenu', handleContextmenu)
+    }, [])
 
     const onInit = (ol, map) => {
         setOl(ol)
