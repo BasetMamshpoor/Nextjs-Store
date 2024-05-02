@@ -5,8 +5,10 @@ import "@neshan-maps-platform/react-openlayers/dist/style.css"
 import style from './AddAddress.module.css'
 import pinIcon from 'public/Images/pin-location.svg'
 import { FiMapPin } from "react-icons/fi";
+import createModal from "Components/Modal"
+import AddressForm from "./AddressForm"
 
-const AddAddress = () => {
+const AddAddress = ({ SwalStyled, user }) => {
     const input = useRef()
 
     const [ol, setOl] = useState()
@@ -18,7 +20,7 @@ const AddAddress = () => {
         const handleContextmenu = e => e.preventDefault()
 
         document.addEventListener('contextmenu', handleContextmenu)
-        return ()=> document.removeEventListener('contextmenu', handleContextmenu)
+        return () => document.removeEventListener('contextmenu', handleContextmenu)
     }, [])
 
     const onInit = (ol, map) => {
@@ -85,8 +87,8 @@ const AddAddress = () => {
                 "Api-Key": `${process.env.NEXT_PUBLIC_NESHAN_SERVICE_KEY}`
             }
         })
-            .then(res => console.log(res.data))
-            .catch(err => console.log(err))
+            .then(res => createModal(<AddressForm data={{ longitude: latlng[0], latitude: latlng[1], ...res.data }} user={user} />))
+            .catch(err => SwalStyled.fire('قابل ارسال نیست', err.response.data.message, 'error'))
     }
 
     return (
