@@ -78,6 +78,17 @@
   margin: 0 0.5rem;
   cursor: pointer;
 }
+.VxpQl5H_0 {
+  display: flex;
+  justify-content: space-between;
+}
+.simple_map_img {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 10px;
+  align-self: flex-end;
+}
 .NbvWzpo {
   display: flex;
   align-items: center;

@@ -13,6 +13,7 @@ import createModal from 'Components/Modal'
 import AddAddress from './AddAddress'
 import { Functions } from 'providers/FunctionsProvider'
 import { Authorization } from 'providers/AuthorizationProvider'
+import { env } from 'next.config'
 
 const Address = () => {
     const [currentPage, setCurrentPage] = useState(1)
@@ -31,66 +32,71 @@ const Address = () => {
                             </div>
                             <h5>آدرس ها</h5>
                         </div>
-                        <button className={style.OTxe3_M} onClick={() => createModal(<AddAddress SwalStyled={SwalStyled} user={{...user, ...tokens}} />)}>ثبت آدرس جدید</button>
-                </div>
-                {!!pagination ? <>
-                    <div className={style.Ubx7_O3}>
-                        {addresses.length > 0 ? addresses.map(a => {
-                            return (
-                                <div className={style.oInGt07_}>
-                                    <div className={style.olCqz8_PP}>
-                                        <p className={style.ObcjZo_e3}>{a.title}</p>
-                                        <div className={style.cPx_iiRxQ67}>
-                                            <div>
-                                                <FiEdit3 />
-                                            </div>
-                                            <div>
-                                                <BsTrash />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className={style.VxpQl5H_0}>
-                                        <div className={style.NbvWzpo}>
-                                            <label>آدرس : </label>
-                                            <p className={style.loMnw}>{a.province} - {a.city} - {a.address}</p>
-                                        </div>
-                                        <div className={style.LGtcmnD_3}>
-                                            <label>مشخصات گیرنده </label>
-                                            <div className={style.FazWlNmh_i}>
-                                                <div className={style.IbCh_1QzTM}>
-                                                    <div>
-                                                        <BsPerson />
-                                                    </div> {a.name}
-                                                </div>
-                                                <div className={style.IbCh_1QzTM}>
-                                                    <div>
-                                                        <BsTelephone />
-                                                    </div> {e2p(a.cellphone)}
-                                                </div>
-                                                <div className={style.IbCh_1QzTM}>
-                                                    <div>
-                                                        <GoMail />
-                                                    </div> {e2p(a.postalcode)}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        }) :
-                            <div className={style.empty}>
-                                <div className={style.pHvtxu}>
-                                    <div className={style.pic}>
-                                        <img src={img.src} alt="" />
-                                    </div>
-                                    <p>هنوز آدرس ثبت نکرده‌اید.</p>
-                                </div>
-                            </div>}
+                        <button className={style.OTxe3_M} onClick={() => createModal(<AddAddress SwalStyled={SwalStyled} user={{ ...user, ...tokens }} />)}>ثبت آدرس جدید</button>
                     </div>
-                    <Pagination currentPage={currentPage} setCurrentPage={(e) => setCurrentPage(e)} dataLength={pagination.meta.total} boxShadow={false} />
-                </> : <Loading />}
-            </div>
-        </div >
+                    {!!pagination ? <>
+                        <div className={style.Ubx7_O3}>
+                            {addresses.length > 0 ? addresses.map(a => {
+                                return (
+                                    <div className={style.oInGt07_}>
+                                        <div className={style.olCqz8_PP}>
+                                            <p className={style.ObcjZo_e3}>{a.title}</p>
+                                            <div className={style.cPx_iiRxQ67}>
+                                                <div>
+                                                    <FiEdit3 />
+                                                </div>
+                                                <div>
+                                                    <BsTrash />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className={style.VxpQl5H_0}>
+                                            <div>
+                                                <div className={style.NbvWzpo}>
+                                                    <label>آدرس : </label>
+                                                    <p className={style.loMnw}>{a.province} - {a.city} - {a.address}</p>
+                                                </div>
+                                                <div className={style.LGtcmnD_3}>
+                                                    <label>مشخصات گیرنده </label>
+                                                    <div className={style.FazWlNmh_i}>
+                                                        <div className={style.IbCh_1QzTM}>
+                                                            <div>
+                                                                <BsPerson />
+                                                            </div> {a.name}
+                                                        </div>
+                                                        <div className={style.IbCh_1QzTM}>
+                                                            <div>
+                                                                <BsTelephone />
+                                                            </div> {e2p(a.cellphone)}
+                                                        </div>
+                                                        <div className={style.IbCh_1QzTM}>
+                                                            <div>
+                                                                <GoMail />
+                                                            </div> {e2p(a.postalcode)}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className={style.simple_map_img}>
+                                                <img src={`https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/${a.latitude},${a.longitude}/${12}?mapSize=120,120&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY}`} alt="Map" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            }) :
+                                <div className={style.empty}>
+                                    <div className={style.pHvtxu}>
+                                        <div className={style.pic}>
+                                            <img src={img.src} alt="" />
+                                        </div>
+                                        <p>هنوز آدرس ثبت نکرده‌اید.</p>
+                                    </div>
+                                </div>}
+                        </div>
+                        <Pagination currentPage={currentPage} setCurrentPage={(e) => setCurrentPage(e)} dataLength={pagination.meta.total} boxShadow={false} />
+                    </> : <Loading />}
+                </div>
+            </div >
         </>
     );
 };
