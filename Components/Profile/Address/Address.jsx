@@ -17,7 +17,7 @@ import Image from 'next/image'
 
 const Address = () => {
     const [currentPage, setCurrentPage] = useState(1)
-    const [addresses, setAddress, reload, pagination] = useGetPrivatRequest('/profile/addresses')
+    const [addresses, setAddress, reload, pagination] = useGetPrivatRequest('/profile/addresses', currentPage)
     const { SwalStyled } = useContext(Functions)
     const { tokens, user } = useContext(Authorization)
 

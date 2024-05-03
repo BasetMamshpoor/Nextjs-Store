@@ -4,9 +4,10 @@ import NeshanMap from "@neshan-maps-platform/react-openlayers"
 import "@neshan-maps-platform/react-openlayers/dist/style.css"
 import style from './AddAddress.module.css'
 import pinIcon from 'public/Images/pin-location.svg'
-import { FiMapPin } from "react-icons/fi";
+import { FiMapPin, FiClose } from "react-icons/fi";
 import createModal from "Components/Modal"
 import AddressForm from "./AddressForm"
+import { IoMdClose } from "react-icons/io";
 
 const AddAddress = ({ SwalStyled, reload, user, edit }) => {
     const input = useRef()
@@ -43,6 +44,10 @@ const AddAddress = ({ SwalStyled, reload, user, edit }) => {
                 setSearchResult(res.data.items)
             })
             .catch(err => console.log(err))
+    }
+    const handleClear = (e) => {
+        setSearchResult([])
+        e.currentTarget.previousSibling.value = ''
     }
 
     const makeDivsResult = () => {
@@ -99,6 +104,7 @@ const AddAddress = ({ SwalStyled, reload, user, edit }) => {
                     <form className={style.form}>
                         <div className={style.inputField}>
                             <input ref={input} type="text" onChange={handleChange} placeholder="آدرس خود را وارد کنید" />
+                            <button className={style.close} type="button" onClick={handleClear}><IoMdClose /></button>
                         </div>
                     </form>
                     <ul className={style.result}>
