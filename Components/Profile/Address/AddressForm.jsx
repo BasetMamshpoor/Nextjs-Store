@@ -6,9 +6,9 @@ import Cities from './cities.json'
 import Input from 'Components/Input';
 import axios from 'axios';
 
-const AddressForm = ({ data, user }) => {
+const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen }) => {
     const [cities, setCities] = useState([])
-    const [address, setAddress] = useState({ latitude: data.latitude, longitude: data.longitude })
+    const [address, setAddress] = useState({})
     const headers = { Authorization: `${user?.token_type} ${user?.access_token}` }
 
     useEffect(() => {
@@ -17,7 +17,11 @@ const AddressForm = ({ data, user }) => {
         setAddress(prev => {
             return {
                 ...prev,
-                ...searchProvinces(data, Provinces, newCities)
+                ...searchProvinces(data, Provinces, newCities),
+                latitude: data.latitude, longitude: data.longitude,
+                address: data.formatted_address.slice(data.formatted_address.indexOf('،') + 1),
+                title: !!edit ? edit.title : '', postalcode: !!edit ? edit.postalcode : '',
+                name: !!edit ? edit.name : '', cellphone: !!edit ? edit.cellphone : '',
             }
         })
     }, [])
@@ -49,9 +53,23 @@ const AddressForm = ({ data, user }) => {
 
     const handleSabmit = async (e) => {
         e.preventDefault()
-        await axios.post('/address', address, { headers })
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+        if (!!edit) {
+            await axios.put(`/address/${edit.id}`, address, { headers })
+                .then(res => {
+                    SwalStyled.fire('.ویرایش شد', res.data.message, 'success')
+                    reload(Math.random())
+                    setIsOpen(false)
+                })
+                .catch(err => SwalStyled.fire('.ویرایش نشد', err.response.data.message, 'error'))
+        } else {
+            await axios.post('/address', address, { headers })
+                .then(res => {
+                    SwalStyled.fire('.ثبت شد', res.data.message, 'success')
+                    reload(Math.random())
+                    setIsOpen(false)
+                })
+                .catch(err => { console.log(err); SwalStyled.fire('.ثبت نشد', err.response.data.message, 'error') })
+        }
     }
 
     return (
@@ -66,7 +84,7 @@ const AddressForm = ({ data, user }) => {
                             <div className={style.oneField}>
                                 <div className={style.field}>
                                     <label className={style.label}>نام مکان <span className={style.star}>*</span></label>
-                                    <Input value={address.title} type='text' name='title' result={handleChange}
+                                    <Input value={edit?.title} type='text' name='title' result={handleChange}
                                         className={style.input} placeholder='خانه, محل کار, ...' />
                                 </div>
                             </div>
@@ -97,16 +115,16 @@ const AddressForm = ({ data, user }) => {
                                 <div className={style.twoSmallField}>
                                     <div className={style.field}>
                                         <label className={style.label}>پلاک <span className={style.star}>*</span></label>
-                                        <Input value={address.pelac} name='pelac' type="number" result={handleChange} className={style.input} />
+                                        <Input value={edit?.pelac} name='pelac' type="number" result={handleChange} className={style.input} />
                                     </div>
                                     <div className={style.field}>
                                         <label className={style.label}>واحد</label>
-                                        <Input value={address.vahed} name='vahed' type="number" result={handleChange} className={style.input} />
+                                        <Input value={edit?.vahed} name='vahed' type="number" result={handleChange} className={style.input} />
                                     </div>
                                 </div>
                                 <div className={style.field}>
                                     <label className={style.label}>کد پستی <span className={style.star}>*</span></label>
-                                    <Input value={address.postalcode} type='number' name='postalcode' result={handleChange} className={style.input} />
+                                    <Input value={edit?.postalcode} type='number' name='postalcode' result={handleChange} className={style.input} />
                                 </div>
                             </div>
                         </div>
@@ -119,16 +137,16 @@ const AddressForm = ({ data, user }) => {
                             <div className={style.twoField}>
                                 <div className={style.field}>
                                     <label className={style.label}>نام و نام خانوادگی گیرنده <span className={style.star}>*</span></label>
-                                    <Input value={address.name} type='text' name='name' result={handleChange} className={style.input} />
+                                    <Input value={edit?.name} type='text' name='name' result={handleChange} className={style.input} />
                                 </div>
                                 <div className={style.field}>
                                     <label className={style.label}>شماره موبایل <span className={style.star}>*</span></label>
-                                    <Input value={address.cellphone} type='number' name='cellphone' result={handleChange} className={style.input} placeholder='مثل: ۰۹۱۲۳۴۵۶۷۸۹' />
+                                    <Input value={edit?.cellphone} type='number' name='cellphone' result={handleChange} className={style.input} placeholder='مثل: ۰۹۱۲۳۴۵۶۷۸۹' />
                                 </div>
                             </div>
                         </div>
                         <div className={style.footer}>
-                            <button className={style.btn} type='button' onClick={handleSabmit}>ثبت آدرس</button>
+                            <button className={style.btn} type='button' onClick={handleSabmit}>{!!edit ? 'ویرایش آدرس' : 'ثبت آدرس'}</button>
                         </div>
                     </form>
                 </div>

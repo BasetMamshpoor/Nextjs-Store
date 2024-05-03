@@ -8,7 +8,7 @@ import { FiMapPin } from "react-icons/fi";
 import createModal from "Components/Modal"
 import AddressForm from "./AddressForm"
 
-const AddAddress = ({ SwalStyled, user }) => {
+const AddAddress = ({ SwalStyled, reload, user, edit }) => {
     const input = useRef()
 
     const [ol, setOl] = useState()
@@ -87,7 +87,8 @@ const AddAddress = ({ SwalStyled, user }) => {
                 "Api-Key": `${process.env.NEXT_PUBLIC_NESHAN_SERVICE_KEY}`
             }
         })
-            .then(res => createModal(<AddressForm data={{ longitude: latlng[0], latitude: latlng[1], ...res.data }} user={user} />))
+            .then(res => createModal(<AddressForm SwalStyled={SwalStyled}
+                data={{ longitude: latlng[0], latitude: latlng[1], ...res.data }} reload={reload} user={user} edit={edit} />))
             .catch(err => SwalStyled.fire('قابل ارسال نیست', err.response.data.message, 'error'))
     }
 
@@ -109,7 +110,7 @@ const AddAddress = ({ SwalStyled, user }) => {
                     <NeshanMap
                         mapKey={process.env.NEXT_PUBLIC_NESHAN_MAP_KEY}
                         defaultType="neshan"
-                        center={{ latitude: 35.699739, longitude: 51.338097 }}
+                        center={!!edit ? { latitude: parseFloat(edit.latitude), longitude: parseFloat(edit.longitude) } : { latitude: 35.699739, longitude: 51.338097 }}
                         onInit={onInit}
                         className={`neshan_map ${style.neshan}`}
                         zoom={14}
