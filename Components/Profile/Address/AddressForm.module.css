@@ -89,10 +89,18 @@
   outline: none;
   caret-color: #3499ff;
 }
+.error {
+  border-color: red !important;
+}
+.error_text {
+  color: rgba(255, 0, 0, 0.7);
+  font-size: 12px;
+  margin-top: 8px;
+}
 .input:focus,
 .textarea:focus {
   outline: none;
-  border-color: #3499ff;
+  border-color: #3499ff !important;
 }
 .checking {
   display: flex;

@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #11cdef;
+  color: #3499ff;
   line-height: 45px;
   text-align: center;
   font-size: 18px;
@@ -24,7 +24,7 @@
   cursor: pointer;
   user-select: none;
   transition: all 0.3s ease;
-  fill: #11cdef;
+  fill: #3499ff;
 }
 .pageNumber li.numb {
   list-style: none;
@@ -55,7 +55,7 @@
 .pageNumber li:first-child:hover,
 .pageNumber li:last-child:hover {
   color: #fff;
-  background: #11cdef;
+  background: #3499ff;
   fill: #fff;
 }
 .disable {

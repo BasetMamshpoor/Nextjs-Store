@@ -5,11 +5,16 @@ import Provinces from './provinces.json'
 import Cities from './cities.json'
 import Input from 'Components/Input';
 import axios from 'axios';
+import validation from 'Functions/AddAddressValidation'
 
 const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen }) => {
     const [cities, setCities] = useState([])
     const [address, setAddress] = useState({})
+    const [touch, setTouch] = useState({})
+
     const headers = { Authorization: `${user?.token_type} ${user?.access_token}` }
+    let errors = validation(address)
+    console.log(errors);
 
     useEffect(() => {
         const newCities = findCities(Cities, data.state)
@@ -53,22 +58,26 @@ const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen }) => {
 
     const handleSabmit = async (e) => {
         e.preventDefault()
-        if (!!edit) {
-            await axios.put(`/address/${edit.id}`, address, { headers })
-                .then(res => {
-                    SwalStyled.fire('.ویرایش شد', res.data.message, 'success')
-                    reload(Math.random())
-                    setIsOpen(false)
-                })
-                .catch(err => SwalStyled.fire('.ویرایش نشد', err.response.data.message, 'error'))
+        if (Object.keys(errors).length) {
+            setTouch({ title: true, address: true, province: true, city: true, pelac: true, postalcode: true, name: true, cellphone: true })
         } else {
-            await axios.post('/address', address, { headers })
-                .then(res => {
-                    SwalStyled.fire('.ثبت شد', res.data.message, 'success')
-                    reload(Math.random())
-                    setIsOpen(false)
-                })
-                .catch(err => SwalStyled.fire('.ثبت نشد', err.response.data.message, 'error'))
+            if (!!edit) {
+                await axios.put(`/address/${edit.id}`, address, { headers })
+                    .then(res => {
+                        SwalStyled.fire('.ویرایش شد', res.data.message, 'success')
+                        reload(Math.random())
+                        setIsOpen(false)
+                    })
+                    .catch(err => SwalStyled.fire('.ویرایش نشد', err.response.data.message, 'error'))
+            } else {
+                await axios.post('/address', address, { headers })
+                    .then(res => {
+                        SwalStyled.fire('.ثبت شد', res.data.message, 'success')
+                        reload(Math.random())
+                        setIsOpen(false)
+                    })
+                    .catch(err => SwalStyled.fire('.ثبت نشد', err.response.data.message, 'error'))
+            }
         }
     }
 
@@ -84,27 +93,28 @@ const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen }) => {
                             <div className={style.field}>
                                 <label className={style.label}>نام مکان <span className={style.star}>*</span></label>
                                 <Input value={edit?.title} type='text' name='title' result={handleChange}
-                                    className={style.input} placeholder='خانه, محل کار, ...' />
+                                    className={`${style.input} ${(touch.title && !!errors.title) ? style.error : ''}`} placeholder='خانه, محل کار, ...' />
                             </div>
                         </div>
                         <div className={style.oneField}>
                             <div className={style.field}>
                                 <label className={style.label}>نشانی پستی <span className={style.star}>*</span></label>
-                                <textarea className={style.textarea} dir='rtl' name="address" minLength={5} maxLength={400} onChange={(e) => handleChange('address', e.target.value)}
+                                <textarea className={`${style.textarea} ${(touch.address && !!errors.address) ? style.error : ''}`} dir='rtl' name="address" onChange={(e) => handleChange('address', e.target.value)}
                                     defaultValue={data.formatted_address.slice(data.formatted_address.indexOf('،') + 1)}></textarea>
+                                {touch.address && errors.address && <span className={style.error_text}>{errors.address}</span>}
                             </div>
                         </div>
                         <div className={style.twoField}>
                             <div className={style.field}>
                                 <label className={style.label}>استان <span className={style.star}>*</span></label>
-                                <div className={style.dropdown}>
+                                <div className={`${style.dropdown} ${(touch.province && !!errors.province) ? style.error : ''}`}>
                                     <DropDown label array={Provinces} defaultValue={address.province}
                                         name={'province'} setState={handleChange} Searchable />
                                 </div>
                             </div>
                             <div className={style.field}>
                                 <label className={style.label}>شهر <span className={style.star}>*</span></label>
-                                <div className={style.dropdown}>
+                                <div className={`${style.dropdown} ${(touch.city && !!errors.city) ? style.error : ''}`}>
                                     <DropDown label array={cities} defaultValue={address.city}
                                         name='city' setState={handleChange} Searchable />
                                 </div>
@@ -114,7 +124,7 @@ const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen }) => {
                             <div className={style.twoSmallField}>
                                 <div className={style.field}>
                                     <label className={style.label}>پلاک <span className={style.star}>*</span></label>
-                                    <Input value={edit?.pelac} name='pelac' type="number" result={handleChange} className={style.input} />
+                                    <Input value={edit?.pelac} name='pelac' type="number" result={handleChange} className={`${style.input} ${(touch.pelac && !!errors.pelac) ? style.error : ''}`} />
                                 </div>
                                 <div className={style.field}>
                                     <label className={style.label}>واحد</label>
@@ -123,7 +133,7 @@ const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen }) => {
                             </div>
                             <div className={style.field}>
                                 <label className={style.label}>کد پستی <span className={style.star}>*</span></label>
-                                <Input value={edit?.postalcode} type='number' name='postalcode' result={handleChange} className={style.input} />
+                                <Input value={edit?.postalcode} type='number' name='postalcode' result={handleChange} className={`${style.input} ${(touch.postalcode && !!errors.postalcode) ? style.error : ''}`} />
                             </div>
                         </div>
                     </div>
@@ -136,11 +146,11 @@ const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen }) => {
                         <div className={style.twoField}>
                             <div className={style.field}>
                                 <label className={style.label}>نام و نام خانوادگی گیرنده <span className={style.star}>*</span></label>
-                                <Input value={edit?.name} type='text' name='name' result={handleChange} className={style.input} />
+                                <Input value={edit?.name} type='text' name='name' result={handleChange} className={`${style.input} ${(touch.name && !!errors.name) ? style.error : ''}`} />
                             </div>
                             <div className={style.field}>
                                 <label className={style.label}>شماره موبایل <span className={style.star}>*</span></label>
-                                <Input value={edit?.cellphone} type='number' name='cellphone' result={handleChange} className={style.input} placeholder='مثل: ۰۹۱۲۳۴۵۶۷۸۹' />
+                                <Input value={edit?.cellphone} type='number' name='cellphone' result={handleChange} className={`${style.input} ${(touch.cellphone && !!errors.cellphone) ? style.error : ''}`} placeholder='مثل: ۰۹۱۲۳۴۵۶۷۸۹' />
                             </div>
                         </div>
                     </div>
