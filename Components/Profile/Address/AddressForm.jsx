@@ -14,7 +14,6 @@ const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen }) => {
 
     const headers = { Authorization: `${user?.token_type} ${user?.access_token}` }
     let errors = validation(address)
-    console.log(errors);
 
     useEffect(() => {
         const newCities = findCities(Cities, data.state)

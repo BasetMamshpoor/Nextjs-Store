@@ -26,30 +26,19 @@ const Product = ({ state, dispatch }) => {
                                         <div className={style.Detail_Pnmvg}><span style={{ background: p.colorCode }}></span></div>
                                         <p>{p.color}</p>
                                     </div>
-                                    <div className={style.box}>
+                                    {!!p.sizes&&<div className={style.box}>
                                         <div className={style.Detail_Pnmvg}>
                                             <TfiRuler />
                                         </div>
-                                        <p>{p.sizes?.size}</p>
-                                    </div>
-                                </div>
-                                <div className={style.MncBgTfd_Pr}>
-                                    {p.messages && <div className={style.message}>
-                                        {
-                                            p.messages.map(m => {
-                                                return (
-                                                    <p className={style[m.type]}>{m.text}</p>
-                                                )
-                                            })
-                                        }
+                                        <p>{p.sizes.size}</p>
                                     </div>}
                                 </div>
-                                {!isDeleted && <div className={style.vVBE__0Oiju}>
+                                {!isDeleted && <div className={`${style.vVBE__0Oiju} ${style.lg_screen}`}>
                                     <div className={style.G_VwXabc_99L}>
                                         <p className={style.price_3Sproduct}>{addComma(p.offPrice.toString())}</p>
                                         {p.offPrice !== p.price && <div className={style.UcUrzyq}>{addComma(p.price.toString())}<span>تخفیف</span></div>}
                                     </div>
-                                    <div className={`${style.Dc_Oi88Ted} ${style.lg_screen}`}>
+                                    <div className={style.Dc_Oi88Ted}>
                                         <button className={`${style.bTxn} ${p.quantity >= p.sizes?.stock ? style.enughNumber : ''}`} onClick={() => dispatch({ type: "INCREASE", payload: p })}>
                                             <FiPlus />
                                         </button>
@@ -62,20 +51,37 @@ const Product = ({ state, dispatch }) => {
                                         </button>
                                     </div>
                                 </div>}
+                                <div className={style.MncBgTfd_Pr}>
+                                    {p.messages && <div className={style.message}>
+                                        {
+                                            p.messages.map(m => {
+                                                return (
+                                                    <p className={style[m.type]}>{m.text}</p>
+                                                )
+                                            })
+                                        }
+                                    </div>}
+                                </div>
                             </div>
                         </div>
-                        <div className={`${style.Dc_Oi88Ted_sm}`}>
-                            <button className={`${style.bTxn} ${p.quantity >= p.sizes?.stock ? style.enughNumber : ''}`} onClick={() => dispatch({ type: "INCREASE", payload: p })}>
-                                <FiPlus />
-                            </button>
-                            <span className={style.num_2Cproduct}>{e2p(p.quantity)}</span>
-                            <button className={style.bTxn}>
-                                {p.quantity < 2 ?
-                                    <FiTrash2 onClick={() => dispatch({ type: "REMOVE_ITEM", payload: p })} /> :
-                                    <FiMinus onClick={() => dispatch({ type: "DECREASE", payload: p })} />
-                                }
-                            </button>
-                        </div>
+                        {!isDeleted && <div className={`${style.vVBE__0Oiju} ${style.sm_screen}`}>
+                            <div className={style.G_VwXabc_99L}>
+                                <p className={style.price_3Sproduct}>{addComma(p.offPrice.toString())}</p>
+                                {p.offPrice !== p.price && <div className={style.UcUrzyq}>{addComma(p.price.toString())}<span>تخفیف</span></div>}
+                            </div>
+                            <div className={style.Dc_Oi88Ted_sm}>
+                                <button className={`${style.bTxn} ${p.quantity >= p.sizes?.stock ? style.enughNumber : ''}`} onClick={() => dispatch({ type: "INCREASE", payload: p })}>
+                                    <FiPlus />
+                                </button>
+                                <span className={style.num_2Cproduct}>{e2p(p.quantity)}</span>
+                                <button className={style.bTxn}>
+                                    {p.quantity < 2 ?
+                                        <FiTrash2 onClick={() => dispatch({ type: "REMOVE_ITEM", payload: p })} /> :
+                                        <FiMinus onClick={() => dispatch({ type: "DECREASE", payload: p })} />
+                                    }
+                                </button>
+                            </div>
+                        </div>}
                     </div>
                 )
             }) :

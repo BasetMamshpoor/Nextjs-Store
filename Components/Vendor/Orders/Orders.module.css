@@ -1,22 +1,6 @@
 .dSezpb6 {
   margin-bottom: 3rem;
 }
-.MfdNsa {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #ddd;
-}
-.MfdNsa svg {
-  width: 32px;
-  height: 32px;
-  color: #3499ff;
-}
-.QzEmd {
-  font-size: 18px;
-  margin-right: 1rem;
-}
 .dSezpb6 {
   display: flex;
   flex-direction: column;
@@ -60,10 +44,12 @@
   border-radius: 10px;
   box-shadow: 0 5px 10px -3px #d4d4d48f;
   padding: 6px 18px;
-  background-color: rgb(253, 253, 253);
+  background-color: rgb(252, 252, 252);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 .WMeJalq:hover {
-  color: #000;
+  box-shadow: 0 5px 10px -3px #d4d4d4;
 }
 .WMeJalq p {
   font-size: 12px;
@@ -94,39 +80,41 @@
   padding: 0.5rem 1rem;
   text-align: center;
 }
+.aR9_nu_st {
+  cursor: unset;
+}
 .aR9_nu {
   display: inline-flex;
   border-radius: 300px;
   cursor: unset;
-  transition: all 150ms ease-in-out 0s;
   padding: 0.25rem 1rem;
 }
-.aR9_nu span {
+.aR9_nu span,
+.aR9_nu_st span {
   font-size: 11px;
 }
-.pending_order {
-  background-color: rgba(15, 52, 96, 0.2);
+.deliveredPayment {
+  background-color: rgba(85, 255, 141, 0.15);
 }
-.delivered_order {
-  background-color: rgba(51, 208, 103, 0.15);
-}
-.cancelled_order {
+.cancelledPayment {
   background-color: rgb(255, 225, 230);
 }
 /* .awaitingPayment {
-  background-color: rgba(169, 238, 255, 0.496);
+  background-color: #fff8e5;
 }
 .awaitingPayment span {
-  color: rgb(0, 197, 241);
+  color: #c79705;
 } */
-.cancelled_order span {
+.cancelled_order span,
+.cancelledPayment span {
   color: rgb(233, 69, 96);
 }
-.pending_order span {
-  color: rgb(15, 52, 96);
-}
-.delivered_order span {
+.delivered_order span,
+.deliveredPayment span {
   color: rgb(51, 208, 103);
+}
+.pending_order span {
+  color: rgb(0, 197, 241);
 }
 .mknBg {
   flex: 0 0 0px !important;

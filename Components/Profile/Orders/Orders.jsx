@@ -15,18 +15,24 @@ const Orders = () => {
 
     const [orders, setOrders, reload, pagination] = useGetPrivatRequest('/profile/orders', currentPage)
 
-    const statusOrser = (status) => {
+    const statusFun = (status) => {
         const json = [
             { class: style.cancelled_order, value: 'لغو شده' },
             { class: style.pending_order, value: 'آماده سازی' },
             { class: style.delivered_order, value: 'تحویل داده شد' }
         ]
-        // if (payment_status === 1) {
-        //     return (
-        //         <div className={`${style.aR9_nu} ${style.awaitingPayment}`}>
-        //             <span>در انتظار پرداخت</span>
-        //         </div>
-        //     )
+        return (
+            <div className={`${style.aR9_nu} ${json[status].class}`}>
+                <span>{json[status].value}</span>
+            </div>
+        )
+    }
+    const payStatus = (status) => {
+        const json = [
+            { class: style.cancelled_order, value: 'لغو شده' },
+            { class: style.delivered_order, value: 'پرداخت شد' },
+            // { class: style.awaitingPayment, value: 'در انتظار پرداخت' },
+        ]
         return (
             <div className={`${style.aR9_nu} ${json[status].class}`}>
                 <span>{json[status].value}</span>
@@ -45,10 +51,11 @@ const Orders = () => {
                     {!!orders.length > 0 ? <>
                         <div className={style.KnLxqov}>
                             <ul className={style.SzPld}>
-                                <li>سفارش</li>
+                                <li>کد سفارش</li>
                                 <li>وضعیت</li>
-                                <li>تاریخ ثبت سفارش</li>
+                                <li>تاریخ</li>
                                 <li>مبلغ نهایی</li>
+                                <li>وضعیت پرداخت</li>
                                 <li></li>
                             </ul>
                         </div>
@@ -60,10 +67,13 @@ const Orders = () => {
                                             <Link href="/" className={style.WMeJalq}>
                                                 <p>{e2p(o.code)}</p>
                                                 <div>
-                                                    {statusOrser(o.status)}
+                                                    {statusFun(o.status)}
                                                 </div>
                                                 <p>{new Date(o.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                                                 <p className={style.order_PL}>{addComma(o.total_price)}</p>
+                                                <div>
+                                                    {payStatus(o.payment_status)}
+                                                </div>
                                                 <div className={style.mknBg}>
                                                     <BsArrowLeft />
                                                 </div>
