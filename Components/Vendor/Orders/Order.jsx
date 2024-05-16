@@ -7,9 +7,13 @@ import UserProf from '/public/Images/Ei-user.svg'
 import Image from 'next/image';
 import { TfiRuler } from 'react-icons/tfi';
 import addComma from 'Functions/addComma';
+import useGetRequest from 'hooks/useGetPrivatRequest';
+import Loading from 'Components/Loading';
 
 const Order = ({ data, setSingleOrder }) => {
-    const imageUrl = `https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/35.703241022095,51.31121635437/12?mapSize=120,120&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY}`
+    const [order] = useGetRequest(`/admin/orders/${data.id}`)
+
+    const imageUrl = `https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/${order?.address.latitude},${order?.address.longitude}/12?mapSize=120,120&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY}`
 
     const statusFun = (status) => {
         const json = [
@@ -37,27 +41,27 @@ const Order = ({ data, setSingleOrder }) => {
     }
     return (
         <>
-            <div className={style.order} dir='auto'>
+            {!!order ? <div className={style.order} dir='auto'>
                 <div className={style.container}>
                     <div className={style.header}>
                         <button className={style.go_back} onClick={() => setSingleOrder()}><BsArrowRight /></button>
                         <div className={style.order_code}>
-                            <p>سفارش</p> <span>{e2p(data.code)}</span>
+                            <p>سفارش</p> <span>{e2p(order.code)}</span>
                         </div>
                     </div>
                     <div className={style.navbar}>
                         <div className={style.info}>
                             <div className={style.status_section}>
-                                {payStatus(data.payment_status)}
-                                {statusFun(data.status)}
+                                {payStatus(order.payment_status)}
+                                {statusFun(order.status)}
                             </div>
                             <span> | </span>
                             <div className={style.date}>
                                 <div className={style.date_icon}>
                                     <FiCalendar />
                                 </div>
-                                <p>{new Date(data.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                                <p>{new Date(data.created_at).toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' })}</p>
+                                <p>{new Date(order.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                                <p>{new Date(order.created_at).toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' })}</p>
                             </div>
                         </div>
                         <div className={style.actions}>
@@ -92,22 +96,22 @@ const Order = ({ data, setSingleOrder }) => {
                                 <div className={style.receiver}>
                                     <ul className={style.receiver_contact}>
                                         <li>
-                                            <div><FiUser /></div>ابوالفضل العباس مشهور به شمچه
+                                            <div><FiUser /></div>{order.address.name}
                                         </li>
                                         <li className={style.receiver_cellphone}>
-                                            <div><FiPhone /></div> <a href="tel:09990990909">09990990909</a>
+                                            <div><FiPhone /></div> <a href="tel:09990990909">{order.address.cellphone}</a>
                                         </li>
                                     </ul>
                                     <div className={style.address_sec}>
                                         <p className={style.sm_title}>آدرس تحویل</p>
                                         <ul className={style.address}>
-                                            <li className={style.address_main}>استان تهران - شهرستان تهران - بزرگراه ستاری - استان تهران - شهرستان تهران - بزرگراه ستاری</li>
+                                            <li className={style.address_main}>{order.address.province} - {order.address.city} - {order.address.address}</li>
                                             <li className={style.number_house}>
-                                                <span>پلاک: </span>541897
+                                                <span>پلاک: </span>{e2p(order.address.number)}
                                                 <b>|</b>
-                                                <span>واحد: </span>3
+                                                <span>واحد: </span>{e2p(order.address.unit ?? 0)}
                                             </li>
-                                            <li className={style.postalcode}><span>کدپستی: </span>5794448789</li>
+                                            <li className={style.postalcode}><span>کدپستی: </span>{e2p(order.address.postalcode)}</li>
                                         </ul>
                                         <div className={style.simple_map_img}>
                                             <Image src={!!imageUrl ? imageUrl : '/Images/placeholder-1.png'}
@@ -122,7 +126,7 @@ const Order = ({ data, setSingleOrder }) => {
                             <div>
                                 <div className={style.title}>محصولات</div>
                                 <div className={style.products}>
-                                    {!!data && data.orderItems.map(p => {
+                                    {!!order && order.orderItems.map(p => {
                                         return (
                                             <div className={style.tEl_7HqZy} key={p.product.id}>
                                                 <div className={style.LbOT_Plwz33}>
@@ -173,14 +177,14 @@ const Order = ({ data, setSingleOrder }) => {
                                         <li className={style.pricing_item}><b>تعداد کل محصولات: </b><span className={style.all_quantity}>{e2p(15)}</span></li>
                                         <li className={style.pricing_item}><b>قیمت کل: </b><span className={style.value}>{addComma(0)}</span></li>
                                         <li className={style.pricing_item}><b>مقدار تخفیف: </b><span className={style.value}>{addComma(0)}</span></li>
-                                        <li className={style.pricing_item}><b>پرداخت شده: </b><span className={style.value}>{addComma(data.total_price)}</span></li>
+                                        <li className={style.pricing_item}><b>پرداخت شده: </b><span className={style.value}>{addComma(order.total_price)}</span></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> : <Loading />}
         </>
     );
 };
