@@ -58,7 +58,7 @@ const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen }) => {
     const handleSabmit = async (e) => {
         e.preventDefault()
         if (Object.keys(errors).length) {
-            setTouch({ title: true, address: true, province: true, city: true, pelac: true, postalcode: true, name: true, cellphone: true })
+            setTouch({ title: true, address: true, province: true, city: true, number: true, postalcode: true, name: true, cellphone: true })
         } else {
             if (!!edit) {
                 await axios.put(`/address/${edit.id}`, address, { headers })
@@ -123,11 +123,11 @@ const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen }) => {
                             <div className={style.twoSmallField}>
                                 <div className={style.field}>
                                     <label className={style.label}>پلاک <span className={style.star}>*</span></label>
-                                    <Input value={edit?.pelac} name='pelac' type="number" result={handleChange} className={`${style.input} ${(touch.pelac && !!errors.pelac) ? style.error : ''}`} />
+                                    <Input value={edit?.number} isNumber={true} name='number' type="number" result={handleChange} className={`${style.input} ${(touch.number && !!errors.number) ? style.error : ''}`} />
                                 </div>
                                 <div className={style.field}>
                                     <label className={style.label}>واحد</label>
-                                    <Input value={edit?.vahed} name='vahed' type="number" result={handleChange} className={style.input} />
+                                    <Input value={edit?.unit} name='unit' type="number" result={handleChange} className={style.input} />
                                 </div>
                             </div>
                             <div className={style.field}>

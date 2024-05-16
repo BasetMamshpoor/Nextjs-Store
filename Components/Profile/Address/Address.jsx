@@ -14,12 +14,33 @@ import AddAddress from './AddAddress'
 import { Functions } from 'providers/FunctionsProvider'
 import { Authorization } from 'providers/AuthorizationProvider'
 import Image from 'next/image'
+import axios from 'axios'
 
 const Address = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [addresses, setAddress, reload, pagination] = useGetPrivatRequest('/profile/addresses', currentPage)
     const { SwalStyled } = useContext(Functions)
     const { tokens, user } = useContext(Authorization)
+    const headers = { Authorization: `${tokens?.token_type} ${tokens?.access_token}` }
+
+    const handleDelete = async (id) =>
+        SwalStyled.fire({
+            title: 'حذف',
+            text: 'آیا از حذف آدرس اطمینان دارید؟',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'بله',
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+        }).then(async (result) => {
+            await axios.delete(`/address/${id}`, { headers })
+                .then(res => {
+                    SwalStyled.fire('.حذف شد', res.data.message, 'success')
+                    reload(Math.random())
+                })
+                .catch(err => SwalStyled.fire('.حذف نشد', err.response.data.message, 'error'))
+        })
+
 
     return (
         <>
@@ -46,7 +67,7 @@ const Address = () => {
                                                 <div onClick={() => createModal(<AddAddress reload={reload} edit={a} SwalStyled={SwalStyled} user={{ ...user, ...tokens }} />)}>
                                                     <FiEdit3 />
                                                 </div>
-                                                <div>
+                                                <div onClick={() => handleDelete(a.id)}>
                                                     <BsTrash />
                                                 </div>
                                             </div>

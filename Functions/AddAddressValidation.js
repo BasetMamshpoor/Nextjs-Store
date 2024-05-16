@@ -40,13 +40,13 @@ export default function (params) {
         delete errors.city
     }
 
-    // pelac
-    if (!params.pelac) {
-        errors.pelac = true
-    } else if (!params.pelac.trim()) {
-        errors.pelac = true
+    // number
+    if (!params.number) {
+        errors.number = true
+    } else if (!params.number.trim()) {
+        errors.number = true
     } else {
-        delete errors.pelac
+        delete errors.number
     }
     // postalcode
     if (!params.postalcode) {
