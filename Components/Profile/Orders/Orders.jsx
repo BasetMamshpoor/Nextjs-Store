@@ -11,10 +11,13 @@ import Loading from 'Components/Loading';
 import img from 'public/Images/order.png'
 import Order from './Order';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const Orders = () => {
+    const router = useRouter();
+    const { order: orderID } = router.query
     const [currentPage, setCurrentPage] = useState(1)
-    const [singleOrder, setSingleOrder] = useState()
+    const [singleOrder, setSingleOrder] = useState(orderID ? { id: orderID } : undefined)
 
     const [orders, setOrders, reload, pagination] = useGetPrivatRequest('/profile/orders', currentPage)
 
@@ -43,9 +46,16 @@ const Orders = () => {
         )
     }
 
+    const detailOrder = (order) => {
+        setSingleOrder(order)
+        router.replace({
+            query: { ...router.query, order: order.id },
+        });
+    }
+
     return (
         <>
-            {!!singleOrder ? <Order data={singleOrder} setSingleOrder={setSingleOrder} /> :
+            {!!singleOrder ? <Order data={singleOrder.id} setSingleOrder={setSingleOrder} /> :
                 (!!orders ?
                     <div className={style.dSezpb6} dir="rtl">
                         <div className={style.MfdNsa}>
@@ -58,7 +68,7 @@ const Orders = () => {
                                     <div className={style.RxaPlo}>
                                         {orders.map(o => {
                                             return (
-                                                <article className={style.order} key={o.id} onClick={() => setSingleOrder(o)}>
+                                                <article className={style.order} key={o.id} onClick={() => detailOrder(o)}>
                                                     <div className={style.or_header}>
                                                         <div className={style.or_top}>
                                                             <div className={style.status}><div className={style.icon}><FaCheckCircle /></div><span>{statusFun(o.status)}</span></div>

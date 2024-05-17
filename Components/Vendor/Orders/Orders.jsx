@@ -8,10 +8,13 @@ import { useState } from 'react';
 import Loading from 'Components/Loading';
 import img from 'public/Images/order.png'
 import Order from './Order';
+import { useRouter } from 'next/router';
 
 const Orders = () => {
+    const router = useRouter();
+    const { order: orderID } = router.query
     const [currentPage, setCurrentPage] = useState(1)
-    const [singleOrder, setSingleOrder] = useState()
+    const [singleOrder, setSingleOrder] = useState(orderID ? { id: orderID } : undefined)
 
     const [orders, setOrders, reload, pagination] = useGetPrivatRequest('/admin/orders', currentPage, { items_perpage: 10 })
 
@@ -40,9 +43,16 @@ const Orders = () => {
         )
     }
 
+    const detailOrder = (order) => {
+        setSingleOrder(order)
+        router.replace({
+            query: { ...router.query, order: order.id },
+        });
+    }
+    
     return (
         <>
-            {!!singleOrder ? <Order data={singleOrder} setSingleOrder={setSingleOrder} /> :
+            {!!singleOrder ? <Order data={singleOrder.id} setSingleOrder={setSingleOrder} /> :
                 (!!orders ?
                     <div className={style.dSezpb6} dir="rtl">
                         {!!orders.length > 0 ? <>
@@ -61,8 +71,7 @@ const Orders = () => {
                                     {orders.map(o => {
                                         return (
                                             <li key={o.id}>
-                                                {/* <div className={style.WMeJalq} onClick={() => createModal(<Order data={o} SwalStyled={SwalStyled} reload={reload} />)}> */}
-                                                <div className={style.WMeJalq} onClick={() => setSingleOrder(o)}>
+                                                <div className={style.WMeJalq} onClick={() => detailOrder(o)}>
                                                     <p>{e2p(o.code)}</p>
                                                     <div>
                                                         {statusFun(o.status)}

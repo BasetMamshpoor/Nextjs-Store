@@ -7,11 +7,14 @@ import UserProf from '/public/Images/Ei-user.svg'
 import Image from 'next/image';
 import { TfiRuler } from 'react-icons/tfi';
 import addComma from 'Functions/addComma';
-import useGetRequest from 'hooks/useGetPrivatRequest';
+import useGetPrivatRequest from 'hooks/useGetPrivatRequest';
 import Loading from 'Components/Loading';
+import { useRouter } from 'next/router';
 
 const Order = ({ data, setSingleOrder }) => {
-    const [order] = useGetRequest(`/admin/orders/${data.id}`)
+    const router = useRouter();
+    const { order: orderID, ...queries } = router.query
+    const [order] = useGetPrivatRequest(`/admin/orders/${orderID ?? data}`)
 
     const imageUrl = `https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/${order?.address.latitude},${order?.address.longitude}/12?mapSize=120,120&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY}`
 
@@ -39,12 +42,16 @@ const Order = ({ data, setSingleOrder }) => {
             </div>
         )
     }
+    const OrderList = () => {
+        setSingleOrder()
+        router.push({ pathname: router.pathname, query: queries }, undefined, { shallow: true })
+    }
     return (
         <>
             {!!order ? <div className={style.order} dir='auto'>
                 <div className={style.container}>
                     <div className={style.header}>
-                        <button className={style.go_back} onClick={() => setSingleOrder()}><BsArrowRight /></button>
+                        <button className={style.go_back} onClick={() => OrderList()}><BsArrowRight /></button>
                         <div className={style.order_code}>
                             <p>سفارش</p> <span>{e2p(order.code)}</span>
                         </div>

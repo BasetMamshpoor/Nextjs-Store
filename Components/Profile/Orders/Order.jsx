@@ -6,24 +6,31 @@ import { e2p } from 'Functions/ConvertNumbers';
 import Link from 'next/link';
 import Image from 'next/image';
 import addComma from 'Functions/addComma';
-import useGetRequest from 'hooks/useGetPrivatRequest';
+import useGetPrivatRequest from 'hooks/useGetPrivatRequest';
 import Loading from 'Components/Loading';
 import createModal from 'Components/Modal';
 import AddComment from 'Components/Detaile/AddComment';
 import { useContext } from 'react';
 import { Functions } from 'providers/FunctionsProvider';
+import { useRouter } from 'next/router';
 
 const Order = ({ data, setSingleOrder }) => {
-
-    const [order] = useGetRequest(`/profile/orders/${data.id}`)
+    const router = useRouter();
+    const { order: orderID, ...queries } = router.query
+    const [order] = useGetPrivatRequest(`/profile/orders/${orderID ?? data}`)
     const { SwalStyled } = useContext(Functions)
+
+    const OrderList = () => {
+        setSingleOrder()
+        router.push({ pathname: router.pathname, query: queries }, undefined, { shallow: true })
+    }
 
     return (
         <>
             {!!order ? <div className={style.order} dir='auto'>
                 <div className={style.container}>
                     <div className={style.header}>
-                        <button className={style.go_back} onClick={() => setSingleOrder()}><BsArrowRight /></button>
+                        <button className={style.go_back} onClick={() => OrderList()}><BsArrowRight /></button>
                         <div className={style.order_code}>
                             <p>جزئیات سفارش</p>
                         </div>
