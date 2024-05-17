@@ -1,0 +1,254 @@
+.order {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+.order button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  outline: none;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid #ddd;
+  padding: 1.5rem 1.5rem;
+}
+.order_code {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.order_code p {
+  font-size: 16px;
+}
+.heading {
+  display: flex;
+  flex-direction: column;
+}
+.info {
+  padding: 16px 24px;
+  border-bottom: 1px solid #ddd;
+}
+.head_top {
+  border-bottom: 1px solid #f0f0f1;
+  padding-bottom: 16px;
+}
+.text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.text > * {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #81858b;
+}
+.text span {
+  color: #000;
+  font-weight: 600;
+}
+.text svg {
+  fill: #e0e0e2;
+}
+.head_address {
+  display: flex;
+  flex-direction: column;
+}
+.receiver {
+  padding: 16px 0 8px 0;
+}
+.head_pay {
+  padding: 16px 24px;
+  border-bottom: 1px solid #ddd;
+}
+.head_pay span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.toman::after {
+  font-weight: 100;
+  content: "\F142\00FE0E";
+  font-family: "Icon";
+  font-size: 20px;
+  margin-right: 3px;
+}
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main {
+  padding: 16px;
+}
+
+.content {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 8px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.products {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 12px;
+}
+.products .tEl_7HqZy:last-child {
+  border: none;
+}
+.tEl_7HqZy {
+  padding: 16px 16px;
+  border-bottom: 1px solid #e0e0e2;
+}
+.LbOT_Plwz33 {
+  display: grid;
+  grid-template-columns: 116px 1fr;
+  grid-column-gap: 16px;
+  grid-row-gap: 12px;
+}
+.C41A__jF {
+  width: 114px;
+  height: 114px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.quantity {
+  position: absolute;
+  min-width: 20px;
+  height: 20px;
+  text-align: center;
+  border-radius: 4px;
+  left: 0;
+  bottom: 0;
+  font-size: 12px;
+}
+.lGJkVwYt {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.RxQOi_5_ed {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: rgb(65, 65, 65);
+}
+.MncBgTfd_Pr {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  flex-direction: column;
+  gap: 5px;
+}
+.MncBgTfd_Pr p {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+}
+.Detail_Pnmvg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Detail_Pnmvg span {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+.Detail_Pnmvg svg {
+  margin-left: 3px;
+}
+.vVBE__0Oiju {
+  display: flex;
+  justify-content: space-between;
+}
+.G_VwXabc_99L {
+  display: flex;
+  flex-direction: column;
+}
+.price_3Sproduct {
+  color: #3e4347;
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+}
+.price_3Sproduct::after {
+  content: "\F142\00FE0E";
+  font-family: "Icon";
+  font-weight: 100;
+  font-size: 24px;
+  margin-right: 6px;
+  margin-bottom: 3px;
+}
+.UcUrzyq {
+  color: #349aff8b;
+}
+.reviwe {
+  display: flex;
+  align-items: center;
+  justify-self: flex-end;
+  gap: 8px;
+  color: #3499ff;
+  cursor: pointer;
+}
+@media (max-width: 1023.98px) {
+  .tEl_7HqZy {
+    box-shadow: none;
+    border-bottom: 1px solid #eee;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .C41A__jF {
+    width: 100px;
+    height: 90px;
+    flex-shrink: 0;
+  }
+  .RxQOi_5_ed {
+    font-size: 12px;
+  }
+  .MncBgTfd_Pr p {
+    font-size: 12px;
+  }
+  .G_VwXabc_99L {
+    flex-direction: column-reverse;
+  }
+  .price_3Sproduct {
+    font-size: 16px;
+  }
+  .price_3Sproduct::after {
+    font-size: 20px;
+  }
+  .Dc_Oi88Ted {
+    padding: 5px;
+  }
+  .UcUrzyq {
+    font-size: 13px;
+  }
+}

@@ -1,17 +1,20 @@
-import { MdShoppingBag } from 'react-icons/md'
-import { BsArrowLeft } from 'react-icons/bs'
+import { MdShoppingBag, MdChevronLeft } from 'react-icons/md'
+import { BsDot } from 'react-icons/bs'
+import { FaCheckCircle } from "react-icons/fa";
 import style from './Orders.module.css'
 import Pagination from 'Components/Pagination/Pagination';
 import useGetPrivatRequest from 'hooks/useGetPrivatRequest';
-import Link from 'next/link';
 import addComma from 'Functions/addComma';
 import { e2p } from 'Functions/ConvertNumbers';
 import { useState } from 'react';
 import Loading from 'Components/Loading';
 import img from 'public/Images/order.png'
+import Order from './Order';
+import Image from 'next/image';
 
 const Orders = () => {
     const [currentPage, setCurrentPage] = useState(1)
+    const [singleOrder, setSingleOrder] = useState()
 
     const [orders, setOrders, reload, pagination] = useGetPrivatRequest('/profile/orders', currentPage)
 
@@ -42,59 +45,70 @@ const Orders = () => {
 
     return (
         <>
-            {!!orders ?
-                <div className={style.dSezpb6} dir="rtl">
-                    <div className={style.MfdNsa}>
-                        <MdShoppingBag />
-                        <p className={style.QzEmd}>تاریخچه سفارشات</p>
-                    </div>
-                    {!!orders.length > 0 ? <>
-                        <div className={style.KnLxqov}>
-                            <ul className={style.SzPld}>
-                                <li>کد سفارش</li>
-                                <li>وضعیت</li>
-                                <li>تاریخ</li>
-                                <li>مبلغ نهایی</li>
-                                <li>وضعیت پرداخت</li>
-                                <li></li>
-                            </ul>
+            {!!singleOrder ? <Order data={singleOrder} setSingleOrder={setSingleOrder} /> :
+                (!!orders ?
+                    <div className={style.dSezpb6} dir="rtl">
+                        <div className={style.MfdNsa}>
+                            <MdShoppingBag />
+                            <p className={style.QzEmd}>تاریخچه سفارشات</p>
                         </div>
-                        <div className={style.DybIay}>
-                            <ul className={style.RxaPlo}>
-                                {orders.map(o => {
-                                    return (
-                                        <li key={o.id}>
-                                            <Link href="/" className={style.WMeJalq}>
-                                                <p>{e2p(o.code)}</p>
-                                                <div>
-                                                    {statusFun(o.status)}
-                                                </div>
-                                                <p>{new Date(o.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                                                <p className={style.order_PL}>{addComma(o.total_price)}</p>
-                                                <div>
-                                                    {payStatus(o.payment_status)}
-                                                </div>
-                                                <div className={style.mknBg}>
-                                                    <BsArrowLeft />
-                                                </div>
-                                            </Link>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                        </div>
-                    </>
-                        : <div className={style.empty}>
-                            <div className={style.pHvtxu}>
-                                <div className={style.pic}>
-                                    <img src={img.src} alt="" />
+                        {!!orders.length > 0 ?
+                            <>
+                                <div className={style.DybIay}>
+                                    <div className={style.RxaPlo}>
+                                        {orders.map(o => {
+                                            return (
+                                                <article className={style.order} key={o.id} onClick={() => setSingleOrder(o)}>
+                                                    <div className={style.or_header}>
+                                                        <div className={style.or_top}>
+                                                            <div className={style.status}><div className={style.icon}><FaCheckCircle /></div><span>{statusFun(o.status)}</span></div>
+                                                            <div className={style.icon}><MdChevronLeft /></div>
+                                                        </div>
+                                                        <div className={style.content}>
+                                                            <div className={style.or_date}>{new Date(o.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+                                                            <div className={style.or_info}>
+                                                                <div className={style.icon}><BsDot /></div>
+                                                                کد سفارش <span>{e2p(o.code)}</span>
+                                                            </div>
+                                                            <div className={style.or_info}>
+                                                                <div className={style.icon}><BsDot /></div>
+                                                                مبلغ <span className={style.toman}>{addComma(o.total_price)}</span>
+                                                            </div>
+                                                            {!!o.offPrice && <div className={style.or_info}>
+                                                                <div className={style.icon}><BsDot /></div>
+                                                                تخفیف <span className={style.toman}>{addComma(o.offPrice)}</span>
+                                                            </div>}
+                                                        </div>
+                                                    </div>
+                                                    <div className={style.pictures}>
+                                                        <div className={style.images}>
+                                                            {o.orderItems.map(img => {
+                                                                return (
+                                                                    <div className={style.layout} key={img.id}>
+                                                                        <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={img.product_image} alt="" />
+                                                                    </div>
+                                                                )
+                                                            })}
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            )
+                                        })}
+                                    </div>
                                 </div>
-                                <p>هنوز هیچ سفارشی ندادید</p>
-                            </div>
-                        </div>}
-                    <Pagination currentPage={currentPage} setCurrentPage={(e) => setCurrentPage(e)} dataLength={pagination.meta.total} itemsPerPage={pagination.meta.per_page} boxShadow={false} />
-                </div >
-                : <Loading />}
+                            </>
+                            : <div className={style.empty}>
+                                <div className={style.pHvtxu}>
+                                    <div className={style.pic}>
+                                        <img src={img.src} alt="" />
+                                    </div>
+                                    <p>هنوز هیچ سفارشی ندادید</p>
+                                </div>
+                            </div>}
+                        <Pagination currentPage={currentPage} setCurrentPage={(e) => setCurrentPage(e)} dataLength={pagination.meta.total} itemsPerPage={pagination.meta.per_page} boxShadow={false} />
+                    </div >
+                    : <Loading />)
+            }
         </>
     );
 };
