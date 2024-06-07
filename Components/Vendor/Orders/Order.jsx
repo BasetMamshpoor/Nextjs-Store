@@ -93,7 +93,7 @@ const Order = ({ data, setSingleOrder }) => {
                                         <div className={style.user_image}>
                                             <img src={UserProf.src} alt="" />
                                         </div>
-                                        <p className={style.user_name}>سید نجم الدین فخرالدین پور</p>
+                                        <p className={style.user_name}>{order.user.name}</p>
                                     </div>
                                     <button className={style.user_arrow}><FiArrowUpLeft /></button>
                                 </Link>
@@ -147,7 +147,7 @@ const Order = ({ data, setSingleOrder }) => {
                                                                 <div className={style.Detail_Pnmvg}>
                                                                     <BsBuilding />
                                                                 </div>
-                                                                <p>{p.product.brand}</p>
+                                                                <p>{p.product.brand.name}</p>
                                                             </div>
                                                             <div className={style.box}>
                                                                 <div className={style.Detail_Pnmvg}><span style={{ background: p.product.colorCode }}></span></div>
@@ -181,9 +181,9 @@ const Order = ({ data, setSingleOrder }) => {
                                 <div className={style.sm_title}>خلاصه پرداخت</div>
                                 <div className={style.pricing_detail}>
                                     <ul>
-                                        <li className={style.pricing_item}><b>تعداد کل محصولات: </b><span className={style.all_quantity}>{e2p(15)}</span></li>
-                                        <li className={style.pricing_item}><b>قیمت کل: </b><span className={style.value}>{addComma(0)}</span></li>
-                                        <li className={style.pricing_item}><b>مقدار تخفیف: </b><span className={style.value}>{addComma(0)}</span></li>
+                                        <li className={style.pricing_item}><b>تعداد کل محصولات: </b><span className={style.all_quantity}>{e2p(order.total_items)}</span></li>
+                                        <li className={style.pricing_item}><b>قیمت کل: </b><span className={style.value}>{addComma(order.total_preOffPrice)}</span></li>
+                                        <li className={style.pricing_item}><b>مقدار تخفیف: </b><span className={style.value}>{addComma(order.total_discount)}</span></li>
                                         <li className={style.pricing_item}><b>پرداخت شده: </b><span className={style.value}>{addComma(order.total_price)}</span></li>
                                     </ul>
                                 </div>

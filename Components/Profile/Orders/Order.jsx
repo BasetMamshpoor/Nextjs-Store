@@ -99,7 +99,7 @@ const Order = ({ data, setSingleOrder }) => {
                                                             <div className={style.Detail_Pnmvg}>
                                                                 <BsBuilding />
                                                             </div>
-                                                            <p>{p.product.brand}</p>
+                                                            <p>{p.product.brand.name}</p>
                                                         </div>
                                                         <div className={style.box}>
                                                             <div className={style.Detail_Pnmvg}><span style={{ background: p.product.colorCode }}></span></div>
