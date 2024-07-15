@@ -1,0 +1,48 @@
+.address {
+  direction: rtl;
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 16px 20px 16px 24px;
+  position: relative;
+  border: 1px solid #e0e0e2;
+  width: 100%;
+  background: #fff;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+}
+.main {
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  justify-content: flex-start;
+}
+.marker_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+.title {
+  color: #81858b;
+  font-size: 12px;
+}
+.address_text {
+  color: #23254e;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 2.1;
+  margin: .5rem 0;
+}
+.name {
+  color: #23254e;
+}
+.change {
+  display: flex;
+  justify-content: flex-end;
+  color: #19bfd3;
+  margin-top: 4px;
+  cursor: pointer;
+}

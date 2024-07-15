@@ -4,12 +4,12 @@ import NeshanMap from "@neshan-maps-platform/react-openlayers"
 import "@neshan-maps-platform/react-openlayers/dist/style.css"
 import style from './AddAddress.module.css'
 import pinIcon from 'public/Images/pin-location.svg'
-import { FiMapPin, FiClose } from "react-icons/fi";
+import { FiMapPin } from "react-icons/fi";
 import createModal from "Components/Modal"
 import AddressForm from "./AddressForm"
 import { IoMdClose } from "react-icons/io";
 
-const AddAddress = ({ SwalStyled, reload, user, edit }) => {
+const AddAddress = ({ SwalStyled, reload, user, edit, router }) => {
     const input = useRef()
 
     const [ol, setOl] = useState()
@@ -93,7 +93,7 @@ const AddAddress = ({ SwalStyled, reload, user, edit }) => {
             }
         })
             .then(res => createModal(<AddressForm SwalStyled={SwalStyled}
-                data={{ longitude: latlng[0], latitude: latlng[1], ...res.data }} reload={reload} user={user} edit={edit} />))
+                data={{ longitude: latlng[0], latitude: latlng[1], ...res.data }} reload={reload} user={user} edit={edit} router={router} />))
             .catch(err => SwalStyled.fire('قابل ارسال نیست', err.response.data.message, 'error'))
     }
 

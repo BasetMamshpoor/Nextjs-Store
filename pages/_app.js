@@ -18,8 +18,8 @@ axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api`
 export default function App({ Component, pageProps }) {
   const isMatch = useMediaQuery('(max-width: 1023.98px)')
   const router = useRouter()
-  const authRoutes = ['login', 'password', 'verify', 'forgotpassword']
-  const isLogin = authRoutes.find(r => `/auth/${r}` === router.pathname) ? true : false
+  const routesWithout_nav_foot = ['/auth/login', '/auth/password', '/auth/verify', '/auth/forgotpassword','/checkout/payment']
+  const withoutNavbar_Footer = routesWithout_nav_foot.find(r => r === router.pathname) ? true : false
 
   return (
     <>
@@ -30,10 +30,10 @@ export default function App({ Component, pageProps }) {
               <Head>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
               </Head>
-              {!isLogin && (isMatch ? <MobileNavbar /> : <Navbar />)}
+              {!withoutNavbar_Footer && (isMatch ? <MobileNavbar /> : <Navbar />)}
               <NextNProgress />
               <Component {...pageProps} />
-              {!isLogin && <Footer />}
+              {!withoutNavbar_Footer && <Footer />}
               <div id="modal-container"></div>
             </CartContextProvider>
           </AuthorizationProvider>

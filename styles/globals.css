@@ -284,6 +284,9 @@ textarea {
   color: #000 !important;
 }
 @media (max-width: 1023.98px) {
+  .container {
+    padding: 0;
+  }
   .main_slide {
     border-radius: 0;
   }

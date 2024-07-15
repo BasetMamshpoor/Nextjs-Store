@@ -15,12 +15,14 @@ import { Functions } from 'providers/FunctionsProvider'
 import { Authorization } from 'providers/AuthorizationProvider'
 import Image from 'next/image'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 
 const Address = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [addresses, setAddress, reload, pagination] = useGetPrivatRequest('/profile/addresses', currentPage)
     const { SwalStyled } = useContext(Functions)
     const { tokens, user } = useContext(Authorization)
+    const router = useRouter()
     const headers = { Authorization: `${tokens?.token_type} ${tokens?.access_token}` }
 
     const handleDelete = async (id) =>
@@ -53,7 +55,7 @@ const Address = () => {
                             </div>
                             <h5>آدرس ها</h5>
                         </div>
-                        <button className={style.OTxe3_M} onClick={() => createModal(<AddAddress reload={reload} SwalStyled={SwalStyled} user={{ ...user, ...tokens }} />)}>ثبت آدرس جدید</button>
+                        <button className={style.OTxe3_M} onClick={() => createModal(<AddAddress router={router} reload={reload} SwalStyled={SwalStyled} user={{ ...user, ...tokens }} />)}>ثبت آدرس جدید</button>
                     </div>
                     {!!pagination ? <>
                         <div className={style.Ubx7_O3}>

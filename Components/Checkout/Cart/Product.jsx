@@ -1,6 +1,7 @@
 import addComma from 'Functions/addComma';
 import { e2p } from 'Functions/ConvertNumbers';
 import { FiMinus, FiPlus, FiTrash2 } from 'react-icons/fi'
+import { BsBuilding } from "react-icons/bs";
 import { TfiRuler } from 'react-icons/tfi'
 import style from './Product.module.css'
 import img from 'public/Images/empty-cart.svg'
@@ -16,17 +17,23 @@ const Product = ({ state, dispatch }) => {
                 return (
                     <div className={`${style.tEl_7HqZy} ${isDeleted ? style.deleted_pro : ''}`} key={p.idp} id='product'>
                         <div className={style.LbOT_Plwz33}>
-                            <Link href={`/products/${p.id}`} state={p.sizes} className={style.C41A__jF}>
+                            <Link href={`/products/${p.id}`} className={style.C41A__jF}>
                                 <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={p.image} alt="" />
                             </Link>
                             <div className={style.lGJkVwYt}>
                                 <h3 className={style.RxQOi_5_ed}>{p.name}</h3>
                                 <div className={style.MncBgTfd_Pr}>
                                     <div className={style.box}>
+                                        <div className={style.Detail_Pnmvg}>
+                                            <BsBuilding />
+                                        </div>
+                                        <p>{p.brand.name}</p>
+                                    </div>
+                                    <div className={style.box}>
                                         <div className={style.Detail_Pnmvg}><span style={{ background: p.colorCode }}></span></div>
                                         <p>{p.color}</p>
                                     </div>
-                                    {!!p.sizes&&<div className={style.box}>
+                                    {!!p.sizes && <div className={style.box}>
                                         <div className={style.Detail_Pnmvg}>
                                             <TfiRuler />
                                         </div>

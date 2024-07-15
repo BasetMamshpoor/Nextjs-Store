@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import Product from 'Components/Cart/Product';
+import Product from 'Components/Checkout/Cart/Product';
 import style from 'styles/Cart.module.css'
 import { CartContext } from 'providers/CartContextProvider';
 import addComma from 'Functions/addComma';
@@ -31,8 +31,7 @@ const Cart = () => {
                 }
             })
             return
-        }
-        alert('okkkk')
+        } else push('/checkout/payment')
     }
 
     return (
@@ -59,16 +58,12 @@ const Cart = () => {
                                             <div className={style.jMszopl_9Y_1}>
                                                 <div className={style.KvxUs_LlI}>
                                                     <div className={style.lBsNaA_J}>
-                                                        <p>قیمت کالاها : </p>
+                                                        <p>قیمت کالاها ({e2p(state.itemsCounter)}) : </p>
                                                         <span className={style.sWsRfAqS}>{addComma(state.total.toString())}</span>
                                                     </div>
-                                                    <div className={`${style.lBsNaA_J} ${style.large_screen}`}>
+                                                    <div className={style.lBsNaA_J}>
                                                         <p>جمع نهایی : </p>
                                                         <span className={style.sWsRfAqS}>{addComma(state.total_after_off.toString())}</span>
-                                                    </div>
-                                                    <div className={style.lBsNaA_J}>
-                                                        <p>تعداد کالاها :</p>
-                                                        <span className={style.sWsRfAqS_}>{e2p(state.itemsCounter)} عدد</span>
                                                     </div>
                                                     <div className={`${style.lBsNaA_J} ${style.All_oFF_orDer}`}>
                                                         <p>سود شما از خرید : </p>
@@ -82,7 +77,7 @@ const Cart = () => {
                                                 <div className={`${style.small_screen} ${style.nav_ORder}`}>
                                                     <button onClick={handelSubmit} className={`${style.pq_HhFcy} ${style.mobile_order}`}>ثبت سفارش</button>
                                                     <div className={style.left_nav}>
-                                                        <p>جمع نهایی</p>
+                                                        <p>جمع سبد خرید</p>
                                                         <span className={`${style.sWsRfAqS}`}>{addComma(state.total_after_off.toString())}</span>
                                                     </div>
                                                 </div>

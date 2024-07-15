@@ -1,0 +1,114 @@
+.discount {
+  border: 1px solid #e0e0e2;
+  padding: 16px 24px;
+  border-radius: 8px;
+  margin-top: 12px;
+  background: #fff;
+}
+.header {
+  padding-top: 12px;
+  overflow-wrap: break-word;
+  margin-bottom: 8px;
+}
+.head {
+  display: flex;
+  align-items: center;
+}
+.head p {
+  flex-grow: 1;
+}
+.title {
+  font-size: 16px;
+  font-weight: 600;
+}
+.close {
+  display: flex;
+  align-items: center;
+  color: #19bfd3;
+  cursor: pointer;
+}
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 4px;
+}
+.info {
+  color: #a1a3a8;
+  font-size: 12px;
+}
+.form {
+  width: 100%;
+  margin-top: 16px;
+}
+.label {
+  width: 50%;
+  display: inline-block;
+}
+.frame {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #a1a3a8;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  color: #a1a3a8;
+  height: 3rem;
+}
+.frame:focus-within {
+    border-color: #19bfd3;
+}
+.frame:focus-within .submit {
+    color: #19bfd3;
+}
+.input {
+  flex-grow: 1;
+}
+.input input {
+  border: none;
+  color: #3f4064;
+  caret-color: #19bfd3;
+  width: 100%;
+  border-radius: 8px;
+  padding: 8px;
+}
+.input input:focus,
+.input input:focus-visible {
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+.submit {
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+  align-items: center;
+  overflow: hidden;
+  transition: top 0.3s ease-in-out;
+  padding: calc(2 * 4px) calc(4 * 4px);
+  color: #a1a3a8;
+  border-radius: 8px;
+  display: flex;
+  position: relative;
+  height: 40px;
+}
+.loader {
+  display: none;
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  /* animation: loading 1s linear infinite; */
+}
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

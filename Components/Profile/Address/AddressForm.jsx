@@ -7,7 +7,7 @@ import Input from 'Components/Input';
 import axios from 'axios';
 import validation from 'Functions/AddAddressValidation'
 
-const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen }) => {
+const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen, router }) => {
     const [cities, setCities] = useState([])
     const [address, setAddress] = useState({})
     const [touch, setTouch] = useState({})
@@ -74,6 +74,7 @@ const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen }) => {
                         SwalStyled.fire('.ثبت شد', res.data.message, 'success')
                         reload(Math.random())
                         setIsOpen(false)
+                        if (router && !!router.query.backUrl) router.push(router.query.backUrl)
                     })
                     .catch(err => SwalStyled.fire('.ثبت نشد', err.response.data.message, 'error'))
             }

@@ -41,10 +41,10 @@ const useGetRequest = (url, page = 1, obj) => {
                     })
                     .catch(err => {
                         SwalStyled.fire({
-                            title: 'ایراد در سرور',
-                            text: 'مشکلی به وجود آمده لطفا با پشتیبانی تماس بگیرید',
-                            icon: 'error',
-                            willClose: () => router.back()
+                            title: 'توکن منقضی شده است',
+                            text: '.لطفا دوباره وارد حساب کربری خود شوید',
+                            icon: 'warning',
+                            willClose: () => router.push("/auth/login"),
                         })
                     })
             }

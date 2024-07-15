@@ -35,7 +35,7 @@ const MiddleNavbar = () => {
                                 {!tokens ? <BsPerson /> : user.is_admin ? < RiAdminLine /> : <BsPerson />}
                             </Link>
                             <div className={style.border}></div>
-                            <Link href='/cart' className={style.navCart}>
+                            <Link href='/checkout/cart' className={style.navCart}>
                                 <div className={style.countItem}>
                                     <span>{!!state.itemsCounter && e2p(state.itemsCounter)}</span>
                                 </div >

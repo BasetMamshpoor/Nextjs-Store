@@ -24,7 +24,7 @@ const MobileNavbar = () => {
         let arr = [
             { route: '', iconOutline: <BsHouse />, iconeFill: <BsHouseFill />, value: 'خانه' },
             { route: `category-${categories[0].slug}-apparel`, iconOutline: <MdOutlineCategory />, iconeFill: <MdCategory />, value: 'دسته بندی' },
-            { route: 'cart', iconOutline: <BsCart />, iconeFill: <BsCartFill />, value: 'سبد خرید' },
+            { route: 'checkout/cart', iconOutline: <BsCart />, iconeFill: <BsCartFill />, value: 'سبد خرید' },
             {
                 route: !tokens ? 'auth/login' : user?.is_admin ? 'admin' : 'profile',
                 iconOutline: !tokens ? <BsPerson /> : user?.is_admin ? <RiAdminLine /> : <BsPerson />,
