@@ -7,7 +7,7 @@ import createModal from 'Components/Modal';
 import AddAddress from 'Components/Profile/Address/AddAddress';
 import { ImRadioChecked, ImRadioUnchecked } from "react-icons/im";
 
-const ManageAddresses = ({ addresses, index, setIndex, reload, SwalStyled, user, tokens, setIsOpen }) => {
+const ManageAddresses = ({ addresses, dispatch, index, setIndex, reload, SwalStyled, user, tokens, setIsOpen }) => {
     return (
         <>
             <div className={style.main}>
@@ -21,7 +21,7 @@ const ManageAddresses = ({ addresses, index, setIndex, reload, SwalStyled, user,
                 <div className={style.list}>
                     {addresses.map((a, i) => {
                         return (
-                            <label className={style.address} htmlFor={a.id} key={a.id} onClick={() => { setIndex(i); setIsOpen(false) }}>
+                            <label className={style.address} htmlFor={a.id} key={a.id} onClick={() => { setIndex(i); setIsOpen(false); dispatch({ type: "ADD_ADDRESS", payload: { id: a.id } }) }}>
                                 <input id={a.id} type="radio" name='address' hidden value={a.id} defaultChecked={index == i ?? false} />
                                 <span className={style.radio}><ImRadioUnchecked /><ImRadioChecked /></span>
                                 <div className={style.content}>

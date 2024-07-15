@@ -42,7 +42,7 @@ const Cart = () => {
                         <div className="row mx-3">
                             <div className="col-lg-8">
                                 <div className={style.SxSafd_b_3b}>
-                                    <Product state={state.selectedItems} dispatch={dispatch} />
+                                    <Product state={state.items} dispatch={dispatch} />
                                 </div>
                                 <div className={style.opTions}>
                                     {state.itemsCounter > 0 ?

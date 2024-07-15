@@ -5,10 +5,11 @@ import { useRouter } from 'next/router';
 
 
 const initState = {
-    selectedItems: [],
+    items: [],
     itemsCounter: 0,
     total: 0,
     total_after_off: 0,
+    address_id: null,
     checkout: false
 }
 
@@ -28,7 +29,7 @@ const CartContextProvider = ({ children }) => {
             });
             if (router.asPath === '/cart') {
                 const update = async () => {
-                    await axios.post('/check-cart', storage.selectedItems)
+                    await axios.post('/check-cart', storage.items)
                         .then(res => {
                             dispatch({
                                 type: "UPDATE_CART",

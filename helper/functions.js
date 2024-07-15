@@ -1,11 +1,11 @@
 function IsInCart(state, id) {
-    return !!state.selectedItems.find(i => i.idp === id)
+    return !!state.items.find(i => i.idp === id)
 }
 
 function quantityItem(state, id) {
-    const Index = state.selectedItems.findIndex(i => i.idp === id)
+    const Index = state.items.findIndex(i => i.idp === id)
     if (Index === -1) return false
-    else return state.selectedItems[Index].quantity
+    else return state.items[Index].quantity
 }
 
 

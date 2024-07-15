@@ -23,8 +23,8 @@ const Orders = () => {
 
     const statusFun = (status) => {
         const json = [
-            { class: style.cancelled_order, value: 'لغو شده' },
             { class: style.pending_order, value: 'آماده سازی' },
+            { class: style.cancelled_order, value: 'لغو شده' },
             { class: style.delivered_order, value: 'تحویل داده شد' }
         ]
         return (
@@ -35,9 +35,9 @@ const Orders = () => {
     }
     const payStatus = (status) => {
         const json = [
+            { class: style.awaitingPayment, value: 'در انتظار پرداخت' },
             { class: style.cancelled_order, value: 'لغو شده' },
             { class: style.delivered_order, value: 'پرداخت شد' },
-            // { class: style.awaitingPayment, value: 'در انتظار پرداخت' },
         ]
         return (
             <div className={`${style.aR9_nu} ${json[status].class}`}>

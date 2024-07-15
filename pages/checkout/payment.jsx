@@ -11,6 +11,7 @@ import Discount from "Components/Checkout/Payment/Discount";
 import Products from "Components/Checkout/Payment/Products";
 import useGetPrivatRequest from 'hooks/useGetPrivatRequest'
 import { useRouter } from "next/router";
+import axios from "axios";
 
 const Payment = () => {
     const router = useRouter()
@@ -18,6 +19,7 @@ const Payment = () => {
     const { user, tokens } = useContext(Authorization)
     const { SwalStyled } = useContext(Functions)
     const [address, setAddress, reload] = useGetPrivatRequest('/profile/addresses')
+    const headers = { Authorization: `${tokens?.token_type} ${tokens?.access_token}` }
 
     useEffect(() => {
         if (address && !address.length)
@@ -31,7 +33,7 @@ const Payment = () => {
             })
     }, [address])
 
-    const handelSubmit = (e) => {
+    const handelSubmit = async (e) => {
         e.preventDefault();
         if (user.is_admin) {
             SwalStyled.fire({
@@ -46,7 +48,24 @@ const Payment = () => {
                 }
             })
             return
-        } else alert('درگاه پرداخت')
+        } else await axios.post('/order', state, { headers })
+            .then(res => {
+                SwalStyled.fire({
+                    title: 'ثبت شد',
+                    text: '.سفارش شما با موفقیت ثبت شد',
+                    icon: "success",
+                }).then((result) => {
+                    dispatch({ type: "CHECKOUT" })
+                    router.push('/profile/orders')
+                })
+            })
+            .catch(err => {
+                SwalStyled.fire({
+                    title: 'ثبت نشد',
+                    text: err.response.data.message[0],
+                    icon: "error",
+                })
+            })
     }
 
     return (
@@ -61,10 +80,10 @@ const Payment = () => {
                     </nav>
                     <div className={style.row}>
                         <div className={style.column_lg}>
-                            <Address address={address} reload={reload} SwalStyled={SwalStyled} user={user} tokens={tokens} />
+                            <Address address={address} dispatch={dispatch} reload={reload} SwalStyled={SwalStyled} user={user} tokens={tokens} />
                             <Discount />
                             <div className={style.products}>
-                                <Products state={state.selectedItems} dispatch={dispatch} />
+                                <Products state={state.items} dispatch={dispatch} />
                             </div>
                         </div>
                         <div className={style.column_sm}>

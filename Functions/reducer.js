@@ -17,83 +17,85 @@ const reducer = (state, action) => {
             });
             localStorage.setItem('cart', JSON.stringify({
                 ...state,
-                selectedItems: [...clearUnexist],
+                items: [...clearUnexist],
                 ...sumItems(action.payload)
             }))
             return {
                 ...state,
-                selectedItems: action.payload,
+                items: action.payload,
                 ...sumItems(action.payload)
             }
         case "ADD_ITEM":
-            if (!state.selectedItems.find(item => item.idp === action.payload.idp)) {
-                state.selectedItems.push({
+            if (!state.items.find(item => item.idp === action.payload.idp)) {
+                state.items.push({
                     ...action.payload,
                     quantity: 1
                 })
             }
             localStorage.setItem('cart', JSON.stringify({
                 ...state,
-                selectedItems: [...state.selectedItems],
-                ...sumItems(state.selectedItems)
+                items: [...state.items],
+                ...sumItems(state.items)
             }))
             return {
                 ...state,
-                selectedItems: [...state.selectedItems],
-                ...sumItems(state.selectedItems)
+                items: [...state.items],
+                ...sumItems(state.items)
             }
         case "REMOVE_ITEM":
-            const newSelectedItems = state.selectedItems.filter(i => i.idp !== action.payload.idp)
+            const newitems = state.items.filter(i => i.idp !== action.payload.idp)
             localStorage.setItem('cart', JSON.stringify({
                 ...state,
-                selectedItems: [...newSelectedItems],
-                ...sumItems(newSelectedItems)
+                items: [...newitems],
+                ...sumItems(newitems)
             }))
             return {
                 ...state,
-                selectedItems: [...newSelectedItems],
-                ...sumItems(newSelectedItems)
+                items: [...newitems],
+                ...sumItems(newitems)
             }
         case "INCREASE":
-            const Index = state.selectedItems.findIndex(i => i.idp === action.payload.idp)
-            let num = state.selectedItems[Index]
+            const Index = state.items.findIndex(i => i.idp === action.payload.idp)
+            let num = state.items[Index]
             if (!(num.sizes.stock > num.quantity)) {
                 return {
                     ...state,
-                    ...sumItems(state.selectedItems)
+                    ...sumItems(state.items)
                 }
             } else {
                 num.quantity++
                 localStorage.setItem('cart', JSON.stringify({
                     ...state,
-                    ...sumItems(state.selectedItems)
+                    ...sumItems(state.items)
                 }))
                 return {
                     ...state,
-                    ...sumItems(state.selectedItems)
+                    ...sumItems(state.items)
                 }
             }
         case "DECREASE":
-            const Index2 = state.selectedItems.findIndex(i => i.idp === action.payload.idp)
-            state.selectedItems[Index2].quantity--
+            const Index2 = state.items.findIndex(i => i.idp === action.payload.idp)
+            state.items[Index2].quantity--
             localStorage.setItem('cart', JSON.stringify({
                 ...state,
-                ...sumItems(state.selectedItems)
+                ...sumItems(state.items)
             }))
             return {
                 ...state,
-                ...sumItems(state.selectedItems)
+                ...sumItems(state.items)
             }
+        case "ADD_ADDRESS":
+            return { ...state, address_id: action.payload.id }
         case "CHECKOUT":
             localStorage.setItem('cart', JSON.stringify({
-                selectedItems: [],
+                items: [],
                 itemsCounter: 0,
                 total: 0,
                 total_after_off: 0,
                 checkout: true
             }))
             return {
-                selectedItems: [],
+                items: [],
                 itemsCounter: 0,
                 total: 0,
                 total_after_off: 0,
@@ -101,14 +103,14 @@ const reducer = (state, action) => {
             }
         case "CLEAR":
             localStorage.setItem('cart', JSON.stringify({
-                selectedItems: [],
+                items: [],
                 itemsCounter: 0,
                 total: 0,
                 total_after_off: 0,
                 checkout: false
             }))
             return {
-                selectedItems: [],
+                items: [],
                 itemsCounter: 0,
                 total: 0,
                 total_after_off: 0,
